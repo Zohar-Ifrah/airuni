@@ -11,7 +11,8 @@ export const stayService = {
     save,
     remove,
     getEmptyStay,
-    addStayMsg
+    addStayMsg,
+    getDefaultFilter
 }
 window.cs = stayService
 
@@ -261,6 +262,10 @@ async function addStayMsg(stayId, txt) {
     await storageService.put(STORAGE_KEY, stay)
 
     return msg
+}
+
+function getDefaultFilter() {
+    return { price: 750 }
 }
 
 function getEmptyStay() {

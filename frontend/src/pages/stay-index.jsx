@@ -1,15 +1,18 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/stay.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 // import { stayService } from '../services/stay.service.js'
 import { stayService } from '../services/stay.service.local.js'
 import { Link } from 'react-router-dom'
+import { StayFilter } from '../cmps/stay-filter.jsx'
+import { FILTER_BY } from '../store/stay.reducer.js'
 
 export function StayIndex() {
-
+    const dispatch = useDispatch()
     const stays = useSelector(storeState => storeState.stayModule.stays)
+    const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
     useEffect(() => {
         loadStays()
@@ -57,9 +60,21 @@ export function StayIndex() {
         console.log(`TODO Adding msg to stay`)
     }
 
+    function onSetFilter(filterToEdit) {
+        dispatch({ type: FILTER_BY, filterToEdit })
+    }
+
+    function onSetSort(sortToEdit) {
+        console.log('FUNCTION: onSetSort TO EDIT')
+        // dispatch({ type: SORT_BY, sortToEdit })
+      }
+
     return (
         <div>
             <h3>Stays App</h3>
+            <StayFilter
+                onSetFilter={onSetFilter}
+                onSetSort={onSetSort} />
             <main>
                 <button onClick={onAddStay}>Add Stay ⛐</button>
                 <ul className="stay-list">
@@ -67,7 +82,7 @@ export function StayIndex() {
                         <li className="stay-preview" key={stay._id}>
                             <Link title="Details" to={`/stay/details/${stay._id}`}>
                                 {console.log(stay.imgUrls[0])}
-                            <img src={stay.imgUrls[0]} alt="" />
+                                <img src={stay.imgUrls[0]} alt="" />
                             </Link>
                             <p>Price: <span>${stay.price.toLocaleString()}</span></p>
                             {/* <p>Owner: <span>{stay.owner && stay.owner.fullname}</span></p> */}
