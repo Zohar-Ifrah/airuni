@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import routes from '../routes'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/user.actions.js'
@@ -12,7 +12,7 @@ export function AppHeader() {
         try {
             const user = await login(credentials)
             showSuccessMsg(`Welcome: ${user.fullname}`)
-        } catch(err) {
+        } catch (err) {
             showErrorMsg('Cannot login')
         }
     }
@@ -20,7 +20,7 @@ export function AppHeader() {
         try {
             const user = await signup(credentials)
             showSuccessMsg(`Welcome new user: ${user.fullname}`)
-        } catch(err) {
+        } catch (err) {
             showErrorMsg('Cannot signup')
         }
     }
@@ -28,33 +28,38 @@ export function AppHeader() {
         try {
             await logout()
             showSuccessMsg(`Bye now`)
-        } catch(err) {
+        } catch (err) {
             showErrorMsg('Cannot logout')
         }
     }
 
     return (
-        <header className="app-header">
-            <nav>
-                {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
-
-                {user &&
-                    <span className="user-info">
-                        <Link to={`user/${user._id}`}>
-                            {user.imgUrl && <img src={user.imgUrl} alt=''/>}
-                            {user.fullname}
-                        </Link>
-                        <span className="score">{user.score?.toLocaleString()}</span>
-                        <button onClick={onLogout}>Logout</button>
-                    </span>
-                }
-                {!user &&
-                    <section className="user-info">
-                        <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                    </section>
-                }
-            </nav>
-            <h1>My App</h1>
+        <header className="app-header full main-layout">
+            <div className="app-header-inner-container flex space-between align-center">
+                <div className="main-logo">
+                    <h1> AppLogo </h1>
+                </div>
+                <div className="login-signup-container">
+                    {user &&
+                        <span className="user-info">
+                            <Link to={`user/${user._id}`}>
+                                {user.imgUrl && <img src={user.imgUrl} alt='' />}
+                                {user.fullname}
+                            </Link>
+                            <span className="score">{user.score?.toLocaleString()}</span>
+                            <button onClick={onLogout}>Logout</button>
+                        </span>
+                    }
+                    {!user &&
+                        <section className="user-info">
+                            <LoginSignup onLogin={onLogin} onSignup={onSignup} />
+                        </section>
+                    }
+                </div>
+                <nav>
+                    {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
+                </nav>
+            </div>
         </header>
     )
 }

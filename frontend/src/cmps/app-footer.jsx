@@ -16,15 +16,15 @@ export function AppFooter() {
         try {
             const score = await checkout(cartTotal)
             showSuccessMsg(`Charged, your new score: ${score.toLocaleString()}`)
-        } catch(err) {
+        } catch (err) {
             showErrorMsg('Cannot checkout')
         }
     }
 
     return (
-        <footer className="app-footer">
+        <footer className="app-footer full">
             <p>
-                coffeerights - count: {count}
+                CoffeeRights 2023 | By Zohat Ifrah, Gil Shaashua and Yuval Turjeman
             </p>
             {cart.length > 0 &&
                 <h5>
