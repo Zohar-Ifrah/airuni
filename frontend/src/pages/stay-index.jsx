@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux'
 import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/stay.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { stayService } from '../services/stay.service.js'
+// import { stayService } from '../services/stay.service.js'
+import { stayService } from '../services/stay.service.local.js'
+import { Link } from 'react-router-dom'
 
 export function StayIndex() {
 
@@ -16,7 +18,7 @@ export function StayIndex() {
     async function onRemoveStay(stayId) {
         try {
             await removeStay(stayId)
-            showSuccessMsg('Stay removed')            
+            showSuccessMsg('Stay removed')
         } catch (err) {
             showErrorMsg('Cannot remove stay')
         }
@@ -24,13 +26,14 @@ export function StayIndex() {
 
     async function onAddStay() {
         const stay = stayService.getEmptyStay()
-        stay.vendor = prompt('Vendor?')
+        stay.name = prompt('name?')
+        stay.price = +prompt('price?')
         try {
             const savedStay = await addStay(stay)
             showSuccessMsg(`Stay added (id: ${savedStay._id})`)
         } catch (err) {
             showErrorMsg('Cannot add stay')
-        }        
+        }
     }
 
     async function onUpdateStay(stay) {
@@ -41,10 +44,10 @@ export function StayIndex() {
             showSuccessMsg(`Stay updated, new price: ${savedStay.price}`)
         } catch (err) {
             showErrorMsg('Cannot update stay')
-        }        
+        }
     }
 
-    function onAddToCart(stay){
+    function onAddToCart(stay) {
         console.log(`Adding ${stay.vendor} to Cart`)
         addToCart(stay)
         showSuccessMsg('Added to Cart')
@@ -62,8 +65,10 @@ export function StayIndex() {
                 <ul className="stay-list">
                     {stays.map(stay =>
                         <li className="stay-preview" key={stay._id}>
-                            <h4>{stay.vendor}</h4>
-                            <img src="https://image.cnbcfm.com/api/v1/image/106758801-1603459526384-picture-perfect-beautiful-house-on-the-island-of-coronado-in-sunny-california-beautifully-landscaped_t20_6lJOrv.jpg?v=1603459593&w=740&h=416&ffmt=webp&vtcrop=y" alt="" />
+                            <Link title="Details" to={`/stay/details/${stay._id}`}>
+                                {console.log(stay.imgUrls[0])}
+                            <img src={stay.imgUrls[0]} alt="" />
+                            </Link>
                             <p>Price: <span>${stay.price.toLocaleString()}</span></p>
                             {/* <p>Owner: <span>{stay.owner && stay.owner.fullname}</span></p> */}
                             <div>
