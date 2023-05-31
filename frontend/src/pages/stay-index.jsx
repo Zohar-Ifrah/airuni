@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux'
 import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/stay.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { stayService } from '../services/stay.service.js'
+// import { stayService } from '../services/stay.service.js'
+import { stayService } from '../services/stay.service.local.js'
+import { Link } from 'react-router-dom'
 
 export function StayIndex() {
 
@@ -24,7 +26,8 @@ export function StayIndex() {
 
     async function onAddStay() {
         const stay = stayService.getEmptyStay()
-        stay.vendor = prompt('Vendor?')
+        stay.name = prompt('name?')
+        stay.price = +prompt('price?')
         try {
             const savedStay = await addStay(stay)
             showSuccessMsg(`Stay added (id: ${savedStay._id})`)
@@ -56,13 +59,14 @@ export function StayIndex() {
 
     return (
         <div className="stay-index-container">
-            <h3>Stays App</h3>
             <button onClick={onAddStay}>Add Stay ⛐</button>
             <ul className="stay-list">
                 {stays.map(stay =>
                     <li className="stay-preview" key={stay._id}>
-                        <h4>{stay.vendor}</h4>
-                        <img src="https://image.cnbcfm.com/api/v1/image/106758801-1603459526384-picture-perfect-beautiful-house-on-the-island-of-coronado-in-sunny-california-beautifully-landscaped_t20_6lJOrv.jpg?v=1603459593&w=740&h=416&ffmt=webp&vtcrop=y" alt="" />
+                        <Link title="Details" to={`/stay/details/${stay._id}`}>
+                            {console.log(stay.imgUrls[0])}
+                            <img src={stay.imgUrls[0]} alt="" />
+                        </Link>
                         <p>Price: <span>${stay.price.toLocaleString()}</span></p>
                         {/* <p>Owner: <span>{stay.owner && stay.owner.fullname}</span></p> */}
                         <div>

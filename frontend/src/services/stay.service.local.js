@@ -21,7 +21,7 @@ const gDemostays = [
         _id: "s101",
         name: "Ribeira Charming Duplex",
         type: "House",
-        imgUrls: ["https://e26e9b.jpg", "otherImg.jpg"],
+        imgUrls: ["https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600"],
         price: 80.00,
         summary: "Fantastic duplex apartment...",
         capacity: 8,
@@ -71,7 +71,7 @@ const gDemostays = [
         _id: "s201",
         name: "Sunset Paradise Villa",
         type: "Villa",
-        imgUrls: ["https://bali-villa.jpg", "otherImg.jpg"],
+        imgUrls: ["https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600"],
         price: 150.00,
         summary: "Experience the ultimate beachfront getaway in our luxurious villa...",
         capacity: 10,
@@ -119,7 +119,7 @@ const gDemostays = [
         _id: "s301",
         name: "Mountain Hideaway Cabin",
         type: "Cabin",
-        imgUrls: ["https://mountain-cabin.jpg", "otherImg.jpg"],
+        imgUrls: ["https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600"],
         price: 120.00,
         summary: "Escape to the tranquility of the mountains in our cozy cabin...",
         capacity: 4,
@@ -166,7 +166,7 @@ const gDemostays = [
         _id: "s401",
         name: "Metropolis Loft Apartment",
         type: "Apartment",
-        imgUrls: ["https://nyc-loft.jpg", "otherImg.jpg"],
+        imgUrls: ["https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600"],
         price: 200.00,
         summary: "Experience the vibrant energy of New York City in our modern loft apartment...",
         capacity: 2,
@@ -265,8 +265,52 @@ async function addStayMsg(stayId, txt) {
 
 function getEmptyStay() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+        // name: "Ribeira Charming Duplex",
+        type: "House",
+        imgUrls: ["https://image.cnbcfm.com/api/v1/image/106758801-1603459526384-picture-perfect-beautiful-house-on-the-island-of-coronado-in-sunny-california-beautifully-landscaped_t20_6lJOrv.jpg?v=1603459593&w=740&h=416&ffmt=webp&vtcrop=y"],
+        // price: 80.00,
+        summary: "Fantastic duplex apartment...",
+        capacity: 8,
+        amenities: [
+            "TV",
+            "Wifi",
+            "Kitchen",
+            "Smoking allowed",
+            "Pets allowed",
+            "Cooking basics"
+        ],
+        labels: [
+            "Top of the world",
+            "Trending",
+            "Play",
+            "Tropical"
+        ],
+        host: {
+            _id: "u101",
+            fullname: "Davit Pok",
+            imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
+        },
+        loc: {
+            country: "Portugal",
+            countryCode: "PT",
+            city: "Lisbon",
+            address: "17 Kombo st",
+            lat: -8.61308,
+            lng: 41.1413
+        },
+        reviews: [
+            {
+                id: "madeId",
+                txt: "Very helpful hosts. Cooked traditional...",
+                rate: 4,
+                by: {
+                    _id: "u102",
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+        ],
+        likedByUsers: ['mini-user']
     }
 }
 
