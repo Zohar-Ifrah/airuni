@@ -21,7 +21,7 @@ export function UserDetails() {
     return () => {
       socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
     }
-
+    // eslint-disable-next-line
   }, [])
 
   function onUserUpdate(user) {

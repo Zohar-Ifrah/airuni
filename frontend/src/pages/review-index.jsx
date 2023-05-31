@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+// eslint-disable-next-line
 import { showErrorMsg, showSuccessMsg, showUserMsg } from '../services/event-bus.service'
 import { socketService, SOCKET_EVENT_REVIEW_ADDED } from '../services/socket.service'
 
@@ -29,6 +30,7 @@ export function ReviewIndex() {
     return () => {
       socketService.off(SOCKET_EVENT_REVIEW_ADDED)
     }
+    // eslint-disable-next-line
   }, [])
 
   const handleChange = ev => {

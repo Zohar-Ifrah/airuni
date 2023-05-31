@@ -66,6 +66,7 @@ function SplitPane(props) {
 
 
 export function AboutUs() {
+    // eslint-disable-next-line
     const [count, setCount] = useState(100)
 
     function onTellMeMore() {

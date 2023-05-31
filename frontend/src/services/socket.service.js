@@ -22,7 +22,7 @@ window.socketService = socketService
 
 socketService.setup()
 
-
+// eslint-disable-next-line
 function createSocketService() {
   var socket = null;
   const socketService = {
