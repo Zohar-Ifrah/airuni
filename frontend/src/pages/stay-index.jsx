@@ -67,36 +67,33 @@ export function StayIndex() {
     function onSetSort(sortToEdit) {
         console.log('FUNCTION: onSetSort TO EDIT')
         // dispatch({ type: SORT_BY, sortToEdit })
-      }
+    }
 
     return (
-        <div>
-            <h3>Stays App</h3>
+        <div className="stay-index-container">
             <StayFilter
                 onSetFilter={onSetFilter}
                 onSetSort={onSetSort} />
-            <main>
-                <button onClick={onAddStay}>Add Stay ⛐</button>
-                <ul className="stay-list">
-                    {stays.map(stay =>
-                        <li className="stay-preview" key={stay._id}>
-                            <Link title="Details" to={`/stay/details/${stay._id}`}>
-                                {console.log(stay.imgUrls[0])}
-                                <img src={stay.imgUrls[0]} alt="" />
-                            </Link>
-                            <p>Price: <span>${stay.price.toLocaleString()}</span></p>
-                            {/* <p>Owner: <span>{stay.owner && stay.owner.fullname}</span></p> */}
-                            <div>
-                                <button onClick={() => { onRemoveStay(stay._id) }}>x</button>
-                                <button onClick={() => { onUpdateStay(stay) }}>Edit</button>
-                            </div>
+            <button onClick={onAddStay}>Add Stay ⛐</button>
+            <ul className="stay-list">
+                {stays.map(stay =>
+                    <li className="stay-preview" key={stay._id}>
+                        <Link title="Details" to={`/stay/details/${stay._id}`}>
+                            {console.log(stay.imgUrls[0])}
+                            <img src={stay.imgUrls[0]} alt="" />
+                        </Link>
+                        <p>Price: <span>${stay.price.toLocaleString()}</span></p>
+                        {/* <p>Owner: <span>{stay.owner && stay.owner.fullname}</span></p> */}
+                        <div>
+                            <button onClick={() => { onRemoveStay(stay._id) }}>x</button>
+                            <button onClick={() => { onUpdateStay(stay) }}>Edit</button>
+                        </div>
 
-                            <button onClick={() => { onAddStayMsg(stay) }}>Add stay msg</button>
-                            <button className="buy" onClick={() => { onAddToCart(stay) }}>Add to cart</button>
-                        </li>)
-                    }
-                </ul>
-            </main>
+                        <button onClick={() => { onAddStayMsg(stay) }}>Add stay msg</button>
+                        <button className="buy" onClick={() => { onAddToCart(stay) }}>Add to cart</button>
+                    </li>)
+                }
+            </ul>
         </div>
     )
 }

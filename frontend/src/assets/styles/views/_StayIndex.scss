@@ -1,0 +1,18 @@
+.stay-index-container {
+
+
+    .stay-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-block-start: 2em;
+        margin-block-end: 2em;
+
+        .stay-preview {
+            border-radius: 1em;
+        }
+
+    }
+
+}
