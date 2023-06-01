@@ -1,6 +1,5 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import routes from '../routes'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/user.actions.js'
 import { LoginSignup } from './login-signup.jsx'
@@ -42,10 +41,10 @@ export function AppHeader() {
                 <div className="login-signup-container">
                     {user &&
                         <span className="user-info">
-                            <Link to={`user/${user._id}`}>
+                            <NavLink to={`user/${user._id}`}>
                                 {user.imgUrl && <img src={user.imgUrl} alt='' />}
                                 {user.fullname}
-                            </Link>
+                            </NavLink>
                             <span className="score">{user.score?.toLocaleString()}</span>
                             <button onClick={onLogout}>Logout</button>
                         </span>
@@ -57,7 +56,12 @@ export function AppHeader() {
                     }
                 </div>
                 <nav>
-                    {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
+                    <NavLink to="/"> Home</NavLink>
+                    <NavLink to="/stay"> Stay </NavLink>
+                    <NavLink to="/review"> Reviews </NavLink>
+                    <NavLink to="/chat"> Chat </NavLink>
+                    <NavLink to="/about" > About </NavLink>
+                    <NavLink to="/admin"> Admin </NavLink>
                 </nav>
             </div>
         </header>
