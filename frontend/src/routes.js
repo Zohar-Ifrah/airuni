@@ -19,7 +19,7 @@ const routes = [
         label: 'Stays'
     },
     {
-        path: 'stay/details/:stayId',
+        path: 'details/:stayId',
         component: <StayDetails />,
         label: 'details'
     },

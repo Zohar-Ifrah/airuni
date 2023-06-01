@@ -1,14 +1,19 @@
 @font-face {
+    font-family: Circular-Bold;
+    src: url(../../../../../frontend/src/assets/styles/fonts/Circular/CircularStd-Bold.ttf);
+}
+
+@font-face {
     font-family: Circular-Regular;
     src: url(../fonts/Circular/CircularStd-Book.ttf);
 }
 
 @font-face {
-    font-family: Roboto-Regular;
-    src: url(../../../../../frontend/src/assets/styles/fonts/Roboto/Roboto-Regular.ttf);
+    font-family: Circular-Light;
+    src: url(../../../../../frontend/src/assets/styles/fonts/Circular/CircularStd-Light.otf);
 }
 
 // @font-face {
-//     font-family: montserrat;
-//     src: url(../../fonts/Montserrat/Montserrat-Regular.ttf);
+//     font-family: Roboto-Regular;
+//     src: url(../../../../../frontend/src/assets/styles/fonts/Roboto/Roboto-Regular.ttf);
 // }
