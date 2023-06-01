@@ -4,39 +4,39 @@ import { useState, useEffect } from 'react'
 
 export function StayExrtaDetails({ stay }) {
 
-    const [slicedAmenties, setSlicedAmenties] = useState(null)
+    const [slicedAmenities, setSlicedAmenties] = useState(null)
 
     useEffect(() => {
 
-        setSlicedAmenties({ mainAmenties: stay.amenities.slice(0, 3), secondaryAmenties: stay.amenities.slice(3) })
+        setSlicedAmenties({ mainAmenities: stay.amenities.slice(0, 3), secondaryAmenities: stay.amenities.slice(3) })
 
     }, [])
 
-    if (!slicedAmenties) return
+    if (!slicedAmenities) return
 
     return (
         <div className="stay-extra-details">
             <div className="stay-host-by flex space-between align-center">
-                <h3> {`${stay.type} host by ${stay.host.fullname}`} </h3>
+                <h2> {`${stay.type} host by ${stay.host.fullname}`} </h2>
                 <img src={require(`../assets/img/url.png`)} alt="url" />
             </div>
-            <div className="main-amenties flex align-center">
-                {slicedAmenties.mainAmenties.map((amenty, idx) => {
+            <div className="main-amenities flex align-center">
+                {slicedAmenities.mainAmenities.map((amenity, idx) => {
                     return (
-                        <div key={idx} className="main-amenty flex align-center">
+                        <div key={idx} className="main-amenity flex align-center">
                             <img src={require(`../assets/img/url.png`)} alt="url" />
-                            {amenty}
+                            {amenity}
                         </div>
                     )
                 })}
             </div>
-            <div className="secondary-amenties">
-                {slicedAmenties.secondaryAmenties.map((amenty, idx) => {
+            <div className="secondary-amenities">
+                {slicedAmenities.secondaryAmenities.map((amenity, idx) => {
                     return (
-                        <div key={idx} className="secondary-amenty-container flex align-center">
+                        <div key={idx} className="secondary-amenity-container flex align-center">
                             <img src={require(`../assets/img/url.png`)} alt="url" />
-                            <div className="secondary-amenty-content-container">
-                                <h4> {amenty} </h4>
+                            <div className="secondary-amenity-content-container">
+                                <h4> {amenity} </h4>
                                 <p> lorem ipsum lorem ipsum lorem ipsum ...</p>
                             </div>
                         </div>

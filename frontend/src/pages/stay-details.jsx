@@ -7,6 +7,7 @@ import { DetailsGallery } from "../cmps/details-gallery"
 import { DetailsHeader } from "../cmps/details-header"
 import { DetailsCalendar } from "../cmps/details-calendar"
 import { StayExrtaDetails } from "../cmps/stay-extra-details"
+import { StayAmenities } from "../cmps/stay-amenities"
 
 
 export function StayDetails() {
@@ -38,7 +39,10 @@ export function StayDetails() {
         <DetailsHeader stay={stay} />
         < DetailsGallery stay={stay} />
         <StayExrtaDetails stay={stay} />
-
+        {/* <MeetHost /> not implement yet */}
+        {/* <AboutStay/> not implement yet */}
+        {/* <StaySleep/> not implement yet */}
+        <StayAmenities stay={stay} />
         < DetailsCalendar />
 
 
