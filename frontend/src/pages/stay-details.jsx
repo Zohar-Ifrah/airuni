@@ -37,7 +37,7 @@ export function StayDetails() {
 
     return <div className='stay-details'>
         <DetailsHeader stay={stay} />
-        < DetailsGallery stay={stay} />
+        <DetailsGallery stay={stay} />
         <StayExrtaDetails stay={stay} />
         {/* <MeetHost /> not implement yet */}
         {/* <AboutStay/> not implement yet */}
