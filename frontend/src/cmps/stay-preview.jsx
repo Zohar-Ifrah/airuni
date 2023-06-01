@@ -4,7 +4,7 @@ export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
     return (
 
 
-        <div >
+        <div>
             <Link title="Details" to={`/stay/details/${stay._id}`}>
 
                 <img src={stay.imgUrls[0]} alt="" />

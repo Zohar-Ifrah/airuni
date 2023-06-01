@@ -28,11 +28,11 @@ const gDemostays = [
         capacity: 8,
         amenities: [
             "TV",
-            "Wifi",
-            "Kitchen",
-            "Smoking allowed",
-            "Pets allowed",
-            "Cooking basics"
+            " Wifi",
+            " Kitchen",
+            " Smoking allowed ",
+            " Pets allowed ",
+            " Cooking basics "
         ],
         labels: [
             "Top of the world",
