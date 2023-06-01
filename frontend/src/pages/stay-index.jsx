@@ -1,18 +1,19 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/stay.actions.js'
+import { loadStays, addStay, updateStay, removeStay } from '../store/stay.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 // import { stayService } from '../services/stay.service.js'
 import { stayService } from '../services/stay.service.local.js'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { StayFilter } from '../cmps/stay-filter.jsx'
 import { FILTER_BY } from '../store/stay.reducer.js'
+import { StayList } from '../cmps/stay-list.jsx'
 
 export function StayIndex() {
     const dispatch = useDispatch()
     const stays = useSelector(storeState => storeState.stayModule.stays)
-    const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
+    // const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
     useEffect(() => {
         loadStays()
@@ -50,15 +51,15 @@ export function StayIndex() {
         }
     }
 
-    function onAddToCart(stay) {
-        console.log(`Adding ${stay.vendor} to Cart`)
-        addToCart(stay)
-        showSuccessMsg('Added to Cart')
-    }
+    // function onAddToCart(stay) {
+    //     console.log(`Adding ${stay.vendor} to Cart`)
+    //     addToCart(stay)
+    //     showSuccessMsg('Added to Cart')
+    // }
 
-    function onAddStayMsg(stay) {
-        console.log(`TODO Adding msg to stay`)
-    }
+    // function onAddStayMsg(stay) {
+    //     console.log(`TODO Adding msg to stay`)
+    // }
 
     function onSetFilter(filterToEdit) {
         dispatch({ type: FILTER_BY, filterToEdit })
@@ -74,26 +75,11 @@ export function StayIndex() {
             <StayFilter
                 onSetFilter={onSetFilter}
                 onSetSort={onSetSort} />
-            <button onClick={onAddStay}>Add Stay ⛐</button>
-            <ul className="stay-list">
-                {stays.map(stay =>
-                    <li className="stay-preview" key={stay._id}>
-                        <Link title="Details" to={`/stay/details/${stay._id}`}>
-                            {console.log(stay.imgUrls[0])}
-                            <img src={stay.imgUrls[0]} alt="" />
-                        </Link>
-                        <p>Price: <span>${stay.price.toLocaleString()}</span></p>
-                        {/* <p>Owner: <span>{stay.owner && stay.owner.fullname}</span></p> */}
-                        <div>
-                            <button onClick={() => { onRemoveStay(stay._id) }}>x</button>
-                            <button onClick={() => { onUpdateStay(stay) }}>Edit</button>
-                        </div>
-
-                        <button onClick={() => { onAddStayMsg(stay) }}>Add stay msg</button>
-                        <button className="buy" onClick={() => { onAddToCart(stay) }}>Add to cart</button>
-                    </li>)
-                }
-            </ul>
+            <button onClick={onAddStay}>Add Stay</button>
+            <StayList
+                stays={stays}
+                onRemoveStay={onRemoveStay}
+                onUpdateStay={onUpdateStay}/>
         </div>
     )
 }
