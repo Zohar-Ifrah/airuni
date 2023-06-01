@@ -9,12 +9,32 @@ import { stayService } from '../services/stay.service.local.js'
 import { StayFilter } from '../cmps/stay-filter.jsx'
 import { FILTER_BY } from '../store/stay.reducer.js'
 import { StayList } from '../cmps/stay-list.jsx'
+import { useSearchParams } from 'react-router-dom'
+import { useForm } from '../customHooks/useForm.js'
 
 export function StayIndex() {
     const dispatch = useDispatch()
     const stays = useSelector(storeState => storeState.stayModule.stays)
     // const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
+    // eslint-disable-next-line
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    // eslint-disable-next-line
+    const [filterByToEdit, setFilterByToEdit, handleChange] =
+    useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter)
+    
+
+    // First load
+    useEffect(() => {
+        const paramsMap = searchParams.entries()
+        const filterBy = stayService.getDefaultFilter()
+        for (const [key, value] of paramsMap) {
+            filterBy[key] = value
+        }
+        setFilterByToEdit(filterBy)
+// eslint-disable-next-line
+    }, [])
+    
     useEffect(() => {
         loadStays()
     }, [])
@@ -75,7 +95,9 @@ export function StayIndex() {
             <StayFilter
                 onSetFilter={onSetFilter}
                 onSetSort={onSetSort} />
+
             <button onClick={onAddStay}>Add Stay</button>
+
             <StayList
                 stays={stays}
                 onRemoveStay={onRemoveStay}

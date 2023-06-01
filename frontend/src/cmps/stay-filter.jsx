@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 // import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 
@@ -13,7 +13,8 @@ export function StayFilter({ onSetFilter, onSetSort }) {
   onSetFilter = useRef(utilService.debounce(onSetFilter))
 
   // const [filterByToEdit, setFilterByToEdit] = useState(useSelector((storeState) => storeState.stayModule.filterBy))
-  const [sortByToEdit, SetSortByToEdit] = useState(useSelector((storeState) => storeState.stayModule.sortBy))
+  // const [sortByToEdit, setSortByToEdit] = useState(useSelector((storeState) => storeState.stayModule.sortBy))
+  // eslint-disable-next-line
   const [filterByToEdit, setFilterByToEdit, handleChange] =
     useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter.current)
 
@@ -46,7 +47,7 @@ export function StayFilter({ onSetFilter, onSetSort }) {
   //   }
   //   if (value === 'sort') value = ''
 
-  //   SetSortByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+  //   setSortByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   // }
 
 

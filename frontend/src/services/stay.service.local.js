@@ -265,7 +265,7 @@ async function addStayMsg(stayId, txt) {
 }
 
 function getDefaultFilter() {
-    return { price: 750 }
+    return { price: 750, txt: '' }
 }
 
 function getEmptyStay() {

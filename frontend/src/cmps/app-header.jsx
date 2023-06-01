@@ -3,9 +3,28 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/user.actions.js'
 import { LoginSignup } from './login-signup.jsx'
+import { useEffect, useRef, useState } from 'react'
+import { HeaderFilter } from './header-filter'
 
 export function AppHeader() {
+
     const user = useSelector(storeState => storeState.userModule.user)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const modalRef = useRef(null)
+
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setIsModalOpen(false)
+            }
+        }
+
+        window.addEventListener('mousedown', handleOutsideClick)
+
+        return () => {
+            window.removeEventListener('mousedown', handleOutsideClick)
+        }
+    }, [])
 
     async function onLogin(credentials) {
         try {
@@ -15,6 +34,7 @@ export function AppHeader() {
             showErrorMsg('Cannot login')
         }
     }
+
     async function onSignup(credentials) {
         try {
             const user = await signup(credentials)
@@ -23,6 +43,7 @@ export function AppHeader() {
             showErrorMsg('Cannot signup')
         }
     }
+
     async function onLogout() {
         try {
             await logout()
@@ -32,13 +53,34 @@ export function AppHeader() {
         }
     }
 
+    function onToggleUserModal() {
+        console.log(isModalOpen)
+        setIsModalOpen(!isModalOpen)
+    }
+    function onSetFilter() {
+        console.log('hi')
+    }
     return (
         <header className="app-header full main-layout">
             <div className="app-header-inner-container flex space-between align-center">
                 <div className="main-logo">
-                    <h1> AppLogo </h1>
+                    <h1> AirBBB </h1>
                 </div>
-                <div className="login-signup-container">
+
+                <section className="header-search-bar-container">
+                    <HeaderFilter onSetFilter={onSetFilter} />
+                </section>
+                
+                <nav>
+                    <NavLink to="/"> Home</NavLink>
+                    <NavLink to="/stay"> Stay </NavLink>
+                    <NavLink to="/review"> Reviews </NavLink>
+                    <NavLink to="/chat"> Chat </NavLink>
+                    <NavLink to="/about" > About </NavLink>
+                    <NavLink to="/admin"> Admin </NavLink>
+                </nav>
+
+                {isModalOpen && <div className="login-signup-container" ref={modalRef}>
                     {user &&
                         <span className="user-info">
                             <NavLink to={`user/${user._id}`}>
@@ -54,15 +96,8 @@ export function AppHeader() {
                             <LoginSignup onLogin={onLogin} onSignup={onSignup} />
                         </section>
                     }
-                </div>
-                <nav>
-                    <NavLink to="/"> Home</NavLink>
-                    <NavLink to="/stay"> Stay </NavLink>
-                    <NavLink to="/review"> Reviews </NavLink>
-                    <NavLink to="/chat"> Chat </NavLink>
-                    <NavLink to="/about" > About </NavLink>
-                    <NavLink to="/admin"> Admin </NavLink>
-                </nav>
+                </div>}
+                <button onClick={() => { onToggleUserModal() }}>Sign</button>
             </div>
         </header>
     )
