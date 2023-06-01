@@ -19,20 +19,25 @@ window.cs = stayService
 const gDemostays = [
     // first entry: duplex apartment in Lisbon
     {
-        _id: "s101",
+        _id: utilService.makeId(),
         name: "Ribeira Charming Duplex",
         type: "House",
-        imgUrls: ["https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600"],
+        imgUrls: [
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+        ],
         price: 80.00,
         summary: "Fantastic duplex apartment...",
         capacity: 8,
         amenities: [
             "TV",
-            "Wifi",
-            "Kitchen",
-            "Smoking allowed",
-            "Pets allowed",
-            "Cooking basics"
+            " Wifi",
+            " Kitchen",
+            " Smoking allowed ",
+            " Pets allowed ",
+            " Cooking basics "
         ],
         labels: [
             "Top of the world",
@@ -69,10 +74,15 @@ const gDemostays = [
     },
     // Additional entry 1: Beachfront Villa in Bali
     {
-        _id: "s201",
+        _id: utilService.makeId(),
         name: "Sunset Paradise Villa",
         type: "Villa",
-        imgUrls: ["https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600"],
+        imgUrls: [
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600" }
+        ],
         price: 150.00,
         summary: "Experience the ultimate beachfront getaway in our luxurious villa...",
         capacity: 10,
@@ -117,10 +127,15 @@ const gDemostays = [
     },
     // Additional entry 2: Cozy Cabin in the Mountains
     {
-        _id: "s301",
+        _id: utilService.makeId(),
         name: "Mountain Hideaway Cabin",
         type: "Cabin",
-        imgUrls: ["https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600"],
+        imgUrls: [
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600" }
+        ],
         price: 120.00,
         summary: "Escape to the tranquility of the mountains in our cozy cabin...",
         capacity: 4,
@@ -164,10 +179,15 @@ const gDemostays = [
     },
     // Additional entry 3: Urban Loft in New York City
     {
-        _id: "s401",
+        _id: utilService.makeId(),
         name: "Metropolis Loft Apartment",
         type: "Apartment",
-        imgUrls: ["https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600"],
+        imgUrls: [
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600" }
+        ],
         price: 200.00,
         summary: "Experience the vibrant energy of New York City in our modern loft apartment...",
         capacity: 2,
@@ -208,6 +228,168 @@ const gDemostays = [
             }
         ],
         likedByUsers: ["mini-user", "u105"]
+    },
+    {
+        _id: utilService.makeId(),
+        name: "Ribeira Charming Duplex",
+        type: "House",
+        imgUrls: [
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+        ],
+        price: 80.00,
+        summary: "Fantastic duplex apartment...",
+        capacity: 8,
+        amenities: [
+            "TV",
+            "Wifi",
+            "Kitchen",
+            "Smoking allowed",
+            "Pets allowed",
+            "Cooking basics"
+        ],
+        labels: [
+            "Top of the world",
+            "Trending",
+            "Play",
+            "Tropical"
+        ],
+        host: {
+            _id: "u101",
+            fullname: "Davit Pok",
+            imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
+        },
+        loc: {
+            country: "Portugal",
+            countryCode: "PT",
+            city: "Lisbon",
+            address: "17 Kombo st",
+            lat: -8.61308,
+            lng: 41.1413
+        },
+        reviews: [
+            {
+                id: "madeId",
+                txt: "Very helpful hosts. Cooked traditional...",
+                rate: 4,
+                by: {
+                    _id: "u102",
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+        ],
+        likedByUsers: ['mini-user']
+    },
+    {
+        _id: utilService.makeId(),
+        name: "Ribeira Charming Duplex",
+        type: "House",
+        imgUrls: [
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+        ],
+        price: 80.00,
+        summary: "Fantastic duplex apartment...",
+        capacity: 8,
+        amenities: [
+            "TV",
+            "Wifi",
+            "Kitchen",
+            "Smoking allowed",
+            "Pets allowed",
+            "Cooking basics"
+        ],
+        labels: [
+            "Top of the world",
+            "Trending",
+            "Play",
+            "Tropical"
+        ],
+        host: {
+            _id: "u101",
+            fullname: "Davit Pok",
+            imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
+        },
+        loc: {
+            country: "Portugal",
+            countryCode: "PT",
+            city: "Lisbon",
+            address: "17 Kombo st",
+            lat: -8.61308,
+            lng: 41.1413
+        },
+        reviews: [
+            {
+                id: "madeId",
+                txt: "Very helpful hosts. Cooked traditional...",
+                rate: 4,
+                by: {
+                    _id: "u102",
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+        ],
+        likedByUsers: ['mini-user']
+    },
+    {
+        _id: utilService.makeId(),
+        name: "Ribeira Charming Duplex",
+        type: "House",
+        imgUrls: [
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: utilService.makeId(), url: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600" },
+        ],
+        price: 80.00,
+        summary: "Fantastic duplex apartment...",
+        capacity: 8,
+        amenities: [
+            "TV",
+            "Wifi",
+            "Kitchen",
+            "Smoking allowed",
+            "Pets allowed",
+            "Cooking basics"
+        ],
+        labels: [
+            "Top of the world",
+            "Trending",
+            "Play",
+            "Tropical"
+        ],
+        host: {
+            _id: "u101",
+            fullname: "Davit Pok",
+            imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
+        },
+        loc: {
+            country: "Portugal",
+            countryCode: "PT",
+            city: "Lisbon",
+            address: "17 Kombo st",
+            lat: -8.61308,
+            lng: 41.1413
+        },
+        reviews: [
+            {
+                id: "madeId",
+                txt: "Very helpful hosts. Cooked traditional...",
+                rate: 4,
+                by: {
+                    _id: "u102",
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+        ],
+        likedByUsers: ['mini-user']
     }
 ]
 

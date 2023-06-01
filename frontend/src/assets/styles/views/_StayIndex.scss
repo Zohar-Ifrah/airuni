@@ -4,15 +4,53 @@
     .stay-list {
         list-style: none;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
         margin-block-start: 2em;
         margin-block-end: 2em;
-
+        
         .stay-preview {
-            border-radius: 1em;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            .img-preview {
+                border-radius: .8em;
+                width: 100%;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                margin-block-end: 1em;
+            }
+
+            p:nth-child(3) {
+                color: $clr7;
+                font-family: Circular-Light, sans-serif;
+                margin-block-start: .1em;
+            }
+
+            p:nth-child(4) {
+                font-family: Circular-Light, sans-serif;
+                margin-block-start: .2em;
+
+                span {
+                    font-family: Circular-Bold;
+                }
+            }
         }
-
+        
     }
+    
+}
 
+.react-calendar {
+    width: 100%;
+}
+
+
+.react-calendar__navigation__arrow,
+.react-calendar__month-view__days__day,
+.react-calendar__navigation__label{
+    color: black;
+    
 }

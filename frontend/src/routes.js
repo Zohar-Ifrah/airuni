@@ -4,7 +4,7 @@ import { StayIndex } from './pages/stay-index.jsx'
 import { ReviewIndex } from './pages/review-index.jsx'
 import { ChatApp } from './pages/chat-app.jsx'
 import { AdminApp } from './pages/admin-app.jsx'
-import { StayDetails } from './cmps/stay-details.jsx'
+import { StayDetails } from './pages/stay-details.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
@@ -19,7 +19,7 @@ const routes = [
         label: 'Stays'
     },
     {
-        path: 'stay/details/:stayId',
+        path: 'details/:stayId',
         component: <StayDetails />,
         label: 'details'
     },
