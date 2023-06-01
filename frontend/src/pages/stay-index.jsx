@@ -28,15 +28,15 @@ export function StayIndex() {
     
 
     // First load
-    useEffect(() => {
-        const paramsMap = searchParams.entries()
-        const filterBy = stayService.getDefaultFilter()
-        for (const [key, value] of paramsMap) {
-            filterBy[key] = value
-        }
-        setFilterByToEdit(filterBy)
-// eslint-disable-next-line
-    }, [])
+//     useEffect(() => {
+//         const paramsMap = searchParams.entries()
+//         const filterBy = stayService.getDefaultFilter()
+//         for (const [key, value] of paramsMap) {
+//             filterBy[key] = value
+//         }
+//         setFilterByToEdit(filterBy)
+// // eslint-disable-next-line
+//     }, [])
     
     useEffect(() => {
         loadStays(filterBy)
