@@ -395,14 +395,14 @@ const gDemostays = [
 
 async function query(filterBy = { txt: '', price: 750, location: '' }) {
     var stays = await storageService.query(STORAGE_KEY)
+    if (!stays.length) {
+        stays = gDemostays
+        utilService.saveToStorage(STORAGE_KEY, gDemostays)
+    }
     if (filterBy.location) {
         const regex = new RegExp(filterBy.location, 'i')
         stays = stays.filter(stay => regex.test(stay.loc.country) || regex.test(stay.loc.city))
     }
-    // if (!stays.length) {
-    //     stays = gDemostays
-    //     utilService.saveToStorage(STORAGE_KEY, gDemostays)
-    // }
     // if (filterBy.txt) {
     //     const regex = new RegExp(filterBy.txt, 'i')
     //     stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
