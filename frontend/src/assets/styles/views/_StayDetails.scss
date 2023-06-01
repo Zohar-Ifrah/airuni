@@ -42,10 +42,54 @@
     }
 
     .stay-extra-details {
-        .stay-ementies {
-            .ementy-container {
+
+        .stay-host-by {
+            margin-block: 1em;
+
+            img {
+                width: 2.5em;
+                border-radius: 50%;
+            }
+        }
+
+        .main-amenties {
+            height: em(90px);
+
+            .main-amenty {
+                border: 1px solid $clr4;
+                border-radius: .8em;
+                padding-inline: 1.8em;
+                margin-inline-end: 1em;
+                height: 100%;
+
                 img {
-                    width: 10%;
+                    width: 2em;
+                    margin-inline-end: 1em;
+                }
+            }
+        }
+
+        .secondary-amenties {
+
+            border-top: 0.5px solid $clr4;
+            border-bottom: 0.5px solid $clr4;
+            margin-block: 1.5em;
+            padding-block-start: 2em;
+            padding-block-end: 1.2em;
+
+            .secondary-amenty-container {
+                margin-block-end: 1em;
+
+                img {
+                    width: 2em;
+                    margin-inline-end: 1em;
+                }
+
+                .secondary-amenty-content-container {
+                    p {
+                        font-family: Circular-Light;
+                        color: $clr7;
+                    }
                 }
             }
         }
