@@ -1,6 +1,6 @@
 .app-header {
-    background-color: $clr4;
     padding-block: 2em;
+    border-block-end: 1px solid #dedede;
 
 
     .user-info {
@@ -50,4 +50,77 @@
         color: $clr1;
     }
 
+    .search-form-menu .active {
+        background-color: #fff;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+    }
+
+    .search-form-menu-container {
+        border-radius: 555px;
+        border: 1px solid #dedede;
+        border-radius: 40px;
+        cursor: pointer;
+        height: 66px;
+        margin: 0 auto;
+        max-width: 850px;
+        min-width: 0;
+        pointer-events: auto;
+        position: relative;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        flex: 1 1;
+
+        & .search-form-menu-btn-container {
+            height: 100%;
+        }
+
+        & button input {
+            background: none;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            outline: 0;
+        }
+    }
+
+    .search-form-menu-container button {
+        border-radius: 555px;
+        // padding: 1.4em;
+        border: none;
+        background-color: inherit;
+        height: 100%;
+        padding-inline: 1em;
+
+        // &:nth-child(1) {
+        //     flex: 2;
+        // }
+
+        // &:nth-child(2) {
+        //     flex: 1;
+        // }
+
+        // &:nth-child(3) {
+        //     flex: 1;
+        // }
+
+        // &:nth-child(4) {
+        //     flex: 1;
+        // }
+
+        &:hover {
+            background-color: #ebebeb;
+        }
+
+    }
+
+    .search-form-nav-container {
+        text-align: center;
+
+        & button {
+            border: none;
+            background: inherit;
+            margin: 1em;
+        }
+    }
 }

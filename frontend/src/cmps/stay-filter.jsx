@@ -52,20 +52,32 @@ export function StayFilter({ onSetFilter, onSetSort }) {
 
 
   return (
-    <section className="stay-filter-container fully">
-      <p>Filters:</p>
-      {/* capacity */}
-
-      <label htmlFor="price">Price range</label>
-      <input type="number"
-        id="price"
-        name="price"
-        placeholder="By Price"
-        value={filterByToEdit.price}
+    <section>
+      <label htmlFor="location">Where:</label>
+      <input type="text"
+        id="location"
+        name="location"
+        placeholder="Search destinations"
+        value={filterByToEdit.name}
         onChange={handleChange}
       />
+    </section>
+  )
 
-      {/* <label htmlFor="name">Name:</label>
+  // <section className="stay-filter-container fully">
+  //   <p>Filters:</p>
+  //   {/* capacity */}
+
+  //   <label htmlFor="price">Price range</label>
+  //   <input type="number"
+  //     id="price"
+  //     name="price"
+  //     placeholder="By Price"
+  //     value={filterByToEdit.price}
+  //     onChange={handleChange}
+  //   />
+
+  {/* <label htmlFor="name">Name:</label>
       <input type="text"
         id="name"
         name="name"
@@ -82,7 +94,7 @@ export function StayFilter({ onSetFilter, onSetSort }) {
         onChange={handleChange}
       /> */}
 
-      {/* <LabelSelector onLabelChange={onLabelChange} filterByToEdit={filterByToEdit} />
+  {/* <LabelSelector onLabelChange={onLabelChange} filterByToEdit={filterByToEdit} />
 
       <section>
         <label htmlFor="desc">Desc</label>
@@ -100,7 +112,7 @@ export function StayFilter({ onSetFilter, onSetSort }) {
         </select>
       </section> */}
 
-      {/* <button className="btn"><Link to="/stay/edit">Add Stay</Link></button> */}
-    </section>
-  )
+  {/* <button className="btn"><Link to="/stay/edit">Add Stay</Link></button> */ }
+  // </section>
+
 }

@@ -22,6 +22,9 @@ export function StayIndex() {
     // eslint-disable-next-line
     const [filterByToEdit, setFilterByToEdit, handleChange] =
     useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter)
+
+    const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
+    console.log(filterBy)
     
 
     // First load
@@ -36,8 +39,8 @@ export function StayIndex() {
     }, [])
     
     useEffect(() => {
-        loadStays()
-    }, [])
+        loadStays(filterBy)
+    }, [filterBy])
 
     async function onRemoveStay(stayId) {
         try {
@@ -92,9 +95,9 @@ export function StayIndex() {
 
     return (
         <div className="stay-index-container">
-            <StayFilter
+            {/* <StayFilter
                 onSetFilter={onSetFilter}
-                onSetSort={onSetSort} />
+                onSetSort={onSetSort} /> */}
 
             <button onClick={onAddStay}>Add Stay</button>
 

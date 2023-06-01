@@ -56,6 +56,7 @@ export function AppHeader() {
     function onToggleUserModal() {
         console.log(isModalOpen)
         setIsModalOpen(!isModalOpen)
+        // if (!isModalOpen) setIsModalOpen(!isModalOpen)
     }
     function onSetFilter() {
         console.log('hi')
@@ -64,21 +65,23 @@ export function AppHeader() {
         <header className="app-header full main-layout">
             <div className="app-header-inner-container flex space-between align-center">
                 <div className="main-logo">
-                    <h1> AirBBB </h1>
+                <NavLink to="/stay">  <h1> AirBBB </h1> </NavLink>
                 </div>
 
                 <section className="header-search-bar-container">
                     <HeaderFilter onSetFilter={onSetFilter} />
                 </section>
-                
-                <nav>
-                    <NavLink to="/"> Home</NavLink>
-                    <NavLink to="/stay"> Stay </NavLink>
-                    <NavLink to="/review"> Reviews </NavLink>
-                    <NavLink to="/chat"> Chat </NavLink>
-                    <NavLink to="/about" > About </NavLink>
-                    <NavLink to="/admin"> Admin </NavLink>
-                </nav>
+
+                {/* {isModalOpen &&
+                    <nav>
+                        <NavLink to="/"> Home</NavLink>
+                        <NavLink to="/stay"> Stay </NavLink>
+                        <NavLink to="/review"> Reviews </NavLink>
+                        <NavLink to="/chat"> Chat </NavLink>
+                        <NavLink to="/about" > About </NavLink>
+                        <NavLink to="/admin"> Admin </NavLink>
+                    </nav>
+                } */}
 
                 {isModalOpen && <div className="login-signup-container" ref={modalRef}>
                     {user &&

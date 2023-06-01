@@ -8,10 +8,15 @@ import { StayDetails } from './pages/stay-details.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
+    // {
+    //     path: '/',
+    //     component: <HomePage />,
+    //     label: 'Home 🏠',
+    // },
     {
         path: '/',
-        component: <HomePage />,
-        label: 'Home 🏠',
+        component: <StayIndex />,
+        label: 'Stays',
     },
     {
         path: 'stay',

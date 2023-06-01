@@ -393,19 +393,23 @@ const gDemostays = [
     }
 ]
 
-async function query(filterBy = { txt: '', price: 0 }) {
+async function query(filterBy = { txt: '', price: 750, location: '' }) {
     var stays = await storageService.query(STORAGE_KEY)
-    if (!stays.length) {
-        stays = gDemostays
-        utilService.saveToStorage(STORAGE_KEY, gDemostays)
+    if (filterBy.location) {
+        const regex = new RegExp(filterBy.location, 'i')
+        stays = stays.filter(stay => regex.test(stay.loc.country) || regex.test(stay.loc.city))
     }
-    if (filterBy.txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
-    }
-    if (filterBy.price) {
-        stays = stays.filter(stay => stay.price <= filterBy.price)
-    }
+    // if (!stays.length) {
+    //     stays = gDemostays
+    //     utilService.saveToStorage(STORAGE_KEY, gDemostays)
+    // }
+    // if (filterBy.txt) {
+    //     const regex = new RegExp(filterBy.txt, 'i')
+    //     stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
+    // }
+    // if (filterBy.price) {
+    //     stays = stays.filter(stay => stay.price <= filterBy.price)
+    // }
     return stays
 }
 
@@ -447,7 +451,7 @@ async function addStayMsg(stayId, txt) {
 }
 
 function getDefaultFilter() {
-    return { price: 750, txt: '' }
+    return { price: 750, txt: '', location: '' }
 }
 
 function getEmptyStay() {
