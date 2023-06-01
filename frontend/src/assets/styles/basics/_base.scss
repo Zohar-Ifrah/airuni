@@ -25,7 +25,8 @@ h3,
 h4,
 h5,
 h6 {
-    // margin: 0 0 0.6em;
+    font-family: Circular-Regular, sans-serif;
+    color: $clr2;
     line-height: 1;
 }
 
@@ -41,7 +42,8 @@ img {
 }
 
 p {
-    margin: 0;
+    font-family: Circular-Light;
+    color: $clr7;
 }
 
 a {
