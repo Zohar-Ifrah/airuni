@@ -41,7 +41,7 @@ export function StayDetails() {
         
         
        
-            <img src={stay.imgUrls} alt="" />
+            <img src={stay.imgUrls[0].url} alt="" />
         
         <h5>{stay.amenities}</h5>
         {/* <h4>Type: {stay.type}</h4> */}
