@@ -2,30 +2,42 @@ import { stayService } from "../services/stay.service.local"
 import { useState, useEffect } from 'react'
 
 
-export function StayExrtaDetails() {
+export function StayExrtaDetails({ stay }) {
 
-    const [stay, setStay] = useState(null)
+    const [slicedAmenties, setSlicedAmenties] = useState(null)
 
     useEffect(() => {
-        test()
+
+        setSlicedAmenties({ mainAmenties: stay.amenities.slice(0, 3), secondaryAmenties: stay.amenities.slice(3) })
+
     }, [])
 
-    async function test() {
-        setStay(await stayService.getById('Lp7OPj'))
-    }
+    if (!slicedAmenties) return
 
-    if (!stay) return
     return (
         <div className="stay-extra-details">
-            <h3> {`${stay.type} host by ${stay.host.fullname}`} </h3>
-            <div className="stay-ementies">
-                {stay.amenities.map(ementy => {
+            <div className="stay-host-by flex space-between align-center">
+                <h3> {`${stay.type} host by ${stay.host.fullname}`} </h3>
+                <img src={require(`../assets/img/url.png`)} alt="url" />
+            </div>
+            <div className="main-amenties flex align-center">
+                {slicedAmenties.mainAmenties.map((amenty, idx) => {
                     return (
-                        <div className="ementy-container flex align-center">
+                        <div key={idx} className="main-amenty flex align-center">
                             <img src={require(`../assets/img/url.png`)} alt="url" />
-                            <div className="ementy-content-container">
-                                <h4> {ementy} </h4>
-                                <p> lorem ipsum lorem ipsum lorem ipsum </p>
+                            {amenty}
+                        </div>
+                    )
+                })}
+            </div>
+            <div className="secondary-amenties">
+                {slicedAmenties.secondaryAmenties.map((amenty, idx) => {
+                    return (
+                        <div key={idx} className="secondary-amenty-container flex align-center">
+                            <img src={require(`../assets/img/url.png`)} alt="url" />
+                            <div className="secondary-amenty-content-container">
+                                <h4> {amenty} </h4>
+                                <p> lorem ipsum lorem ipsum lorem ipsum ...</p>
                             </div>
                         </div>
                     )

@@ -6,13 +6,14 @@ import { stayService } from "../services/stay.service.local"  //stay.service.loc
 import { DetailsGallery } from "../cmps/details-gallery"
 import { DetailsHeader } from "../cmps/details-header"
 import { DetailsCalendar } from "../cmps/details-calendar"
+import { StayExrtaDetails } from "../cmps/stay-extra-details"
 
 
 export function StayDetails() {
 
     const [stay, setStay] = useState(null)
     const { stayId } = useParams()
- 
+
     const navigate = useNavigate()
     // const stays = useSelector((storeState) => storeState.stays)
 
@@ -36,7 +37,7 @@ export function StayDetails() {
     return <div className='stay-details'>
         <DetailsHeader stay={stay} />
         < DetailsGallery stay={stay} />
-        {/*  add here the stay extra details*/}
+        <StayExrtaDetails stay={stay} />
 
         < DetailsCalendar />
 
