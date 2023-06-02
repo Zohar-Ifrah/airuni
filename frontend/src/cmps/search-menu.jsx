@@ -11,15 +11,12 @@ export function SearchMenu() {
 
     return (
         <div className="search-form-menu-btn-container">
-            <button> 
-            <StayFilter onSetFilter = {onSetFilter}/>
+            <button>
+                <StayFilter onSetFilter={onSetFilter} />
             </button>
-            <button>Check in <span>Add dates</span></button>
-            <button>Check out <span>Add dates</span></button>
-            <button>Who <span>Add guests</span><button>Search</button></button>
-            
-
+            <button><span> Check in </span> <span> Add dates </span></button>
+            <button> <span> Check out </span> <span>Add dates</span></button>
+            <button> <div> <span> Who </span> <span> Add guests </span> </div> <button> Search </button> </button>
         </div>
-
     )
 }

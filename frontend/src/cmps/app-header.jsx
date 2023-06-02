@@ -65,7 +65,7 @@ export function AppHeader() {
         <header className="app-header full main-layout">
             <div className="app-header-inner-container flex space-between align-center">
                 <div className="main-logo">
-                <NavLink to="/stay">  <h1> AirBBB </h1> </NavLink>
+                    <NavLink to="/stay">  <h1> AirBBB </h1> </NavLink>
                 </div>
 
                 <section className="header-search-bar-container">

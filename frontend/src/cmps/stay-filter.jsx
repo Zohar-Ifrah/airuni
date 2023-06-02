@@ -53,7 +53,7 @@ export function StayFilter({ onSetFilter, onSetSort }) {
 
   return (
     <section>
-      <label htmlFor="location">Where:</label>
+      <label htmlFor="location">Where</label>
       <input type="text"
         id="location"
         name="location"
