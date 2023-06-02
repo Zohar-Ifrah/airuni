@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react"
-// import { Link } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 
 import { utilService } from "../services/util.service"
-// import { LabelSelector } from "./label-select"
 import { useForm } from "../customHooks/useForm"
-
+import { useSearchParams } from "react-router-dom"
+import { CalendarPicker } from "./calendar-picker"
+import { AddGuests } from "./add-guests"
 
 
 
@@ -15,9 +15,14 @@ export function StayFilter({ onSetFilter, onSetSort }) {
   // const [filterByToEdit, setFilterByToEdit] = useState(useSelector((storeState) => storeState.stayModule.filterBy))
   // const [sortByToEdit, setSortByToEdit] = useState(useSelector((storeState) => storeState.stayModule.sortBy))
   // eslint-disable-next-line
+
   const [filterByToEdit, setFilterByToEdit, handleChange] =
     useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter.current)
 
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+  const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
 
   const elInputRef = useRef(null)
 
@@ -25,6 +30,33 @@ export function StayFilter({ onSetFilter, onSetSort }) {
     elInputRef.current && elInputRef.current.focus()
   }, [])
 
+  function onSubmit(ev) {
+
+    ev.stopPropagation()
+    // console.log('onSubmit: ', filterByToEdit)
+
+    // SET filter:
+    onSetFilter.current(filterByToEdit)
+
+    // SET params:
+    const params = new URLSearchParams()
+
+    Object.entries(filterByToEdit).forEach(([key, value]) => {
+      params.append(key, value)
+    })
+    const queryString = params.toString()
+
+    // console.log('queryString: ', queryString)
+    setSearchParams(queryString)
+  }
+
+  function ontoggleCalendar() {
+    setIsCalendarOpen(!isCalendarOpen)
+  }
+
+  function onOpenGuestsModal() {
+    setIsAddGuestsOpen(!isAddGuestsOpen)
+  }
 
   // useEffect(() => {
   //   onSetFilter.current(filterByToEdit)
@@ -52,15 +84,35 @@ export function StayFilter({ onSetFilter, onSetSort }) {
 
 
   return (
-    <section>
-      <label htmlFor="location">Where</label>
-      <input type="text"
-        id="location"
-        name="location"
-        placeholder="Search destinations"
-        value={filterByToEdit.name}
-        onChange={handleChange}
-      />
+    <section className="filter-header-section">
+      <div className="search-label-header">
+        <label htmlFor="location">Where</label>
+        <input type="text"
+          id="location"
+          name="location"
+          placeholder="Search destinations"
+          value={filterByToEdit.name}
+          onChange={handleChange}
+        />
+      </div>
+
+
+      <div>
+        <div onClick={() => { ontoggleCalendar('checkIn') }}><span> Check in </span> <span> Add dates </span></div>
+        {isCalendarOpen && <CalendarPicker />}
+      </div>
+      <div>
+        <div onClick={() => { ontoggleCalendar('checkOut') }}> <span> Check out </span> <span>Add dates</span></div>
+        {/* {isCalendarOpen && <CalendarPicker key="checkOut" />} */}
+      </div>
+      <div>
+        <div onClick={() => { onOpenGuestsModal() }}> <div> <span> Who </span> <span> Add guests </span> </div>
+          <div onClick={onSubmit}> Search </div> </div>
+        {isAddGuestsOpen && <AddGuests
+          filterByToEdit={filterByToEdit}
+          handleChange={handleChange} />}
+      </div>
+
     </section>
   )
 

@@ -570,7 +570,7 @@ async function addStayMsg(stayId, txt) {
 }
 
 function getDefaultFilter() {
-    return { price: 750, txt: '', location: '' }
+    return { price: 750, txt: '', location: '', checkIn: '', checkOut: '', adults: 0, children: 0, infants: 0, pets: 0 }
 }
 
 function getEmptyStay() {
