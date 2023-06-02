@@ -5,9 +5,9 @@ export function useForm(initialState, callBack) {
 
     const [fields, setFields] = useState(initialState)
 
-    useEffectUpdate(() => {
-        callBack?.(fields)
-    }, [fields])
+    // useEffectUpdate(() => {
+    //     callBack?.(fields)
+    // }, [fields])
 
 
     function handleChange({ target }) {
