@@ -46,7 +46,7 @@ const gDemostays = [
             "Tropical"
         ],
         host: {
-            _id: "u101",
+            _id: utilService.makeId(),
             fullname: "Davit Pok",
             imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
         },
@@ -60,11 +60,11 @@ const gDemostays = [
         },
         reviews: [
             {
-                id: "madeId",
-                txt: "Very helpful hosts. Cooked traditional...",
+                id: utilService.makeId(),
+                txt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...',
                 rate: 4,
                 by: {
-                    _id: "u102",
+                    _id: utilService.makeId(),
                     fullname: "user2",
                     imgUrl: "/img/img2.jpg"
                 }
@@ -99,7 +99,7 @@ const gDemostays = [
             "Relaxation"
         ],
         host: {
-            _id: "u201",
+            _id: utilService.makeId(),
             fullname: "Aria Patel",
             imgUrl: "https://example.com/aria-patel.jpg"
         },
@@ -113,11 +113,11 @@ const gDemostays = [
         },
         reviews: [
             {
-                id: "reviewId",
-                txt: "This villa exceeded our expectations. The staff was amazing...",
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
                 rate: 5,
                 by: {
-                    _id: "u103",
+                    _id: utilService.makeId(),
                     fullname: "Emily Johnson",
                     imgUrl: "/img/emily-johnson.jpg"
                 }
@@ -151,7 +151,7 @@ const gDemostays = [
             "Peaceful"
         ],
         host: {
-            _id: "u301",
+            _id: utilService.makeId(),
             fullname: "Sarah Thompson",
             imgUrl: "https://example.com/sarah-thompson.jpg"
         },
@@ -165,11 +165,11 @@ const gDemostays = [
         },
         reviews: [
             {
-                id: "reviewId2",
-                txt: "The cabin was perfect for a mountain getaway. The views were breathtaking...",
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
                 rate: 4,
                 by: {
-                    _id: "u104",
+                    _id: utilService.makeId(),
                     fullname: "Michael Davis",
                     imgUrl: "/img/michael-davis.jpg"
                 }
@@ -203,7 +203,7 @@ const gDemostays = [
             "Convenience"
         ],
         host: {
-            _id: "u401",
+            _id: utilService.makeId(),
             fullname: "Maxwell Lee",
             imgUrl: "https://example.com/maxwell-lee.jpg"
         },
@@ -217,11 +217,11 @@ const gDemostays = [
         },
         reviews: [
             {
-                id: "reviewId3",
-                txt: "The location couldn't have been better. The loft was stylish and comfortable...",
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
                 rate: 5,
                 by: {
-                    _id: "u105",
+                    _id: utilService.makeId(),
                     fullname: "Olivia Adams",
                     imgUrl: "/img/olivia-adams.jpg"
                 }
@@ -257,7 +257,7 @@ const gDemostays = [
             "Tropical"
         ],
         host: {
-            _id: "u101",
+            _id: utilService.makeId(),
             fullname: "Davit Pok",
             imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
         },
@@ -271,11 +271,11 @@ const gDemostays = [
         },
         reviews: [
             {
-                id: "madeId",
-                txt: "Very helpful hosts. Cooked traditional...",
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
                 rate: 4,
                 by: {
-                    _id: "u102",
+                    _id: utilService.makeId(),
                     fullname: "user2",
                     imgUrl: "/img/img2.jpg"
                 }
@@ -311,7 +311,7 @@ const gDemostays = [
             "Tropical"
         ],
         host: {
-            _id: "u101",
+            _id: utilService.makeId(),
             fullname: "Davit Pok",
             imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
         },
@@ -325,11 +325,11 @@ const gDemostays = [
         },
         reviews: [
             {
-                id: "madeId",
-                txt: "Very helpful hosts. Cooked traditional...",
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
                 rate: 4,
                 by: {
-                    _id: "u102",
+                    _id: utilService.makeId(),
                     fullname: "user2",
                     imgUrl: "/img/img2.jpg"
                 }
@@ -365,7 +365,7 @@ const gDemostays = [
             "Tropical"
         ],
         host: {
-            _id: "u101",
+            _id: utilService.makeId(),
             fullname: "Davit Pok",
             imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
         },
@@ -379,11 +379,130 @@ const gDemostays = [
         },
         reviews: [
             {
-                id: "madeId",
-                txt: "Very helpful hosts. Cooked traditional...",
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
                 rate: 4,
                 by: {
-                    _id: "u102",
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            },
+            {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }, {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+            , {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+            , {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+            , {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+            , {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
+                    fullname: "user2",
+                    imgUrl: "/img/img2.jpg"
+                }
+            }
+            , {
+                id: utilService.makeId(),
+                txt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...",
+                rate: 1,
+                by: {
+                    _id: utilService.makeId(),
                     fullname: "user2",
                     imgUrl: "/img/img2.jpg"
                 }

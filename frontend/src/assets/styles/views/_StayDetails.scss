@@ -12,6 +12,101 @@
         display: flex;
         justify-content: flex-end;
     }
+
+    .review-container {
+        border-block-start: 1px solid $clr4;
+        margin-block-start: 3.5em;
+        padding-block-start: 3em;
+
+        .rating-container {
+
+            img {
+                width: 1em;
+                margin-inline-end: 0.5em;
+            }
+
+            h2 {
+                margin: 0;
+            }
+        }
+
+        .review-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 10em;
+            margin-block-start: 2em;
+
+            .review {
+                margin-block-end: 4em;
+
+                .user-details {
+                    margin-block-end: 1em;
+
+                    img {
+                        width: 2.5em;
+                        margin-inline-end: 0.5em;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.details-header {
+    margin-block: 2em;
+
+    .content {
+
+        h2 {
+            margin-block-end: .3em;
+        }
+
+        .inner-content {
+
+            .rating-container {
+                font-family: Circular-Light;
+
+                img {
+                    width: 1em;
+                    margin-inline-end: 0.2em;
+                }
+
+                span {
+                    margin-inline-end: 0.2em;
+                }
+            }
+
+            p {
+                color: $clr2;
+            }
+
+        }
+
+
+    }
+
+    .share-save-container {
+
+        .share-container {
+            margin-inline-end: 1em;
+
+            img {
+                width: 1.2em;
+                margin-inline-end: .2em;
+            }
+        }
+
+        .like-container {
+
+
+            img {
+                width: 1.2em;
+                margin-inline-end: .2em;
+            }
+        }
+
+    }
 }
 
 .details-gallery {
