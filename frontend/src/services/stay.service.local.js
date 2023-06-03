@@ -12,7 +12,8 @@ export const stayService = {
     remove,
     getEmptyStay,
     addStayMsg,
-    getDefaultFilter
+    getDefaultFilter,
+    getLabels
 }
 window.cs = stayService
 
@@ -622,6 +623,27 @@ function getEmptyStay() {
         ],
         likedByUsers: ['mini-user']
     }
+}
+
+function getLabels() {
+    return [
+        { id: utilService.makeId(), title: 'Rooms', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/rooms_bsse5j.png' },
+        { id: utilService.makeId(), title: 'Castles', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/castle_dxrleo.png' },
+        { id: utilService.makeId(), title: 'Farms', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/farms_l5josl.png' },
+        { id: utilService.makeId(), title: 'Design', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/design_sajmco.png' },
+        { id: utilService.makeId(), title: 'Luxe', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/luxe_eyfxdq.png' },
+        { id: utilService.makeId(), title: 'Boats', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796922/labels-airbnb/boats_iangpw.png' },
+        { id: utilService.makeId(), title: 'OMG!', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/omg_zh3l1v.png' },
+        { id: utilService.makeId(), title: 'Beachfront', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/beachfront_fh5txx.png' },
+        { id: utilService.makeId(), title: 'Amazing views', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/amazingviews_uq4248.png' },
+        { id: utilService.makeId(), title: 'Amazing pools', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/amazingpools_seva5m.png' },
+        { id: utilService.makeId(), title: 'Mansions', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/mansions_nn9blb.png' },
+        { id: utilService.makeId(), title: 'Lakefront', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/lakefront_nzmbnm.png' },
+        { id: utilService.makeId(), title: 'Cabins', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/cabins_o6bewf.png' },
+        { id: utilService.makeId(), title: 'Tropical', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/tropical_fpti81.png' },
+        { id: utilService.makeId(), title: 'New', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796925/labels-airbnb/new_pomh98.png' },
+        { id: utilService.makeId(), title: 'Countryside', labelUrl: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/countryside_mbu4lg.png' },
+    ]
 }
 
 

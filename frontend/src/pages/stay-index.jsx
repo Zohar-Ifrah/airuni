@@ -11,6 +11,7 @@ import { FILTER_BY } from '../store/stay.reducer.js'
 import { StayList } from '../cmps/stay-list.jsx'
 import { useSearchParams } from 'react-router-dom'
 import { useForm } from '../customHooks/useForm.js'
+import { LabelsFilter } from '../cmps/labels-filter.jsx'
 
 export function StayIndex() {
     const dispatch = useDispatch()
@@ -21,23 +22,23 @@ export function StayIndex() {
 
     // eslint-disable-next-line
     const [filterByToEdit, setFilterByToEdit, handleChange] =
-    useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter)
+        useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter)
 
     const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
     console.log(filterBy)
-    
+
 
     // First load
-//     useEffect(() => {
-//         const paramsMap = searchParams.entries()
-//         const filterBy = stayService.getDefaultFilter()
-//         for (const [key, value] of paramsMap) {
-//             filterBy[key] = value
-//         }
-//         setFilterByToEdit(filterBy)
-// // eslint-disable-next-line
-//     }, [])
-    
+    //     useEffect(() => {
+    //         const paramsMap = searchParams.entries()
+    //         const filterBy = stayService.getDefaultFilter()
+    //         for (const [key, value] of paramsMap) {
+    //             filterBy[key] = value
+    //         }
+    //         setFilterByToEdit(filterBy)
+    // // eslint-disable-next-line
+    //     }, [])
+
     useEffect(() => {
         loadStays(filterBy)
     }, [filterBy])
@@ -98,13 +99,14 @@ export function StayIndex() {
             {/* <StayFilter
                 onSetFilter={onSetFilter}
                 onSetSort={onSetSort} /> */}
+            <LabelsFilter />
 
-            <button onClick={onAddStay}>Add Stay</button>
+            {/* <button onClick={onAddStay}>Add Stay</button> */}
 
             <StayList
                 stays={stays}
                 onRemoveStay={onRemoveStay}
-                onUpdateStay={onUpdateStay}/>
+                onUpdateStay={onUpdateStay} />
         </div>
     )
 }

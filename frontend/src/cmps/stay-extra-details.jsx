@@ -43,6 +43,9 @@ export function StayExrtaDetails({ stay }) {
                     )
                 })}
             </div>
+            <div className="summary">
+                <p> {stay.summary} </p>
+            </div>
         </div>
     )
 }

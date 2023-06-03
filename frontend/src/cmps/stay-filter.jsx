@@ -85,7 +85,7 @@ export function StayFilter({ onSetFilter, onSetSort }) {
 
   return (
     <section className="filter-header-section">
-      <div className="search-label-header">
+      <div className="search-label-header flex justify-center">
         <label htmlFor="location">Where</label>
         <input type="text"
           id="location"
@@ -97,17 +97,22 @@ export function StayFilter({ onSetFilter, onSetSort }) {
       </div>
 
 
-      <div>
-        <div onClick={() => { ontoggleCalendar('checkIn') }}><span> Check in </span> <span> Add dates </span></div>
+      <div className="checkin-add-dates-container flex align-center">
+        <div className="checkin-add-dates flex column justify-center" onClick={() => { ontoggleCalendar('checkIn') }}><span> Check in </span> <span> Add dates </span></div>
         {isCalendarOpen && <CalendarPicker />}
       </div>
-      <div>
-        <div onClick={() => { ontoggleCalendar('checkOut') }}> <span> Check out </span> <span>Add dates</span></div>
+      <div className="checkout-add-dates-container flex align-center">
+        <div className="checkout-add-dates flex column justify-center" onClick={() => { ontoggleCalendar('checkOut') }}> <span> Check out </span> <span>Add dates</span></div>
         {/* {isCalendarOpen && <CalendarPicker key="checkOut" />} */}
       </div>
-      <div>
-        <div onClick={() => { onOpenGuestsModal() }}> <div> <span> Who </span> <span> Add guests </span> </div>
-          <div onClick={onSubmit}> Search </div> </div>
+      <div className="flex align-center">
+        <div className="add-guests-search-container flex align-center" onClick={() => { onOpenGuestsModal() }}>
+          <div className="add-guests flex column justify-center">
+            <span> Who </span>
+            <span> Add guests </span>
+          </div>
+          <button onClick={onSubmit}> Search </button>
+        </div>
         {isAddGuestsOpen && <AddGuests
           filterByToEdit={filterByToEdit}
           handleChange={handleChange} />}

@@ -9,6 +9,7 @@ import { DetailsCalendar } from "../cmps/details-calendar"
 import { StayExrtaDetails } from "../cmps/stay-extra-details"
 import { StayAmenities } from "../cmps/stay-amenities"
 import { Review } from "../cmps/review"
+import { OrderForm } from "../cmps/order-form"
 
 
 export function StayDetails() {
@@ -34,17 +35,20 @@ export function StayDetails() {
             })
     }
 
-    if (!stay) return <h1>loadings....</h1>
+    if (!stay) return <h1>Loading ...</h1>
 
     return <div className='stay-details'>
         <DetailsHeader stay={stay} />
         <DetailsGallery stay={stay} />
-        <StayExrtaDetails stay={stay} />
-        {/* <MeetHost /> not implement yet */}
-        {/* <AboutStay/> not implement yet */}
-        {/* <StaySleep/> not implement yet */}
-        <StayAmenities stay={stay} />
-        < DetailsCalendar />
+        <section className="stay-details-content">
+            <StayExrtaDetails stay={stay} />
+            {/* <MeetHost /> not implement yet */}
+            {/* <AboutStay/> not implement yet */}
+            {/* <StaySleep/> not implement yet */}
+            <StayAmenities stay={stay} />
+            < DetailsCalendar />
+            <OrderForm stay={stay} />
+        </section>
         <Review stay={stay} />
 
 
