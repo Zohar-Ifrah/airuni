@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { StayFilter } from "./stay-filter";
 import { FILTER_BY } from "../store/stay.reducer";
 
-export function SearchMenu() {
+export function SearchMenu({onChangeBarDisplay}) {
 
     const dispatch = useDispatch()
 
@@ -13,7 +13,7 @@ export function SearchMenu() {
 
     return (
         <div className="search-form-menu-btn-container">
-            <StayFilter onSetFilter={onSetFilter} />
+            <StayFilter onSetFilter={onSetFilter} onChangeBarDisplay={onChangeBarDisplay} />
             {/* <button>
                 <StayFilter onSetFilter={onSetFilter} />
             </button>

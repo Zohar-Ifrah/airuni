@@ -58,6 +58,7 @@ export function stayReducer(state = initialState, action) {
             break
 
         default:
+            break
     }
     // console.log('newState: ', newState)
     return newState

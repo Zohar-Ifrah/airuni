@@ -67,3 +67,15 @@
 .portrait-ratio {
     @include aspect-ratio(9, 16);
 }
+
+.blur {
+    // opacity: 0;
+    // visibility: hidden;
+    position: absolute;
+    filter: blur(4px);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    // background-color: #00000068;
+}

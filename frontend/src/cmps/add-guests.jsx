@@ -5,10 +5,14 @@ export function AddGuests({ filterByToEdit, handleChange }) {
         <section className='add-guests-cmp-header'>
             <div>
                 <p>Adults <span>Ages 13 or above</span></p>
+                <div>{false && <button>-</button>} {filterByToEdit.adults} <button>+</button></div>
+            </div>
+            <div>
+                <p>Children <span>Ages 2-12</span></p>
                 <div>{false && <button>-</button>} 0 <button>+</button></div>
             </div>
             <div>
-                <p>Infants <span>Ages 2–12</span></p>
+                <p>Infants <span>Under 2</span></p>
                 <div>{false && <button>-</button>} 0 <button>+</button></div>
             </div>
             <div>

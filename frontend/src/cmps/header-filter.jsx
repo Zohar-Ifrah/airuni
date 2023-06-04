@@ -1,23 +1,32 @@
 import { useState } from "react"
 import { SearchMenu } from "./search-menu"
+import { useSelector } from "react-redux"
 
 
 export function HeaderFilter({ onSetFilter }) {
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
 
-  function onChangeBarDisplay() {
-    setIsSearchBarOpen(true)
+
+  function onChangeBarDisplay(isOpen) {
+
+    setIsSearchBarOpen(isOpen)
+    // dispatch({ type: FILTER_STATUS, isFilterOpen: !isFilterOpen })
+    // setTimeout(() => {
+    //   setIsSearchBarOpen(false)
+    // }, 2000);
     console.log(isSearchBarOpen)
   }
 
   return (
     <div>
-      {/* <div className={`search-bars ${isSearchBarOpen ? 'search-bars-open' : ''}`}>
-        <button onClick={() => { onChangeBarDisplay('toAddFocus') }}>Anywhere</button>
-        <button onClick={() => { onChangeBarDisplay('toAddFocus') }}>Any week</button>
-        <button onClick={() => { onChangeBarDisplay('toAddFocus') }}>Add Guests</button>
-      </div> */}
+      <div className={`${isSearchBarOpen ? 'blur' : ''}`}
+        onClick={() => { onChangeBarDisplay(!isSearchBarOpen) }}></div>
+      <div className={`search-preview ${isSearchBarOpen ? 'search-preview-close' : ''}`}>
+        <button onClick={() => { onChangeBarDisplay(true) }}>Anywhere</button>
+        <button onClick={() => { onChangeBarDisplay(true) }}>Any week</button>
+        <button onClick={() => { onChangeBarDisplay(true) }}>Add Guests</button>
+      </div>
 
       <div className={`search-bars ${isSearchBarOpen ? 'search-bars-open' : ''}`}>
 
@@ -28,7 +37,7 @@ export function HeaderFilter({ onSetFilter }) {
         </div>
 
         <div className="search-form-menu-container">
-          <SearchMenu />
+          <SearchMenu onChangeBarDisplay={onChangeBarDisplay} />
         </div>
 
       </div>

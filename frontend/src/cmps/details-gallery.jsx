@@ -28,9 +28,9 @@ export function DetailsGallery({ stay }) {
                 )}
                   </div>
       )}
-      {!showMore && (
+      {/* {!showMore && (
         <button onClick={onOpenImgsModal}>Show more photos</button>
-      )}
+      )} */}
     </div>
   );
 }

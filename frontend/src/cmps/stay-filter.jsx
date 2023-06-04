@@ -9,7 +9,7 @@ import { AddGuests } from "./add-guests"
 
 
 
-export function StayFilter({ onSetFilter, onSetSort }) {
+export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
   onSetFilter = useRef(utilService.debounce(onSetFilter))
 
   // const [filterByToEdit, setFilterByToEdit] = useState(useSelector((storeState) => storeState.stayModule.filterBy))
@@ -34,7 +34,7 @@ export function StayFilter({ onSetFilter, onSetSort }) {
 
     ev.stopPropagation()
     // console.log('onSubmit: ', filterByToEdit)
-
+    onChangeBarDisplay(false)
     // SET filter:
     onSetFilter.current(filterByToEdit)
 
