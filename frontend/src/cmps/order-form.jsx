@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 
 
 export function OrderForm({ stay }) {
+
+    const navigate = useNavigate();
 
     function calculateAvgReviews() {
         let count = 0
@@ -10,6 +13,11 @@ export function OrderForm({ stay }) {
         }, 0)
 
         return sum / count
+    }
+
+    function onSubmitOrder(ev) {
+        ev.preventDefault()
+        navigate(`/details/${stay._id}/confirm`)
     }
 
     return (
@@ -31,7 +39,7 @@ export function OrderForm({ stay }) {
                 </div>
             </div>
 
-            <form className="flex column align-center">
+            <form className="flex column align-center" onSubmit={onSubmitOrder}>
                 <label htmlFor="check-in"> check-in </label>
                 <input type="date" name="check-in" id="check-in" required />
 
