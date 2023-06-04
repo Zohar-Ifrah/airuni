@@ -4,6 +4,9 @@ import { DetailsFullGallery } from './details-full-gallery';
 export function DetailsGallery({ stay }) {
   const [showMore, setShowMore] = useState(false)
 
+    // function onOpenImgsModal(){
+    //     setShowMore(true)
+    // }
   function onOpenImgsModal() {
     setShowMore(true)
   }

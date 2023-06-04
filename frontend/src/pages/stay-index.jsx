@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadStays, addStay, updateStay, removeStay } from '../store/stay.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-// import { stayService } from '../services/stay.service.js'
+
 import { stayService } from '../services/stay.service.local.js'
-// import { Link } from 'react-router-dom'
-import { StayFilter } from '../cmps/stay-filter.jsx'
+
 import { FILTER_BY } from '../store/stay.reducer.js'
 import { StayList } from '../cmps/stay-list.jsx'
 import { useSearchParams } from 'react-router-dom'
@@ -91,10 +90,10 @@ export function StayIndex() {
         dispatch({ type: FILTER_BY, filterToEdit })
     }
 
-    function onSetSort(sortToEdit) {
-        console.log('FUNCTION: onSetSort TO EDIT')
-        // dispatch({ type: SORT_BY, sortToEdit })
-    }
+    // function onSetSort(sortToEdit) {
+    //     console.log('FUNCTION: onSetSort TO EDIT')
+    //     // dispatch({ type: SORT_BY, sortToEdit })
+    // }
 
     return (
         <div className="stay-index-container">
@@ -103,7 +102,7 @@ export function StayIndex() {
                 onSetSort={onSetSort} /> */}
             <LabelsFilter />
 
-            {/* <button onClick={onAddStay}>Add Stay</button> */}
+            <button onClick={onAddStay}>Add Stay</button>
 
             <StayList
                 stays={stays}

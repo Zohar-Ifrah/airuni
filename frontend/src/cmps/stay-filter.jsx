@@ -14,11 +14,12 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
 
   // const [filterByToEdit, setFilterByToEdit] = useState(useSelector((storeState) => storeState.stayModule.filterBy))
   // const [sortByToEdit, setSortByToEdit] = useState(useSelector((storeState) => storeState.stayModule.sortBy))
-  // eslint-disable-next-line
 
+  // eslint-disable-next-line
   const [filterByToEdit, setFilterByToEdit, handleChange] =
     useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter.current)
 
+  // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
@@ -56,6 +57,10 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
 
   function onOpenGuestsModal() {
     setIsAddGuestsOpen(!isAddGuestsOpen)
+  }
+
+  function onSelectDate(date) {
+    console.log('date: ', date)
   }
 
   // useEffect(() => {
@@ -99,12 +104,14 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
 
       <div className="checkin-add-dates-container flex align-center">
         <div className="checkin-add-dates flex column justify-center" onClick={() => { ontoggleCalendar('checkIn') }}><span> Check in </span> <span> Add dates </span></div>
-        {isCalendarOpen && <CalendarPicker />}
+        {isCalendarOpen && <CalendarPicker onSelectDate={onSelectDate} />}
       </div>
+
       <div className="checkout-add-dates-container flex align-center">
         <div className="checkout-add-dates flex column justify-center" onClick={() => { ontoggleCalendar('checkOut') }}> <span> Check out </span> <span>Add dates</span></div>
         {/* {isCalendarOpen && <CalendarPicker key="checkOut" />} */}
       </div>
+
       <div className="flex align-center">
         <div className="add-guests-search-container flex align-center" onClick={() => { onOpenGuestsModal() }}>
           <div className="add-guests flex column justify-center">
@@ -120,56 +127,4 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
 
     </section>
   )
-
-  // <section className="stay-filter-container fully">
-  //   <p>Filters:</p>
-  //   {/* capacity */}
-
-  //   <label htmlFor="price">Price range</label>
-  //   <input type="number"
-  //     id="price"
-  //     name="price"
-  //     placeholder="By Price"
-  //     value={filterByToEdit.price}
-  //     onChange={handleChange}
-  //   />
-
-  {/* <label htmlFor="name">Name:</label>
-      <input type="text"
-        id="name"
-        name="name"
-        placeholder="Enter name..."
-        value={filterByToEdit.name}
-        onChange={handleChange}
-      />
-
-      <label htmlFor="inStock">In stock</label>
-      <input type="checkbox"
-        id="inStock"
-        name="inStock"
-        checked={filterByToEdit.inStock}
-        onChange={handleChange}
-      /> */}
-
-  {/* <LabelSelector onLabelChange={onLabelChange} filterByToEdit={filterByToEdit} />
-
-      <section>
-        <label htmlFor="desc">Desc</label>
-        <input type="checkbox"
-          id="desc"
-          name="desc"
-          checked={sortByToEdit.desc > 0}
-          onChange={handelSort}
-        />
-        <select onChange={handelSort} className="txt-input" name="type" id="sort">
-          <option value="sort">Sort By</option>
-          <option value="name">Name</option>
-          <option value="price">Price</option>
-          <option value="createdAt">Created At</option>
-        </select>
-      </section> */}
-
-  {/* <button className="btn"><Link to="/stay/edit">Add Stay</Link></button> */ }
-  // </section>
-
 }

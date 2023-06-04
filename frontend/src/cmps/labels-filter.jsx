@@ -6,10 +6,10 @@ import { stayService } from '../services/stay.service.local';
 
 
 export function LabelsFilter() {
-
+// eslint-disable-next-line
     const [items, setItems] = useState(stayService.getLabels());
     const [selected, setSelected] = useState([]);
-    const [position, setPosition] = useState(0);
+    // const [position, setPosition] = useState(0);
 
     const isItemSelected = (id) => !!selected.find((el) => el === id);
 
