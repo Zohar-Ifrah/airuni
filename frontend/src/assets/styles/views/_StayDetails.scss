@@ -92,138 +92,144 @@
         grid-template-columns: 1.5fr 1fr;
         column-gap: 5em;
 
-        >* {
+        .stay-details-content-column1 {
             grid-column: 1;
-        }
 
-        .order-form-container {
-            grid-column: 2;
-            grid-row: 1;
-            justify-self: end;
-            width: 100%;
-            border: 1px solid $clr4;
-            border-radius: 1em;
-            box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-            display: flex;
-            flex-direction: column;
-            padding: 2em;
-            align-items: center;
+            .stay-extra-details {
 
-            >* {
-                width: 100%;
-            }
+                .stay-host-by {
+                    margin-block: 1em;
 
-            .price-rating-container {
-
-                .price-container {
-                    h2 {
-                        margin-inline-end: 0.3em;
+                    img {
+                        width: 2.5em;
+                        border-radius: 50%;
                     }
                 }
 
-                .rating-review-container {
-                    .rating-container {
-                        margin-inline-end: 0.2em;
+                .main-amenities {
+                    height: em(90px);
+
+                    .main-amenity {
+                        border: 1px solid $clr4;
+                        border-radius: .8em;
+                        padding-inline: 1.8em;
+                        margin-inline-end: 1em;
+                        height: 100%;
 
                         img {
-                            width: 1em;
-                            margin-inline-end: 0.2em;
+                            width: 2em;
+                            margin-inline-end: 1em;
                         }
                     }
                 }
-            }
 
-            form {
-                >* {
-                    width: 100%;
-                }
-            }
+                .secondary-amenities {
 
-            p {
-                text-align: center;
-            }
-        }
+                    border-top: 0.5px solid $clr4;
+                    border-bottom: 0.5px solid $clr4;
+                    margin-block: 1.5em;
+                    padding-block-start: 2em;
+                    padding-block-end: 1.2em;
 
-        .stay-extra-details {
+                    .secondary-amenity-container {
+                        margin-block-end: 1em;
 
-            .stay-host-by {
-                margin-block: 1em;
+                        img {
+                            width: 2em;
+                            margin-inline-end: 1em;
+                        }
 
-                img {
-                    width: 2.5em;
-                    border-radius: 50%;
-                }
-            }
-
-            .main-amenities {
-                height: em(90px);
-
-                .main-amenity {
-                    border: 1px solid $clr4;
-                    border-radius: .8em;
-                    padding-inline: 1.8em;
-                    margin-inline-end: 1em;
-                    height: 100%;
-
-                    img {
-                        width: 2em;
-                        margin-inline-end: 1em;
+                        .secondary-amenity-content-container {
+                            p {
+                                font-family: Circular-Light;
+                                color: $clr7;
+                            }
+                        }
                     }
                 }
+
+                .summary {
+                    border-block-end: 1px solid $clr4;
+                    padding-block-start: 1em;
+                    padding-block-end: 2em;
+                }
             }
 
-            .secondary-amenities {
+            .stay-amenities {
+                border-block-end: 1px solid $clr4;
+                padding-block: 1em;
+                margin-block-end: 3em;
 
-                border-top: 0.5px solid $clr4;
-                border-bottom: 0.5px solid $clr4;
-                margin-block: 1.5em;
-                padding-block-start: 2em;
-                padding-block-end: 1.2em;
+                .amenitis-content {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                }
 
-                .secondary-amenity-container {
+                h2 {
+                    margin-block-end: 1em;
+                }
+
+                .amenty-container {
                     margin-block-end: 1em;
 
                     img {
                         width: 2em;
                         margin-inline-end: 1em;
                     }
-
-                    .secondary-amenity-content-container {
-                        p {
-                            font-family: Circular-Light;
-                            color: $clr7;
-                        }
-                    }
                 }
-            }
-
-            .summary {
-                border-block-end: 1px solid $clr4;
-                padding-block-start: 1em;
-                padding-block-end: 2em;
             }
         }
 
-        .stay-amenities {
-            border-block-end: 1px solid $clr4;
-            padding-block: 1em;
-            margin-block-end: 3em;
+        .stay-details-content-column2 {
+            grid-column: 2;
 
-            .amenitis-content {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
+            .order-form-container {
+                position: sticky;
+                top: 5em;
+                grid-column: 2;
+                grid-row: 1;
+                justify-self: end;
+                width: 100%;
+                border: 1px solid $clr4;
+                border-radius: 1em;
+                box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+                display: flex;
+                flex-direction: column;
+                padding: 2em;
+                align-items: center;
 
-            h2 {
-                margin-block-end: 1em;
-            }
+                >* {
+                    width: 100%;
+                }
 
-            .amenty-container {
-                margin-block-end: 1em;
+                .price-rating-container {
 
-                img {
-                    width: 2em;
-                    margin-inline-end: 1em;
+                    .price-container {
+                        h2 {
+                            margin-inline-end: 0.3em;
+                        }
+                    }
+
+                    .rating-review-container {
+                        .rating-container {
+                            margin-inline-end: 0.2em;
+
+                            img {
+                                width: 1em;
+                                margin-inline-end: 0.2em;
+                            }
+                        }
+                    }
+                }
+
+                form {
+                    >* {
+                        width: 100%;
+                    }
+                }
+
+                p {
+                    text-align: center;
                 }
             }
         }

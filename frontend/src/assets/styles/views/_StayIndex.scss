@@ -10,6 +10,7 @@
                 position: absolute;
                 left: 0;
                 z-index: 1;
+                bottom: 12px;
 
                 button {
                     border-radius: 50%;
@@ -18,6 +19,10 @@
                     background-color: #fff;
                     color: $clr2;
                     border: 1px solid $clr4;
+
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+                    }
                 }
             }
 
@@ -25,6 +30,7 @@
                 position: absolute;
                 right: 0;
                 z-index: 1;
+                bottom: 12px;
 
                 button {
                     border-radius: 50%;
@@ -33,6 +39,10 @@
                     background-color: #fff;
                     color: $clr2;
                     border: 1px solid $clr4;
+
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+                    }
                 }
             }
 
