@@ -66,7 +66,12 @@ export function AppHeader() {
         <header className={`app-header full ${isDetailsShown ? 'details-main-layout' : 'main-layout'}`}>
             <div className="app-header-inner-container flex space-between align-center">
                 <div className="main-logo">
-                    <NavLink to="/stay">  <h1> AirBBB </h1> </NavLink>
+                    <NavLink to="/stay">
+                        <div className='main-logo-container flex align-center'>
+                            <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685912254/logo-img_tdtnc7.svg" alt="" />
+                            <h2> airbbb </h2>
+                        </div>
+                    </NavLink>
                 </div>
 
                 <section className="header-search-bar-container">

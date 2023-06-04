@@ -1,7 +1,7 @@
 .stay-index-container {
 
     .react-horizontal-scrolling-menu--wrapper {
-        margin-block-start: 1em;
+        padding-block-start: 2.1em;
         width: 100%;
         position: relative;
 
@@ -83,9 +83,57 @@
 
         .stay-preview {
             margin-block-end: 1em;
+            border-radius: .8em;
 
             &:hover {
                 cursor: pointer;
+
+                .carousel-wrapper {
+                    .btn-carousel-left {
+                        opacity: 0.8;
+                    }
+                }
+
+                .carousel-wrapper {
+                    .btn-carousel-right {
+                        opacity: 0.8;
+                    }
+                }
+            }
+
+            .carousel-wrapper {
+                position: relative;
+                border-radius: .8em;
+
+                .carousel-slider {
+                    border-radius: .8em;
+                }
+
+                .btn-carousel-left {
+                    position: absolute;
+                    top: 44%;
+                    left: 1em;
+                    background-color: $clr8;
+                    color: $clr3;
+                    border-radius: 50%;
+                    padding-inline: 0.8em;
+                    padding-block: 0.4em;
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in-out;
+                }
+
+                .btn-carousel-right {
+                    position: absolute;
+                    top: 44%;
+                    right: 1em;
+                    background-color: $clr8;
+                    color: $clr3;
+                    border-radius: 50%;
+                    padding-inline: 0.8em;
+                    padding-block: 0.4em;
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in-out;
+                }
             }
 
             .location-rating-container {
@@ -118,7 +166,7 @@
 
             p:nth-child(4) {
                 font-family: Circular-Light, sans-serif;
-                margin-block-start: .5em;
+                margin-block-start: .2em;
                 color: $clr2;
 
                 span {
@@ -128,21 +176,5 @@
         }
 
     }
-
-}
-
-.details-header {
-    margin: auto;
-}
-
-.react-calendar {
-    width: 100%;
-}
-
-
-.react-calendar__navigation__arrow,
-.react-calendar__month-view__days__day,
-.react-calendar__navigation__label {
-    color: black;
 
 }

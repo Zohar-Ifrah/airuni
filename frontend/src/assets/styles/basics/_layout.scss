@@ -43,17 +43,17 @@
         }
     }
 
-    @include for-narrow-layout {
+    @include for-narrow-layout-details {
         grid-template-columns:
             minmax(40px, 1fr) minmax(auto, $mobile-breakpoint-details) minmax(40px, 1fr);
     }
 
-    @include for-normal-layout {
+    @include for-normal-layout-details {
         grid-template-columns:
             minmax(40px, 1fr) minmax(auto, $narrow-breakpoint-details) minmax(40px, 1fr);
     }
 
-    @include for-wide-layout {
+    @include for-wide-layout-details {
         grid-template-columns:
             minmax(40px, 1fr) minmax(auto, normal-breakpoint-details) minmax(40px, 1fr);
     }

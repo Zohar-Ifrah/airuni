@@ -19,7 +19,7 @@ export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
     return (
 
         <li className="stay-preview" key={stay._id} onClick={() => navigate(`/details/${stay._id}`)}>
-            <CarouselComponent images={stay.imgUrls} onClick={(ev) => ev.stopPropagation()} />
+            <CarouselComponent images={stay.imgUrls} />
             <div className="location-rating-container flex space-between">
                 <h4> {`${stay.loc.city}, ${stay.loc.country}`} </h4>
                 {!!stay.reviews.length && <div className="rating-container flex align-center">

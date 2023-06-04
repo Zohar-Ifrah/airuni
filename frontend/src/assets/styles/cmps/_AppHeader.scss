@@ -3,6 +3,19 @@
     border-block-end: 1px solid #dedede;
 
     &-inner-container {
+        .main-logo {
+            a {
+                h2 {
+                    color: $clr1;
+                    font-family: Circular-Regular, sans-serif;
+                }
+
+                img {
+                    margin-inline-end: .5em;
+                }
+            }
+        }
+
         .header-search-bar-container {
             .search-preview {
                 -webkit-padding-start: 8px;
