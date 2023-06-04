@@ -11,6 +11,7 @@ import { StayList } from '../cmps/stay-list.jsx'
 import { useSearchParams } from 'react-router-dom'
 import { useForm } from '../customHooks/useForm.js'
 import { LabelsFilter } from '../cmps/labels-filter.jsx'
+import { SET_DETAILS_UNSHOWN } from '../store/system.reducer.js'
 
 export function StayIndex() {
     const dispatch = useDispatch()
@@ -39,6 +40,7 @@ export function StayIndex() {
     //     }, [])
 
     useEffect(() => {
+        dispatch({ type: SET_DETAILS_UNSHOWN })
         loadStays(filterBy)
     }, [filterBy])
 

@@ -31,7 +31,7 @@ export function LabelsFilter() {
                 <Card
                     itemId={item.id} // NOTE: itemId is required for track items
                     title={item.title}
-                    labelUrl={item.labelUrl}
+                    labelUrl={item.url}
                     key={item.id}
                     onClick={handleClick(item.id)}
                     selected={isItemSelected(item.id)}

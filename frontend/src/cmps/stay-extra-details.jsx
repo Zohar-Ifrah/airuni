@@ -17,14 +17,14 @@ export function StayExrtaDetails({ stay }) {
         <div className="stay-extra-details">
             <div className="stay-host-by flex space-between align-center">
                 <h2> {`${stay.type} host by ${stay.host.fullname}`} </h2>
-                <img src={require(`../assets/img/url.png`)} alt="url" />
+                <img src={stay.host.imgUrl} alt="url" />
             </div>
             <div className="main-amenities flex align-center">
                 {slicedAmenities.mainAmenities.map((amenity, idx) => {
                     return (
                         <div key={idx} className="main-amenity flex align-center">
-                            <img src={require(`../assets/img/url.png`)} alt="url" />
-                            {amenity}
+                            <img src={amenity.url} alt={amenity.name} />
+                            {amenity.name}
                         </div>
                     )
                 })}
@@ -33,9 +33,9 @@ export function StayExrtaDetails({ stay }) {
                 {slicedAmenities.secondaryAmenities.map((amenity, idx) => {
                     return (
                         <div key={idx} className="secondary-amenity-container flex align-center">
-                            <img src={require(`../assets/img/url.png`)} alt="url" />
+                            <img src={amenity.url} alt={amenity.name} />
                             <div className="secondary-amenity-content-container">
-                                <h4> {amenity} </h4>
+                                <h4> {amenity.name} </h4>
                                 <p> lorem ipsum lorem ipsum lorem ipsum ...</p>
                             </div>
                         </div>
