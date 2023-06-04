@@ -7,11 +7,14 @@ import { AppHeader } from './cmps/app-header'
 import { AppFooter } from './cmps/app-footer'
 import { UserDetails } from './pages/user-details'
 import { ConfirmOrder } from './pages/confirm-order'
+import { useSelector } from 'react-redux'
 
 export function RootCmp() {
 
+    const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
+
     return (
-        <div className='main-app main-layout'>
+        <div className={`main-app ${(isDetailsShown) ? 'details-main-layout' : 'main-layout'}`}>
             <AppHeader />
             <main>
                 <Routes>

@@ -1,8 +1,8 @@
 .app-header {
-    padding-block-end: 1.5em;
+    padding-block: 1em;
     border-block-end: 1px solid #dedede;
 
-    .app-header-inner-container {
+    &-inner-container {
         .header-search-bar-container {
             .search-preview {
                 -webkit-padding-start: 8px;
@@ -105,7 +105,6 @@
                     button {
                         border: none;
                         background: inherit;
-                        margin: 1em;
                         color: $clr2;
                         font-family: Circular-Light, sans-serif;
 

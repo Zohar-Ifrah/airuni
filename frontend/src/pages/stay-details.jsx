@@ -10,17 +10,21 @@ import { StayExrtaDetails } from "../cmps/stay-extra-details"
 import { StayAmenities } from "../cmps/stay-amenities"
 import { Review } from "../cmps/review"
 import { OrderForm } from "../cmps/order-form"
+import { useDispatch } from "react-redux"
+import { SET_DETAILS_SHOWN } from "../store/system.reducer"
 
 
 export function StayDetails() {
 
     const [stay, setStay] = useState(null)
     const { stayId } = useParams()
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
     // const stays = useSelector((storeState) => storeState.stays)
 
     useEffect(() => {
+        dispatch({ type: SET_DETAILS_SHOWN })
         loadStay()
         // eslint-disable-next-line
     }, [])

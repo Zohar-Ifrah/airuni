@@ -23,7 +23,7 @@ export function Review({ stay }) {
                 {stay.reviews.map(review =>
                     <article key={review.id} className="review">
                         <div className="user-details flex align-center">
-                            <img src={require(`../assets/img/url.png`)} alt="" />
+                            <img src={review.by.imgUrl} alt="" />
                             <h3> {review.by.fullname} </h3>
                         </div>
                         <p> {review.txt} </p>

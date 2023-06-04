@@ -1,7 +1,9 @@
 import { storageService } from './async-storage.service'
+import { utilService } from './util.service'
 // import { httpService } from './http.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const USER_KEY = 'user_db'
 
 export const userService = {
     login,
@@ -13,7 +15,8 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore
+    changeScore,
+    getRandomUser
 }
 
 window.userService = userService
@@ -37,7 +40,7 @@ function remove(userId) {
     // return httpService.delete(`user/${userId}`)
 }
 
-async function update({_id, score}) {
+async function update({ _id, score }) {
     const user = await storageService.get('user', _id)
     user.score = score
     await storageService.put('user', user)
@@ -78,7 +81,7 @@ async function changeScore(by) {
 
 
 function saveLocalUser(user) {
-    user = {_id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score}
+    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
@@ -94,5 +97,39 @@ function getLoggedinUser() {
 //     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
 // })()
 
+const userImgs = [
+    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891291/host1_cxwcp3.jpg',
+    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891290/host2_xqgyw5.jpg',
+    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891290/host3_njxd3x.jpg',
+    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891290/host4_uczapd.jpg',
+    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891291/host5_ikyxsm.jpg',
+    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891290/host6_cw372a.jpg',
+    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891291/host7_tasj1f.jpg'
+]
 
+function getRandomUser() {
+    const users = utilService.loadFromStorage(USER_KEY)
+    return users[utilService.getRandomIntInclusive(0, users.length - 1)]
+}
 
+function _createRandomUsers() {
+    return utilService.getRandomNames().map(name => {
+        return _createRandomUser(name)
+    })
+}
+
+function _createRandomUser(name) {
+    return {
+        _id: utilService.makeId(),
+        fullname: name,
+        imgUrl: userImgs[utilService.getRandomIntInclusive(0, userImgs.length - 1)]
+    }
+}
+
+; (() => {
+    let users = utilService.loadFromStorage(USER_KEY) || []
+    if (!users.length) {
+        users = _createRandomUsers()
+        utilService.saveToStorage(USER_KEY, users)
+    }
+})()

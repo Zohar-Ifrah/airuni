@@ -4,13 +4,31 @@ import { CarouselComponent } from "./img-preview-carousel"
 export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
 
     const navigate = useNavigate()
+
+    function calculateAvgReviews() {
+        let count = 0
+        const sum = stay.reviews.reduce((acc, review) => {
+            count++
+            return acc + review.rate
+        }, 0)
+
+        return sum / count
+    }
+
+
     return (
 
         <li className="stay-preview" key={stay._id} onClick={() => navigate(`/details/${stay._id}`)}>
             <CarouselComponent images={stay.imgUrls} onClick={(ev) => ev.stopPropagation()} />
-            <h4> {`${stay.loc.city}, ${stay.loc.country}`} </h4>
+            <div className="location-rating-container flex space-between">
+                <h4> {`${stay.loc.city}, ${stay.loc.country}`} </h4>
+                {!!stay.reviews.length && <div className="rating-container flex align-center">
+                    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />
+                    <span> {`${calculateAvgReviews().toFixed(2)}`} </span>
+                </div>}
+            </div>
             <p> {`Stay with ${stay.host.fullname}`} </p>
-            <p> <span> ${stay.price.toLocaleString()} </span> night </p>
+            <p> <span> ${stay.price.toLocaleString('en-US')} </span> night </p>
 
             {/* <div>
                 <button onClick={() => { onRemoveStay(stay._id) }}>x</button>

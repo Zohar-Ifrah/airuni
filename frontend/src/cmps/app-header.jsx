@@ -10,6 +10,7 @@ export function AppHeader() {
 
     const user = useSelector(storeState => storeState.userModule.user)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
     const modalRef = useRef(null)
 
     useEffect(() => {
@@ -62,7 +63,7 @@ export function AppHeader() {
         console.log('hi')
     }
     return (
-        <header className="app-header full main-layout">
+        <header className={`app-header full ${isDetailsShown ? 'details-main-layout' : 'main-layout'}`}>
             <div className="app-header-inner-container flex space-between align-center">
                 <div className="main-logo">
                     <NavLink to="/stay">  <h1> AirBBB </h1> </NavLink>

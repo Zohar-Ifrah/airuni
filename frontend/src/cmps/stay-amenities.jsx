@@ -1,19 +1,13 @@
-
-
-
 export function StayAmenities({ stay }) {
-    // amenitiesIcons = [
-    //     {'TV': ICONurl},
-    //     {'Wifi': iconURL}
-    // ]
+
     return (
         <div className="stay-amenities">
             <h2> What this place offers </h2>
             <div className="amenitis-content">
                 {stay.amenities.map((amenity, idx) =>
                     <div className="amenty-container flex align-center" key={idx}>
-                        <img src={require(`../assets/img/url.png`)} alt="url" />
-                        <p> {amenity} </p>
+                        <img src={amenity.url} alt={amenity.name} />
+                        <p> {amenity.name} </p>
                     </div>
                 )}
             </div>
