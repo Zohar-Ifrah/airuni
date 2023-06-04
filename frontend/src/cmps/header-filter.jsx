@@ -1,20 +1,30 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SearchMenu } from "./search-menu"
 
 
 export function HeaderFilter({ onSetFilter }) {
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
+  const [focusBtn, setFocusBtn] = useState(null)
+  const [barFocused, setBarFocused] = useState(null)
 
+  useEffect(() => {
 
-  function onChangeBarDisplay(isOpen) {
+  }, [barFocused])
 
+  function isBarFocused(isFocus) {
+    console.log('isFocus: ', isFocus)
+    setBarFocused(isFocus)
+  }
+
+  function onChangeBarDisplay(focusBtn, isOpen) {
+    console.log('HEADER focusBtn: ', focusBtn)
+    setFocusBtn(focusBtn)
     setIsSearchBarOpen(isOpen)
     // dispatch({ type: FILTER_STATUS, isFilterOpen: !isFilterOpen })
     // setTimeout(() => {
     //   setIsSearchBarOpen(false)
     // }, 2000)
-    console.log(isSearchBarOpen)
   }
 
   return (
@@ -26,9 +36,9 @@ export function HeaderFilter({ onSetFilter }) {
       </div>
 
       <div className={`search-preview ${isSearchBarOpen ? 'search-preview-close' : ''}`}>
-        <button onClick={() => { onChangeBarDisplay(true) }}>Anywhere</button>
-        <button onClick={() => { onChangeBarDisplay(true) }}>Any week</button>
-        <button onClick={() => { onChangeBarDisplay(true) }}>Add Guests</button>
+        <button onClick={() => { onChangeBarDisplay('Anywhere', true) }}>Anywhere</button>
+        <button onClick={() => { onChangeBarDisplay('Any week', true) }}>Any week</button>
+        <button onClick={() => { onChangeBarDisplay('Add Guests', true) }}>Add Guests</button>
       </div>
 
       <div className={`search-bar ${isSearchBarOpen ? 'search-bar-open' : ''}`}>
@@ -39,8 +49,10 @@ export function HeaderFilter({ onSetFilter }) {
           <button onClick={() => { onChangeBarDisplay() }}>Online Experiences</button>
         </div>
 
-        <div className="search-form-menu-container">
-          <SearchMenu onChangeBarDisplay={onChangeBarDisplay} />
+        <div className={`search-form-menu-container ${barFocused && 'bar-focused'}`}>
+          <SearchMenu onChangeBarDisplay={onChangeBarDisplay}
+            focusBtn={focusBtn}
+            isBarFocused={isBarFocused} />
         </div>
 
       </div>

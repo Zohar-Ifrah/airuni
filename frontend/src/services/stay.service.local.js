@@ -18,7 +18,7 @@ export const stayService = {
 
 window.cs = stayService
 
-async function query(filterBy = { txt: '', price: 750, location: '' }) {
+async function query(filterBy = {}) {
     var stays = await storageService.query(STORAGE_KEY)
     if (filterBy.location) {
         const regex = new RegExp(filterBy.location, 'i')
