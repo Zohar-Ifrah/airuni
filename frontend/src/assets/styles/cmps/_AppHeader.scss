@@ -140,8 +140,9 @@
                                 padding-inline: 1.5em;
                                 height: 100%;
 
-                                &:hover {
-                                    background-color: $clr5;
+                                &:hover:not(.focused) {
+                                    // background-color: $clr5;
+                                    background-color: #dddddd;
                                     border-radius: 555px;
                                 }
                             }

@@ -9,7 +9,7 @@ import { AddGuests } from "./add-guests"
 
 
 
-export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
+export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBtn, isBarFocused }) {
   onSetFilter = useRef(utilService.debounce(onSetFilter))
 
   // const [filterByToEdit, setFilterByToEdit] = useState(useSelector((storeState) => storeState.stayModule.filterBy))
@@ -22,14 +22,28 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
   // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
-  const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
+  if (focusBtn) {
+    console.log('focusBtn:  ', focusBtn)
+    console.log('Any week:  ', focusBtn && focusBtn === 'Any week')
+    console.log('Add Guests:  ', focusBtn && focusBtn === 'Add Guests')
+
+  }
+  const [isCalendarOpen, setIsCalendarOpen] = useState(focusBtn && focusBtn === 'Any week')
+  const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(focusBtn && focusBtn === 'Add Guests')
 
   const elInputRef = useRef(null)
 
   useEffect(() => {
     elInputRef.current && elInputRef.current.focus()
-  }, [])
+    setIsCalendarOpen(focusBtn && focusBtn === 'Any week')
+    setIsAddGuestsOpen(focusBtn && focusBtn === 'Add Guests')
+
+  }, [focusBtn])
+
+  useEffect(() => {
+    isBarFocused(isCalendarOpen || isAddGuestsOpen)
+  }, [isAddGuestsOpen, isCalendarOpen])
+
 
   function onSubmit(ev) {
 
@@ -52,14 +66,17 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
   }
 
   function ontoggleCalendar() {
+    if (isAddGuestsOpen) setIsAddGuestsOpen(false)
     setIsCalendarOpen(!isCalendarOpen)
   }
 
   function onOpenGuestsModal() {
+    if (isCalendarOpen) setIsCalendarOpen(false)
     setIsAddGuestsOpen(!isAddGuestsOpen)
   }
 
-  function onSelectDate(date) {
+  function onSetDates(selectedDates, date) {
+    console.log('selectedDates: ', selectedDates)
     console.log('date: ', date)
   }
 
@@ -102,18 +119,26 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay }) {
       </div>
 
 
-      <div className="checkin-add-dates-container flex align-center">
-        <div className="checkin-add-dates flex column justify-center" onClick={() => { ontoggleCalendar('checkIn') }}><span> Check in </span> <span> Add dates </span></div>
-        {isCalendarOpen && <CalendarPicker onSelectDate={onSelectDate} />}
+      <div className={`checkin-add-dates-container flex align-center ${isCalendarOpen && 'focused'}`} onClick={() => { ontoggleCalendar('checkIn') }}>
+
+        <div className="checkin-add-dates flex column justify-center">
+          <span> Check in </span> <span> Add dates </span>
+        </div>
+
+        {isCalendarOpen && <CalendarPicker onSetDates={onSetDates} />}
       </div>
 
-      <div className="checkout-add-dates-container flex align-center">
-        <div className="checkout-add-dates flex column justify-center" onClick={() => { ontoggleCalendar('checkOut') }}> <span> Check out </span> <span>Add dates</span></div>
+      <div className="checkout-add-dates-container flex align-center" onClick={() => { ontoggleCalendar('checkOut') }}>
+
+        <div className="checkout-add-dates flex column justify-center">
+          <span> Check out </span> <span>Add dates</span>
+        </div>
+
         {/* {isCalendarOpen && <CalendarPicker key="checkOut" />} */}
       </div>
 
-      <div className="flex align-center">
-        <div className="add-guests-search-container flex align-center" onClick={() => { onOpenGuestsModal() }}>
+      <div className={`flex align-center ${isAddGuestsOpen && 'focused'}`} onClick={() => { onOpenGuestsModal() }}>
+        <div className="add-guests-search-container flex align-center">
           <div className="add-guests flex column justify-center">
             <span> Who </span>
             <span> Add guests </span>

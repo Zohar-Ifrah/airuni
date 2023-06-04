@@ -16,6 +16,7 @@ import { SET_DETAILS_UNSHOWN } from '../store/system.reducer.js'
 export function StayIndex() {
     const dispatch = useDispatch()
     const stays = useSelector(storeState => storeState.stayModule.stays)
+
     // const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
     // eslint-disable-next-line
     const [searchParams, setSearchParams] = useSearchParams()
@@ -40,6 +41,7 @@ export function StayIndex() {
     //     }, [])
 
     useEffect(() => {
+        // console.log('searchParams: ', searchParams)
         dispatch({ type: SET_DETAILS_UNSHOWN })
         loadStays(filterBy)
     }, [filterBy])
