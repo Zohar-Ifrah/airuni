@@ -17,22 +17,20 @@ export function DetailsGallery({ stay }) {
 
   return (
 
-    <div >
-      {stay && (
-        <div className="details-gallery">
+    <div className="details-gallery">
 
-          {stay.imgUrls.map(imgUrl => {
-            return <img key={imgUrl.id} src={imgUrl.url} alt="" />
-          })}
+      {stay.imgUrls.map(imgUrl => {
+        return <img key={imgUrl.id} src={imgUrl.url} alt="" />
+      })}
 
-          {showMore && (
-            <DetailsFullGallery stay={stay} onClose={onCloseImgsModal} />
-          )}
-        </div>
+      {showMore && (
+        <DetailsFullGallery stay={stay} onClose={onCloseImgsModal} />
       )}
-      {/* {!showMore && (
+    </div>
+
+  )
+}
+
+{/* {!showMore && (
         <button onClick={onOpenImgsModal}>Show more photos</button>
       )} */}
-    </div>
-  );
-}
