@@ -1,4 +1,3 @@
-import { stayService } from "../services/stay.service.local"
 import { useState, useEffect } from 'react'
 
 
@@ -9,7 +8,7 @@ export function StayExrtaDetails({ stay }) {
     useEffect(() => {
 
         setSlicedAmenties({ mainAmenities: stay.amenities.slice(0, 3), secondaryAmenities: stay.amenities.slice(3) })
-
+        // eslint-disable-next-line
     }, [])
 
     if (!slicedAmenities) return

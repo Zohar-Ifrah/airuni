@@ -5,7 +5,9 @@ export const utilService = {
     debounce,
     randomPastTime,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    getLorem,
+    getRandomNames
 }
 
 function makeId(length = 6) {
@@ -45,11 +47,11 @@ function randomPastTime() {
     return Date.now() - pastTime
 }
 
-function debounce(func, timeout = 300){
+function debounce(func, timeout = 300) {
     let timer
     return (...args) => {
-      clearTimeout(timer)
-      timer = setTimeout(() => { func.apply(this, args) }, timeout)
+        clearTimeout(timer)
+        timer = setTimeout(() => { func.apply(this, args) }, timeout)
     }
 }
 
@@ -59,5 +61,24 @@ function saveToStorage(key, value) {
 
 function loadFromStorage(key) {
     const data = localStorage.getItem(key)
-    return (data) ? JSON.parse(data) : undefined
+    return (data) ? JSON.parse(data) : null
+}
+
+function getLorem() {
+    return 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt eum quaerat eligendi amet asperiores repudiandae itaque excepturi nam cupiditate omnis, eos saepe veritatis dicta necessitatibus delectus ratione consectetur accusamus? Laboriosam.'
+}
+
+function getRandomNames() {
+    return [
+        'Baba Jom',
+        'John Doe',
+        'Alice Smith',
+        'David Johnson',
+        'Emma Brown',
+        'Michael Davis',
+        'Olivia Wilson',
+        'James Martinez',
+        'Sophia Anderson',
+        'William Taylor'
+    ]
 }

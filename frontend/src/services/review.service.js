@@ -1,12 +1,16 @@
 // import { httpService } from './http.service'
 import { storageService } from './async-storage.service'
 import { userService } from './user.service'
+import { utilService } from './util.service'
+
+const REVIEW_KEY = 'review_db'
 
 
 export const reviewService = {
   add,
   query,
-  remove
+  remove,
+  getRandomReviews,
 }
 
 function query(filterBy) {
@@ -20,9 +24,9 @@ async function remove(reviewId) {
   await storageService.remove('review', reviewId)
 }
 
-async function add({txt, aboutUserId}) {
+async function add({ txt, aboutUserId }) {
   // const addedReview = await httpService.post(`review`, {txt, aboutUserId})
-  
+
   const aboutUser = await userService.getById(aboutUserId)
 
   const reviewToAdd = {
@@ -40,3 +44,32 @@ async function add({txt, aboutUserId}) {
   const addedReview = await storageService.post('review', reviewToAdd)
   return addedReview
 }
+
+function getRandomReviews() {
+  return _createRandomreviews()
+}
+
+function _createRandomreviews() {
+  const reviews = []
+  for (let i = 0; i < 5; i++) {
+    reviews.push(_createRandomReview())
+  }
+  return reviews
+}
+
+function _createRandomReview() {
+  return {
+    id: utilService.makeId(),
+    txt: utilService.makeLorem(50),
+    rate: utilService.getRandomIntInclusive(1, 5),
+    by: userService.getRandomUser(),
+  }
+}
+
+; (() => {
+  let reviews = utilService.loadFromStorage(REVIEW_KEY) || []
+  if (!reviews.length) {
+    reviews = _createRandomreviews()
+    utilService.saveToStorage(REVIEW_KEY, reviews)
+  }
+})()

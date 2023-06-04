@@ -16,7 +16,7 @@ export function AddGuests({ filterByToEdit, handleChange }) {
                 <div>{false && <button>-</button>} 0 <button>+</button></div>
             </div>
             <div>
-                <p>Pets <span> <a href="">Bringing a service animal?</a></span></p>
+                <p>Pets <span> Bringing a service animal?</span></p>
                 <div>{false && <button>-</button>} 0 <button>+</button></div>
             </div>
         </section>
