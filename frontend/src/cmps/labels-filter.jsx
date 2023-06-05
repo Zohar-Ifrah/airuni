@@ -9,9 +9,11 @@ export function LabelsFilter({ onSetFilter }) {
     // eslint-disable-next-line
     const [items, setItems] = useState(stayService.getLabels())
     const [filterByToEdit, setFilterByToEdit] = useState(stayService.getDefaultFilter())
+    const [activeLabel, setActiveLabel] = useState(null)
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
+
         // eslint-disable-next-line
     }, [filterByToEdit])
 
@@ -25,6 +27,7 @@ export function LabelsFilter({ onSetFilter }) {
             ...filterByToEdit,
             label: label.title
         })
+        setActiveLabel(id)
     }
 
     function LeftArrow() {
@@ -33,7 +36,7 @@ export function LabelsFilter({ onSetFilter }) {
 
         return (
             <Arrow disabled={isFirstItemVisible} onClick={() => scrollPrev()}>
-                {'<'}
+                <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685990897/arrow-left-bold_veibjr.svg" alt="left-arrow" />
             </Arrow>
         )
     }
@@ -43,7 +46,7 @@ export function LabelsFilter({ onSetFilter }) {
 
         return (
             <Arrow disabled={isLastItemVisible} onClick={() => scrollNext()} style={{ position: 'absolute' }}>
-                {'>'}
+                <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685990897/arrow-right-bold_flbszq.svg" alt="right-arrow" />
             </Arrow>
         )
     }
@@ -56,7 +59,7 @@ export function LabelsFilter({ onSetFilter }) {
                 onClick={() => onClick(visibility)}
                 tabIndex={0}
             >
-                <div className="card" >
+                <div className={`card ${activeLabel === itemId ? 'active' : ''}`}  >
                     <img src={labelUrl} alt="title" />
                     <div style={{ fontSize: '12px' }}>{title}</div>
                 </div>

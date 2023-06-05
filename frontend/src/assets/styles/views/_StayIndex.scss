@@ -11,7 +11,7 @@
                 position: absolute;
                 left: 0;
                 z-index: 1;
-                bottom: 12px;
+                bottom: em(16px);
 
                 button {
                     border-radius: 50%;
@@ -19,10 +19,20 @@
                     padding-inline: 0.7em;
                     background-color: #fff;
                     color: $clr2;
-                    border: 1px solid $clr4;
+                    border: 1px solid rgba(0, 0, 0, 0.322);
+                    width: 1.8em;
+                    height: 1.8em;
+                    scale: 101%;
+                    transition: all 0.2s ease-in-out;
+
+                    img {
+                        scale: 300%;
+                        transform: translate(0.5px, 0.5px);
+                    }
 
                     &:hover {
                         box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+                        scale: 105%;
                     }
                 }
             }
@@ -31,7 +41,7 @@
                 position: absolute;
                 right: 0;
                 z-index: 1;
-                bottom: 12px;
+                bottom: em(16px);
 
                 button {
                     border-radius: 50%;
@@ -39,10 +49,21 @@
                     padding-inline: 0.7em;
                     background-color: #fff;
                     color: $clr2;
-                    border: 1px solid $clr4;
+                    border: 1px solid rgba(0, 0, 0, 0.322);
+                    width: 1.8em;
+                    height: 1.8em;
+                    scale: 101%;
+                    transition: all 0.2s ease-in-out;
+
+                    img {
+                        scale: 300%;
+                        transform: translate(0.2px, 0.5px);
+                    }
+
 
                     &:hover {
                         box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+                        scale: 105%;
                     }
                 }
             }
@@ -56,8 +77,8 @@
                     align-items: center;
                     justify-content: space-between;
                     width: max-content;
-                    margin-inline: 1.8em;
-                    opacity: 0.6;
+                    margin-inline: 1.5em;
+                    opacity: 0.7;
                     transition: all 0.3s ease-in-out;
 
                     &:last-child {
@@ -74,7 +95,6 @@
                         opacity: 1;
                     }
 
-
                     div {
                         .card {
                             display: flex;
@@ -82,6 +102,22 @@
                             align-items: center;
                             justify-content: space-between;
                             width: max-content;
+                            height: 100%;
+
+                            &.active {
+                                position: relative;
+
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    bottom: 1px;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 2px;
+                                    background-color: $clr3;
+                                    /* Adjust the color as desired */
+                                }
+                            }
 
                             img {
                                 width: 1.5em;
@@ -109,31 +145,80 @@
 
         .stay-preview {
             margin-block-end: 1em;
-            border-radius: .8em;
 
             &:hover {
                 cursor: pointer;
 
                 .carousel-wrapper {
+                    position: relative;
+
                     .btn-carousel-left {
-                        opacity: 0.8;
+                        opacity: 0.9;
+                    }
+
+                    .btn-carousel-right {
+                        opacity: 0.9;
                     }
                 }
+            }
 
-                .carousel-wrapper {
-                    .btn-carousel-right {
-                        opacity: 0.8;
-                    }
+            .img-preview {
+                width: 100%;
+                height: 100%;
+                aspect-ratio: 1/.95;
+                object-fit: cover;
+            }
+
+            p:nth-child(3) {
+                color: $clr7;
+                font-family: Circular-Light, sans-serif;
+                font-size: em(15px);
+            }
+
+            p:nth-child(4) {
+                font-family: Circular-Light, sans-serif;
+                margin-block-start: .2em;
+                color: $clr2;
+
+                span {
+                    font-family: Circular-Bold;
                 }
             }
 
             .carousel-wrapper {
                 position: relative;
-                border-radius: .8em;
+                margin-block-end: .8em;
+
+                .dislike {
+                    position: absolute;
+                    top: em(15px);
+                    right: em(15px);
+                    width: 1.5em;
+                }
+
+                .like {
+                    position: absolute;
+                    top: em(15px);
+                    right: em(15px);
+                    width: 1.5em;
+                }
 
                 .carousel-slider {
                     border-radius: .8em;
+
+                    .control-dots {
+                        .dot {
+                            width: em(6.6px);
+                            height: em(6.6px);
+                            margin: 0 em(3px);
+                        }
+                    }
+
+                    .carousel-status {
+                        display: none;
+                    }
                 }
+
 
                 .btn-carousel-left {
                     position: absolute;
@@ -145,7 +230,22 @@
                     padding-inline: 0.8em;
                     padding-block: 0.4em;
                     opacity: 0;
-                    transition: opacity 0.3s ease-in-out;
+                    transition: all 0.3s ease-in-out;
+                    width: 2em;
+                    height: 2em;
+                    scale: 101%;
+
+                    &:hover {
+                        scale: 103%;
+                        opacity: 1;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    }
+
+                    img {
+                        scale: 210%;
+                        width: 100%;
+                        height: 100%;
+                    }
                 }
 
                 .btn-carousel-right {
@@ -158,7 +258,20 @@
                     padding-inline: 0.8em;
                     padding-block: 0.4em;
                     opacity: 0;
-                    transition: opacity 0.3s ease-in-out;
+                    transition: all 0.3s ease-in-out;
+                    width: 2em;
+                    height: 2em;
+                    scale: 101%;
+
+                    &:hover {
+                        scale: 103%;
+                        opacity: 1;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    }
+
+                    img {
+                        scale: 210%;
+                    }
                 }
             }
 
@@ -174,31 +287,13 @@
                         font-family: Circular-Light, sans-serif;
                         font-size: em(15px);
                     }
+
+                    h4 {
+                        font-size: em(15px);
+                    }
                 }
             }
 
-            .img-preview {
-                border-radius: .8em;
-                width: 100%;
-                aspect-ratio: 1/1;
-                object-fit: cover;
-                margin-block-end: 0.8em;
-            }
-
-            p:nth-child(3) {
-                color: $clr7;
-                font-family: Circular-Light, sans-serif;
-            }
-
-            p:nth-child(4) {
-                font-family: Circular-Light, sans-serif;
-                margin-block-start: .2em;
-                color: $clr2;
-
-                span {
-                    font-family: Circular-Bold;
-                }
-            }
         }
 
     }

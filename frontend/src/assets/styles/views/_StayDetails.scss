@@ -211,6 +211,7 @@
                 }
 
                 .price-rating-container {
+                    margin-block-end: 0.8em;
 
                     .price-container {
                         h2 {
@@ -365,11 +366,11 @@
 
                 .txt-charged {
                     text-align: center;
-                    margin-block-start: 1em;
+                    margin-block: 1.5em;
                 }
 
                 .nights-sum {
-                    margin-block: 2em;
+                    // margin-block: 2em;
                     padding-block-start: 1em;
                     border-block-start: 1px solid rgba(0, 0, 0, 0.356);
 

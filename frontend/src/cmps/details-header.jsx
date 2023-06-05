@@ -20,7 +20,16 @@ export function DetailsHeader({ stay }) {
                 <div className="inner-content flex align-center">
                     {!!stay.reviews.length && <div className="rating-container flex align-center">
                         <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />
-                        <span> {`${calculateAvgReviews().toFixed(2)}`} </span>
+                        {!!stay.reviews.length && <span>
+                            {`${(Math.floor(calculateAvgReviews() * 100) / 100)
+                                .toLocaleString('en-US', {
+                                    minimumFractionDigits: 1,
+                                    maximumFractionDigits: 2
+                                })
+                                .replace(/(\.\d)0$/, '$1')
+                                .replace(/\.00$/, '')
+                                }`}
+                        </span>}
                     </div>}
                     <p>
                         <span> {` · ${stay.reviews.length} reviews ·`} </span>

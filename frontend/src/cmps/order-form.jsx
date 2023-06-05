@@ -1,45 +1,43 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
-import { DateRangePicker } from 'react-date-range';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
+import { DateRangePicker } from 'react-date-range'
 
 export function OrderForm({ stay }) {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     const [selectionRange, setSelectionRange] = useState({
         startDate: stay.availableDates[0].startDate,
         endDate: stay.availableDates[0].endDate,
         key: 'selection',
-    });
-
-    console.log(selectionRange.startDate);
+    })
 
 
     function calculateAvgReviews() {
-        let count = 0;
+        let count = 0
         const sum = stay.reviews.reduce((acc, review) => {
-            count++;
-            return acc + review.rate;
-        }, 0);
+            count++
+            return acc + review.rate
+        }, 0)
 
-        return sum / count;
+        return sum / count
     }
 
     function calculateNumberOfNights() {
         const endDate = new Date(selectionRange.endDate)
         const startDate = new Date(selectionRange.startDate)
-        const timeDifference = endDate.getTime() - startDate.getTime();
-        const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
+        const timeDifference = endDate.getTime() - startDate.getTime()
+        const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24))
         return numberOfNights
     }
 
     function handleSelect(ranges) {
-        setSelectionRange(ranges.selection);
+        setSelectionRange(ranges.selection)
     }
 
     function onSubmitOrder(ev) {
-        ev.preventDefault();
-        navigate(`/details/${stay._id}/confirm`);
+        ev.preventDefault()
+        navigate(`/details/${stay._id}/confirm`)
     }
 
     return (
@@ -56,7 +54,16 @@ export function OrderForm({ stay }) {
                                 src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg"
                                 alt="Star"
                             />
-                            <p>{`${calculateAvgReviews().toFixed(2)}`}</p>
+                            {!!stay.reviews.length && <p>
+                                {`${(Math.floor(calculateAvgReviews() * 100) / 100)
+                                    .toLocaleString('en-US', {
+                                        minimumFractionDigits: 1,
+                                        maximumFractionDigits: 2
+                                    })
+                                    .replace(/(\.\d)0$/, '$1')
+                                    .replace(/\.00$/, '')
+                                    }`}
+                            </p>}
                         </div>
                     )}
                     <p>{` · ${stay.reviews.length} reviews`}</p>
@@ -110,7 +117,7 @@ export function OrderForm({ stay }) {
                 </div>
             </div>
         </section>
-    );
+    )
 }
 
 
