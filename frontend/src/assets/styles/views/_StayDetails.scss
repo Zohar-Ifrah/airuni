@@ -243,14 +243,14 @@
                         .dates-container {
                             width: 100%;
                             height: 100%;
-                            border: 1px solid $clr3;
+                            border: 1px solid rgba(0, 0, 0, 0.356);
                             border-top-left-radius: 0.5em;
                             border-top-right-radius: 0.5em;
                             border-block-end: 0;
                             padding: 0.5em;
 
                             .check-in-container {
-                                border-inline-end: 1px solid $clr2;
+                                border-inline-end: 1px solid rgba(0, 0, 0, 0.356);
                                 width: 50%;
                                 height: 100%;
 
@@ -293,7 +293,7 @@
                         }
 
                         .guests {
-                            border: 1px solid $clr3;
+                            border: 1px solid rgba(0, 0, 0, 0.356);
                             border-bottom-left-radius: 0.5em;
                             border-bottom-right-radius: 0.5em;
                             width: 100%;
@@ -316,7 +316,6 @@
                                 cursor: pointer;
                             }
                         }
-
                     }
 
                     .date-picker-container {
@@ -364,8 +363,22 @@
                     }
                 }
 
-                p {
+                .txt-charged {
                     text-align: center;
+                    margin-block-start: 1em;
+                }
+
+                .nights-sum {
+                    margin-block: 2em;
+                    padding-block-start: 1em;
+                    border-block-start: 1px solid rgba(0, 0, 0, 0.356);
+
+                    .total-price-container {
+                        h3 {
+                            text-transform: capitalize;
+                            margin-inline-end: .5em;
+                        }
+                    }
                 }
             }
         }

@@ -14,6 +14,7 @@ export function OrderForm({ stay }) {
 
     console.log(selectionRange.startDate);
 
+
     function calculateAvgReviews() {
         let count = 0;
         const sum = stay.reviews.reduce((acc, review) => {
@@ -22,6 +23,14 @@ export function OrderForm({ stay }) {
         }, 0);
 
         return sum / count;
+    }
+
+    function calculateNumberOfNights() {
+        const endDate = new Date(selectionRange.endDate)
+        const startDate = new Date(selectionRange.startDate)
+        const timeDifference = endDate.getTime() - startDate.getTime();
+        const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24));
+        return numberOfNights
     }
 
     function handleSelect(ranges) {
@@ -91,7 +100,15 @@ export function OrderForm({ stay }) {
                 <button>Reserve</button>
             </form>
 
-            <p>You won't be charged yet</p>
+            <p className='txt-charged'>You won't be charged yet</p>
+
+            <div className='nights-sum flex align-center space-between'>
+                <p> {`$${stay.price} x ${calculateNumberOfNights()} nights`} </p>
+                <div className='total-price-container flex align-center'>
+                    <h3> total </h3>
+                    <p> {`$${stay.price * calculateNumberOfNights()}`} </p>
+                </div>
+            </div>
         </section>
     );
 }
