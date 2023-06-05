@@ -17,7 +17,14 @@ export function Review({ stay }) {
         <section className="review-container">
             {!!stay.reviews.length && <div className="rating-container flex align-center">
                 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />
-                <h2> {`${calculateAvgReviews().toFixed(2)} · ${stay.reviews.length} reviews`} </h2>
+                <h2> {`${(Math.floor(calculateAvgReviews() * 100) / 100)
+                    .toLocaleString('en-US', {
+                        minimumFractionDigits: 1,
+                        maximumFractionDigits: 2
+                    })
+                    .replace(/(\.\d)0$/, '$1')
+                    .replace(/\.00$/, '')} · ${stay.reviews.length} reviews`}
+                </h2>
             </div>}
             <div className="review-content">
                 {stay.reviews.map(review =>
