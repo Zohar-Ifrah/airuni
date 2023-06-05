@@ -2,6 +2,7 @@
 
     .react-horizontal-scrolling-menu--wrapper {
         padding-block-start: 2.1em;
+        padding-block-end: 0.3em;
         width: 100%;
         position: relative;
 
@@ -50,12 +51,37 @@
                 overflow-x: hidden;
 
                 .react-horizontal-scrolling-menu--item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: max-content;
+                    margin-inline: 1.8em;
+                    opacity: 0.6;
+                    transition: all 0.3s ease-in-out;
+
+                    &:last-child {
+                        margin-inline-end: 0;
+                    }
+
+                    &:first-child {
+                        margin-inline: 0;
+                        margin-inline-end: 1.8em;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 1;
+                    }
+
+
                     div {
                         .card {
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            width: 6em;
+                            justify-content: space-between;
+                            width: max-content;
 
                             img {
                                 width: 1.5em;
