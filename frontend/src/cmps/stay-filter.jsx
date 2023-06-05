@@ -14,6 +14,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   onSetFilter = useRef(utilService.debounce(onSetFilter))
   const guestsAmount = useRef(0)
   const checkInAndOutDate = useRef({})
+  // const isCheckInRef = useRef(false)
   // const [filterByToEdit, setFilterByToEdit] = useState(useSelector((storeState) => storeState.stayModule.filterBy))
   // const [sortByToEdit, setSortByToEdit] = useState(useSelector((storeState) => storeState.stayModule.sortBy))
 
@@ -26,6 +27,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(focusBtn && focusBtn === 'Any week')
   const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(focusBtn && focusBtn === 'Add Guests')
+  const [isCheckIn, setIsCheckIn] = useState(false)
 
   const elInputRef = useRef(null)
 
@@ -38,8 +40,9 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   useEffect(() => {
     isBarFocused(isCalendarOpen || isAddGuestsOpen)
+    console.log(isCheckIn)
     // eslint-disable-next-line
-  }, [isAddGuestsOpen, isCalendarOpen])
+  }, [isAddGuestsOpen, isCalendarOpen, isCheckIn])
 
 
   function onSubmit(ev) {
@@ -62,9 +65,14 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     setSearchParams(queryString)
   }
 
-  function ontoggleCalendar() {
-    if (isAddGuestsOpen) setIsAddGuestsOpen(false)
-    setIsCalendarOpen(!isCalendarOpen)
+  function ontoggleCalendar(from) {
+    console.log(from)
+    if ((from === 'checkIn' && !isCheckIn) || (from === 'checkOut' && isCheckIn)) {
+      console.log('enter')
+      if (isAddGuestsOpen) setIsAddGuestsOpen(false)
+      setIsCalendarOpen(!isCalendarOpen)
+      from === 'checkOut' && setIsCheckIn(false)
+    } else from === 'checkIn' ? setIsCheckIn(false) : setIsCheckIn(true)
   }
 
   function onOpenGuestsModal() {
@@ -130,6 +138,12 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     return formattedDate // Output: Jun 7
   }
 
+  function onCheckInClick(isClicked) {
+    console.log(isClicked)
+    setIsCheckIn(isClicked)
+    // isCheckInRef.current = isClicked
+  }
+
   return (
     <section className="filter-header-section">
       <div className="search-label-header flex justify-center">
@@ -144,7 +158,8 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
       </div>
 
 
-      <div className={`checkin-add-dates-container flex align-center ${isCalendarOpen && 'focused'}`} onClick={() => { ontoggleCalendar('checkIn') }}>
+      <div className={`checkin-add-dates-container flex align-center ${isCalendarOpen && !isCheckIn && 'focused'}`}
+        onClick={() => { ontoggleCalendar('checkIn') }}>
 
         <div className="checkin-add-dates flex column justify-center">
           <span> Check in </span>
@@ -154,21 +169,25 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
       </div>
       <div className="show-contents">
 
-        {isCalendarOpen && <CalendarPicker onSetDates={onSetDates} />}
+        {isCalendarOpen && <CalendarPicker
+          onSetDates={onSetDates}
+          onCheckInClick={onCheckInClick} />}
       </div>
 
 
-      <div className="checkout-add-dates-container flex align-center" onClick={() => { ontoggleCalendar('checkOut') }}>
+      <div className={`checkout-add-dates-container flex align-center ${isCheckIn && 'focused'}`}
+        onClick={() => { ontoggleCalendar('checkOut') }}>
 
         <div className="checkout-add-dates flex column justify-center">
-          <span> Check out </span> 
+          <span> Check out </span>
           <span> {checkInAndOutDate.current.checkOut ? checkInAndOutDate.current.checkOut : 'Add dates'} </span>
         </div>
 
         {/* {isCalendarOpen && <CalendarPicker key="checkOut" />} */}
       </div>
 
-      <div className={`flex align-center ${isAddGuestsOpen && 'focused'}`} onClick={() => { onOpenGuestsModal() }}>
+      <div className={`flex align-center ${isAddGuestsOpen && 'focused'}`}
+        onClick={() => { onOpenGuestsModal() }}>
         <div className="add-guests-search-container flex align-center">
           <div className="add-guests flex column justify-center">
             <span> Who </span>

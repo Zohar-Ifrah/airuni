@@ -9,39 +9,31 @@ import { useSearchParams } from 'react-router-dom'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { FILTER_BY } from '../store/stay.reducer.js'
 import { StayList } from '../cmps/stay-list.jsx'
-import { useForm } from '../customHooks/useForm.js'
 import { LabelsFilter } from '../cmps/labels-filter.jsx'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer.js'
+import { stayService } from '../services/stay.service.local.js'
 
 export function StayIndex() {
     const dispatch = useDispatch()
     const stays = useSelector(storeState => storeState.stayModule.stays)
-
-    // const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
-    // eslint-disable-next-line
-    const [searchParams, setSearchParams] = useSearchParams()
-
-    // eslint-disable-next-line
-    const [filterByToEdit, setFilterByToEdit, handleChange] =
-        useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter)
-
+    const [searchParams] = useSearchParams()
     const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
 
 
     // First load
-    //     useEffect(() => {
-    //         const paramsMap = searchParams.entries()
-    //         const filterBy = stayService.getDefaultFilter()
-    //         for (const [key, value] of paramsMap) {
-    //             filterBy[key] = value
-    //         }
-    //         setFilterByToEdit(filterBy)
-    // // eslint-disable-next-line
-    //     }, [])
+    useEffect(() => {
+        const paramsMap = searchParams.entries()
+        const filterBy = stayService.getDefaultFilter()
+
+        for (const [key, value] of paramsMap) {
+            filterBy[key] = (isNaN(parseFloat(value))) ? value : parseFloat(value)
+        }
+        onSetFilter(filterBy)
+        // eslint-disable-next-line
+    }, [])
 
     useEffect(() => {
-        // console.log('searchParams: ', searchParams)
         dispatch({ type: SET_DETAILS_UNSHOWN })
         loadStays(filterBy)
         // eslint-disable-next-line
@@ -79,18 +71,11 @@ export function StayIndex() {
         }
     }
 
-    // function onAddToCart(stay) {
-    //     console.log(`Adding ${stay.vendor} to Cart`)
-    //     addToCart(stay)
-    //     showSuccessMsg('Added to Cart')
-    // }
-
     // function onAddStayMsg(stay) {
     //     console.log(`TODO Adding msg to stay`)
     // }
 
     function onSetFilter(filterToEdit) {
-        // console.log(filterToEdit)
         dispatch({ type: FILTER_BY, filterToEdit })
     }
 
@@ -101,9 +86,7 @@ export function StayIndex() {
 
     return (
         <div className="stay-index-container">
-            {/* <StayFilter
-                onSetFilter={onSetFilter}
-                onSetSort={onSetSort} /> */}
+            
             <LabelsFilter onSetFilter={onSetFilter} />
 
             {/* <button onClick={onAddStay}>Add Stay</button> */}
