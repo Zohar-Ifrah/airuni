@@ -151,7 +151,7 @@ function getLabels() {
 
 function _createRandomStays() {
     const stays = []
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 21; i++) {
         stays.push(_createRandomStay())
     }
     console.log(JSON.stringify(stays))

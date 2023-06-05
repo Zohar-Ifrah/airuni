@@ -61,7 +61,7 @@ function _createRandomReview() {
   return {
     id: utilService.makeId(),
     txt: utilService.makeLorem(50),
-    rate: utilService.getRandomIntInclusive(1, 5),
+    rate: utilService.getRandomIntInclusive(4, 5),
     by: userService.getRandomUser(),
   }
 }
