@@ -48,33 +48,33 @@ export function AddGuests({ onUpdateCapacity }) {
 
     return (
         <section className='add-guests-cmp-header'>
-            <div>
+            <div className="guest-select-row">
                 <p>Adults <span>Ages 13 or above</span></p>
-                <div>
+                <div className="guest-count-container">
                     <button onClick={() => onChange('-', 'adults')} >-</button>
                     {capacity.adults}
                     <button onClick={() => onChange('+', 'adults')}>+</button>
                 </div>
             </div>
-            <div>
+            <div className="guest-select-row">
                 <p>Children <span>Ages 2-12</span></p>
-                <div>
+                <div className="guest-count-container">
                     <button onClick={() => onChange('-', 'children')} >-</button>
                     {capacity.children}
                     <button onClick={() => onChange('+', 'children')}>+</button>
                 </div>
             </div>
-            <div>
+            <div className="guest-select-row">
                 <p>Infants <span>Under 2</span></p>
-                <div>
+                <div className="guest-count-container">
                     <button onClick={() => onChange('-', 'infants')} disabled={capacity.infants <= 0}>-</button>
                     {capacity.infants}
                     <button onClick={() => onChange('+', 'infants')} disabled={capacity.infants >= 5}>+</button>
                 </div>
             </div>
-            <div>
+            <div className="guest-select-row">
                 <p>Pets <span>Bringing a service animal?</span></p>
-                <div>
+                <div className="guest-count-container">
                     <button onClick={() => onChange('-', 'pets')} disabled={capacity.pets <= 0}>-</button>
                     {capacity.pets}
                     <button onClick={() => onChange('+', 'pets')} disabled={capacity.pets >= 5}>+</button>

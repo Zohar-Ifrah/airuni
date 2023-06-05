@@ -313,13 +313,53 @@
             .add-guests-cmp-header {
                 background-color: #ffffff;
                 position: absolute;
-                border-radius: 15px;
-                padding: 2em;
-                right: 0;
+                border-radius: 29px;
+                padding: 1.8em;
+                right: -3em;
                 top: 5em;
                 z-index: 1;
-                width: 23em;
-                height: 23em;
+                width: 25em;
+                height: 25.1em;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .guest-select-row {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .guest-count-container{
+                        display: flex;
+                        gap: 0.6em;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+
+                    p {
+                        display: block;
+                        font-family: cereal-medium;
+                        font-size: 1rem;
+                        line-height: 20px;
+                        padding-bottom: 0.375em;
+                        color: black;
+                        font-weight: bold;
+                    }
+
+                    span {
+                        display: flex;
+                        color: gray;
+                        font-weight: 100;
+                    }
+
+                    button {
+                        background-color: inherit;
+                        border: 1px solid grey;
+                        border-radius: 50%;
+                        color: grey;
+                        width: 2em;
+                        height: 2em;
+                    }
+                }
             }
         }
     }
