@@ -55,13 +55,15 @@ export function AppHeader() {
     }
 
     function onToggleUserModal() {
-        console.log(isModalOpen)
+        // console.log(isModalOpen)
         setIsModalOpen(!isModalOpen)
         // if (!isModalOpen) setIsModalOpen(!isModalOpen)
     }
+
     function onSetFilter() {
-        console.log('hi')
+        console.log('hi from onSetFilter ')
     }
+
     return (
         <header className={`app-header full ${isDetailsShown ? 'details-main-layout' : 'main-layout'}`}>
             <div className="app-header-inner-container flex space-between align-center">

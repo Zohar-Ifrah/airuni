@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { CarouselComponent } from "./img-preview-carousel"
 
 export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
