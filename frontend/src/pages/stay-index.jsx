@@ -1,14 +1,14 @@
+// eslint-disable-next-line
+import { loadStays, addStay, updateStay, removeStay } from '../store/stay.actions.js'
+// import { stayService } from '../services/stay.service.local.js'
+
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadStays, addStay, updateStay, removeStay } from '../store/stay.actions.js'
+import { useSearchParams } from 'react-router-dom'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-
-import { stayService } from '../services/stay.service.local.js'
-
 import { FILTER_BY } from '../store/stay.reducer.js'
 import { StayList } from '../cmps/stay-list.jsx'
-import { useSearchParams } from 'react-router-dom'
 import { useForm } from '../customHooks/useForm.js'
 import { LabelsFilter } from '../cmps/labels-filter.jsx'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer.js'
@@ -26,7 +26,7 @@ export function StayIndex() {
         useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter)
 
     const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
-    console.log(filterBy)
+
 
 
     // First load
@@ -44,6 +44,7 @@ export function StayIndex() {
         // console.log('searchParams: ', searchParams)
         dispatch({ type: SET_DETAILS_UNSHOWN })
         loadStays(filterBy)
+        // eslint-disable-next-line
     }, [filterBy])
 
     async function onRemoveStay(stayId) {
@@ -55,17 +56,17 @@ export function StayIndex() {
         }
     }
 
-    async function onAddStay() {
-        const stay = stayService.getEmptyStay()
-        stay.name = prompt('name?')
-        stay.price = +prompt('price?')
-        try {
-            const savedStay = await addStay(stay)
-            showSuccessMsg(`Stay added (id: ${savedStay._id})`)
-        } catch (err) {
-            showErrorMsg('Cannot add stay')
-        }
-    }
+    // async function onAddStay() {
+    //     const stay = stayService.getEmptyStay()
+    //     stay.name = prompt('name?')
+    //     stay.price = +prompt('price?')
+    //     try {
+    //         const savedStay = await addStay(stay)
+    //         showSuccessMsg(`Stay added (id: ${savedStay._id})`)
+    //     } catch (err) {
+    //         showErrorMsg('Cannot add stay')
+    //     }
+    // }
 
     async function onUpdateStay(stay) {
         const price = +prompt('New price?')
@@ -89,6 +90,7 @@ export function StayIndex() {
     // }
 
     function onSetFilter(filterToEdit) {
+        // console.log(filterToEdit)
         dispatch({ type: FILTER_BY, filterToEdit })
     }
 
@@ -102,7 +104,7 @@ export function StayIndex() {
             {/* <StayFilter
                 onSetFilter={onSetFilter}
                 onSetSort={onSetSort} /> */}
-            <LabelsFilter />
+            <LabelsFilter onSetFilter={onSetFilter} />
 
             {/* <button onClick={onAddStay}>Add Stay</button> */}
 

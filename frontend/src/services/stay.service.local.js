@@ -19,15 +19,31 @@ export const stayService = {
 window.cs = stayService
 
 async function query(filterBy = {}) {
+
     var stays = await storageService.query(STORAGE_KEY)
     if (filterBy.location) {
         const regex = new RegExp(filterBy.location, 'i')
         stays = stays.filter(stay => regex.test(stay.loc.country) || regex.test(stay.loc.city))
     }
-    // if (filterBy.txt) {
-    //     const regex = new RegExp(filterBy.txt, 'i')
-    //     stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
-    // }
+
+    if (filterBy.checkIn) {
+
+        stays = stays.filter(stay =>
+            stay.availableDates.some(date => new Date(date.startDate).getTime() >= filterBy.checkIn) &&
+            stay.availableDates.some(date => new Date(date.endDate).getTime() <= filterBy.checkOut)
+        )
+    }
+
+    if (filterBy.adults || filterBy.children) {
+
+        const capacity = filterBy.adults + filterBy.children
+        stays = stays.filter(stay => stay.capacity >= capacity)
+    }
+
+    if (filterBy.label) {
+        stays = stays.filter(stay => stay.labels.some(l => l === filterBy.label))
+    }
+
     // if (filterBy.price) {
     //     stays = stays.filter(stay => stay.price <= filterBy.price)
     // }
@@ -78,10 +94,11 @@ function getDefaultFilter() {
         location: '',
         checkIn: '',
         checkOut: '',
-        adults: 1,
+        adults: 0,
         children: 0,
         infants: 0,
-        pets: 0
+        pets: 0,
+        label: ''
     }
 }
 
@@ -134,7 +151,7 @@ function getLabels() {
 
 function _createRandomStays() {
     const stays = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 14; i++) {
         stays.push(_createRandomStay())
     }
     console.log(JSON.stringify(stays))
@@ -150,13 +167,14 @@ function _createRandomStay() {
         imgUrls: demoData.getRandomImgUrls(),
         price: utilService.getRandomIntInclusive(20, 800),
         summary: demoData.getRandomSummery(),
-        capacity: utilService.getRandomIntInclusive(0, 8),
+        capacity: utilService.getRandomIntInclusive(0, 16),
         amenities: demoData.getRandomAmenities(),
         labels: demoData.getRandomLabels(),
         host: userService.getRandomUser(),
         loc: demoData.getRandomLocation(),
         reviews: reviewService.getRandomReviews(),
-        likedByUsers: [userService.getRandomUser(), userService.getRandomUser()]
+        likedByUsers: [userService.getRandomUser(), userService.getRandomUser()],
+        availableDates: demoData.getRandomAvailableDates()
     }
 }
 
@@ -207,19 +225,27 @@ function getDemoData() {
             { name: 'Cooking basics', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881161/cooking_vwvec9.svg' }
         ],
         labels: [
-            'Top of the world',
-            'Trending',
-            'Play',
+            'Rooms',
+            'Castles',
+            'Farms',
+            'Design',
+            'Luxe',
+            'Boats',
+            'OMG!',
+            'Beachfront',
+            'Amazing views',
+            'Amazing pools',
+            'Mansions',
+            'Lakefront',
+            'Cabins',
             'Tropical',
-            'Luxury Retreat',
-            'Beachfront Bliss',
-            'Relaxation',
-            'Nature Retreat',
-            'Adventure',
-            'Peaceful',
-            'City Life',
-            'Culture',
-            'Convenience'
+            'New',
+            'Countryside',
+            'Trending',
+            'National parks',
+            'Camping',
+            'Treehouses',
+            'Iconic cities'
         ],
         locations: [
             {
@@ -263,6 +289,7 @@ function getDemoData() {
                 lng: 41.1413
             }
         ],
+
     }
 
     function getRandomName() {
@@ -302,10 +329,33 @@ function getDemoData() {
 
     function getRandomLabels() {
         const labels = []
-        for (let i = 0; i < utilService.getRandomIntInclusive(3, 7); i++) {
+        for (let i = 0; i < utilService.getRandomIntInclusive(5, 9); i++) {
             labels.push(DATA.labels[utilService.getRandomIntInclusive(0, DATA.labels.length - 1)])
         }
         return labels
+    }
+
+    function getRandomAvailableDates() {
+        const availableDates = []
+        const today = new Date()
+        const startDate = addDays(today, 1) // Start from 1 day ahead
+        const endDate = addDays(today, 9) // End on 9 days ahead
+
+        while (startDate <= endDate) {
+            const randomDays = getRandomInt(0, 6) // Random days in 0-6 range
+            const start = addDays(startDate, randomDays)
+            const randomDuration = getRandomInt(0, 9) // Random duration in 0-9 range
+            const end = addDays(start, randomDuration)
+
+            availableDates.push({
+                startDate: formatDate(start),
+                endDate: formatDate(end),
+            })
+
+            startDate.setDate(startDate.getDate() + 1) // Move to the next day
+        }
+
+        return availableDates
     }
 
     return {
@@ -315,6 +365,26 @@ function getDemoData() {
         getRandomLocation,
         getRandomAmenities,
         getRandomLabels,
-        getRandomImgUrls
+        getRandomImgUrls,
+        getRandomAvailableDates
     }
+}
+
+function addDays(date, days) {
+    const result = new Date(date)
+    result.setDate(result.getDate() + days)
+    return result
+}
+
+function formatDate(date) {
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${month}/${day}/${year}`
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }

@@ -72,7 +72,7 @@
     position: absolute;
     top: 10.5em;
     left: 0;
-    width: 98.6vw;
+    width: 98.3vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.4078431373);
     z-index: 1;
@@ -81,10 +81,14 @@
 .focused {
     background-color: #ffffff;
     border-radius: 555px;
-    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
     /* other styles */
 }
 
 .bar-focused {
     background-color: #ebebeb;
+}
+
+.show-contents {
+    display: contents;
 }

@@ -13,12 +13,12 @@ export function HeaderFilter({ onSetFilter }) {
   }, [barFocused])
 
   function isBarFocused(isFocus) {
-    console.log('isFocus: ', isFocus)
+    // console.log('isFocus: ', isFocus)
     setBarFocused(isFocus)
   }
 
   function onChangeBarDisplay(focusBtn, isOpen) {
-    console.log('HEADER focusBtn: ', focusBtn)
+    // console.log('HEADER focusBtn: ', focusBtn)
     setFocusBtn(focusBtn)
     setIsSearchBarOpen(isOpen)
     // dispatch({ type: FILTER_STATUS, isFilterOpen: !isFilterOpen })

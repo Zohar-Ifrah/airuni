@@ -9,9 +9,11 @@ import { AddGuests } from "./add-guests"
 
 
 
+
 export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBtn, isBarFocused }) {
   onSetFilter = useRef(utilService.debounce(onSetFilter))
-
+  const guestsAmount = useRef(0)
+  const checkInAndOutDate = useRef({})
   // const [filterByToEdit, setFilterByToEdit] = useState(useSelector((storeState) => storeState.stayModule.filterBy))
   // const [sortByToEdit, setSortByToEdit] = useState(useSelector((storeState) => storeState.stayModule.sortBy))
 
@@ -22,12 +24,6 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams()
 
-  if (focusBtn) {
-    console.log('focusBtn:  ', focusBtn)
-    console.log('Any week:  ', focusBtn && focusBtn === 'Any week')
-    console.log('Add Guests:  ', focusBtn && focusBtn === 'Add Guests')
-
-  }
   const [isCalendarOpen, setIsCalendarOpen] = useState(focusBtn && focusBtn === 'Any week')
   const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(focusBtn && focusBtn === 'Add Guests')
 
@@ -42,6 +38,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   useEffect(() => {
     isBarFocused(isCalendarOpen || isAddGuestsOpen)
+    // eslint-disable-next-line
   }, [isAddGuestsOpen, isCalendarOpen])
 
 
@@ -75,9 +72,28 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     setIsAddGuestsOpen(!isAddGuestsOpen)
   }
 
-  function onSetDates(selectedDates, date) {
-    console.log('selectedDates: ', selectedDates)
-    console.log('date: ', date)
+  function onSetDates(startDate, endDate) {
+    // console.log('startDate: ', startDate)
+    // console.log('endDate: ', endDate)
+
+    checkInAndOutDate.current = { checkIn: getMonth(startDate), checkOut: getMonth(endDate) }
+    setFilterByToEdit({
+      ...filterByToEdit,
+      checkIn: startDate,
+      checkOut: endDate
+    })
+  }
+
+  function onUpdateCapacity({ capacity }) {
+    // console.log(capacity)
+    guestsAmount.current = capacity.adults + capacity.children
+    setFilterByToEdit({
+      ...filterByToEdit,
+      adults: capacity.adults,
+      children: capacity.children,
+      infants: capacity.infants,
+      pets: capacity.pets,
+    })
   }
 
   // useEffect(() => {
@@ -104,6 +120,15 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   //   setSortByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   // }
 
+  function guestsMsg() {
+    return guestsAmount.current > 1 ? guestsAmount.current + ' guests' : guestsAmount.current + ' guest'
+  }
+
+  function getMonth(timestamp) {
+    const date = new Date(timestamp)
+    const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' })
+    return formattedDate // Output: Jun 7
+  }
 
   return (
     <section className="filter-header-section">
@@ -122,16 +147,22 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
       <div className={`checkin-add-dates-container flex align-center ${isCalendarOpen && 'focused'}`} onClick={() => { ontoggleCalendar('checkIn') }}>
 
         <div className="checkin-add-dates flex column justify-center">
-          <span> Check in </span> <span> Add dates </span>
+          <span> Check in </span>
+          <span> {checkInAndOutDate.current.checkIn ? checkInAndOutDate.current.checkIn : 'Add dates'} </span>
         </div>
+
+      </div>
+      <div className="show-contents">
 
         {isCalendarOpen && <CalendarPicker onSetDates={onSetDates} />}
       </div>
 
+
       <div className="checkout-add-dates-container flex align-center" onClick={() => { ontoggleCalendar('checkOut') }}>
 
         <div className="checkout-add-dates flex column justify-center">
-          <span> Check out </span> <span>Add dates</span>
+          <span> Check out </span> 
+          <span> {checkInAndOutDate.current.checkOut ? checkInAndOutDate.current.checkOut : 'Add dates'} </span>
         </div>
 
         {/* {isCalendarOpen && <CalendarPicker key="checkOut" />} */}
@@ -141,13 +172,14 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
         <div className="add-guests-search-container flex align-center">
           <div className="add-guests flex column justify-center">
             <span> Who </span>
-            <span> Add guests </span>
+            <span> {guestsAmount.current ? guestsMsg() : 'Add guests'} </span>
           </div>
           <button onClick={onSubmit}> Search </button>
         </div>
+      </div>
+      <div className="show-contents">
         {isAddGuestsOpen && <AddGuests
-          filterByToEdit={filterByToEdit}
-          handleChange={handleChange} />}
+          onUpdateCapacity={onUpdateCapacity} />}
       </div>
 
     </section>

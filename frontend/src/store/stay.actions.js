@@ -1,9 +1,7 @@
 import { stayService } from "../services/stay.service.local.js";
-import { userService } from "../services/user.service.js";
 import { store } from './store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_STAY, ADD_TO_CART, CLEAR_CART, REMOVE_STAY, REMOVE_FROM_CART, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY } from "./stay.reducer.js";
-import { SET_SCORE } from "./user.reducer.js";
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY } from "./stay.reducer.js";
 
 // Action Creators:
 export function getActionRemoveStay(stayId) {
@@ -26,7 +24,6 @@ export function getActionUpdateStay(stay) {
 }
 
 export async function loadStays(filterBy) {
-    console.log('filterBy:   ',  filterBy )
     try {
         const stays = await stayService.query(filterBy)
         console.log('Stays from DB:', stays)
@@ -77,31 +74,31 @@ export function updateStay(stay) {
         })
 }
 
-export function addToCart(stay) {
-    store.dispatch({
-        type: ADD_TO_CART,
-        stay
-    })
-}
+// export function addToCart(stay) {
+//     store.dispatch({
+//         type: ADD_TO_CART,
+//         stay
+//     })
+// }
 
-export function removeFromCart(stayId) {
-    store.dispatch({
-        type: REMOVE_FROM_CART,
-        stayId
-    })
-}
+// export function removeFromCart(stayId) {
+//     store.dispatch({
+//         type: REMOVE_FROM_CART,
+//         stayId
+//     })
+// }
 
-export async function checkout(total) {
-    try {
-        const score = await userService.changeScore(-total)
-        store.dispatch({ type: SET_SCORE, score })
-        store.dispatch({ type: CLEAR_CART })
-        return score
-    } catch (err) {
-        console.log('StayActions: err in checkout', err)
-        throw err
-    }
-}
+// export async function checkout(total) {
+//     try {
+//         const score = await userService.changeScore(-total)
+//         store.dispatch({ type: SET_SCORE, score })
+//         store.dispatch({ type: CLEAR_CART })
+//         return score
+//     } catch (err) {
+//         console.log('StayActions: err in checkout', err)
+//         throw err
+//     }
+// }
 
 
 // Demo for Optimistic Mutation 
@@ -120,8 +117,8 @@ export function onRemoveStayOptimistic(stayId) {
         .catch(err => {
             showErrorMsg('Cannot remove stay')
             console.log('Cannot load stays', err)
-            store.dispatch({
-                type: UNDO_REMOVE_STAY,
-            })
+            // store.dispatch({
+            //     type: UNDO_REMOVE_STAY,
+            // })
         })
 }
