@@ -104,7 +104,7 @@ export function StayIndex() {
                 onSetSort={onSetSort} /> */}
             <LabelsFilter />
 
-            <button onClick={onAddStay}>Add Stay</button>
+            {/* <button onClick={onAddStay}>Add Stay</button> */}
 
             <StayList
                 stays={stays}
