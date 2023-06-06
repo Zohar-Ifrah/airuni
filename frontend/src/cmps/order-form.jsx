@@ -14,11 +14,12 @@ export function OrderForm({ stay }) {
     // })
 
     function calculateNumberOfNights() {
-        const endDate = new Date('1/1/2024')
-        const startDate = new Date('1/1/2025')
+        const endDate = new Date('8/1/2023')
+        const startDate = new Date('8/10/2023')
         const timeDifference = endDate.getTime() - startDate.getTime()
         const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24))
-        return numberOfNights
+        console.log('numberOfNights', numberOfNights);
+        return numberOfNights * -1
     }
 
     // function handleSelect(ranges) {
@@ -66,11 +67,11 @@ export function OrderForm({ stay }) {
                     <div className="dates-container flex align-center">
                         <div className="check-in-container">
                             <span> check-in </span>
-                            <div className='date-check-in'> 1/1/2024 </div>
+                            <div className='date-check-in'> 8/1/2023 </div>
                         </div>
                         <div className="check-out-container">
                             <span> checkout </span>
-                            <div className='date-check-out'> 1/1/2025 </div>
+                            <div className='date-check-out'> 8/10/2023 </div>
                         </div>
                     </div>
                     <div className="guests flex column justify-center">

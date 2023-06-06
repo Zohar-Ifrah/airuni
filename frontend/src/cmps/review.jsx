@@ -7,7 +7,7 @@ export function Review({ stay }) {
         <section className="review-container">
             {!!stay.reviews.length && <div className="rating-container flex align-center">
                 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />
-                <h2> {stay.rating} </h2>
+                <h2> {`${stay.rating} · ${stay.reviews.length} reviews`} </h2>
             </div>}
             <div className="review-content">
                 {stay.reviews.map(review =>

@@ -6,7 +6,7 @@ export function StayAmenities({ stay }) {
         <div className="stay-amenities">
             <h2> What this place offers </h2>
             <div className="amenitis-content">
-                {stay.amenities.map((amenity, idx) =>
+                {stay.amenities.slice(7, 17).map((amenity, idx) =>
                     <div className="amenty-container flex align-center" key={amenity + idx}>
                         <img src={utilService.getIcon()} alt={amenity} />
                         <p> {amenity} </p>
