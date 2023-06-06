@@ -8,7 +8,7 @@ export function StayAmenities({ stay }) {
             <div className="amenitis-content">
                 {stay.amenities.slice(7, 17).map((amenity, idx) =>
                     <div className="amenty-container flex align-center" key={amenity + idx}>
-                        <img src={utilService.getIcon()} alt={amenity} />
+                        <img src={utilService.getIcon(amenity)} alt={amenity} />
                         <p> {amenity} </p>
                     </div>
                 )}

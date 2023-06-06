@@ -33,7 +33,7 @@
 
 .details-main-layout {
     display: grid;
-    grid-template-columns: 20px 1fr 20px;
+    grid-template-columns: minmax(40px, 1fr) minmax(auto, 1115px) minmax(40px, 1fr);
 
     >* {
         grid-column: 2;
@@ -43,20 +43,20 @@
         }
     }
 
-    @include for-narrow-layout-details {
-        grid-template-columns:
-            minmax(40px, 1fr) minmax(auto, $mobile-breakpoint-details) minmax(40px, 1fr);
-    }
+    // @include for-narrow-layout-details {
+    //     grid-template-columns:
+    //         minmax(40px, 1fr) minmax(auto, $mobile-breakpoint-details) minmax(40px, 1fr);
+    // }
 
-    @include for-normal-layout-details {
-        grid-template-columns:
-            minmax(40px, 1fr) minmax(auto, $narrow-breakpoint-details) minmax(40px, 1fr);
-    }
+    // @include for-normal-layout-details {
+    //     grid-template-columns:
+    //         minmax(40px, 1fr) minmax(auto, $narrow-breakpoint-details) minmax(40px, 1fr);
+    // }
 
-    @include for-wide-layout-details {
-        grid-template-columns:
-            minmax(40px, 1fr) minmax(auto, normal-breakpoint-details) minmax(40px, 1fr);
-    }
+    // @include for-wide-layout-details {
+    //     grid-template-columns:
+    //         minmax(40px, 1fr) minmax(auto, normal-breakpoint-details) minmax(40px, 1fr);
+    // }
 }
 
 .card-grid {

@@ -66,7 +66,7 @@
     .details-gallery {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: minmax(em(240px), em(200px)) minmax(em(240px), em(200px));
+        grid-template-rows: auto auto;
         grid-gap: em(8px);
         margin-block-end: 1em;
 
@@ -97,7 +97,7 @@
     .stay-details-content {
 
         display: grid;
-        grid-template-columns: 1.5fr 1fr;
+        grid-template-columns: 1.8fr 1fr;
         column-gap: 5em;
 
         .stay-details-content-column1 {
@@ -199,7 +199,7 @@
 
             .order-form-container {
                 position: sticky;
-                top: 2em;
+                top: 8em;
                 grid-column: 2;
                 grid-row: 1;
                 justify-self: end;

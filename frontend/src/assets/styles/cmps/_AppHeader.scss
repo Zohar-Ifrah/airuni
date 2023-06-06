@@ -1,6 +1,10 @@
 .app-header {
     padding-block: 1em;
     border-block-end: 1px solid #dedede;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: white;
 
     .login-signup-btn-container {
         display: flex;

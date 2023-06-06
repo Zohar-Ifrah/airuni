@@ -16,7 +16,6 @@ export const userService = {
     getById,
     remove,
     update,
-    changeScore,
     getRandomUser
 }
 
@@ -27,8 +26,6 @@ function getUsers() {
     return storageService.query(USER_KEY)
     // return httpService.get(`user`)
 }
-
-
 
 async function getById(userId) {
     const user = await storageService.get(USER_KEY, userId)
@@ -41,11 +38,8 @@ function remove(userId) {
     // return httpService.delete(`user/${userId}`)
 }
 
-async function update({ _id, score }) {
-    const user = await storageService.get(USER_KEY, _id)
-    user.score = score
+async function update(user) {
     await storageService.put(USER_KEY, user)
-
     // const user = await httpService.put(`user/${_id}`, {_id, score})
     // Handle case in which admin updates other user's details
     if (getLoggedinUser()._id === user._id) saveLocalUser(user)
@@ -60,26 +54,39 @@ async function login(userCred) {
         return saveLocalUser(user)
     }
 }
+
 async function signup(userCred) {
-    userCred.score = 10000
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    const user = await storageService.post(USER_KEY, userCred)
+    const user = await _signup(userCred)
     // const user = await httpService.post('auth/signup', userCred)
     return saveLocalUser(user)
 }
+
+async function _signup({ username, fullname, password }) {
+    const user = getEmptyUser()
+    if (!user.imgUrl) user.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+    user.password = password
+    user.username = username
+    user.fullname = fullname
+    return await storageService.post(USER_KEY, user)
+}
+
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     // return await httpService.post('auth/logout')
 }
 
-async function changeScore(by) {
-    const user = getLoggedinUser()
-    if (!user) throw new Error('Not loggedin')
-    user.score = user.score + by || by
-    await update(user)
-    return user.score
+function getEmptyUser() {
+    return {
+        fullname: '',
+        password: '',
+        location: '',
+        about: '',
+        responseTime: '',
+        imgUrl: '',
+        isSuperhost: false,
+        createdAt: Date.now()
+    }
 }
-
 
 function saveLocalUser(user) {
     user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score }
@@ -90,23 +97,6 @@ function saveLocalUser(user) {
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
-
-
-// ;(async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-// })()
-
-const userImgs = [
-    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891291/host1_cxwcp3.jpg',
-    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891290/host2_xqgyw5.jpg',
-    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891290/host3_njxd3x.jpg',
-    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891290/host4_uczapd.jpg',
-    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891291/host5_ikyxsm.jpg',
-    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891290/host6_cw372a.jpg',
-    'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685891291/host7_tasj1f.jpg'
-]
 
 function getRandomUser() {
     const users = utilService.loadFromStorage(USER_KEY)
@@ -123,7 +113,7 @@ function _createRandomUser(name) {
     return {
         _id: utilService.makeId(),
         fullname: name,
-        imgUrl: userImgs[utilService.getRandomIntInclusive(0, userImgs.length - 1)]
+        imgUrl: 'https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small'
     }
 }
 

@@ -31,7 +31,10 @@ export function StayDetails() {
 
     function loadStay() {
         stayService.getById(stayId)
-            .then((stay) => setStay(stay))
+            .then((stay) => {
+                setStay(stay)
+                console.log(stay);
+            })
             .catch((err) => {
                 console.log('Had issues in stay details', err)
                 showErrorMsg('Cannot load stay')
