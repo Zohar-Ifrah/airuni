@@ -2,6 +2,29 @@
     padding-block: 1em;
     border-block-end: 1px solid #dedede;
 
+    .login-signup-btn-container {
+        display: flex;
+        background: transparent;
+        background-color: #fff;
+        border: 1px solid #dedede;
+        border-radius: 1.4em;
+        cursor: pointer;
+        margin: 0;
+        padding: 0.3em 0.3em 0.3em 0.6em;
+        text-align: inherit;
+        transition: box-shadow 0.2s ease;
+        align-items: center;
+    }
+
+    img.acc-svg {
+        width: 2em;
+        margin-inline-start: 0.6em;
+    }
+
+    img.menu-svg {
+        width: 1.2em;
+    }
+
     &-inner-container {
         .main-logo {
             a {
@@ -328,7 +351,7 @@
                     display: flex;
                     justify-content: space-between;
 
-                    .guest-count-container{
+                    .guest-count-container {
                         display: flex;
                         gap: 0.6em;
                         align-items: center;

@@ -17,6 +17,25 @@ export function LabelsFilter({ onSetFilter }) {
         // eslint-disable-next-line
     }, [filterByToEdit])
 
+    // function onSubmit(ev) {
+
+    //     ev.stopPropagation()
+    //     // console.log('onSubmit: ', filterByToEdit)
+    //     onChangeBarDisplay(false)
+    //     // SET filter:
+    //     onSetFilter.current(filterByToEdit)
+
+    //     // SET params:
+    //     const params = new URLSearchParams()
+
+    //     Object.entries(filterByToEdit).forEach(([key, value]) => {
+    //         params.append(key, value)
+    //     })
+    //     const queryString = params.toString()
+
+    //     // console.log('queryString: ', queryString)
+    //     setSearchParams(queryString)
+    // }
 
     function handleClick(id) {
         // console.log(id)
