@@ -5,7 +5,8 @@ import { login, logout, signup } from '../store/user.actions.js'
 import { LoginSignup } from './login-signup.jsx'
 import { useEffect, useRef, useState } from 'react'
 import { HeaderFilter } from './header-filter'
-
+import menu from '../assets/img/menu.svg'
+import acc from '../assets/img/acc.svg'
 export function AppHeader() {
 
     const user = useSelector(storeState => storeState.userModule.user)
@@ -108,7 +109,11 @@ export function AppHeader() {
                         </section>
                     }
                 </div>}
-                <button onClick={() => { onToggleUserModal() }}>Sign</button>
+                <div className='login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
+                    <img className='menu-svg' src={menu} alt="menu" />
+                    <img className='acc-svg' src={acc} alt="account" />
+                </div>
+                {/* <button onClick={() => { onToggleUserModal() }}>Sign</button> */}
             </div>
         </header>
     )
