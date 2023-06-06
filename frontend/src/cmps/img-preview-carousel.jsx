@@ -35,7 +35,7 @@ export function CarouselComponent({ images }) {
             <Carousel showThumbs={false} selectedItem={activeIndex} renderArrowPrev={renderCustomPrevArrow}
                 renderArrowNext={renderCustomNextArrow}>
                 {images.map(image => {
-                    return <img src={image.url} className="img-preview" alt={image.id} key={image.id} />
+                    return <img src={image} className="img-preview" alt={image} key={image} />
                 })}
             </Carousel>
             <button className="btn-carousel-left" onClick={handlePrevClick}>

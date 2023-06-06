@@ -7,7 +7,8 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     getLorem,
-    getRandomNames
+    getRandomNames,
+    getIcon
 }
 
 function makeId(length = 6) {
@@ -81,4 +82,25 @@ function getRandomNames() {
         'Sophia Anderson',
         'William Taylor'
     ]
+}
+
+function getIcon(name) {
+    const iconMap = {
+        'TV': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685879904/tv_unkhyq.svg',
+        'Private pool': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685879992/pool_tgak7m.svg',
+        'Garden': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880112/garden_d7ewbt.svg',
+        'Air conditioning': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880185/air-conditioner_dxhewv.svg',
+        'Breakfast included': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880255/breakfast_kdnda7.svg',
+        'Beach access': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/beachfront_fh5txx.png',
+        'Fireplace': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880508/fire-place_umdse2.svg',
+        'Scenic views': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880593/view_jtcevr.svg',
+        'Pet-friendly': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880694/pet_lhxnii.svg',
+        'Gym access': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880742/gym_vbbavo.svg',
+        'Central location': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880892/location_h091hi.svg',
+        'Wifi': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880952/wifi_pao7bq.svg',
+        'Kitchen': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881015/kitchen_xn7hvl.svg',
+        'Smoking allowed': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881096/smoking_zksaef.svg',
+        'Cooking basics': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881161/cooking_vwvec9.svg'
+    }
+    return iconMap[name]
 }

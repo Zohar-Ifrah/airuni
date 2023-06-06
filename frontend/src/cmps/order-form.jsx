@@ -2,38 +2,28 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
-import { DateRangePicker } from 'react-date-range'
+// import { DateRangePicker } from 'react-date-range'
 
 export function OrderForm({ stay }) {
     const navigate = useNavigate()
-    const [selectionRange, setSelectionRange] = useState({
-        startDate: stay.availableDates[0].startDate,
-        endDate: stay.availableDates[0].endDate,
-        key: 'selection',
-    })
-
-
-    function calculateAvgReviews() {
-        let count = 0
-        const sum = stay.reviews.reduce((acc, review) => {
-            count++
-            return acc + review.rate
-        }, 0)
-
-        return sum / count
-    }
+    // eslint-disable-next-line
+    // const [selectionRange, setSelectionRange] = useState({
+    //     startDate: stay.availableDates[0].startDate,
+    //     endDate: stay.availableDates[0].endDate,
+    //     key: 'selection',
+    // })
 
     function calculateNumberOfNights() {
-        const endDate = new Date(selectionRange.endDate)
-        const startDate = new Date(selectionRange.startDate)
+        const endDate = new Date('1/1/2024')
+        const startDate = new Date('1/1/2025')
         const timeDifference = endDate.getTime() - startDate.getTime()
         const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24))
         return numberOfNights
     }
 
-    function handleSelect(ranges) {
-        setSelectionRange(ranges.selection)
-    }
+    // function handleSelect(ranges) {
+    //     setSelectionRange(ranges.selection)
+    // }
 
     function onSubmitOrder(ev) {
         ev.preventDefault()
@@ -54,7 +44,7 @@ export function OrderForm({ stay }) {
                                 src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg"
                                 alt="Star"
                             />
-                            {!!stay.reviews.length && <p>
+                            {/* {!!stay.reviews.length && <p>
                                 {`${(Math.floor(calculateAvgReviews() * 100) / 100)
                                     .toLocaleString('en-US', {
                                         minimumFractionDigits: 1,
@@ -63,7 +53,8 @@ export function OrderForm({ stay }) {
                                     .replace(/(\.\d)0$/, '$1')
                                     .replace(/\.00$/, '')
                                     }`}
-                            </p>}
+                            </p>} */}
+                            <p> {stay.rating} </p>
                         </div>
                     )}
                     <p>{` · ${stay.reviews.length} reviews`}</p>
@@ -75,11 +66,11 @@ export function OrderForm({ stay }) {
                     <div className="dates-container flex align-center">
                         <div className="check-in-container">
                             <span> check-in </span>
-                            <div className='date-check-in'> {selectionRange.startDate} </div>
+                            <div className='date-check-in'> 1/1/2024 </div>
                         </div>
                         <div className="check-out-container">
                             <span> checkout </span>
-                            <div className='date-check-out'> {selectionRange.endDate} </div>
+                            <div className='date-check-out'> 1/1/2025 </div>
                         </div>
                     </div>
                     <div className="guests flex column justify-center">

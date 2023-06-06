@@ -2,6 +2,7 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import { reviewService } from './review.service.js'
+import gStays from '../data/stay.json'
 
 const STORAGE_KEY = 'stayDB'
 
@@ -18,8 +19,11 @@ export const stayService = {
 
 window.cs = stayService
 
-async function query(filterBy = {}) {
+function query(filterBy) {
+    return _filteredStays(filterBy)
+}
 
+async function _filteredStays(filterBy) {
     var stays = await storageService.query(STORAGE_KEY)
     if (filterBy.location) {
         const regex = new RegExp(filterBy.location, 'i')
@@ -50,8 +54,29 @@ async function query(filterBy = {}) {
     return stays
 }
 
+async function _aggregate(stayId) {
+    try {
+        const stay = await storageService.get(STORAGE_KEY, stayId)
+        const hosts = await userService.getUsers()
+        const reviews = await reviewService.query()
+
+        const host = hosts.find(host => host._id === stay.host)
+        const stayReviews = stay.reviews.map(r => reviews.find(review => review._id === r))
+
+        return {
+            ...stay,
+            host,
+            reviews: stayReviews
+        }
+    }
+    catch (err) {
+        console.log('stayService: Had error aggregating', err.message)
+        throw err
+    }
+}
+
 function getById(stayId) {
-    return storageService.get(STORAGE_KEY, stayId)
+    return _aggregate(stayId)
 }
 
 async function remove(stayId) {
@@ -144,18 +169,14 @@ function getLabels() {
 ; (() => {
     var stays = utilService.loadFromStorage(STORAGE_KEY) || []
     if (!stays.length) {
-        stays = _createRandomStays()
+        stays = gStays
         utilService.saveToStorage(STORAGE_KEY, stays)
     }
 })()
 
 function _createRandomStays() {
     const stays = []
-<<<<<<< HEAD
-    for (let i = 0; i < 21; i++) {
-=======
     for (let i = 0; i < 28; i++) {
->>>>>>> c59d74e6af12726c2482d24333cf0ca8164d59e2
         stays.push(_createRandomStay())
     }
     console.log(JSON.stringify(stays))

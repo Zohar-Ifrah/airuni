@@ -3,32 +3,15 @@
 export function Review({ stay }) {
 
 
-    function calculateAvgReviews() {
-        let count = 0
-        const sum = stay.reviews.reduce((acc, review) => {
-            count++
-            return acc + review.rate
-        }, 0)
-
-        return sum / count
-    }
-
     return (
         <section className="review-container">
             {!!stay.reviews.length && <div className="rating-container flex align-center">
                 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />
-                <h2> {`${(Math.floor(calculateAvgReviews() * 100) / 100)
-                    .toLocaleString('en-US', {
-                        minimumFractionDigits: 1,
-                        maximumFractionDigits: 2
-                    })
-                    .replace(/(\.\d)0$/, '$1')
-                    .replace(/\.00$/, '')} · ${stay.reviews.length} reviews`}
-                </h2>
+                <h2> {stay.rating} </h2>
             </div>}
             <div className="review-content">
                 {stay.reviews.map(review =>
-                    <article key={review.id} className="review">
+                    <article key={review._id} className="review">
                         <div className="user-details flex align-center">
                             <img src={review.by.imgUrl} alt="" />
                             <h3> {review.by.fullname} </h3>

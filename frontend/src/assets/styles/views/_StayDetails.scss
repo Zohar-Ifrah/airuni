@@ -2,6 +2,7 @@
 
     .details-header {
         margin-block: 1.2em;
+        align-items: flex-end;
 
         .content {
 
@@ -12,7 +13,7 @@
             .inner-content {
 
                 .rating-container {
-                    font-family: Circular-Light;
+                    font-family: Circular-Light, sans-serif;
 
                     img {
                         width: 1em;
@@ -28,31 +29,36 @@
                 p {
                     color: $clr2;
                 }
-
             }
-
-
         }
 
         .share-save-container {
 
-            .share-container {
-                margin-inline-end: 1em;
+            a {
+                color: $clr2;
+                text-decoration: underline;
+                font-size: em(15px);
 
-                img {
-                    width: 1.1em;
-                    margin-inline-end: .3em;
+                .share-container {
+                    margin-inline-end: 1em;
+
+                    img {
+                        width: 1.1em;
+                        margin-inline-end: .3em;
+                    }
+
+                }
+
+                .like-container {
+
+
+                    img {
+                        width: 1.1em;
+                        margin-inline-end: .3em;
+                    }
                 }
             }
 
-            .like-container {
-
-
-                img {
-                    width: 1.1em;
-                    margin-inline-end: .3em;
-                }
-            }
 
         }
     }
