@@ -66,7 +66,7 @@ async function _aggregate(stayId) {
         return {
             ...stay,
             host,
-            reviews: stayReviews
+            reviews: stayReviews,
         }
     }
     catch (err) {

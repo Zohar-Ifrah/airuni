@@ -8,7 +8,7 @@ export function StayExrtaDetails({ stay }) {
 
     useEffect(() => {
 
-        setSlicedAmenties({ mainAmenities: stay.amenities.slice(0, 3), secondaryAmenities: stay.amenities.slice(3) })
+        setSlicedAmenties({ mainAmenities: stay.amenities.slice(0, 3), secondaryAmenities: stay.amenities.slice(3, 6) })
         // eslint-disable-next-line
     }, [])
 
