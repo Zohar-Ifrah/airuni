@@ -30,18 +30,19 @@
     }
 
     .first-search-svg-header {
+        padding: 0;
         background-color: #ff385d;
-        border: transparent;
         border-radius: 50%;
-        color: #fff;
-        height: 32px;
-        min-width: 32px;
-        margin-inline-start: em(6px);
+        width: em(32px);
+        height: em(32px);
+        margin-inline-end: em(10px);
         display: flex;
         place-content: center;
+        align-items: center;
 
         img {
-            width: 72%;
+            width: 50%;
+            height: 50%;
         }
     }
 
@@ -62,48 +63,61 @@
         }
 
         .add-guests-btn-header {
-            padding: 0;
 
             span {
-                color: #707070;
+                color: $clr7;
+                font-family: Circular-Light, sans-serif;
+                font-size: em(15px);
             }
         }
 
         .header-search-bar-container {
 
             position: relative;
-            right: 0.7em;
-
 
             .search-preview {
-                -webkit-padding-start: 8px;
+                display: flex;
                 align-items: center;
-                background-color: #fff;
-                border: 1px solid #dedede;
-                border-radius: 40px;
+                justify-content: space-between;
+                border: 1px solid $clr4;
+                border-radius: 555px;
                 box-shadow: 0 1px 2px rgba(0, 0, 0, .078), 0 4px 12px rgba(0, 0, 0, .051);
-                color: #212121;
                 cursor: pointer;
-                display: inline-flex;
-                min-width: 348px;
-                padding-inline-start: 8px;
-                transition: box-shadow .2s ease;
-                transition: opacity .2s ease .1s, visibility 0ms .2s, -webkit-transform .25s ease;
-                transition: transform .25s ease, opacity .2s ease .1s, visibility 0ms .2s;
-                transition: transform .25s ease, opacity .2s ease .1s, visibility 0ms .2s, -webkit-transform .25s ease;
-                vertical-align: middle;
-                white-space: nowrap;
+                transition: all 0.2s ease-in-out;
+                height: em(50px);
+
+                button {
+                    background-color: inherit;
+                    color: $clr2;
+                    padding: 0;
+                    height: 100%;
+
+                    span {
+                        padding-inline: 1em;
+                    }
+                }
+
+                button:nth-child(1) {
+                    span {
+                        border-inline-end: 1px solid $clr4;
+                        margin-inline-start: .5em;
+                    }
+                }
+
+                button:nth-child(2) {
+                    span {
+                        border-inline-end: 1px solid $clr4;
+                    }
+                }
+
+                button:nth-child(1) {
+                    // margin-inline-start: 1.3em;
+                }
             }
 
             .search-preview:hover {
                 box-shadow: 0 2px 4px rgba(0, 0, 0, .18);
             }
-
-            .search-preview button {
-                background-color: inherit;
-                color: #212121;
-            }
-
 
             .search-preview-close {
                 transform: translateY(-100%);
@@ -216,14 +230,34 @@
                                     background-color: #dddddd;
                                     border-radius: 555px;
                                 }
+
+                            }
+
+                            .add-guests-search-main-container {
+                                padding-inline: 0;
+                                padding-inline-end: .6em;
+
+                                .add-guests-search-container {
+
+                                    padding-inline-start: 2em;
+
+                                    button {
+                                        height: 75%;
+                                    }
+                                }
+
                             }
 
                             .search-label-header {
                                 display: flex;
                                 flex-direction: column;
+                                padding-inline-start: 2em;
 
                                 label {
-                                    font-size: em(14px);
+                                    font-size: em(13px);
+                                    letter-spacing: 0.5px;
+                                    font-family: Circular-Medium, sans-serif;
+                                    margin-block-end: .1em;
                                 }
 
                                 input {
@@ -243,7 +277,9 @@
                                 .checkin-add-dates {
 
                                     span:nth-child(1) {
-                                        font-size: em(14px);
+                                        font-size: em(13px);
+                                        letter-spacing: 0.5px;
+                                        font-family: Circular-Medium, sans-serif;
                                     }
 
                                     span:nth-child(2) {
@@ -257,7 +293,10 @@
                             .checkout-add-dates-container {
                                 .checkout-add-dates {
                                     span:nth-child(1) {
-                                        font-size: em(14px);
+                                        font-size: em(13px);
+                                        letter-spacing: 0.5px;
+                                        font-family: Circular-Medium, sans-serif;
+                                        margin-block-end: 0.1em;
                                     }
 
                                     span:nth-child(2) {
@@ -269,6 +308,8 @@
                             }
 
                             .add-guests-search-container {
+                                height: 100%;
+
                                 button {
                                     border-radius: 555px;
                                     margin-inline-start: 2em;
@@ -276,7 +317,10 @@
 
                                 .add-guests {
                                     span:nth-child(1) {
-                                        font-size: em(14px);
+                                        font-size: em(13px);
+                                        letter-spacing: 0.5px;
+                                        font-family: Circular-Medium, sans-serif;
+                                        margin-block-end: 0.1em;
                                     }
 
                                     span:nth-child(2) {
@@ -380,8 +424,8 @@
             .add-guests-cmp-header {
                 background-color: #ffffff;
                 position: absolute;
-                border-radius: 29px;
-                padding: 1.8em;
+                border-radius: em(30px);
+                padding: 2.5em;
                 right: -3em;
                 top: 5em;
                 z-index: 1;
@@ -390,6 +434,8 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                box-shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 8px 16px rgba(0, 0, 0, .15);
+                font-family: Circular-Regular, sans-serif;
 
                 .guest-select-row {
                     display: flex;
@@ -403,19 +449,15 @@
                     }
 
                     p {
-                        display: block;
-                        font-family: cereal-medium;
-                        font-size: 1rem;
-                        line-height: 20px;
-                        padding-bottom: 0.375em;
-                        color: black;
-                        font-weight: bold;
+                        font-family: Circular-Medium, sans-serif;
+                        color: $clr2;
                     }
 
                     span {
                         display: flex;
-                        color: gray;
-                        font-weight: 100;
+                        color: $clr7;
+                        font-family: Circular-Light, sans-serif;
+                        font-size: em(15px);
                     }
 
                     button {

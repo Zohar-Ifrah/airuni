@@ -62,6 +62,6 @@ export function StayDetails() {
 
 
 
-        <Link className="btn" to="/stay">Back to List</Link>
+        {/* <Link className="btn" to="/stay">Back to List</Link> */}
     </div>
 }

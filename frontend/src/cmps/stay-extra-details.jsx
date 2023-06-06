@@ -18,7 +18,7 @@ export function StayExrtaDetails({ stay }) {
         <div className="stay-extra-details">
             <div className="stay-host-by flex space-between align-center">
                 <h2> {`${stay.type} host by ${stay.host.fullname}`} </h2>
-                <img src={stay.host.imgUrl} alt="" />
+                <img src={stay.host.imgUrl} alt="host" onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
             </div>
             <div className="main-amenities flex align-center">
                 {slicedAmenities.mainAmenities.map((amenity, idx) => {

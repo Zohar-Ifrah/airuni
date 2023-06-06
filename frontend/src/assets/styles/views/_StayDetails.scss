@@ -66,7 +66,7 @@
     .details-gallery {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: auto auto;
+        grid-template-rows: 25vh 25vh;
         grid-gap: em(8px);
         margin-block-end: 1em;
 
@@ -405,8 +405,11 @@
 
     .review-container {
         border-block-start: 1px solid $clr4;
+        border-block-end: 1px solid $clr4;
         margin-block-start: 3.5em;
+        margin-block-end: 3.5em;
         padding-block-start: 3em;
+        padding-block-end: 3em;
 
         .rating-container {
 
@@ -427,7 +430,7 @@
             margin-block-start: 2em;
 
             .review {
-                margin-block-end: 4em;
+                margin-block-end: 2.5em;
 
                 .user-details {
                     margin-block-end: 1em;
@@ -440,6 +443,37 @@
                         object-fit: cover;
                     }
                 }
+
+                .substringed-txt-container {
+
+                    .showmore-container {
+                        margin-block-start: .8em;
+
+                        .btn-showmore {
+                            padding: 0;
+                            background-color: transparent;
+                            color: $clr2;
+                            text-decoration: underline;
+                            font-family: Circular-Medium, sans-serif;
+                            margin-inline-end: 0.2em;
+                        }
+
+                        img {
+                            width: 0.8em;
+                            margin-block-start: 0.2em;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            .btn-show-all-reviews {
+                width: max-content;
+                background-color: transparent;
+                color: $clr2;
+                font-family: Circular-Medium, sans-serif;
+                border: 1px solid $clr2;
+                padding-inline: 1.4em;
             }
         }
     }
