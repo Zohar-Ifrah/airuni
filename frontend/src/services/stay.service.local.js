@@ -58,9 +58,11 @@ async function _aggregate(stayId) {
     try {
         const stay = await storageService.get(STORAGE_KEY, stayId)
         const hosts = await userService.getUsers()
+        console.log('hosts', hosts);
         const reviews = await reviewService.query()
 
         const host = hosts.find(host => host._id === stay.host)
+        console.log('host', host);
         const stayReviews = stay.reviews.map(r => reviews.find(review => review._id === r))
 
         return {

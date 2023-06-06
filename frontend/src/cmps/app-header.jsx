@@ -21,11 +21,30 @@ export function AppHeader() {
             }
         }
 
+        const headerObserver = new IntersectionObserver(updateHeader);
+
+        const gallery = document.querySelector('.details-gallery');
+
+        if (gallery) {
+            headerObserver.observe(gallery);
+        }
+
+        console.log('gallery!!!!!!!', gallery)
+
         window.addEventListener('mousedown', handleOutsideClick)
+
+        function updateHeader(entries) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) console.log('helllloooo!!!!!!!')
+            });
+        }
 
         return () => {
             window.removeEventListener('mousedown', handleOutsideClick)
         }
+
+
+
     }, [])
 
     async function onLogin(credentials) {

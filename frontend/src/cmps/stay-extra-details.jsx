@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { utilService } from '../services/util.service'
+import { userService } from '../services/user.service'
 
 
 export function StayExrtaDetails({ stay }) {
@@ -7,7 +8,6 @@ export function StayExrtaDetails({ stay }) {
     const [slicedAmenities, setSlicedAmenties] = useState(null)
 
     useEffect(() => {
-
         setSlicedAmenties({ mainAmenities: stay.amenities.slice(0, 3), secondaryAmenities: stay.amenities.slice(3, 6) })
         // eslint-disable-next-line
     }, [])
@@ -18,7 +18,7 @@ export function StayExrtaDetails({ stay }) {
         <div className="stay-extra-details">
             <div className="stay-host-by flex space-between align-center">
                 <h2> {`${stay.type} host by ${stay.host.fullname}`} </h2>
-                <img src={stay.host.imgUrl} alt="url" />
+                <img src={stay.host.imgUrl} alt="" />
             </div>
             <div className="main-amenities flex align-center">
                 {slicedAmenities.mainAmenities.map((amenity, idx) => {

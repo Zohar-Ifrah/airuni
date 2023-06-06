@@ -3,19 +3,26 @@ import { useState } from 'react'
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
 import 'react-horizontal-scrolling-menu/dist/styles.css'
 import { stayService } from '../services/stay.service.local'
+import { useDispatch } from 'react-redux'
+import { FILTER_BY } from '../store/stay.reducer'
 
 
-export function LabelsFilter({ onSetFilter }) {
+export function LabelsFilter() {
     // eslint-disable-next-line
     const [items, setItems] = useState(stayService.getLabels())
     const [filterByToEdit, setFilterByToEdit] = useState(stayService.getDefaultFilter())
     const [activeLabel, setActiveLabel] = useState(null)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
 
         // eslint-disable-next-line
     }, [filterByToEdit])
+
+    function onSetFilter(filterToEdit) {
+        dispatch({ type: FILTER_BY, filterToEdit })
+    }
 
     // function onSubmit(ev) {
 

@@ -12,6 +12,8 @@ import { StayList } from '../cmps/stay-list.jsx'
 import { LabelsFilter } from '../cmps/labels-filter.jsx'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer.js'
 import { stayService } from '../services/stay.service.local.js'
+import { loadUsers } from '../store/user.actions.js'
+import { loadReviews } from '../store/review.actions.js'
 
 export function StayIndex() {
     const dispatch = useDispatch()
@@ -36,6 +38,8 @@ export function StayIndex() {
     useEffect(() => {
         dispatch({ type: SET_DETAILS_UNSHOWN })
         loadStays(filterBy)
+        loadUsers()
+        loadReviews()
         // eslint-disable-next-line
     }, [filterBy])
 
@@ -86,8 +90,7 @@ export function StayIndex() {
 
     return (
         <div className="stay-index-container">
-            
-            <LabelsFilter onSetFilter={onSetFilter} />
+            {/* <div className='blur'></div> */}
 
             {/* <button onClick={onAddStay}>Add Stay</button> */}
 
