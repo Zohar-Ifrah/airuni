@@ -86,7 +86,7 @@ export function StayIndex() {
 
     return (
         <div className="stay-index-container">
-            
+            {/* <div className='blur'></div> */}
             <LabelsFilter onSetFilter={onSetFilter} />
 
             {/* <button onClick={onAddStay}>Add Stay</button> */}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { SearchMenu } from "./search-menu"
-
+import search from '../assets/img/search.svg'
 
 export function HeaderFilter({ onSetFilter }) {
 
@@ -36,9 +36,18 @@ export function HeaderFilter({ onSetFilter }) {
       </div>
 
       <div className={`search-preview ${isSearchBarOpen ? 'search-preview-close' : ''}`}>
+
         <button onClick={() => { onChangeBarDisplay('Anywhere', true) }}>Anywhere</button>
+
         <button onClick={() => { onChangeBarDisplay('Any week', true) }}>Any week</button>
-        <button onClick={() => { onChangeBarDisplay('Add Guests', true) }}>Add Guests</button>
+
+        <button onClick={() => { onChangeBarDisplay('Add Guests', true) }}
+          className="add-guests-btn-header">
+          <span>Add Guests</span>
+          <div className="first-search-svg-header">
+            <img src={search} alt="search" />
+          </div>
+        </button>
       </div>
 
       <div className={`search-bar ${isSearchBarOpen ? 'search-bar-open' : ''}`}>

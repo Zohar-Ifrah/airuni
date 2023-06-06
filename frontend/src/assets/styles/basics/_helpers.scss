@@ -92,3 +92,16 @@
 .show-contents {
     display: contents;
 }
+
+.login-signup-container {
+    position: absolute;
+    top: 4em;
+    right: 2em;
+    background-color: #fff;
+    z-index: 2;
+    font-family: Airbnb_Cereal-Book;
+    box-shadow: 1px 1px 11px 1px #00000014, 0 4px 12px #0000000d;
+    border-radius: 10px;
+    width: 240px;
+    padding: 0.5em;
+}
