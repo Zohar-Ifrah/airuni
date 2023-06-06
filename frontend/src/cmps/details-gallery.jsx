@@ -20,7 +20,7 @@ export function DetailsGallery({ stay }) {
     <div className="details-gallery">
 
       {stay.imgUrls.map(imgUrl => {
-        return <img key={imgUrl.id} src={imgUrl.url} alt="" />
+        return <img key={imgUrl} src={imgUrl} alt="" />
       })}
 
       {showMore && (

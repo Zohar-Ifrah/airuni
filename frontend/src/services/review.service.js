@@ -2,6 +2,7 @@
 import { storageService } from './async-storage.service'
 import { userService } from './user.service'
 import { utilService } from './util.service'
+import gReviews from '../data/review.json'
 
 const REVIEW_KEY = 'review_db'
 
@@ -16,12 +17,12 @@ export const reviewService = {
 function query(filterBy) {
   // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
   // return httpService.get(`review${queryStr}`)
-  return storageService.query('review')
+  return storageService.query(REVIEW_KEY)
 }
 
 async function remove(reviewId) {
   // await httpService.delete(`review/${reviewId}`)
-  await storageService.remove('review', reviewId)
+  await storageService.remove(REVIEW_KEY, reviewId)
 }
 
 async function add({ txt, aboutUserId }) {
@@ -41,7 +42,7 @@ async function add({ txt, aboutUserId }) {
 
   reviewToAdd.byUser.score += 10
   await userService.update(reviewToAdd.byUser)
-  const addedReview = await storageService.post('review', reviewToAdd)
+  const addedReview = await storageService.post(REVIEW_KEY, reviewToAdd)
   return addedReview
 }
 
@@ -69,7 +70,7 @@ function _createRandomReview() {
 ; (() => {
   let reviews = utilService.loadFromStorage(REVIEW_KEY) || []
   if (!reviews.length) {
-    reviews = _createRandomreviews()
+    reviews = gReviews
     utilService.saveToStorage(REVIEW_KEY, reviews)
   }
 })()

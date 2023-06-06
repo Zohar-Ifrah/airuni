@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { utilService } from '../services/util.service'
 
 
 export function StayExrtaDetails({ stay }) {
@@ -22,9 +23,9 @@ export function StayExrtaDetails({ stay }) {
             <div className="main-amenities flex align-center">
                 {slicedAmenities.mainAmenities.map((amenity, idx) => {
                     return (
-                        <div key={idx} className="main-amenity flex align-center">
-                            <img src={amenity.url} alt={amenity.name} />
-                            {amenity.name}
+                        <div key={amenity + idx} className="main-amenity flex align-center">
+                            <img src={utilService.getIcon(amenity)} alt={amenity} />
+                            {amenity}
                         </div>
                     )
                 })}
@@ -32,11 +33,10 @@ export function StayExrtaDetails({ stay }) {
             <div className="secondary-amenities">
                 {slicedAmenities.secondaryAmenities.map((amenity, idx) => {
                     return (
-                        <div key={idx} className="secondary-amenity-container flex align-center">
-                            <img src={amenity.url} alt={amenity.name} />
+                        <div key={amenity + idx} className="secondary-amenity-container flex align-center">
+                            <img src={utilService.getIcon(amenity)} alt={amenity} />
                             <div className="secondary-amenity-content-container">
-                                <h4> {amenity.name} </h4>
-                                <p> lorem ipsum lorem ipsum lorem ipsum ...</p>
+                                <h4> {amenity} </h4>
                             </div>
                         </div>
                     )

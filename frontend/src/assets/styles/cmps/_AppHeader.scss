@@ -28,6 +28,8 @@
     &-inner-container {
         .main-logo {
             a {
+                text-decoration: none;
+
                 h2 {
                     color: $clr1;
                     font-family: Circular-Regular, sans-serif;
