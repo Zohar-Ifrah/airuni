@@ -93,6 +93,13 @@
     display: contents;
 }
 
+.header-adjust {
+    position: relative;
+    right: 0.9em;
+    width: 19em;
+    // border-inline-end: none;
+}
+
 // .login-signup-container {
 //     position: absolute;
 //     top: 4em;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { AddGuests } from './add-guests'
@@ -7,11 +7,13 @@ import { CalendarPicker } from './calendar-picker'
 import { useSelector } from 'react-redux'
 // import { DateRangePicker } from 'react-date-range'
 
-export function OrderForm({ stay }) {
+export function OrderForm({ stay, checkInAndOutDate }) {
     const navigate = useNavigate()
     const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+    const [checksDates, setChecksDates] = useState(checkInAndOutDate)
     const [guestsAmount, setGuestsAmount] = useState(0)
+    const [searchParams, setSearchParams] = useSearchParams()
     const isFromOrderForm = useRef(true)
     // const guestsAmount = useRef(0)
     const maxCapacity = useRef(stay.capacity).current
@@ -26,13 +28,18 @@ export function OrderForm({ stay }) {
 
     // }, [guestsAmount.current])
 
+    useEffect(() => {
+        setChecksDates(checkInAndOutDate)
+    }, [checkInAndOutDate])
 
-    function calculateNumberOfNights() {
-        const endDate = new Date('8/1/2023')
-        const startDate = new Date('8/10/2023')
+    function calculateNumberOfNights(start, end) {
+
+        const startDate = new Date(start)
+        const endDate = new Date(end)
         const timeDifference = endDate.getTime() - startDate.getTime()
         const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24))
-        return numberOfNights * -1
+        console.log(numberOfNights)
+        return numberOfNights
     }
 
     // function handleSelect(ranges) {
@@ -41,7 +48,29 @@ export function OrderForm({ stay }) {
 
     function onSubmitOrder(ev) {
         ev.preventDefault()
-        navigate(`/details/${stay._id}/confirm`)
+
+        if (!guestsAmount && !checksDates) return console.log('NOP!!!!')
+
+        const formDetails = {
+            checkIn: checksDates.checkIn,
+            checkOut: checksDates.checkOut,
+            guests: guestsAmount,
+            price: stay.price,
+        }
+
+        // SET params:
+        const params = new URLSearchParams()
+
+        Object.entries(formDetails).forEach(([key, value]) => {
+            params.append(key, value)
+        })
+
+        const queryString = params.toString()
+
+        console.log('queryString: ', queryString)
+        // setSearchParams(queryString)
+
+        navigate(`/details/${stay._id}/confirm/?${queryString}`)
     }
 
     function onOpenGuestsModal() {
@@ -87,12 +116,20 @@ export function OrderForm({ stay }) {
         console.log('startDate: ', startDate)
         console.log('endDate: ', endDate)
 
-        // checkInAndOutDate.current = { checkIn: getMonth(startDate), checkOut: getMonth(endDate) }
+        setChecksDates({ checkIn: startDate, checkOut: endDate })
         // setFilterByToEdit({
         //     ...filterByToEdit,
         //     checkIn: startDate,
         //     checkOut: endDate
         // })
+    }
+
+    function formatDate(timestamp) {
+        const date = new Date(timestamp);
+        const day = date.getDate();
+        const month = date.getMonth() + 1; // Adding 1 because getMonth() returns zero-based month
+        const year = date.getFullYear();
+        return `${month}/${day}/${year} `;
     }
 
     return (
@@ -110,14 +147,15 @@ export function OrderForm({ stay }) {
                                 alt="Star"
                             />
                             {/* {!!stay.reviews.length && <p>
-                                {`${(Math.floor(calculateAvgReviews() * 100) / 100)
-                                    .toLocaleString('en-US', {
-                                        minimumFractionDigits: 1,
-                                        maximumFractionDigits: 2
-                                    })
-                                    .replace(/(\.\d)0$/, '$1')
-                                    .replace(/\.00$/, '')
-                                    }`}
+                                {`${
+            (Math.floor(calculateAvgReviews() * 100) / 100)
+            .toLocaleString('en-US', {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 2
+            })
+            .replace(/(\.\d)0$/, '$1')
+            .replace(/\.00$/, '')
+        } `}
                             </p>} */}
                             <p> {stay.rating} </p>
                         </div>
@@ -129,16 +167,16 @@ export function OrderForm({ stay }) {
             <form className="flex column align-center" onSubmit={onSubmitOrder}>
 
                 <div className="dates-guests-container flex column align-center space-between">
-
+                    {console.log(checksDates)}
                     <div onClick={() => { ontoggleCalendar() }} className="dates-container flex align-center">
                         <div className="check-in-container">
                             <span> check-in </span>
-                            <div className='date-check-in'> 8/1/2023 </div>
+                            <div className='date-check-in'>{checksDates ? formatDate(checksDates.checkIn) : 'Add date'} </div>
                         </div>
 
                         <div className="check-out-container">
                             <span> checkout </span>
-                            <div className='date-check-out'> 8/10/2023 </div>
+                            <div className='date-check-out'>{checksDates ? formatDate(checksDates.checkOut) : 'Add date'} </div>
                         </div>
                     </div>
 
@@ -184,13 +222,29 @@ export function OrderForm({ stay }) {
 
             <p className='txt-charged'>You won't be charged yet</p>
 
-            <div className='nights-sum flex align-center space-between'>
-                <p> {`$${stay.price} x ${calculateNumberOfNights()} nights`} </p>
-                <div className='total-price-container flex align-center'>
-                    <h3> total </h3>
-                    <p> {`$${stay.price * calculateNumberOfNights()}`} </p>
+            {checkInAndOutDate && guestsAmount &&
+                <div>
+                    <div>
+                        <div className='nights-price-container flex space-between'>
+                            <p>{`$${stay.price} x ${calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut)} nights`}</p>
+                            <p>{`$${stay.price * calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut)} `}</p>
+                        </div>
+                        <div className='nights-price-container flex space-between'>
+                            <p>Cleaning fee</p>
+                            <p>$6</p>
+                        </div>
+                        <div className='nights-price-container flex space-between'>
+                            <p>Airbbb service fee</p>
+                            <p>$14</p>
+                        </div>
+                    </div>
+
+                    <div className='total-price-container nights-sum flex space-between'>
+                        <h3> total </h3>
+                        <p> {`$${stay.price * calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut) + 20} `} </p>
+                    </div>
                 </div>
-            </div>
+            }
         </section>
     )
 }

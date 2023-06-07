@@ -12,13 +12,15 @@ import { Review } from "../cmps/review"
 import { OrderForm } from "../cmps/order-form"
 import { useDispatch } from "react-redux"
 import { SET_DETAILS_SHOWN } from "../store/system.reducer"
+import { CalendarPicker } from "../cmps/calendar-picker"
 
 
 export function StayDetails() {
-
+    const calAmount = 1
     const [stay, setStay] = useState(null)
     const { stayId } = useParams()
     const dispatch = useDispatch()
+    const [checkInAndOutDate, setCheckInAndOutDate] = useState(null)
 
     const navigate = useNavigate()
     // const stays = useSelector((storeState) => storeState.stays)
@@ -42,6 +44,29 @@ export function StayDetails() {
             })
     }
 
+    function onSetDates(startDate, endDate) {
+        console.log(startDate)
+        console.log(endDate)
+        // setCheckInAndOutDate({ checkIn: getMonth(startDate), checkOut: getMonth(endDate) })
+        setCheckInAndOutDate({ checkIn: startDate, checkOut: endDate })
+        // setFilterByToEdit({
+        //   ...filterByToEdit,
+        //   checkIn: startDate,
+        //   checkOut: endDate
+        // })
+    }
+
+    // function getMonth(timestamp) {
+    //     const date = new Date(timestamp)
+    //     const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' })
+    //     return formattedDate // Output: Jun 7
+    // }
+
+    function onCheckInClick(isCheckInClicked) {
+        console.log(isCheckInClicked)
+
+    }
+
     if (!stay) return <h1>Loading ...</h1>
 
     return <div className='stay-details'>
@@ -51,10 +76,15 @@ export function StayDetails() {
             <div className="stay-details-content-column1">
                 <StayExrtaDetails stay={stay} />
                 <StayAmenities stay={stay} />
-                < DetailsCalendar />
+
+                <CalendarPicker
+                    onSetDates={onSetDates}
+                    onCheckInClick={onCheckInClick}
+                    calAmount={calAmount} />
             </div>
             <div className="stay-details-content-column2">
-                <OrderForm stay={stay} />
+                <OrderForm stay={stay}
+                    checkInAndOutDate={checkInAndOutDate} />
             </div>
         </section>
         <Review stay={stay} />

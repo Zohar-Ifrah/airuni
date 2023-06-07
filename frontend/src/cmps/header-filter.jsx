@@ -43,7 +43,7 @@ export function HeaderFilter({ onSetFilter }) {
 
       </div>
 
-      <div className={`search-preview ${isSearchBarOpen ? 'search-preview-close' : ''}`}>
+      <div className={`search-preview ${isDetailsShown ? 'header-adjust' : ''} ${isSearchBarOpen ? 'search-preview-close' : ''}`}>
         {!isDetailsShown &&
           <div>
             <button onClick={() => { onChangeBarDisplay('Search', true) }}><span>Anywhere</span></button>

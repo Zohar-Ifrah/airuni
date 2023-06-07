@@ -33,7 +33,7 @@ export function StayIndex() {
         // console.log(filterBy)
         onSetFilter(filterBy)
         // eslint-disable-next-line
-    }, [])
+    }, [searchParams])
 
     useEffect(() => {
         dispatch({ type: SET_DETAILS_UNSHOWN })
