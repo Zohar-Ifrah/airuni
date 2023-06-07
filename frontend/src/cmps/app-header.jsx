@@ -88,7 +88,7 @@ export function AppHeader() {
         <header className={`app-header full ${isDetailsShown ? 'details-main-layout' : 'main-layout'}`}>
             <div className="app-header-inner-container flex space-between align-center">
                 <div className="main-logo">
-                    <NavLink to="/stay">
+                    <NavLink to="/" >
                         <div className='main-logo-container flex align-center'>
                             <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685912254/logo-img_tdtnc7.svg" alt="" />
                             <h2> airbbb </h2>
@@ -97,7 +97,7 @@ export function AppHeader() {
                 </div>
 
                 <section className="header-search-bar-container">
-                    <HeaderFilter onSetFilter={onSetFilter} />
+                    <HeaderFilter onSetFilter={onSetFilter} isDetailsShown={isDetailsShown} />
                 </section>
 
                 {/* {isModalOpen &&
@@ -130,8 +130,12 @@ export function AppHeader() {
                 </div>}
                 <div className='login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
                     <img className='menu-svg' src={menu} alt="menu" />
-                    <img className='acc-svg' src={acc} alt="account" />
-                    {/* <img className='acc-svg' src={user.imgUrl} alt="user" onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} /> */}
+                    {/* <img className='acc-svg' src={acc} alt="account" /> */}
+                    <img className='acc-svg'
+                        src={user ? user.imgUrl : 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'}
+                        alt="user"
+                        onError={ev =>
+                            ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
                 </div>
                 {/* <button onClick={() => { onToggleUserModal() }}>Sign</button> */}
             </div>

@@ -46,6 +46,47 @@
         }
     }
 
+    .region-select-container {
+        background: #fff;
+        border-radius: 32px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 8px 16px rgba(0, 0, 0, .15);
+        cursor: default;
+        left: 0;
+        margin-top: 12px;
+        padding: 16px 20px;
+        position: absolute;
+        top: 62px;
+        z-index: 3;
+
+        .region-grid {
+            grid-column-gap: 5px;
+            grid-row-gap: 24px;
+            column-gap: 5px;
+            display: grid;
+            grid-template-columns: repeat(3, min-content);
+            margin-bottom: 40px;
+            row-gap: 24px;
+        }
+
+        img {
+            width: 8em;
+            border-radius: 14px;
+            margin: 0.5em;
+            cursor: pointer;
+        }
+
+        img:hover {
+            border: 1px solid #000;
+        }
+
+        p {
+            font-family: 'Circular-Light';
+            color: #222222;
+            font-size: 14px;
+        }
+
+    }
+
     &-inner-container {
         .main-logo {
             a {

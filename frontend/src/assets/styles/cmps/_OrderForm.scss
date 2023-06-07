@@ -1,0 +1,64 @@
+.order-form-container {
+    .add-guests-cmp-header {
+        background-color: #ffffff;
+        position: absolute;
+        border-radius: 0.2em;
+        padding: 1em;
+        /* right: -3em; */
+        top: 13.5em;
+        z-index: 1;
+        width: 18.1em;
+        height: 19.2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 2px 2px 6px rgba(0, 0, 0, 0.01);
+        font-family: Circular-Regular, sans-serif;
+
+
+        .guest-select-row {
+            display: flex;
+            justify-content: space-between;
+
+            .guest-count-container {
+                display: flex;
+                gap: 0.6em;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            p {
+                font-family: Circular-Medium, sans-serif;
+                color: $clr2;
+            }
+
+            span {
+                display: flex;
+                color: $clr7;
+                font-family: Circular-Light, sans-serif;
+                font-size: em(15px);
+            }
+
+            button {
+                background-color: inherit;
+                border: 1px solid grey;
+                border-radius: 50%;
+                color: grey;
+                width: 2em;
+                height: 2em;
+            }
+        }
+    }
+
+    .calendar-picker-header {
+        background-color: #ffffff;
+    position: absolute;
+    border-radius: 15px;
+    padding: 1em;
+    right: 0;
+    bottom: -5.6em;
+    z-index: 10;
+    cursor: default;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+}

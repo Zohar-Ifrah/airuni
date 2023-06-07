@@ -3,15 +3,17 @@ import { useSelector } from "react-redux"
 
 import { utilService } from "../services/util.service"
 import { useForm } from "../customHooks/useForm"
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { CalendarPicker } from "./calendar-picker"
 import { AddGuests } from "./add-guests"
+import { RegionSearch } from "./region-search"
 
 
 
 
-export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBtn, isBarFocused }) {
+export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBtn, isBarFocused, isDetailsShown }) {
   onSetFilter = useRef(utilService.debounce(onSetFilter))
+  const navigate = useNavigate()
   const guestsAmount = useRef(0)
   const checkInAndOutDate = useRef({})
   // const isCheckInRef = useRef(false)
@@ -22,7 +24,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   const [filterByToEdit, setFilterByToEdit, handleChange] =
     useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter.current)
 
-  // eslint-disable-next-line
+  // // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(focusBtn && focusBtn === 'Any week')
@@ -61,17 +63,24 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     Object.entries(filterByToEdit).forEach(([key, value]) => {
       params.append(key, value)
     })
+    
     const queryString = params.toString()
 
     // console.log('queryString: ', queryString)
     setSearchParams(queryString)
+    
+    if (isDetailsShown) {
+    navigate(`/?${queryString}`)
+    }
   }
 
   function ontoggleCalendar(from) {
     console.log(from)
-    if ((from === 'checkIn' && !isCheckIn) || (from === 'checkOut' && isCheckIn)) {
-      console.log('enter')
-      if (isAddGuestsOpen)setIsAddGuestsOpen(false)
+    if ((from === 'checkIn' && !isCheckIn) ||
+      (from === 'checkOut' && isCheckIn)) {
+      // console.log('enter')
+      setIsAddGuestsOpen(false)
+      setIsSearchOpen(false)
       setIsCalendarOpen(!isCalendarOpen)
       from === 'checkOut' && setIsCheckIn(false)
     } else from === 'checkIn' ? setIsCheckIn(false) : setIsCheckIn(true)
@@ -79,7 +88,14 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   function onOpenGuestsModal() {
     if (isCalendarOpen) setIsCalendarOpen(false)
+    if (isSearchOpen) setIsSearchOpen(false)
     setIsAddGuestsOpen(!isAddGuestsOpen)
+  }
+
+  function onOpenSearchModal() {
+    if (isCalendarOpen) setIsCalendarOpen(false)
+    if (isAddGuestsOpen) setIsAddGuestsOpen(false)
+    setIsSearchOpen(!isSearchOpen)
   }
 
   function onSetDates(startDate, endDate) {
@@ -106,6 +122,17 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     })
   }
 
+  function onRegionClick(region) {
+    setIsSearchOpen(false)
+
+    setIsCalendarOpen(true)
+    // setIsCheckIn(true)
+    if (region === 'flexible') region = ''
+    setFilterByToEdit({
+      ...filterByToEdit,
+      location: region
+    })
+  }
   // useEffect(() => {
   //   onSetFilter.current(filterByToEdit)
   //   // eslint-disable-next-line
@@ -148,15 +175,20 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   return (
     <section className="filter-header-section">
-      <div className="search-label-header flex justify-center">
+      <div className={`search-label-header flex justify-center ${isSearchOpen && 'focused'}`}
+        onClick={() => { onOpenSearchModal() }}>
         <label htmlFor="location">Where</label>
         <input type="text"
           id="location"
           name="location"
           placeholder="Search destinations"
-          value={filterByToEdit.name}
+          value={filterByToEdit.location && filterByToEdit.location}
           onChange={handleChange}
         />
+      </div>
+      <div className="show-contents">
+        {isSearchOpen && <RegionSearch
+          onRegionClick={onRegionClick} />}
       </div>
 
 
@@ -177,7 +209,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
       </div>
 
 
-      <div className={`checkout-add-dates-container flex align-center ${isCheckIn && 'focused'}`}
+      <div className={`checkout-add-dates-container flex align-center ${isCalendarOpen && isCheckIn && 'focused'}`}
         onClick={() => { ontoggleCalendar('checkOut') }}>
 
         <div className="checkout-add-dates flex column justify-center">

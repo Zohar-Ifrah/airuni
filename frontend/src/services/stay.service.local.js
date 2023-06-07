@@ -32,10 +32,10 @@ async function _filteredStays(filterBy) {
 
     if (filterBy.checkIn) {
 
-        stays = stays.filter(stay =>
-            stay.availableDates.some(date => new Date(date.startDate).getTime() >= filterBy.checkIn) &&
-            stay.availableDates.some(date => new Date(date.endDate).getTime() <= filterBy.checkOut)
-        )
+        // stays = stays.filter(stay =>
+        //     stay.availableDates.some(date => new Date(date.startDate).getTime() >= filterBy.checkIn) &&
+        //     stay.availableDates.some(date => new Date(date.endDate).getTime() <= filterBy.checkOut)
+        // )
     }
 
     if (filterBy.adults || filterBy.children) {
