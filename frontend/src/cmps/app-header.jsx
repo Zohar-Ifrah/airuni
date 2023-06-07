@@ -130,7 +130,8 @@ export function AppHeader() {
                 </div>}
                 <div className='login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
                     <img className='menu-svg' src={menu} alt="menu" />
-                    <img className='acc-svg' src={user.imgUrl} alt="user" onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
+                    <img className='acc-svg' src={acc} alt="account" />
+                    {/* <img className='acc-svg' src={user.imgUrl} alt="user" onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} /> */}
                 </div>
                 {/* <button onClick={() => { onToggleUserModal() }}>Sign</button> */}
             </div>
