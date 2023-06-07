@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, logout, signup } from '../store/user.actions.js'
@@ -30,14 +30,13 @@ export function AppHeader() {
         }
 
         // console.log('gallery!!!!!!!', gallery)
-
-        window.addEventListener('mousedown', handleOutsideClick)
-
         function updateHeader(entries) {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) console.log('helllloooo!!!!!!!')
             });
         }
+
+        window.addEventListener('mousedown', handleOutsideClick)
 
         return () => {
             window.removeEventListener('mousedown', handleOutsideClick)
@@ -111,32 +110,48 @@ export function AppHeader() {
                     </nav>
                 } */}
 
-                {isModalOpen && <div className="login-signup-container" ref={modalRef}>
-                    {user &&
-                        <span className="user-info">
-                            <NavLink to={`user/${user._id}`}>
-                                {/* {user.imgUrl && <img src={user.imgUrl} alt='user' onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />} */}
-                                {/* {user.fullname} */}
-                            </NavLink>
-                            {/* <span className="score">{user.score?.toLocaleString()}</span> */}
-                            <button onClick={onLogout}>Logout</button>
-                        </span>
-                    }
-                    {!user &&
-                        <section className="user-info">
-                            <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                        </section>
-                    }
-                </div>}
-                <div className='login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
-                    <img className='menu-svg' src={menu} alt="menu" />
-                    {/* <img className='acc-svg' src={acc} alt="account" /> */}
-                    <img className='acc-svg'
-                        src={user ? user.imgUrl : 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'}
-                        alt="user"
-                        onError={ev =>
-                            ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
+
+                <div className='login-signup-btn-container'>
+
+                    <div className='inner-login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
+
+                        <img className='menu-svg' src={menu} alt="menu" />
+
+                        <img className='acc-svg'
+                            src={user ? user.imgUrl : 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'}
+                            alt="user"
+                            onError={ev =>
+                                ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
+
+                    </div>
+
+                    {isModalOpen && <nav>
+                        <div className="login-signup-container" ref={modalRef}>
+                            {user &&
+                                <span className="user-info">
+                                    <div className='user-info-content-container'>
+                                        <NavLink to={`user/${user._id}`} className='user-container'>
+                                            {user.imgUrl && <img src={user.imgUrl} alt='user' onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />}
+                                            {user.fullname}
+                                        </NavLink>
+                                        {/* <span className="score">{user.score?.toLocaleString()}</span> */}
+                                        <NavLink to='#'> Messeges </NavLink>
+                                        <NavLink to='#'> Trips </NavLink>
+                                        <NavLink to='#'> Whishlist </NavLink>
+                                        <NavLink to='#'> Dashboard </NavLink>
+                                        <button onClick={onLogout}>Log out</button>
+                                    </div>
+                                </span>
+                            }
+                            {!user &&
+                                <section className="user-info">
+                                    <LoginSignup onLogin={onLogin} onSignup={onSignup} />
+                                </section>
+                            }
+                        </div>
+                    </nav>}
                 </div>
+
                 {/* <button onClick={() => { onToggleUserModal() }}>Sign</button> */}
             </div>
         </header>
