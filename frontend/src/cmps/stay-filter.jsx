@@ -27,6 +27,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(focusBtn && focusBtn === 'Any week')
   const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(focusBtn && focusBtn === 'Add Guests')
+  const [isSearchOpen, setIsSearchOpen] = useState(focusBtn && focusBtn === 'Search')
   const [isCheckIn, setIsCheckIn] = useState(false)
 
   const elInputRef = useRef(null)
@@ -35,6 +36,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     elInputRef.current && elInputRef.current.focus()
     setIsCalendarOpen(focusBtn && focusBtn === 'Any week')
     setIsAddGuestsOpen(focusBtn && focusBtn === 'Add Guests')
+    setIsSearchOpen(focusBtn && focusBtn === 'Search')
 
   }, [focusBtn])
 
@@ -42,7 +44,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     isBarFocused(isCalendarOpen || isAddGuestsOpen)
     console.log(isCheckIn)
     // eslint-disable-next-line
-  }, [isAddGuestsOpen, isCalendarOpen, isCheckIn])
+  }, [isAddGuestsOpen, isCalendarOpen, isSearchOpen, isCheckIn])
 
 
   function onSubmit(ev) {
@@ -69,7 +71,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     console.log(from)
     if ((from === 'checkIn' && !isCheckIn) || (from === 'checkOut' && isCheckIn)) {
       console.log('enter')
-      if (isAddGuestsOpen) setIsAddGuestsOpen(false)
+      if (isAddGuestsOpen)setIsAddGuestsOpen(false)
       setIsCalendarOpen(!isCalendarOpen)
       from === 'checkOut' && setIsCheckIn(false)
     } else from === 'checkIn' ? setIsCheckIn(false) : setIsCheckIn(true)

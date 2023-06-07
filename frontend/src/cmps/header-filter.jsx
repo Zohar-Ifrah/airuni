@@ -17,6 +17,12 @@ export function HeaderFilter({ onSetFilter }) {
     setBarFocused(isFocus)
   }
 
+  function onSearchClick(ev) {
+    ev.stopPropagation()
+    console.log('clicked')
+    onChangeBarDisplay('Search', true)
+  }
+
   function onChangeBarDisplay(focusBtn, isOpen) {
     // console.log('HEADER focusBtn: ', focusBtn)
     setFocusBtn(focusBtn)
@@ -44,7 +50,7 @@ export function HeaderFilter({ onSetFilter }) {
         <button onClick={() => { onChangeBarDisplay('Add Guests', true) }}
           className="add-guests-btn-header">
           <span>Add Guests</span>
-          <div className="first-search-svg-header">
+          <div onClick={onSearchClick} className="first-search-svg-header">
             <img src={search} alt="search" />
           </div>
         </button>
