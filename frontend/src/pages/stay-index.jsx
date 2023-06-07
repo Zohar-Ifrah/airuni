@@ -9,7 +9,6 @@ import { useSearchParams } from 'react-router-dom'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { FILTER_BY } from '../store/stay.reducer.js'
 import { StayList } from '../cmps/stay-list.jsx'
-import { LabelsFilter } from '../cmps/labels-filter.jsx'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer.js'
 import { stayService } from '../services/stay.service.local.js'
 import { loadUsers } from '../store/user.actions.js'
@@ -31,6 +30,7 @@ export function StayIndex() {
         for (const [key, value] of paramsMap) {
             filterBy[key] = (isNaN(parseFloat(value))) ? value : parseFloat(value)
         }
+        // console.log(filterBy)
         onSetFilter(filterBy)
         // eslint-disable-next-line
     }, [])

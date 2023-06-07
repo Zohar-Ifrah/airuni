@@ -39,6 +39,12 @@
             }
 
             p:nth-child(4) {
+                color: $clr7;
+                font-family: Circular-Light, sans-serif;
+                font-size: em(15px);
+            }
+
+            p:nth-child(5) {
                 font-family: Circular-Light, sans-serif;
                 margin-block-start: .2em;
                 color: $clr2;

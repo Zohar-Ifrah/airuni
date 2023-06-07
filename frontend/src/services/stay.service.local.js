@@ -115,7 +115,6 @@ async function addStayMsg(stayId, txt) {
 function getDefaultFilter() {
     return {
         price: 750,
-        txt: '',
         location: '',
         checkIn: '',
         checkOut: '',
