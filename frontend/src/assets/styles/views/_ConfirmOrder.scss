@@ -1,0 +1,16 @@
+.confirm-order-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10em;
+    margin-block-start: 5em;
+
+    .column2-content {
+        .price-details {
+            display: flex;
+            flex-direction: column;
+            border-radius: .8em;
+            border: 1px solid $clr5;
+            padding: 1.5em;
+        }
+    }
+}

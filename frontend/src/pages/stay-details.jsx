@@ -64,7 +64,7 @@ export function StayDetails() {
     // }
 
     function onCheckInClick(isCheckInClicked) {
-        console.log(isCheckInClicked)
+        // console.log(isCheckInClicked)
 
     }
 
