@@ -14,7 +14,7 @@ export function Review({ stay }) {
 
 
     return (
-        <section className="review-container">
+        <section id="reviews" className="review-container">
 
             {!!stay.reviews.length && <div className="rating-container flex align-center">
                 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />

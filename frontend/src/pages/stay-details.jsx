@@ -13,6 +13,7 @@ import { OrderForm } from "../cmps/order-form"
 import { useDispatch } from "react-redux"
 import { SET_DETAILS_SHOWN } from "../store/system.reducer"
 import { CalendarPicker } from "../cmps/calendar-picker"
+// import { DetailsAnchorHeader } from "../cmps/details-anchor-header"
 
 
 export function StayDetails() {
@@ -72,6 +73,7 @@ export function StayDetails() {
     return <div className='stay-details'>
         <DetailsHeader stay={stay} />
         <DetailsGallery stay={stay} />
+
         <section className="stay-details-content">
             <div className="stay-details-content-column1">
                 <StayExrtaDetails stay={stay} />

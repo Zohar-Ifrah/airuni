@@ -3,7 +3,7 @@ import { ShareSave } from "./share-save";
 export function DetailsHeader({ stay }) {
 
     return (
-        <div className="details-header flex space-between">
+        <div id="photos" className="details-header flex space-between">
             <div className="content">
                 <h2> {stay.name} </h2>
                 <div className="inner-content flex align-center">

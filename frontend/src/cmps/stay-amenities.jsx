@@ -3,7 +3,7 @@ import { utilService } from "../services/util.service";
 export function StayAmenities({ stay }) {
 
     return (
-        <div className="stay-amenities">
+        <div id="amenities" className="stay-amenities">
             <h2> What this place offers </h2>
             <div className="amenitis-content">
                 {stay.amenities.slice(7, 17).map((amenity, idx) =>
