@@ -40,7 +40,7 @@ export function CalendarPicker({ onSetDates, onCheckInClick, calAmount = 2 }) {
         modifiers={{
           start: selectedDates[0],
           end: selectedDates[1],
-      
+
         }}
         disabledDays={{ before: new Date() }}
       />

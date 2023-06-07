@@ -5,6 +5,7 @@ import 'react-date-range/dist/theme/default.css'
 import { AddGuests } from './add-guests'
 import { CalendarPicker } from './calendar-picker'
 import { useSelector } from 'react-redux'
+import { PriceDetails } from './price-details'
 // import { DateRangePicker } from 'react-date-range'
 
 export function OrderForm({ stay, checkInAndOutDate }) {
@@ -15,6 +16,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     const [guestsAmount, setGuestsAmount] = useState(0)
     const [searchParams, setSearchParams] = useSearchParams()
     const isFromOrderForm = useRef(true)
+
     // const guestsAmount = useRef(0)
     const maxCapacity = useRef(stay.capacity).current
     // eslint-disable-next-line
@@ -33,12 +35,10 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     }, [checkInAndOutDate])
 
     function calculateNumberOfNights(start, end) {
-
         const startDate = new Date(start)
         const endDate = new Date(end)
         const timeDifference = endDate.getTime() - startDate.getTime()
         const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24))
-        console.log(numberOfNights)
         return numberOfNights
     }
 
@@ -95,7 +95,6 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     }
 
     function ontoggleCalendar(from) {
-        console.log(from)
         setIsCalendarOpen(!isCalendarOpen)
         // if ((from === 'checkIn' && !isCheckIn) ||
         //     (from === 'checkOut' && isCheckIn)) {
@@ -108,13 +107,12 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     }
 
     function onCheckInClick(isClicked) {
-        console.log(isClicked)
         // setIsCheckIn(isClicked)
         // isCheckInRef.current = isClicked
     }
     function onSetDates(startDate, endDate) {
-        console.log('startDate: ', startDate)
-        console.log('endDate: ', endDate)
+        // console.log('startDate: ', startDate)
+        // console.log('endDate: ', endDate)
 
         setChecksDates({ checkIn: startDate, checkOut: endDate })
         // setFilterByToEdit({
@@ -167,7 +165,6 @@ export function OrderForm({ stay, checkInAndOutDate }) {
             <form className="flex column align-center" onSubmit={onSubmitOrder}>
 
                 <div className="dates-guests-container flex column align-center space-between">
-                    {console.log(checksDates)}
                     <div onClick={() => { ontoggleCalendar() }} className="dates-container flex align-center">
                         <div className="check-in-container">
                             <span> check-in </span>
@@ -222,28 +219,8 @@ export function OrderForm({ stay, checkInAndOutDate }) {
 
             <p className='txt-charged'>You won't be charged yet</p>
 
-            {checkInAndOutDate && guestsAmount &&
-                <div>
-                    <div>
-                        <div className='nights-price-container flex space-between'>
-                            <p>{`$${stay.price} x ${calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut)} nights`}</p>
-                            <p>{`$${stay.price * calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut)} `}</p>
-                        </div>
-                        <div className='nights-price-container flex space-between'>
-                            <p>Cleaning fee</p>
-                            <p>$6</p>
-                        </div>
-                        <div className='nights-price-container flex space-between'>
-                            <p>Airbbb service fee</p>
-                            <p>$14</p>
-                        </div>
-                    </div>
-
-                    <div className='total-price-container nights-sum flex space-between'>
-                        <h3> total </h3>
-                        <p> {`$${stay.price * calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut) + 20} `} </p>
-                    </div>
-                </div>
+            {checksDates && !!guestsAmount &&
+                <PriceDetails price={stay.price} checksDates={checksDates} calculateNumberOfNights={calculateNumberOfNights} isFromConfirmOrder={false} />
             }
         </section>
     )
