@@ -29,7 +29,7 @@ export function AppHeader() {
             headerObserver.observe(gallery);
         }
 
-        console.log('gallery!!!!!!!', gallery)
+        // console.log('gallery!!!!!!!', gallery)
 
         window.addEventListener('mousedown', handleOutsideClick)
 
@@ -115,10 +115,10 @@ export function AppHeader() {
                     {user &&
                         <span className="user-info">
                             <NavLink to={`user/${user._id}`}>
-                                {user.imgUrl && <img src={user.imgUrl} alt='' />}
-                                {user.fullname}
+                                {/* {user.imgUrl && <img src={user.imgUrl} alt='user' onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />} */}
+                                {/* {user.fullname} */}
                             </NavLink>
-                            <span className="score">{user.score?.toLocaleString()}</span>
+                            {/* <span className="score">{user.score?.toLocaleString()}</span> */}
                             <button onClick={onLogout}>Logout</button>
                         </span>
                     }
@@ -130,7 +130,7 @@ export function AppHeader() {
                 </div>}
                 <div className='login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
                     <img className='menu-svg' src={menu} alt="menu" />
-                    <img className='acc-svg' src={acc} alt="account" />
+                    <img className='acc-svg' src={user.imgUrl} alt="user" onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
                 </div>
                 {/* <button onClick={() => { onToggleUserModal() }}>Sign</button> */}
             </div>

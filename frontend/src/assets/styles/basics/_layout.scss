@@ -5,7 +5,7 @@
 
 .main-layout {
     display: grid;
-    grid-template-columns: 80px calc(100vw - 180px) 80px;
+    grid-template-columns: 80px 1fr 80px;
 
     >* {
         grid-column: 2;

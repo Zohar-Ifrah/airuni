@@ -43,15 +43,18 @@ export function HeaderFilter({ onSetFilter }) {
 
       <div className={`search-preview ${isSearchBarOpen ? 'search-preview-close' : ''}`}>
 
-        <button onClick={() => { onChangeBarDisplay('Anywhere', true) }}>Anywhere</button>
+        <button onClick={() => { onChangeBarDisplay('Anywhere', true) }}><span>Anywhere</span></button>
 
-        <button onClick={() => { onChangeBarDisplay('Any week', true) }}>Any week</button>
+        <button onClick={() => { onChangeBarDisplay('Any week', true) }}><span>Any week</span></button>
 
         <button onClick={() => { onChangeBarDisplay('Add Guests', true) }}
           className="add-guests-btn-header">
-          <span>Add Guests</span>
+          <span>Add guests</span>
           <div onClick={onSearchClick} className="first-search-svg-header">
             <img src={search} alt="search" />
+          {/* <span>Add guests</span>
+          <div className="first-search-svg-header">
+            <svg viewBox="1 0 32 32" xmlns="https://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'white', strokeWidth: 5.33333, overflow: 'visible' }}><g fill="none"><path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path></g></svg> */}
           </div>
         </button>
       </div>

@@ -42,7 +42,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   useEffect(() => {
     isBarFocused(isCalendarOpen || isAddGuestsOpen)
-    console.log(isCheckIn)
+    // console.log(isCheckIn)
     // eslint-disable-next-line
   }, [isAddGuestsOpen, isCalendarOpen, isSearchOpen, isCheckIn])
 
@@ -188,7 +188,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
         {/* {isCalendarOpen && <CalendarPicker key="checkOut" />} */}
       </div>
 
-      <div className={`flex align-center ${isAddGuestsOpen && 'focused'}`}
+      <div className={`add-guests-search-main-container flex align-center ${isAddGuestsOpen && 'focused'}`}
         onClick={() => { onOpenGuestsModal() }}>
         <div className="add-guests-search-container flex align-center">
           <div className="add-guests flex column justify-center">
