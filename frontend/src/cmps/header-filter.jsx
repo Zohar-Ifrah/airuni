@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { SearchMenu } from "./search-menu"
 import search from '../assets/img/search.svg'
+import { useSelector } from "react-redux"
 
-export function HeaderFilter({ onSetFilter, isDetailsShown }) {
+export function HeaderFilter({ onSetFilter }) {
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [focusBtn, setFocusBtn] = useState(null)
   const [barFocused, setBarFocused] = useState(null)
+  const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
+
 
   useEffect(() => {
 
@@ -35,7 +38,6 @@ export function HeaderFilter({ onSetFilter, isDetailsShown }) {
 
   return (
     <div>
-      {console.log('isDetailsShown: ', isDetailsShown)}
       <div className={`${isSearchBarOpen ? 'blur' : ''}`}
         onClick={() => { onChangeBarDisplay('none', !isSearchBarOpen) }}>
 
@@ -84,7 +86,7 @@ export function HeaderFilter({ onSetFilter, isDetailsShown }) {
           <SearchMenu onChangeBarDisplay={onChangeBarDisplay}
             focusBtn={focusBtn}
             isBarFocused={isBarFocused}
-            isDetailsShown={isDetailsShown} />
+          />
         </div>
 
       </div>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 
-export function AddGuests({ onUpdateCapacity, maxCapacity = 16 }) {
+export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModal, isFromOrderForm = false }) {
     const [capacity, setCapacity] = useState({ adults: 0, children: 0, infants: 0, pets: 0 })
+    const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
     // const [disableBtn, setDisableBtn] = useState(false)
 
     useEffect(() => {
@@ -47,8 +49,11 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16 }) {
         })
     }
 
+
+
     return (
         <section className='add-guests-cmp-header'>
+
             <div className="guest-select-row">
                 <p>Adults <span>Ages 13 or above</span></p>
                 <div className="guest-count-container">
@@ -81,13 +86,16 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16 }) {
                     <button onClick={(ev) => { ev.preventDefault(); onChange('+', 'pets') }} disabled={capacity.pets >= 5}>+</button>
                 </div>
             </div>
-            <div>
-                <p>This place has a maximum of {maxCapacity + ` ${maxCapacity > 1 ? 'guests' : 'guest'}`} , not including infants.</p>
-            </div>
-            <div>
-                {/* <button onClick={onOpenGuestsModal}>Close</button> */}
-                <button onClick={(ev) => ev.preventDefault()}>Close</button>
-            </div>
+            {isDetailsShown && isFromOrderForm &&
+                <div>
+                    <div>
+                        <p>This place has a maximum of {maxCapacity + ` ${maxCapacity > 1 ? 'guests' : 'guest'}`} , not including infants.</p>
+                    </div>
+                    <div>
+                        {/* <button onClick={onOpenGuestsModal}>Close</button> */}
+                        <button onClick={onOpenGuestsModal}> Close </button>
+                    </div>
+                </div>}
         </section>
     )
 }

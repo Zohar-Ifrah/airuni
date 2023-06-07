@@ -4,6 +4,7 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { AddGuests } from './add-guests'
 import { CalendarPicker } from './calendar-picker'
+import { useSelector } from 'react-redux'
 // import { DateRangePicker } from 'react-date-range'
 
 export function OrderForm({ stay }) {
@@ -11,6 +12,7 @@ export function OrderForm({ stay }) {
     const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
     const [guestsAmount, setGuestsAmount] = useState(0)
+    const isFromOrderForm = useRef(true)
     // const guestsAmount = useRef(0)
     const maxCapacity = useRef(stay.capacity).current
     // eslint-disable-next-line
@@ -21,15 +23,15 @@ export function OrderForm({ stay }) {
     // })
 
     // useEffect(() => {
-       
+
     // }, [guestsAmount.current])
+
 
     function calculateNumberOfNights() {
         const endDate = new Date('8/1/2023')
         const startDate = new Date('8/10/2023')
         const timeDifference = endDate.getTime() - startDate.getTime()
         const numberOfNights = Math.ceil(timeDifference / (1000 * 3600 * 24))
-        console.log('numberOfNights', numberOfNights);
         return numberOfNights * -1
     }
 
@@ -44,7 +46,7 @@ export function OrderForm({ stay }) {
 
     function onOpenGuestsModal() {
         // if (isCalendarOpen) setIsCalendarOpen(false)
-        setIsAddGuestsOpen(!isAddGuestsOpen)
+        setIsAddGuestsOpen(prevIsAddGuestsOpen => !prevIsAddGuestsOpen)
     }
 
     function guestsMsg() {
@@ -52,9 +54,7 @@ export function OrderForm({ stay }) {
     }
 
     function onUpdateCapacity({ capacity }) {
-        console.log(capacity)
         setGuestsAmount(capacity.adults + capacity.children)
-        console.log(guestsAmount)
 
         // setFilterByToEdit({
         //   ...filterByToEdit,
@@ -157,7 +157,9 @@ export function OrderForm({ stay }) {
                     <div className="show-contents">
                         {isAddGuestsOpen && <AddGuests
                             onUpdateCapacity={onUpdateCapacity}
-                            maxCapacity={maxCapacity} />}
+                            maxCapacity={maxCapacity}
+                            onOpenGuestsModal={onOpenGuestsModal}
+                            isFromOrderForm={isFromOrderForm} />}
                     </div>
                 </div>
                 {/* <div className="date-picker-container">

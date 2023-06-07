@@ -12,7 +12,6 @@ export function Review({ stay }) {
         }
     }, [])
 
-    console.log('slicedReviews', slicedReviews);
 
     return (
         <section className="review-container">
@@ -24,7 +23,7 @@ export function Review({ stay }) {
 
             <div className="review-content">
 
-                {slicedReviews.length && slicedReviews.map(review =>
+                {!!slicedReviews.length && slicedReviews.map(review =>
                     <article key={review._id} className="review">
 
                         <div className="user-details flex align-center">
@@ -47,7 +46,30 @@ export function Review({ stay }) {
                     </article>
                 )}
 
-                {slicedReviews &&
+                {!slicedReviews.length && stay.reviews.map(review =>
+                    <article key={review._id} className="review">
+
+                        <div className="user-details flex align-center">
+                            <img src={review.by.imgUrl} alt="" onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
+                            <h3> {review.by.fullname} </h3>
+                        </div>
+
+                        {review.txt.length > 185 &&
+                            <div className="substringed-txt-container">
+                                <p>{`${review.txt.substring(0, 186)} ...`}</p>
+                                <div className="showmore-container flex align-center">
+                                    <button className="btn-showmore"> Show more </button>
+                                    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685990897/arrow-right-bold_flbszq.svg" alt="show more" />
+                                </div>
+                            </div>
+                        }
+
+                        {review.txt.length <= 185 && <p> {review.txt} </p>}
+
+                    </article>
+                )}
+
+                {!!slicedReviews.length &&
                     <button className="btn-show-all-reviews"> {`Show all ${stay.reviews.length} reviews`} </button>
                 }
 

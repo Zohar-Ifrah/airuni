@@ -11,11 +11,12 @@ import { RegionSearch } from "./region-search"
 
 
 
-export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBtn, isBarFocused, isDetailsShown }) {
+export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBtn, isBarFocused }) {
   onSetFilter = useRef(utilService.debounce(onSetFilter))
   const navigate = useNavigate()
   const guestsAmount = useRef(0)
   const checkInAndOutDate = useRef({})
+  const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
   // const isCheckInRef = useRef(false)
   // const [filterByToEdit, setFilterByToEdit] = useState(useSelector((storeState) => storeState.stayModule.filterBy))
   // const [sortByToEdit, setSortByToEdit] = useState(useSelector((storeState) => storeState.stayModule.sortBy))
@@ -63,14 +64,14 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     Object.entries(filterByToEdit).forEach(([key, value]) => {
       params.append(key, value)
     })
-    
+
     const queryString = params.toString()
 
     // console.log('queryString: ', queryString)
     setSearchParams(queryString)
-    
+
     if (isDetailsShown) {
-    navigate(`/?${queryString}`)
+      navigate(`/?${queryString}`)
     }
   }
 
