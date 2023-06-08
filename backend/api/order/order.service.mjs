@@ -64,6 +64,7 @@ async function remove(orderId) {
 
 async function add(order) {
     try {
+        order.createdAt = Date.now()
         const collection = await dbService.getCollection(COLLECTION_ORDER)
         await collection.insertOne(order)
         return order

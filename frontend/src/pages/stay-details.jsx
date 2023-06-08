@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg } from "../services/event-bus.service"
 // import { stayService } from "../services/stay.service"
-import { stayService } from "../services/stay.service.local"  //stay.service.local
+import { stayService } from "../services/stay.service.js"
 import { DetailsGallery } from "../cmps/details-gallery"
 import { DetailsHeader } from "../cmps/details-header"
 import { DetailsCalendar } from "../cmps/details-calendar"

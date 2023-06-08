@@ -1,10 +1,12 @@
 import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
 import gUsers from '../data/user.json'
+import { httpService } from './http.service'
 // import { httpService } from './http.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const USER_KEY = 'user_db'
+const API = 'user'
 
 export const userService = {
     login,
@@ -23,13 +25,13 @@ window.userService = userService
 
 
 function getUsers() {
-    return storageService.query(USER_KEY)
-    // return httpService.get(`user`)
+    // return storageService.query(USER_KEY)
+    return httpService.get(API)
 }
 
 async function getById(userId) {
-    const user = await storageService.get(USER_KEY, userId)
-    // const user = await httpService.get(`user/${userId}`)
+    // const user = await storageService.get(USER_KEY, userId)
+    const user = await httpService.get(`${API}/${userId}`)
     return user
 }
 
@@ -47,32 +49,33 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query(USER_KEY)
-    const user = users.find(user => user.username === userCred.username)
-    // const user = await httpService.post('auth/login', userCred)
+    // const users = await storageService.query(USER_KEY)
+    // const user = users.find(user => user.username === userCred.username)
+    const user = await httpService.post('auth/login', userCred)
     if (user) {
         return saveLocalUser(user)
     }
 }
 
 async function signup(userCred) {
-    const user = await _signup(userCred)
-    // const user = await httpService.post('auth/signup', userCred)
+    // const user = await _signup(userCred)
+    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+    const user = await httpService.post('auth/signup', userCred)
     return saveLocalUser(user)
 }
 
-async function _signup({ username, fullname, password }) {
-    const user = getEmptyUser()
-    if (!user.imgUrl) user.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    user.password = password
-    user.username = username
-    user.fullname = fullname
-    return await storageService.post(USER_KEY, user)
-}
+// async function _signup({ username, fullname, password }) {
+//     const user = getEmptyUser()
+//     if (!user.imgUrl) user.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+//     user.password = password
+//     user.username = username
+//     user.fullname = fullname
+//     return await storageService.post(USER_KEY, user)
+// }
 
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    // return await httpService.post('auth/logout')
+    return await httpService.post('auth/logout')
 }
 
 function getEmptyUser() {
