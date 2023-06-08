@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
 })
 
 
-const middleware = window?._REDUX_DEVTOOLS_EXTENSION_?.()
+const middleware = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : undefined
 export const store = createStore(rootReducer, middleware)
 
 
