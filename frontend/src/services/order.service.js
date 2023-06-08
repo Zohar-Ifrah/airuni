@@ -1,4 +1,4 @@
-import { userService } from '../../services/user.service.js'
+import { userService } from './user.service.js'
 import { storageService } from './async-storage.service.js'
 
 const STORAGE_KEY = 'order_db'
@@ -46,7 +46,6 @@ async function getOrderByBuyer(buyerId) {
 async function add(orderToAdd) {
     orderToAdd.createdAt = Date.now()
     const newOrder = storageService.post(STORAGE_KEY, orderToAdd)
-    userService.addNewOrder(newOrder._id)
     return newOrder
 }
 

@@ -5,6 +5,7 @@ import { ReviewIndex } from './pages/review-index.jsx'
 import { ChatApp } from './pages/chat-app.jsx'
 import { AdminApp } from './pages/admin-app.jsx'
 import { StayDetails } from './pages/stay-details.jsx'
+import { ConfirmOrder } from './pages/confirm-order.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
@@ -18,11 +19,11 @@ const routes = [
         component: <StayIndex />,
         label: 'Stays',
     },
-    {
-        path: 'stay',
-        component: <StayIndex />,
-        label: 'Stays'
-    },
+    // {
+    //     path: 'stay',
+    //     component: <StayIndex />,
+    //     label: 'Stays'
+    // },
     {
         path: 'details/:stayId',
         component: <StayDetails />,
@@ -47,6 +48,11 @@ const routes = [
         path: 'admin',
         component: <AdminApp />,
         label: 'Admin Only'
+    },
+    {
+        path: 'confirm',
+        component: <ConfirmOrder />,
+        label: 'Confirm Order'
     }
 ]
 

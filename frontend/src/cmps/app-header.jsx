@@ -6,8 +6,9 @@ import { HeaderFilter } from './header-filter'
 import { LoginSignup } from './login-signup.jsx'
 import menu from '../assets/img/menu.svg'
 import { login, logout, signup } from '../store/user.actions.js'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { eventBus, showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { DetailsAnchorHeader } from './details-anchor-header'
+import { useShouldShow } from '../customHooks/useShouldShow'
 
 export function AppHeader() {
 
@@ -16,6 +17,8 @@ export function AppHeader() {
     const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
     const [isAnchor, setIsAnchor] = useState(false)
     const modalRef = useRef(null)
+    const isConfirmShown = useShouldShow('/confirm/')
+    const unsubscribe = eventBus.on('details-load', setObserver)
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
@@ -24,31 +27,44 @@ export function AppHeader() {
             }
         }
 
-        const headerObserver = new IntersectionObserver(updateHeader);
+        // const headerObserver = new IntersectionObserver(updateHeader)
 
-        const gallery = document.querySelector('.details-gallery');
 
-        if (gallery) {
-            headerObserver.observe(gallery);
-        }
+            // const gallery = document.querySelector('.details-gallery')
+            // console.log(gallery)
+            // console.log(isDetailsShown)
+            // if (gallery) {
+            //     headerObserver.observe(gallery)
+            // }
+
 
         // console.log('gallery!!!!!!!', gallery)
-        function updateHeader(entries) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) setIsAnchor(true)
-                if (entry.isIntersecting) setIsAnchor(false)
-            })
-        }
+
 
         window.addEventListener('mousedown', handleOutsideClick)
 
         return () => {
             window.removeEventListener('mousedown', handleOutsideClick)
+            unsubscribe()
         }
 
 
 
     }, [])
+
+    function updateHeader(entries) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting)  setIsAnchor(true)
+            if (entry.isIntersecting) setIsAnchor(false)
+        })
+    }
+
+    function setObserver(elRef) {
+        const headerObserver = new IntersectionObserver(updateHeader)
+
+        headerObserver.observe(elRef.current)
+
+    }
 
     async function onLogin(credentials) {
         try {
@@ -103,10 +119,12 @@ export function AppHeader() {
                                 </div>
                             </NavLink>
                         </div>
-
-                        <section className="header-search-bar-container">
-                            <HeaderFilter onSetFilter={onSetFilter} isDetailsShown={isDetailsShown} />
-                        </section>
+                        {console.log(isConfirmShown)}
+                        {!isConfirmShown &&
+                            <section className="header-search-bar-container">
+                                <HeaderFilter onSetFilter={onSetFilter} isDetailsShown={isDetailsShown} />
+                            </section>
+                        }
 
                         {/* {isModalOpen &&
                     <nav>
@@ -118,7 +136,6 @@ export function AppHeader() {
                         <NavLink to="/admin"> Admin </NavLink>
                     </nav>
                 } */}
-
 
                         <div className='login-signup-btn-container'>
 
