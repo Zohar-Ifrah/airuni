@@ -9,7 +9,8 @@ export const orederService = {
     getEmptyOrder,
     getOrderByHost,
     getOrderByBuyer,
-    add
+    add,
+    update
 }
 
 async function query() {
