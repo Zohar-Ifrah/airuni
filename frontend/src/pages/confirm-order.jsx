@@ -12,19 +12,16 @@ export function ConfirmOrder() {
 
     // First load
     useEffect(() => {
-        const paramsMap = searchParams.entries()
-        const formDetails = {}
 
-        for (const [key, value] of paramsMap) {
-            formDetails[key] = (isNaN(parseFloat(value))) ? value : parseFloat(value)
-        }
+        const params = searchParams.get('order')
+        if (params) setFormDetails(JSON.parse(params))
+        console.log(JSON.parse(params))
 
-        setFormDetails({ price: formDetails.price, checksDates: { checkIn: formDetails.checkIn, checkOut: formDetails.checkOut } })
-
-        // eslint-disable-next-line
     }, [])
 
     function calculateNumberOfNights(start, end) {
+        console.log(start)
+        console.log(end)
         const startDate = new Date(start)
         const endDate = new Date(end)
         const timeDifference = endDate.getTime() - startDate.getTime()
@@ -33,6 +30,7 @@ export function ConfirmOrder() {
     }
 
     function convertDates(time) {
+        console.log('time :', time)
         const timestamp = time
         const date = new Date(timestamp)
 
@@ -56,17 +54,17 @@ export function ConfirmOrder() {
                     <h4> Dates </h4>
                     <div className="check-in-date flex align-center">
                         <span> Check in </span>
-                        <p> {convertDates(formDetails.checksDates.checkIn)} </p>
+                        <p> {convertDates(formDetails.info.checkin)} </p>
                     </div>
                     <div className="check-out-date flex align-center">
                         <span> Check out </span>
-                        <p> {convertDates(formDetails.checksDates.checkOut)} </p>
+                        <p> {convertDates(formDetails.info.checkout)} </p>
                     </div>
                 </div>
             </div>
 
             <div className="column2-content">
-                <PriceDetails price={formDetails.price} checksDates={formDetails.checksDates} calculateNumberOfNights={calculateNumberOfNights} />
+                <PriceDetails price={formDetails.info.price} checksDates={{ checkIn: formDetails.info.checkin, checkOut: formDetails.info.checkout }} calculateNumberOfNights={calculateNumberOfNights} />
             </div>
 
             <Link to='/'> <button> Back </button> </Link>

@@ -6,6 +6,7 @@ import { AddGuests } from './add-guests'
 import { CalendarPicker } from './calendar-picker'
 import { useSelector } from 'react-redux'
 import { PriceDetails } from './price-details'
+import { orederService } from '../services/order.service'
 // import { DateRangePicker } from 'react-date-range'
 
 export function OrderForm({ stay, checkInAndOutDate }) {
@@ -16,6 +17,8 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     const [guestsAmount, setGuestsAmount] = useState(0)
     const [searchParams, setSearchParams] = useSearchParams()
     const isFromOrderForm = useRef(true)
+
+    const [orderDetails, setOrderDetails] = useState(orederService.getEmptyOrder())
 
     // const guestsAmount = useRef(0)
     const maxCapacity = useRef(stay.capacity).current
@@ -50,27 +53,39 @@ export function OrderForm({ stay, checkInAndOutDate }) {
         ev.preventDefault()
 
         if (!guestsAmount && !checksDates) return console.log('NOP!!!!')
-
-        const formDetails = {
-            checkIn: checksDates.checkIn,
-            checkOut: checksDates.checkOut,
-            guests: guestsAmount,
-            price: stay.price,
+        const formDetails = orederService.getEmptyOrder()
+        formDetails.info = {
+            checkin: checksDates.checkIn,
+                checkout: checksDates.checkOut,
+                guests: guestsAmount,
+                price: stay.price
         }
+        // const formDetails = {
+        //     checkIn: checksDates.checkIn,
+        //     checkOut: checksDates.checkOut,
+        //     guests: guestsAmount,
+        //     price: stay.price,
+            
+        // }
+        // order  {
+            
+        //     stayId: '',
+        //     hostId: '',
+        //     buyerId: '',
+        //     info: {
+        //         checkin: -1,
+        //         checkout: -1,
+        //         price: -1,
+        //         guests: -1,
+        //     },
+        //     createdAt: -1,
+        //     isAproved: false,
+        //     }
 
         // SET params:
-        const params = new URLSearchParams()
+        const params = new URLSearchParams({order:JSON.stringify(formDetails)})
 
-        Object.entries(formDetails).forEach(([key, value]) => {
-            params.append(key, value)
-        })
-
-        const queryString = params.toString()
-
-        console.log('queryString: ', queryString)
-        // setSearchParams(queryString)
-
-        navigate(`/details/${stay._id}/confirm/?${queryString}`)
+        navigate(`/confirm/?${params}`)
     }
 
     function onOpenGuestsModal() {

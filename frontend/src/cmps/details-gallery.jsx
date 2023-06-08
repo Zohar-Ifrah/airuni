@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { DetailsFullGallery } from './details-full-gallery';
+import { eventBus } from '../services/event-bus.service';
 
 export function DetailsGallery({ stay }) {
   const [showMore, setShowMore] = useState(false)
-
+  const galleryRef = useRef()
   // function onOpenImgsModal(){
   //     setShowMore(true)
   // }
@@ -11,13 +12,18 @@ export function DetailsGallery({ stay }) {
   //   setShowMore(true)
   // }
 
+  useEffect(() => {
+    eventBus.emit('details-load', galleryRef)
+    return
+  }, [])
+
   function onCloseImgsModal() {
     setShowMore(false)
   }
 
   return (
 
-    <div className="details-gallery">
+    <div ref={galleryRef} className="details-gallery">
 
       {stay.imgUrls.map(imgUrl => {
         return <img key={imgUrl} src={imgUrl} alt="" />
