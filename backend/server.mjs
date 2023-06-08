@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser'
 
 const app = express()
 const server = http.createServer(app)
-const pass = '15UQG8fmYa7PB0lJ'
 
 // Express App Config
 app.use(cookieParser())
@@ -30,7 +29,8 @@ if (process.env.NODE_ENV === 'production') {
 import { authRoutes } from './api/auth/auth.routes.mjs'
 import { userRoutes } from './api/user/user.routes.mjs'
 import { reviewRoutes } from './api/review/review.routes.mjs'
-import { carRoutes } from './api/car/car.routes.mjs'
+import { orderRoutes } from './api/order/order.routes.mjs'
+import { stayRoutes } from './api/stay/stay.routes.mjs'
 import { setupSocketAPI } from './services/socket.service.mjs'
 
 // routes
@@ -40,11 +40,12 @@ app.all('*', setupAsyncLocalStorage)
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/review', reviewRoutes)
-app.use('/api/car', carRoutes)
+app.use('/api/order', orderRoutes)
+app.use('/api/stay', stayRoutes)
 setupSocketAPI(server)
 
 // Make every server-side-route to match the index.html
-// so when requesting http://localhost:3030/index.html/car/123 it will still respond with
+// so when requesting http://localhost:3030/index.html/stay/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
 app.get('/**', (req, res) => {
     res.sendFile(path.resolve('public/index.html'))

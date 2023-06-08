@@ -30,12 +30,12 @@ export function AppHeader() {
         // const headerObserver = new IntersectionObserver(updateHeader)
 
 
-            // const gallery = document.querySelector('.details-gallery')
-            // console.log(gallery)
-            // console.log(isDetailsShown)
-            // if (gallery) {
-            //     headerObserver.observe(gallery)
-            // }
+        // const gallery = document.querySelector('.details-gallery')
+        // console.log(gallery)
+        // console.log(isDetailsShown)
+        // if (gallery) {
+        //     headerObserver.observe(gallery)
+        // }
 
 
         // console.log('gallery!!!!!!!', gallery)
@@ -54,8 +54,8 @@ export function AppHeader() {
 
     function updateHeader(entries) {
         entries.forEach(entry => {
-            if (!entry.isIntersecting)  setIsAnchor(true)
-            if (entry.isIntersecting) setIsAnchor(false)
+            // if (!entry.isIntersecting)  setIsAnchor(true)
+            // if (entry.isIntersecting) setIsAnchor(false)
         })
     }
 
