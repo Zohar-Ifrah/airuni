@@ -7,6 +7,7 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
     // const [disableBtn, setDisableBtn] = useState(false)
 
     useEffect(() => {
+        console.log('capacity: ', capacity)
         onUpdateCapacity({ capacity })
         // eslint-disable-next-line
     }, [capacity])
@@ -29,12 +30,6 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
                 // Combined count of adults and children exceeds 16, do not update state
                 if (totValue > maxCapacity - 1) return
 
-                // } else if (type === 'infants' && newValue > 5) {
-                //     // Infants count exceeds 5, do not update state
-                //     return
-                // } else if (type === 'pets' && newValue > 5) {
-                //     // Pets count exceeds 5, do not update state
-                //     return
             }
         }
 
@@ -43,10 +38,10 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
             newValue = 0
         }
 
-        setCapacity({
-            ...capacity,
+        setCapacity(prevCapacity => ({
+            ...prevCapacity,
             [type]: newValue
-        })
+        }))
     }
 
 
@@ -92,7 +87,6 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
                         <p>This place has a maximum of {maxCapacity + ` ${maxCapacity > 1 ? 'guests' : 'guest'}`} , not including infants.</p>
                     </div>
                     <div>
-                        {/* <button onClick={onOpenGuestsModal}>Close</button> */}
                         <button onClick={onOpenGuestsModal}> Close </button>
                     </div>
                 </div>}

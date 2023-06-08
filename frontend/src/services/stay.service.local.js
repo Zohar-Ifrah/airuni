@@ -48,9 +48,6 @@ async function _filteredStays(filterBy) {
         stays = stays.filter(stay => stay.labels.some(l => l === filterBy.label))
     }
 
-    // if (filterBy.price) {
-    //     stays = stays.filter(stay => stay.price <= filterBy.price)
-    // }
     return stays
 }
 
@@ -173,14 +170,14 @@ function getLabels() {
     }
 })()
 
-function _createRandomStays() {
-    const stays = []
-    for (let i = 0; i < 28; i++) {
-        stays.push(_createRandomStay())
-    }
-    console.log(JSON.stringify(stays))
-    return stays
-}
+// function _createRandomStays() {
+//     const stays = []
+//     for (let i = 0; i < 28; i++) {
+//         stays.push(_createRandomStay())
+//     }
+//     console.log(JSON.stringify(stays))
+//     return stays
+// }
 
 function _createRandomStay() {
     const demoData = getDemoData()

@@ -1,12 +1,6 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-
-
+import React, { useState } from "react"
 
 export function PriceDetails({ price, checksDates, calculateNumberOfNights, isFromConfirmOrder = true }) {
-
-    const location = useLocation()
-    const currentPath = location.pathname
 
     const [isFromConfirmOrderUpdated] = useState(isFromConfirmOrder)
 
@@ -14,7 +8,7 @@ export function PriceDetails({ price, checksDates, calculateNumberOfNights, isFr
     return (
         checksDates && <>
             <div className='price-details'>
-                {console.log(checksDates)}
+
                 <div>
                     {isFromConfirmOrderUpdated && <h2> Price Details </h2>}
                     <div className='nights-price-container flex space-between'>

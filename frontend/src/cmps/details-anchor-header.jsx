@@ -13,7 +13,7 @@ export function DetailsAnchorHeader() {
   return (
     <div className="anchor-header full details-main-layout">
       <div className="anchor-container">
-        <a className="anchor-link" href="" onClick={(event) => handleClick(event, 'photos')}>
+        <a className="anchor-link" href="#photos" onClick={(event) => handleClick(event, 'photos')}>
           Photos
         </a>
         <a className="anchor-link" href="#amenities" onClick={(event) => handleClick(event, 'amenities')}>

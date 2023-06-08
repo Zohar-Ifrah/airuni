@@ -10,6 +10,7 @@ export function Review({ stay }) {
         if (stay.reviews.length > 6) {
             setSlicedReviews((prevSlicedReviews) => stay.reviews.slice(0, 6))
         }
+        // eslint-disable-next-line
     }, [])
 
 

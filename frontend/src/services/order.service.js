@@ -1,4 +1,3 @@
-import { userService } from './user.service.js'
 import { storageService } from './async-storage.service.js'
 
 const STORAGE_KEY = 'order_db'

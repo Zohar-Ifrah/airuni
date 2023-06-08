@@ -11,6 +11,7 @@ import { useSearchParams } from 'react-router-dom'
 export function LabelsFilter() {
     // eslint-disable-next-line
     const [items, setItems] = useState(stayService.getLabels())
+    // eslint-disable-next-line
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterByToEdit, setFilterByToEdit] = useState(useSelector(storeState => storeState.stayModule.filterBy))
     const [activeLabel, setActiveLabel] = useState(null)

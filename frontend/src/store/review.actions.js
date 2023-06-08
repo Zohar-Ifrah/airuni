@@ -7,9 +7,11 @@ import { SET_SCORE, SET_WATCHED_USER } from './user.reducer'
 export function getActionRemoveReview(reviewId) {
   return { type: REMOVE_REVIEW, reviewId }
 }
+
 export function getActionAddReview(review) {
   return { type: ADD_REVIEW, review }
 }
+
 export function getActionSetWatchedUser(user) {
   return { type: SET_WATCHED_USER, user }
 }

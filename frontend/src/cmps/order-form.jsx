@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { AddGuests } from './add-guests'
 import { CalendarPicker } from './calendar-picker'
-import { useSelector } from 'react-redux'
 import { PriceDetails } from './price-details'
 import { orederService } from '../services/order.service'
-// import { DateRangePicker } from 'react-date-range'
+
 
 export function OrderForm({ stay, checkInAndOutDate }) {
     const navigate = useNavigate()
@@ -15,24 +14,10 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
     const [checksDates, setChecksDates] = useState(checkInAndOutDate)
     const [guestsAmount, setGuestsAmount] = useState(0)
-    const [searchParams, setSearchParams] = useSearchParams()
     const isFromOrderForm = useRef(true)
-
-    const [orderDetails, setOrderDetails] = useState(orederService.getEmptyOrder())
-
-    // const guestsAmount = useRef(0)
     const maxCapacity = useRef(stay.capacity).current
-    // eslint-disable-next-line
-    // const [selectionRange, setSelectionRange] = useState({
-    //     startDate: stay.availableDates[0].startDate,
-    //     endDate: stay.availableDates[0].endDate,
-    //     key: 'selection',
-    // })
 
-    // useEffect(() => {
-
-    // }, [guestsAmount.current])
-
+    
     useEffect(() => {
         setChecksDates(checkInAndOutDate)
     }, [checkInAndOutDate])
@@ -52,43 +37,25 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     function onSubmitOrder(ev) {
         ev.preventDefault()
 
-        if (!guestsAmount && !checksDates) return console.log('NOP!!!!')
+        if (!guestsAmount && !checksDates) return setIsCalendarOpen(true)
         const formDetails = orederService.getEmptyOrder()
         formDetails.info = {
             checkin: checksDates.checkIn,
-                checkout: checksDates.checkOut,
-                guests: guestsAmount,
-                price: stay.price
+            checkout: checksDates.checkOut,
+            guests: guestsAmount,
+            price: stay.price
         }
-        // const formDetails = {
-        //     checkIn: checksDates.checkIn,
-        //     checkOut: checksDates.checkOut,
-        //     guests: guestsAmount,
-        //     price: stay.price,
-            
-        // }
-        // order  {
-            
-        //     stayId: '',
-        //     hostId: '',
-        //     buyerId: '',
-        //     info: {
-        //         checkin: -1,
-        //         checkout: -1,
-        //         price: -1,
-        //         guests: -1,
-        //     },
-        //     createdAt: -1,
-        //     isAproved: false,
-        //     }
+        formDetails.stayId = stay._id
+        formDetails.hostId = stay.host._id
 
         // SET params:
-        const params = new URLSearchParams({order:JSON.stringify(formDetails)})
+        const params = new URLSearchParams({ order: JSON.stringify(formDetails) })
 
         navigate(`/confirm/?${params}`)
     }
 
     function onOpenGuestsModal() {
+        // console.log('onOpenGuestsModal: isAddGuestsOpen? ', isAddGuestsOpen)
         // if (isCalendarOpen) setIsCalendarOpen(false)
         setIsAddGuestsOpen(prevIsAddGuestsOpen => !prevIsAddGuestsOpen)
     }
@@ -98,60 +65,42 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     }
 
     function onUpdateCapacity({ capacity }) {
+        console.log('capacity: ', capacity)
         setGuestsAmount(capacity.adults + capacity.children)
-
-        // setFilterByToEdit({
-        //   ...filterByToEdit,
-        //   adults: capacity.adults,
-        //   children: capacity.children,
-        //   infants: capacity.infants,
-        //   pets: capacity.pets,
-        // })
     }
 
-    function ontoggleCalendar(from) {
+    function ontoggleCalendar() {
         setIsCalendarOpen(!isCalendarOpen)
-        // if ((from === 'checkIn' && !isCheckIn) ||
-        //     (from === 'checkOut' && isCheckIn)) {
-        //     // console.log('enter')
-        //     setIsAddGuestsOpen(false)
-        //     setIsSearchOpen(false)
-        //     setIsCalendarOpen(!isCalendarOpen)
-        //     from === 'checkOut' && setIsCheckIn(false)
-        // } else from === 'checkIn' ? setIsCheckIn(false) : setIsCheckIn(true)
     }
 
     function onCheckInClick(isClicked) {
-        // setIsCheckIn(isClicked)
-        // isCheckInRef.current = isClicked
+        // console.log(isClicked)
     }
     function onSetDates(startDate, endDate) {
-        // console.log('startDate: ', startDate)
-        // console.log('endDate: ', endDate)
 
+        setIsCalendarOpen(!isCalendarOpen)
         setChecksDates({ checkIn: startDate, checkOut: endDate })
-        // setFilterByToEdit({
-        //     ...filterByToEdit,
-        //     checkIn: startDate,
-        //     checkOut: endDate
-        // })
+
     }
 
     function formatDate(timestamp) {
-        const date = new Date(timestamp);
-        const day = date.getDate();
-        const month = date.getMonth() + 1; // Adding 1 because getMonth() returns zero-based month
-        const year = date.getFullYear();
-        return `${month}/${day}/${year} `;
+        const date = new Date(timestamp)
+        const day = date.getDate()
+        const month = date.getMonth() + 1 // Adding 1 because getMonth() returns zero-based month
+        const year = date.getFullYear()
+        return `${month}/${day}/${year} `
     }
 
     return (
         <section className="order-form-container">
+                {console.log(guestsAmount)}
             <div className="price-rating-container flex space-between">
+
                 <div className="price-container flex align-center">
                     <h2>${stay.price}</h2>
                     <p>night</p>
                 </div>
+
                 <div className="rating-review-container flex align-center">
                     {!!stay.reviews.length && (
                         <div className="rating-container flex align-center">
@@ -159,17 +108,6 @@ export function OrderForm({ stay, checkInAndOutDate }) {
                                 src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg"
                                 alt="Star"
                             />
-                            {/* {!!stay.reviews.length && <p>
-                                {`${
-            (Math.floor(calculateAvgReviews() * 100) / 100)
-            .toLocaleString('en-US', {
-                minimumFractionDigits: 1,
-                maximumFractionDigits: 2
-            })
-            .replace(/(\.\d)0$/, '$1')
-            .replace(/\.00$/, '')
-        } `}
-                            </p>} */}
                             <p> {stay.rating} </p>
                         </div>
                     )}
@@ -193,7 +131,6 @@ export function OrderForm({ stay, checkInAndOutDate }) {
                     </div>
 
                     <div className="show-contents">
-
                         {isCalendarOpen && <CalendarPicker
                             onSetDates={onSetDates}
                             onCheckInClick={onCheckInClick} />}
@@ -212,23 +149,6 @@ export function OrderForm({ stay, checkInAndOutDate }) {
                             isFromOrderForm={isFromOrderForm} />}
                     </div>
                 </div>
-                {/* <div className="date-picker-container">
-                    <DateRangePicker
-                        ranges={[selectionRange]}
-                        onChange={handleSelect}
-                        months={2}
-                        minDate={new Date()}
-                        rangeColors={['#FF5E3A']}
-                    />
-                </div> */}
-
-                {/* <label htmlFor="guests">guests</label>
-                <select name="guests" id="guests">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                </select> */}
-
                 <button>Reserve</button>
             </form>
 

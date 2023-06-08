@@ -5,13 +5,12 @@ export const REMOVE_STAY = 'REMOVE_STAY'
 export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const FILTER_BY = 'FILTER_BY'
-// export const UNDO_REMOVE_STAY = 'UNDO_REMOVE_STAY'
+
 
 
 const initialState = {
     stays: [],
     filterBy: stayService.getDefaultFilter(),
-    // lastRemovedStay: null
 }
 
 export function stayReducer(state = initialState, action) {
@@ -38,11 +37,7 @@ export function stayReducer(state = initialState, action) {
         case FILTER_BY:
             newState = { ...state, filterBy: action.filterToEdit }
             break
-        // case UNDO_REMOVE_STAY:
-        //     if (state.lastRemovedStay) {
-        //         newState = { ...state, stays: [...state.stays, state.lastRemovedStay], lastRemovedStay: null }
-        //     }
-        //     break
+
         default:
             break
     }

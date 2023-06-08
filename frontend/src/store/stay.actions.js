@@ -1,7 +1,7 @@
-import { stayService } from "../services/stay.service.local.js";
+import { stayService } from "../services/stay.service.local.js"
 import { store } from './store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY } from "./stay.reducer.js";
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY } from "./stay.reducer.js"
 
 // Action Creators:
 export function getActionRemoveStay(stayId) {
@@ -73,33 +73,6 @@ export function updateStay(stay) {
         })
 }
 
-// export function addToCart(stay) {
-//     store.dispatch({
-//         type: ADD_TO_CART,
-//         stay
-//     })
-// }
-
-// export function removeFromCart(stayId) {
-//     store.dispatch({
-//         type: REMOVE_FROM_CART,
-//         stayId
-//     })
-// }
-
-// export async function checkout(total) {
-//     try {
-//         const score = await userService.changeScore(-total)
-//         store.dispatch({ type: SET_SCORE, score })
-//         store.dispatch({ type: CLEAR_CART })
-//         return score
-//     } catch (err) {
-//         console.log('StayActions: err in checkout', err)
-//         throw err
-//     }
-// }
-
-
 // Demo for Optimistic Mutation 
 // (IOW - Assuming the server call will work, so updating the UI first)
 export function onRemoveStayOptimistic(stayId) {
@@ -111,13 +84,10 @@ export function onRemoveStayOptimistic(stayId) {
 
     stayService.remove(stayId)
         .then(() => {
-            console.log('Server Reported - Deleted Succesfully');
+            console.log('Server Reported - Deleted Succesfully')
         })
         .catch(err => {
             showErrorMsg('Cannot remove stay')
             console.log('Cannot load stays', err)
-            // store.dispatch({
-            //     type: UNDO_REMOVE_STAY,
-            // })
         })
 }

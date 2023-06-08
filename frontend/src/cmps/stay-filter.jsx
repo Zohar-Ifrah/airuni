@@ -25,7 +25,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   const [filterByToEdit, setFilterByToEdit, handleChange] =
     useForm(useSelector((storeState) => storeState.stayModule.filterBy), onSetFilter.current)
 
-  // // eslint-disable-next-line
+  // eslint-disable-next-line
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [isCalendarOpen, setIsCalendarOpen] = useState(focusBtn && focusBtn === 'Any week')
@@ -45,7 +45,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   useEffect(() => {
     isBarFocused(isCalendarOpen || isAddGuestsOpen)
-    // console.log(isCheckIn)
+
     // eslint-disable-next-line
   }, [isAddGuestsOpen, isCalendarOpen, isSearchOpen, isCheckIn])
 
@@ -53,7 +53,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   function onSubmit(ev) {
 
     ev.stopPropagation()
-    // console.log('onSubmit: ', filterByToEdit)
+
     onChangeBarDisplay(false)
     // SET filter:
     onSetFilter.current(filterByToEdit)
@@ -67,7 +67,6 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
     const queryString = params.toString()
 
-    // console.log('queryString: ', queryString)
     setSearchParams(queryString)
 
     if (isDetailsShown) {
@@ -76,10 +75,10 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }
 
   function ontoggleCalendar(from) {
-    console.log(from)
+
     if ((from === 'checkIn' && !isCheckIn) ||
       (from === 'checkOut' && isCheckIn)) {
-      // console.log('enter')
+
       setIsAddGuestsOpen(false)
       setIsSearchOpen(false)
       setIsCalendarOpen(!isCalendarOpen)
@@ -100,8 +99,6 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }
 
   function onSetDates(startDate, endDate) {
-    // console.log('startDate: ', startDate)
-    // console.log('endDate: ', endDate)
 
     checkInAndOutDate.current = { checkIn: getMonth(startDate), checkOut: getMonth(endDate) }
     setFilterByToEdit({
@@ -112,7 +109,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }
 
   function onUpdateCapacity({ capacity }) {
-    // console.log(capacity)
+
     guestsAmount.current = capacity.adults + capacity.children
     setFilterByToEdit({
       ...filterByToEdit,
@@ -169,7 +166,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }
 
   function onCheckInClick(isClicked) {
-    console.log(isClicked)
+
     setIsCheckIn(isClicked)
     // isCheckInRef.current = isClicked
   }
@@ -228,11 +225,11 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
             <span> Who </span>
             <span> {guestsAmount.current ? guestsMsg() : 'Add guests'} </span>
           </div>
-          <button onClick={onSubmit}> 
-          <div className="second-search-svg-header">
-            <svg viewBox="1 0 32 32" xmlns="https://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'white', strokeWidth: 5.33333, overflow: 'visible' }}><g fill="none"><path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path></g></svg>
-          </div>
-          Search 
+          <button onClick={onSubmit}>
+            <div className="second-search-svg-header">
+              <svg viewBox="1 0 32 32" xmlns="https://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'white', strokeWidth: 5.33333, overflow: 'visible' }}><g fill="none"><path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path></g></svg>
+            </div>
+            Search
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -17,7 +17,8 @@ export function AppHeader() {
     const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
     const [isAnchor, setIsAnchor] = useState(false)
     const modalRef = useRef(null)
-    const isConfirmShown = useShouldShow('/confirm/')
+    // const isDetailsShown = useShouldShow('/details/')
+    const isHomeShown = useShouldShow('/')
     const unsubscribe = eventBus.on('details-load', setObserver)
 
     useEffect(() => {
@@ -30,12 +31,12 @@ export function AppHeader() {
         // const headerObserver = new IntersectionObserver(updateHeader)
 
 
-            // const gallery = document.querySelector('.details-gallery')
-            // console.log(gallery)
-            // console.log(isDetailsShown)
-            // if (gallery) {
-            //     headerObserver.observe(gallery)
-            // }
+        // const gallery = document.querySelector('.details-gallery')
+        // console.log(gallery)
+        // console.log(isDetailsShown)
+        // if (gallery) {
+        //     headerObserver.observe(gallery)
+        // }
 
 
         // console.log('gallery!!!!!!!', gallery)
@@ -49,12 +50,12 @@ export function AppHeader() {
         }
 
 
-
+        // eslint-disable-next-line 
     }, [])
 
     function updateHeader(entries) {
         entries.forEach(entry => {
-            if (!entry.isIntersecting)  setIsAnchor(true)
+            if (!entry.isIntersecting) setIsAnchor(true)
             if (entry.isIntersecting) setIsAnchor(false)
         })
     }
@@ -104,29 +105,34 @@ export function AppHeader() {
     }
 
     return (
-        <React.Fragment>
-            {isAnchor &&
-                <DetailsAnchorHeader />
-            }
-            {!isAnchor &&
-                <header className={`app-header full ${isDetailsShown ? 'details-main-layout' : 'main-layout'}`}>
-                    <div className="app-header-inner-container flex space-between align-center">
-                        <div className="main-logo">
-                            <NavLink to="/" >
-                                <div className='main-logo-container flex align-center'>
-                                    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685912254/logo-img_tdtnc7.svg" alt="" />
-                                    <h2> airbbb </h2>
-                                </div>
-                            </NavLink>
+        <header className={`app-header full ${isDetailsShown ? 'details-main-layout' : 'main-layout'}`}>
+            <div className="app-header-inner-container flex space-between align-center">
+                <div className="main-logo">
+                    <NavLink to="/" >
+                        <div className='main-logo-container flex align-center'>
+                            <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685912254/logo-img_tdtnc7.svg" alt="" />
+                            <h2> airbbb </h2>
                         </div>
-                        {console.log(isConfirmShown)}
-                        {!isConfirmShown &&
-                            <section className="header-search-bar-container">
-                                <HeaderFilter onSetFilter={onSetFilter} isDetailsShown={isDetailsShown} />
-                            </section>
-                        }
+                    </NavLink>
+                </div>
+                {isAnchor &&
+                    <DetailsAnchorHeader />
+                }
 
-                        {/* {isModalOpen &&
+                {/* {console.log('isDetailsShown: ', isDetailsShown)} */}
+                {/* {console.log('isHomeShown: ', isHomeShown)} */}
+
+                {isDetailsShown ?
+                    <section className="header-search-bar-container">
+                        <HeaderFilter onSetFilter={onSetFilter} isDetailsShown={isDetailsShown} />
+                    </section>
+                    : isHomeShown &&
+                    <section className="header-search-bar-container">
+                        <HeaderFilter onSetFilter={onSetFilter} isDetailsShown={isDetailsShown} />
+                    </section>
+                }
+
+                {/* {isModalOpen &&
                     <nav>
                         <NavLink to="/"> Home</NavLink>
                         <NavLink to="/stay"> Stay </NavLink>
@@ -137,51 +143,49 @@ export function AppHeader() {
                     </nav>
                 } */}
 
-                        <div className='login-signup-btn-container'>
+                <div className='login-signup-btn-container'>
 
-                            <div className='inner-login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
+                    <div className='inner-login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
 
-                                <img className='menu-svg' src={menu} alt="menu" />
+                        <img className='menu-svg' src={menu} alt="menu" />
 
-                                <img className='acc-svg'
-                                    src={user ? user.imgUrl : 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'}
-                                    alt="user"
-                                    onError={ev =>
-                                        ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
+                        <img className='acc-svg'
+                            src={user ? user.imgUrl : 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'}
+                            alt="user"
+                            onError={ev =>
+                                ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
 
-                            </div>
-
-                            {isModalOpen && <nav>
-                                <div className="login-signup-container" ref={modalRef}>
-                                    {user &&
-                                        <span className="user-info">
-                                            <div className='user-info-content-container'>
-                                                <NavLink to={`user/${user._id}`} className='user-container'>
-                                                    {user.imgUrl && <img src={user.imgUrl} alt='user' onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />}
-                                                    {user.fullname}
-                                                </NavLink>
-                                                {/* <span className="score">{user.score?.toLocaleString()}</span> */}
-                                                <NavLink to='#'> Messeges </NavLink>
-                                                <NavLink to='#'> Trips </NavLink>
-                                                <NavLink to='#'> Whishlist </NavLink>
-                                                <NavLink to='#'> Dashboard </NavLink>
-                                                <button onClick={onLogout}>Log out</button>
-                                            </div>
-                                        </span>
-                                    }
-                                    {!user &&
-                                        <section className="user-info">
-                                            <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                                        </section>
-                                    }
-                                </div>
-                            </nav>}
-                        </div>
-
-                        {/* <button onClick={() => { onToggleUserModal() }}>Sign</button> */}
                     </div>
-                </header>
-            }
-        </React.Fragment>
+
+                    {isModalOpen && <nav>
+                        <div className="login-signup-container" ref={modalRef}>
+                            {user &&
+                                <span className="user-info">
+                                    <div className='user-info-content-container'>
+                                        <NavLink to={`user/${user._id}`} className='user-container'>
+                                            {user.imgUrl && <img src={user.imgUrl} alt='user' onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />}
+                                            {user.fullname}
+                                        </NavLink>
+                                        {/* <span className="score">{user.score?.toLocaleString()}</span> */}
+                                        <NavLink to='#'> Messeges </NavLink>
+                                        <NavLink to='/trip'> Trips </NavLink>
+                                        <NavLink to='/wishlist'> Whishlist </NavLink>
+                                        <NavLink to='#'> Dashboard </NavLink>
+                                        <button onClick={onLogout}>Log out</button>
+                                    </div>
+                                </span>
+                            }
+                            {!user &&
+                                <section className="user-info">
+                                    <LoginSignup onLogin={onLogin} onSignup={onSignup} />
+                                </section>
+                            }
+                        </div>
+                    </nav>}
+                </div>
+
+                {/* <button onClick={() => { onToggleUserModal() }}>Sign</button> */}
+            </div>
+        </header>
     )
 }

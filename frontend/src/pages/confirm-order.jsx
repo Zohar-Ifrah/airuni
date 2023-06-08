@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { PriceDetails } from "../cmps/price-details";
+import { orederService } from "../services/order.service";
+import { userService } from "../services/user.service";
 
 
 
@@ -8,20 +10,17 @@ export function ConfirmOrder() {
 
     const [searchParams] = useSearchParams()
     const [formDetails, setFormDetails] = useState(null)
-
+    const navigate = useNavigate()
 
     // First load
     useEffect(() => {
 
         const params = searchParams.get('order')
         if (params) setFormDetails(JSON.parse(params))
-        console.log(JSON.parse(params))
-
+        // eslint-disable-next-line
     }, [])
 
     function calculateNumberOfNights(start, end) {
-        console.log(start)
-        console.log(end)
         const startDate = new Date(start)
         const endDate = new Date(end)
         const timeDifference = endDate.getTime() - startDate.getTime()
@@ -30,7 +29,6 @@ export function ConfirmOrder() {
     }
 
     function convertDates(time) {
-        console.log('time :', time)
         const timestamp = time
         const date = new Date(timestamp)
 
@@ -40,6 +38,20 @@ export function ConfirmOrder() {
         const convertedDate = `${month} ${day}`
 
         return convertedDate
+    }
+
+    function confirmOrder() {
+        const user = userService.getLoggedinUser()
+        console.log(user)
+        if (user) {
+            formDetails.buyerId = user._id
+            orederService.add(formDetails)
+            console.log(formDetails)
+            navigate('/')
+        } else console.log('pls log it')   // TO EDIT
+
+    
+        
     }
 
     if (!formDetails) return
@@ -67,7 +79,7 @@ export function ConfirmOrder() {
                 <PriceDetails price={formDetails.info.price} checksDates={{ checkIn: formDetails.info.checkin, checkOut: formDetails.info.checkout }} calculateNumberOfNights={calculateNumberOfNights} />
             </div>
 
-            <Link to='/'> <button> Back </button> </Link>
+            <button onClick={confirmOrder}> Confirm </button>
         </section>
     )
 }

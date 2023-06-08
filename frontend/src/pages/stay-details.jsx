@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg } from "../services/event-bus.service"
-// import { stayService } from "../services/stay.service"
-import { stayService } from "../services/stay.service.local"  //stay.service.local
+import { stayService } from "../services/stay.service.local"
 import { DetailsGallery } from "../cmps/details-gallery"
 import { DetailsHeader } from "../cmps/details-header"
-import { DetailsCalendar } from "../cmps/details-calendar"
 import { StayExrtaDetails } from "../cmps/stay-extra-details"
 import { StayAmenities } from "../cmps/stay-amenities"
 import { Review } from "../cmps/review"
@@ -13,7 +11,8 @@ import { OrderForm } from "../cmps/order-form"
 import { useDispatch } from "react-redux"
 import { SET_DETAILS_SHOWN } from "../store/system.reducer"
 import { CalendarPicker } from "../cmps/calendar-picker"
-// import { DetailsAnchorHeader } from "../cmps/details-anchor-header"
+import { DetailsMap } from "../cmps/details-map"
+
 
 
 export function StayDetails() {
@@ -36,7 +35,6 @@ export function StayDetails() {
         stayService.getById(stayId)
             .then((stay) => {
                 setStay(stay)
-                console.log(stay);
             })
             .catch((err) => {
                 console.log('Had issues in stay details', err)
@@ -46,26 +44,13 @@ export function StayDetails() {
     }
 
     function onSetDates(startDate, endDate) {
-        console.log(startDate)
-        console.log(endDate)
-        // setCheckInAndOutDate({ checkIn: getMonth(startDate), checkOut: getMonth(endDate) })
-        setCheckInAndOutDate({ checkIn: startDate, checkOut: endDate })
-        // setFilterByToEdit({
-        //   ...filterByToEdit,
-        //   checkIn: startDate,
-        //   checkOut: endDate
-        // })
+        setCheckInAndOutDate({
+            checkIn: startDate, checkOut: endDate
+        })
     }
 
-    // function getMonth(timestamp) {
-    //     const date = new Date(timestamp)
-    //     const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' })
-    //     return formattedDate // Output: Jun 7
-    // }
-
-    function onCheckInClick(isCheckInClicked) {
+    function onCheckInClick(isCheckInClicked) { // To check if needs?
         // console.log(isCheckInClicked)
-
     }
 
     if (!stay) return <h1>Loading ...</h1>
@@ -90,10 +75,7 @@ export function StayDetails() {
             </div>
         </section>
         <Review stay={stay} />
-
-
-
-
-        {/* <Link className="btn" to="/stay">Back to List</Link> */}
+        <DetailsMap />
+        <button>Contact Host</button>
     </div>
 }

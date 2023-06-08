@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { utilService } from '../services/util.service'
-import { userService } from '../services/user.service'
 
 
 export function StayExrtaDetails({ stay }) {
