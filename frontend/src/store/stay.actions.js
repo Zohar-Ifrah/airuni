@@ -1,4 +1,4 @@
-import { stayService } from "../services/stay.service.local.js"
+import { stayService } from "../services/stay.service.js";
 import { store } from './store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY } from "./stay.reducer.js"
