@@ -49,21 +49,6 @@ export function ConfirmOrder() {
         orederService.add(formDetails)
         console.log(formDetails)
         navigate('/')
-
-        // const user = userService.getLoggedinUser()
-        // console.log(user)
-        
-        // if (user) {
-        //     formDetails.buyerId = user._id
-        //     orederService.add(formDetails)
-        //     console.log(formDetails)
-        //     navigate('/')
-        // } else {
-        //     setIsLodingShown(true)
-        //     console.log('pls log it')   // TO EDIT
-        // }
-
-
     }
 
     if (!formDetails) return
@@ -96,7 +81,7 @@ export function ConfirmOrder() {
                 <div>
                     <h3>Please login to book</h3>
                     <h1>Login in or sign up</h1>
-                    <LoginSignup />
+                    {/* <LoginSignup /> */} 
                 </div>   
             }
         </section>
