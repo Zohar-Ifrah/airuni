@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
-    : '//localhost:3030/api/'
+    : '//192.168.68.54:3030/api/'
 
 
 var axios = Axios.create({

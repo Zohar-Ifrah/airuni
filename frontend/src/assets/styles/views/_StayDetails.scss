@@ -191,6 +191,11 @@
                     }
                 }
             }
+
+            .calendar-picker-header {
+                display: flex;
+                place-content: center;
+            }
         }
 
         .stay-details-content-column2 {
@@ -331,7 +336,7 @@
                         .rdrDateRangePickerWrapper {
                             width: 100%;
 
-                            &>* {
+                            >* {
                                 width: 100%;
                             }
 
@@ -346,12 +351,12 @@
                             }
 
                             .rdrCalendarWrapper {
-                                &>* {
+                                >* {
                                     width: 100%;
                                 }
 
                                 .rdrDateDisplayWrapper {
-                                    &>* {
+                                    >* {
                                         width: 100%;
                                     }
                                 }
@@ -361,7 +366,7 @@
                                 }
 
                                 .rdrMonths {
-                                    &>* {
+                                    >* {
                                         width: 100%;
                                     }
                                 }
@@ -391,25 +396,15 @@
         }
     }
 
-    .react-calendar {
-        width: 100%;
-    }
-
-
-    .react-calendar__navigation__arrow,
-    .react-calendar__month-view__days__day,
-    .react-calendar__navigation__label {
-        color: black;
-
-    }
-
     .review-container {
         border-block-start: 1px solid $clr4;
         border-block-end: 1px solid $clr4;
-        margin-block-start: 3.5em;
+        margin-block-start: 3em;
         margin-block-end: 3.5em;
         padding-block-start: 3em;
         padding-block-end: 3em;
+        align-items: stretch;
+        justify-content: stretch;
 
         .rating-container {
 

@@ -17,7 +17,7 @@ import { DetailsMap } from "../cmps/details-map"
 
 
 export function StayDetails() {
-    const calAmount = 1
+    const calAmount = 2
     const [stay, setStay] = useState(null)
     const { stayId } = useParams()
     const dispatch = useDispatch()
