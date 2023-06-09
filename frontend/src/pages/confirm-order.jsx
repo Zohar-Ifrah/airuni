@@ -6,8 +6,9 @@ import { userService } from "../services/user.service";
 
 
 
-export function ConfirmOrder() {
 
+export function ConfirmOrder() {
+    const [isLodingShown, setIsLodingShown] = useState(false)
     const [searchParams] = useSearchParams()
     const [formDetails, setFormDetails] = useState(null)
     const navigate = useNavigate()
@@ -48,10 +49,12 @@ export function ConfirmOrder() {
             orederService.add(formDetails)
             console.log(formDetails)
             navigate('/')
-        } else console.log('pls log it')   // TO EDIT
+        } else {
+            setIsLodingShown(true)
+            console.log('pls log it')   // TO EDIT
+        }
 
-    
-        
+
     }
 
     if (!formDetails) return
@@ -78,8 +81,18 @@ export function ConfirmOrder() {
             <div className="column2-content">
                 <PriceDetails price={formDetails.info.price} checksDates={{ checkIn: formDetails.info.checkin, checkOut: formDetails.info.checkout }} calculateNumberOfNights={calculateNumberOfNights} />
             </div>
+            {isLodingShown ?
+                <div>
+                <h3>Please login to book</h3>
+                <h1>Login in or sign up</h1>
+                    {/* <LoginSignup /> */}
+                    {/* until fixed: */}
+                <button onClick={confirmOrder}> Confirm </button>
 
-            <button onClick={confirmOrder}> Confirm </button>
+                </div>
+                :
+                <button onClick={confirmOrder}> Confirm </button>
+            }
         </section>
     )
 }

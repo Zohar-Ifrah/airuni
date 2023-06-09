@@ -6,9 +6,12 @@ import { AddGuests } from './add-guests'
 import { CalendarPicker } from './calendar-picker'
 import { PriceDetails } from './price-details'
 import { orederService } from '../services/order.service'
+import { useDispatch } from 'react-redux'
+import { SET_DETAILS_UNSHOWN } from '../store/system.reducer'
 
 
 export function OrderForm({ stay, checkInAndOutDate }) {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
@@ -50,7 +53,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
 
         // SET params:
         const params = new URLSearchParams({ order: JSON.stringify(formDetails) })
-
+        dispatch({ type: SET_DETAILS_UNSHOWN })
         navigate(`/confirm/?${params}`)
     }
 

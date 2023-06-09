@@ -30,24 +30,6 @@ export function AppHeader() {
 
         // const headerObserver = new IntersectionObserver(updateHeader)
 
-
-        // const gallery = document.querySelector('.details-gallery')
-        // console.log(gallery)
-        // console.log(isDetailsShown)
-        // if (gallery) {
-        //     headerObserver.observe(gallery)
-        // }
-        // const gallery = document.querySelector('.details-gallery')
-        // console.log(gallery)
-        // console.log(isDetailsShown)
-        // if (gallery) {
-        //     headerObserver.observe(gallery)
-        // }
-
-
-        // console.log('gallery!!!!!!!', gallery)
-
-
         window.addEventListener('mousedown', handleOutsideClick)
 
         return () => {
@@ -61,7 +43,7 @@ export function AppHeader() {
 
     function updateHeader(entries) {
         entries.forEach(entry => {
-            if (!entry.isIntersecting)  setIsAnchor(true)
+            if (!entry.isIntersecting) setIsAnchor(true)
             if (entry.isIntersecting) setIsAnchor(false)
         })
     }
@@ -101,9 +83,7 @@ export function AppHeader() {
     }
 
     function onToggleUserModal() {
-        // console.log(isModalOpen)
         setIsModalOpen(!isModalOpen)
-        // if (!isModalOpen) setIsModalOpen(!isModalOpen)
     }
 
     function onSetFilter() {
@@ -121,7 +101,7 @@ export function AppHeader() {
                         </div>
                     </NavLink>
                 </div>
-                {isAnchor &&
+                {isAnchor && isDetailsShown &&
                     <DetailsAnchorHeader />
                 }
 

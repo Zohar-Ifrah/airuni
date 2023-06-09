@@ -173,6 +173,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
   return (
     <section className="filter-header-section">
+
       <div className={`search-label-header flex justify-center ${isSearchOpen && 'focused'}`}
         onClick={() => { onOpenSearchModal() }}>
         <label htmlFor="location">Where</label>
@@ -184,6 +185,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
           onChange={handleChange}
         />
       </div>
+      
       <div className="show-contents">
         {isSearchOpen && <RegionSearch
           onRegionClick={onRegionClick} />}

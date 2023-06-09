@@ -8,7 +8,7 @@ export function DetailsMap() {
     const zoom = 10
 
     return (
-        <div className="details-map">
+        <div id='location' className="details-map">
             <h2>Where you'll be</h2>
             <div style={{ height: '400px', width: '100%' }}>
                 <GoogleMapReact
