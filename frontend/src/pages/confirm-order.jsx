@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { PriceDetails } from "../cmps/price-details";
 import { orederService } from "../services/order.service";
-import { userService } from "../services/user.service";
+import { useSelector } from "react-redux";
+import { LoginSignup } from "../cmps/login-signup";
 
 
 
 
 export function ConfirmOrder() {
-    const [isLodingShown, setIsLodingShown] = useState(false)
     const [searchParams] = useSearchParams()
     const [formDetails, setFormDetails] = useState(null)
     const navigate = useNavigate()
+    const isUserLogged = useSelector(storeState => storeState.userModule.user)
+
 
     // First load
     useEffect(() => {
@@ -42,17 +44,24 @@ export function ConfirmOrder() {
     }
 
     function confirmOrder() {
-        const user = userService.getLoggedinUser()
-        console.log(user)
-        if (user) {
-            formDetails.buyerId = user._id
-            orederService.add(formDetails)
-            console.log(formDetails)
-            navigate('/')
-        } else {
-            setIsLodingShown(true)
-            console.log('pls log it')   // TO EDIT
-        }
+        console.log(isUserLogged)
+        formDetails.buyerId = isUserLogged._id
+        orederService.add(formDetails)
+        console.log(formDetails)
+        navigate('/')
+
+        // const user = userService.getLoggedinUser()
+        // console.log(user)
+        
+        // if (user) {
+        //     formDetails.buyerId = user._id
+        //     orederService.add(formDetails)
+        //     console.log(formDetails)
+        //     navigate('/')
+        // } else {
+        //     setIsLodingShown(true)
+        //     console.log('pls log it')   // TO EDIT
+        // }
 
 
     }
@@ -81,17 +90,14 @@ export function ConfirmOrder() {
             <div className="column2-content">
                 <PriceDetails price={formDetails.info.price} checksDates={{ checkIn: formDetails.info.checkin, checkOut: formDetails.info.checkout }} calculateNumberOfNights={calculateNumberOfNights} />
             </div>
-            {isLodingShown ?
-                <div>
-                <h3>Please login to book</h3>
-                <h1>Login in or sign up</h1>
-                    {/* <LoginSignup /> */}
-                    {/* until fixed: */}
+            {isUserLogged ?
                 <button onClick={confirmOrder}> Confirm </button>
-
-                </div>
                 :
-                <button onClick={confirmOrder}> Confirm </button>
+                <div>
+                    <h3>Please login to book</h3>
+                    <h1>Login in or sign up</h1>
+                    <LoginSignup />
+                </div>   
             }
         </section>
     )

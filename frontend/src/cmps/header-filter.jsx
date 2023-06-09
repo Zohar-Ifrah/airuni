@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { SearchMenu } from "./search-menu"
-import search from '../assets/img/search.svg'
 import { useSelector } from "react-redux"
 
 export function HeaderFilter({ onSetFilter }) {

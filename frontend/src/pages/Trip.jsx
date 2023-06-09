@@ -1,8 +1,9 @@
+import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 export function Trip() {
     const navigate = useNavigate()
-    const isUserLogged = true // TO EDIT
+    const isUserLogged = useSelector(storeState => storeState.userModule.user)
 
     return (
         <>
