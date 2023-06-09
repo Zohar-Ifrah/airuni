@@ -11,12 +11,10 @@ async function query(filterBy) {
     try {
         //todo : build criteria
         const criteria = _buildCriteria(filterBy)
-        console.log(criteria)
         const collection = await dbService.getCollection('stay')
         var stayCursor = await collection.find(criteria)
 
         if (filterBy.pageIdx !== undefined) {
-            console.log('here')
             stayCursor.skip(filterBy.pageIdx * PAGE_SIZE).limit(PAGE_SIZE)
         }
 

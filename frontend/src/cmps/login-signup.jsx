@@ -51,9 +51,9 @@ export function LoginSignup(props) {
 
     return (
         <div className="login-page">
-            <p>
+            <div className='login-signup-container'>
                 <div className="link" onClick={toggleSignup}>{!isSignup ? 'Sign up' : 'Log in'}</div>
-            </p>
+            </div>
             {!isSignup && <form className="login-form" onSubmit={onLogin}>
                 <button className='btn-login'> Log in </button>
 

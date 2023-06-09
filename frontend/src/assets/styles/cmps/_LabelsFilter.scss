@@ -1,11 +1,12 @@
 .react-horizontal-scrolling-menu--wrapper {
     width: 100%;
+    height: 7em;
     position: relative;
     grid-column: 1/-1;
     display: grid;
     grid-template-columns: 80px calc(100vw - 180px) 80px;
     position: sticky;
-    top: 79px;
+    top: em(79px);
     background-color: white;
     z-index: 11;
 
@@ -18,6 +19,10 @@
     }
 
     .react-horizontal-scrolling-menu--header {
+        display: none;
+    }
+
+    .react-horizontal-scrolling-menu--footer {
         display: none;
     }
 

@@ -2,9 +2,30 @@
     padding-block: 1em;
     border-block-end: 1px solid #dedede;
     position: sticky;
+    width: 100%;
     top: 0;
     z-index: 50;
     background-color: white;
+
+    .login-signup-btn-container {
+        position: relative;
+
+        .inner-login-signup-btn-container {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #dedede;
+            border-radius: 555px;
+            padding: 0.3em 0.3em 0.3em 0.7em;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+
+            &:hover {
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px 0px;
+            }
+        }
+    }
 
     nav {
         display: flex;
@@ -29,6 +50,7 @@
                     padding: 2em;
                     display: flex;
                     flex-direction: column;
+                    min-width: 15em;
 
 
                     a {
@@ -88,7 +110,7 @@
                         padding-inline: 1.5em;
                     }
 
-                    p {
+                    .login-signup-container {
                         margin-block-start: 1em;
                         padding-block: .5em;
 
@@ -115,6 +137,10 @@
 
                         &:hover {
                             background-color: $clr5;
+
+                            select {
+                                background-color: $clr8;
+                            }
                         }
 
                         .btn-login {
@@ -124,33 +150,18 @@
                             text-align: left;
                             font-family: Circular-Light, sans-serif;
                         }
+
+                        select {
+                            padding-inline: .5em;
+                            padding-block: .5em;
+                            border-radius: 555px;
+                            border: none;
+                            background-color: $clr5;
+                            font-size: em(12px);
+                        }
                     }
                 }
             }
-        }
-    }
-
-    .login-signup-btn-container {
-        // display: flex;
-        // align-items: center;
-        // background-color: #fff;
-        // border: 1px solid #dedede;
-        // border-radius: 555px;
-        // padding: 0.3em 0.3em 0.3em 0.7em;
-        // transition: all 0.2s ease;
-        // cursor: pointer;
-        position: relative;
-
-        .inner-login-signup-btn-container {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            border: 1px solid #dedede;
-            border-radius: 555px;
-            padding: 0.3em 0.3em 0.3em 0.7em;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            position: relative;
         }
     }
 
@@ -191,18 +202,23 @@
         cursor: default;
         left: 0;
         margin-top: 12px;
-        padding: 16px 20px;
+        padding: em(45px) em(45px);
         position: absolute;
         top: 62px;
         z-index: 3;
 
+        h4 {
+            margin-inline-start: em(8px);
+            font-family: Circular-Regular, sans-serif;
+        }
+
         .region-grid {
+            margin-block-start: 1.5em;
             grid-column-gap: 5px;
             grid-row-gap: 24px;
             column-gap: 5px;
             display: grid;
             grid-template-columns: repeat(3, min-content);
-            margin-bottom: 40px;
             row-gap: 24px;
         }
 
@@ -251,6 +267,8 @@
         }
 
         .header-search-bar-container {
+
+            // padding-block-end: 2.5em;
 
             position: relative;
 
@@ -585,11 +603,18 @@
                 position: absolute;
                 border-radius: 15px;
                 padding: 1em;
+                width: 100%;
                 left: 0;
                 top: 4.8em;
                 z-index: 10;
                 cursor: default;
                 box-shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 8px 16px rgba(0, 0, 0, .15);
+
+                .rdp-months {
+                    display: flex;
+                    place-content: center;
+                    gap: 47px;
+                }
             }
 
 
@@ -644,4 +669,8 @@
             }
         }
     }
+}
+
+.relative {
+    position: relative;
 }
