@@ -25,6 +25,10 @@
                 box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px 0px;
             }
         }
+
+        img {
+            border-radius: 50%;
+        }
     }
 
     nav {
@@ -40,6 +44,7 @@
         background-color: #fff;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, .04), 0 8px 16px rgba(0, 0, 0, .15);
         cursor: default;
+        z-index: 10;
 
 
         .login-signup-container {
@@ -208,8 +213,9 @@
         z-index: 3;
 
         h4 {
-            margin-inline-start: em(8px);
             font-family: Circular-Regular, sans-serif;
+            font-size: em(15px);
+            margin-block-end: 2em;
         }
 
         .region-grid {
@@ -219,14 +225,15 @@
             column-gap: 5px;
             display: grid;
             grid-template-columns: repeat(3, min-content);
-            row-gap: 24px;
+            row-gap: em(30px);
+            column-gap: em(12px);
         }
 
         img {
             width: 8em;
             border-radius: 14px;
-            margin: 0.5em;
             cursor: pointer;
+            border: 1px solid $clr5;
         }
 
         img:hover {
@@ -236,7 +243,7 @@
         p {
             font-family: 'Circular-Light';
             color: #222222;
-            font-size: 14px;
+            font-size: em(15px);
         }
 
     }
@@ -298,6 +305,10 @@
                     span {
                         border-inline-end: 1px solid $clr4;
                         margin-inline-start: .5em;
+
+                        &.details-shown-remove-border {
+                            border-inline-end: none;
+                        }
                     }
                 }
 
@@ -440,6 +451,7 @@
 
                                     button {
                                         height: 75%;
+                                        border-radius: 555px;
                                     }
                                 }
 
@@ -524,6 +536,7 @@
                                         font-family: Circular-Light, sans-serif;
                                         font-size: em(15px);
                                         color: $clr7;
+                                        width: 5em;
                                     }
 
 
@@ -623,7 +636,7 @@
                 position: absolute;
                 border-radius: em(30px);
                 padding: 2.5em;
-                right: -3em;
+                right: 0;
                 top: 5em;
                 z-index: 1;
                 width: 25em;
@@ -640,14 +653,35 @@
 
                     .guest-count-container {
                         display: flex;
-                        gap: 0.6em;
+                        gap: 0.9em;
                         align-items: center;
                         justify-content: space-between;
+
+                        span {
+                            font-family: Circular-Light, sans-serif;
+                            font-size: em(15px);
+                            width: .5em;
+                            color: $clr2;
+                        }
+
+                        button {
+                            &:hover {
+                                color: $clr2;
+                                border: 1px solid $clr2;
+                            }
+
+                            &.blank {
+                                cursor: not-allowed;
+                                border: 1px solid $clr5;
+                                color: $clr5;
+                            }
+                        }
                     }
 
                     p {
                         font-family: Circular-Medium, sans-serif;
                         color: $clr2;
+                        font-size: em(17px);
                     }
 
                     span {

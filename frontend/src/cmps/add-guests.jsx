@@ -34,7 +34,7 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
         }
 
         // minimum limit
-        if (newValue < 0) {
+        if (newValue <= 0) {
             newValue = 0
         }
 
@@ -52,32 +52,32 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
             <div className="guest-select-row">
                 <p>Adults <span>Ages 13 or above</span></p>
                 <div className="guest-count-container">
-                    <button onClick={(ev) => { ev.preventDefault(); onChange('-', 'adults') }} >-</button>
-                    {capacity.adults}
+                    <button className={!capacity.adults ? 'blank' : ''} onClick={(ev) => { ev.preventDefault(); onChange('-', 'adults') }} >-</button>
+                    <span> {capacity.adults} </span>
                     <button onClick={(ev) => { ev.preventDefault(); onChange('+', 'adults') }} >+</button>
                 </div>
             </div>
             <div className="guest-select-row">
                 <p>Children <span>Ages 2-12</span></p>
                 <div className="guest-count-container">
-                    <button onClick={(ev) => { ev.preventDefault(); onChange('-', 'children') }} >-</button>
-                    {capacity.children}
+                    <button className={!capacity.children ? 'blank' : ''} onClick={(ev) => { ev.preventDefault(); onChange('-', 'children') }} >-</button>
+                    <span> {capacity.children} </span>
                     <button onClick={(ev) => { ev.preventDefault(); onChange('+', 'children') }} >+</button>
                 </div>
             </div>
             <div className="guest-select-row">
                 <p>Infants <span>Under 2</span></p>
                 <div className="guest-count-container">
-                    <button onClick={(ev) => { ev.preventDefault(); onChange('-', 'infants') }} disabled={capacity.infants <= 0}>-</button>
-                    {capacity.infants}
+                    <button className={!capacity.infants ? 'blank' : ''} onClick={(ev) => { ev.preventDefault(); onChange('-', 'infants') }} disabled={capacity.infants <= 0}>-</button>
+                    <span> {capacity.infants} </span>
                     <button onClick={(ev) => { ev.preventDefault(); onChange('+', 'infants') }} disabled={capacity.infants >= 5}>+</button>
                 </div>
             </div>
             <div className="guest-select-row">
                 <p>Pets <span>Bringing a service animal?</span></p>
                 <div className="guest-count-container">
-                    <button onClick={(ev) => { ev.preventDefault(); onChange('-', 'pets') }} disabled={capacity.pets <= 0}>-</button>
-                    {capacity.pets}
+                    <button className={!capacity.pets ? 'blank' : ''} onClick={(ev) => { ev.preventDefault(); onChange('-', 'pets') }} disabled={capacity.pets <= 0}>-</button>
+                    <span> {capacity.pets} </span>
                     <button onClick={(ev) => { ev.preventDefault(); onChange('+', 'pets') }} disabled={capacity.pets >= 5}>+</button>
                 </div>
             </div>
@@ -87,7 +87,7 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
                         <p>This place has a maximum of {maxCapacity + ` ${maxCapacity > 1 ? 'guests' : 'guest'}`} , not including infants.</p>
                     </div>
                     <div>
-                        <button onClick={onOpenGuestsModal}> Close </button>
+                        <button className="btn-close" onClick={onOpenGuestsModal}> Close </button>
                     </div>
                 </div>}
         </section>

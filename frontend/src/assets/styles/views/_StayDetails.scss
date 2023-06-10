@@ -193,8 +193,15 @@
             }
 
             .calendar-picker-header {
-                display: flex;
-                place-content: center;
+
+                .rdp {
+                    margin: 0;
+
+                    .rdp-months {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
             }
         }
 
@@ -259,16 +266,18 @@
                             border-top-left-radius: 0.5em;
                             border-top-right-radius: 0.5em;
                             border-block-end: 0;
-                            padding: 0.5em;
 
                             .check-in-container {
                                 border-inline-end: 1px solid rgba(0, 0, 0, 0.356);
                                 width: 50%;
                                 height: 100%;
+                                padding-inline: .8em;
+                                padding-block-start: .3em;
+                                padding-block-end: .5em;
 
                                 span {
                                     text-transform: uppercase;
-                                    font-size: em(10px);
+                                    font-size: em(9px);
                                     font-family: Circular-Medium, sans-serif;
                                 }
 
@@ -285,11 +294,13 @@
                             .check-out-container {
                                 width: 50%;
                                 height: 100%;
-                                padding-inline-start: 1em;
+                                padding-inline: .8em;
+                                padding-block-start: .3em;
+                                padding-block-end: .5em;
 
                                 span {
                                     text-transform: uppercase;
-                                    font-size: em(10px);
+                                    font-size: em(9px);
                                     font-family: Circular-Medium, sans-serif;
                                 }
 
@@ -309,14 +320,16 @@
                             border-bottom-left-radius: 0.5em;
                             border-bottom-right-radius: 0.5em;
                             width: 100%;
-                            padding: 0.5em;
-                            padding-block: 0.7em;
+                            padding-inline: .8em;
+                            padding-block-start: .8em;
+                            padding-block-end: .5em;
                             text-align: left;
 
                             span {
                                 text-transform: uppercase;
-                                font-size: em(10px);
+                                font-size: em(9px);
                                 font-family: Circular-Medium, sans-serif;
+                                margin-block-end: .3em;
                             }
 
                             .guests-count {
@@ -403,8 +416,6 @@
         margin-block-end: 3.5em;
         padding-block-start: 3em;
         padding-block-end: 3em;
-        align-items: stretch;
-        justify-content: stretch;
 
         .rating-container {
 

@@ -26,7 +26,7 @@ export function PriceDetails({ price, checksDates, calculateNumberOfNights, isFr
                 </div>
 
                 <div className='total-price-container nights-sum flex space-between'>
-                    <h3> total </h3>
+                    <h3> Total </h3>
                     <p> {`$${price * calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut) + 20} `} </p>
                 </div>
             </div>

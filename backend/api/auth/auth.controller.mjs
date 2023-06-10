@@ -2,6 +2,7 @@ import { authService } from './auth.service.mjs'
 import { logger } from '../../services/logger.service.mjs'
 
 export async function login(req, res) {
+    console.log('req.body from login', req.body);
     const { username, password } = req.body
     try {
         const user = await authService.login(username, password)

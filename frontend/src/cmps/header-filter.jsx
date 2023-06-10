@@ -60,7 +60,7 @@ export function HeaderFilter({ onSetFilter }) {
         }
 
         {isDetailsShown &&
-          <button onClick={() => { onChangeBarDisplay('Search', true) }}><span>Start your search</span></button>
+          <button onClick={() => { onChangeBarDisplay('Search', true) }}> <span className="details-shown-remove-border"> Start your search </span> </button>
         }
         {isDetailsShown &&
           <div onClick={onSearchClick} className="first-search-svg-header">

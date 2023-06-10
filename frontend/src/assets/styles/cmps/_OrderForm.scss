@@ -3,28 +3,55 @@
         background-color: #ffffff;
         position: absolute;
         border-radius: 0.2em;
-        padding: 1em;
-        /* right: -3em; */
-        top: 13.5em;
+        padding: 1.5em;
+        top: 13.4em;
         z-index: 1;
-        width: 18.1em;
-        height: 19.2em;
+        width: 18.9em;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 2px 2px 6px rgba(0, 0, 0, 0.01);
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px !important;
         font-family: Circular-Regular, sans-serif;
 
 
         .guest-select-row {
             display: flex;
             justify-content: space-between;
+            margin-block-end: 1em;
 
             .guest-count-container {
                 display: flex;
                 gap: 0.6em;
                 align-items: center;
                 justify-content: space-between;
+
+                span {
+                    font-family: Circular-Regular, sans-serif;
+                    font-size: em(16px);
+                    color: $clr2;
+                    width: .5em;
+                }
+
+                button {
+                    background-color: inherit;
+                    border: 1px solid grey;
+                    border-radius: 50%;
+                    color: grey;
+                    width: 2em;
+                    height: 2em;
+                    font-family: Circular-Regular, sans-serif;
+
+                    &:hover {
+                        color: $clr2;
+                        border: 1px solid $clr2;
+                    }
+
+                    &.blank {
+                        cursor: not-allowed;
+                        border: 1px solid $clr5;
+                        color: $clr5;
+                    }
+                }
             }
 
             p {
@@ -39,26 +66,45 @@
                 font-size: em(15px);
             }
 
-            button {
-                background-color: inherit;
-                border: 1px solid grey;
-                border-radius: 50%;
-                color: grey;
-                width: 2em;
-                height: 2em;
+        }
+
+        div {
+            div {
+                p {
+                    font-size: em(14px);
+                    color: $clr2;
+                }
+            }
+
+            div {
+                display: flex;
+                justify-content: flex-end;
+
+                .btn-close {
+                    background-color: #fff;
+                    padding: 0;
+                    color: $clr2;
+                    text-decoration: underline;
+                    font-family: Circular-Medium, sans-serif;
+                    transition: all 0.1s ease-in-out;
+
+                    &:hover {
+                        scale: 103%;
+                    }
+                }
             }
         }
     }
 
     .calendar-picker-header {
         background-color: #ffffff;
-    position: absolute;
-    border-radius: 15px;
-    padding: 1em;
-    right: 0;
-    bottom: -8.5em;
-    z-index: 10;
-    cursor: default;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
+        position: absolute;
+        border-radius: 15px;
+        padding: 1em;
+        right: 0;
+        bottom: -8.5em;
+        z-index: 10;
+        cursor: default;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
     }
 }
