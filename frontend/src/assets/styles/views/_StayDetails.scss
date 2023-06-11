@@ -13,21 +13,47 @@
             .inner-content {
 
                 .rating-container {
-                    font-family: Circular-Light, sans-serif;
+                    font-family: Circular-Regular, sans-serif;
+                    font-size: em(15px);
 
                     img {
                         width: 1em;
                         margin-inline-end: 0.3em;
-                        margin-block-end: 0.2em;
+                        margin-block-end: 0.1em;
                     }
 
                     span {
                         margin-inline-end: 0.2em;
+                        margin-block-start: 0.2em;
                     }
                 }
 
                 p {
                     color: $clr2;
+                    font-family: Circular-Regular, sans-serif;
+                    font-size: em(15px);
+
+                    span {
+                        font-family: Circular-Regular, sans-serif;
+                        font-size: em(15px);
+
+                        span {
+                            .super-host {
+                                img {
+                                    width: 2em;
+                                }
+                            }
+
+                            &:nth-child(2) {
+                                text-decoration: underline;
+                                font-family: Circular-Regular, sans-serif;
+                                font-size: em(16px);
+                            }
+
+
+
+                        }
+                    }
                 }
             }
         }
@@ -110,7 +136,7 @@
                     margin-block-end: 1.2em;
 
                     img {
-                        width: 3em;
+                        width: 2.6em;
                         border-radius: 50%;
                         aspect-ratio: 1/1;
                         object-fit: cover;
@@ -120,14 +146,14 @@
                 .main-amenities {
                     height: em(70px);
                     line-height: 1.3;
-                    font-family: Circular-Light, sans-serif;
+                    font-family: Circular-Regular, sans-serif;
 
                     .main-amenity {
                         border: 1px solid $clr4;
                         border-radius: .8em;
                         padding-inline: 1.8em;
-                        margin-inline-end: 1em;
                         height: 100%;
+                        width: 31.6%;
 
                         img {
                             width: 1.5em;

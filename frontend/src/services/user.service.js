@@ -32,6 +32,7 @@ function getUsers() {
 async function getById(userId) {
     // const user = await storageService.get(USER_KEY, userId)
     const user = await httpService.get(`${API}/${userId}`)
+    console.log('user from userService', user);
     return user
 }
 
