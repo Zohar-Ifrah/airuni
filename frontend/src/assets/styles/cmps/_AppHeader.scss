@@ -52,35 +52,65 @@
 
             .user-info {
                 .user-info-content-container {
-                    padding: 2em;
+                    // padding: 2em;
                     display: flex;
                     flex-direction: column;
                     min-width: 15em;
 
 
                     a {
-                        font-family: Circular-Light, sans-serif;
+                        &:nth-child(1) {
+                            font-family: Circular-Regular, sans-serif;
+                            margin-block-start: .8em;
+                        }
+
+                        &:nth-child(2) {
+                            font-family: Circular-Regular, sans-serif;
+                        }
+
+                        &:nth-child(3) {
+                            font-family: Circular-Regular, sans-serif;
+                        }
+
+                        font-family: Circular-Light,
+                        sans-serif;
                         color: $clr2;
                         text-decoration: none;
-                        margin-block: .5em;
+                        padding-block: .8em;
+                        padding-inline: 1em;
 
                         &.active {
                             text-decoration: none;
                         }
-                    }
 
-                    .user-container {
-                        display: flex;
-                        align-items: center;
-                        margin-block-end: 1em;
-
-                        img {
-                            margin-inline-end: .8em;
+                        &:hover {
+                            background-color: $clr5;
                         }
                     }
 
+                    hr {
+                        border: none;
+                        height: 1px;
+                        background-color: $clr4;
+                        margin-block: .5em;
+                    }
+
                     button {
-                        margin-block-start: 1em;
+                        padding: 0;
+                        background-color: #fff;
+                        color: $clr2;
+                        font-family: Circular-Light, sans-serif;
+                        color: #222222;
+                        text-decoration: none;
+                        padding-block: .8em;
+                        justify-content: flex-start;
+                        border-radius: 0;
+                        margin-block-end: .8em;
+                        padding-inline: 1em;
+
+                        &:hover {
+                            background-color: $clr5;
+                        }
                     }
                 }
 

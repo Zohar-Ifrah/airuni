@@ -2,7 +2,6 @@ import { authService } from './auth.service.mjs'
 import { logger } from '../../services/logger.service.mjs'
 
 export async function login(req, res) {
-    console.log('req.body from login', req.body);
     const { username, password } = req.body
     try {
         const user = await authService.login(username, password)
@@ -26,7 +25,7 @@ export async function signup(req, res) {
         const user = await authService.login(credentials.username, credentials.password)
         logger.info('User signup:', user)
         const loginToken = authService.getLoginToken(user)
-        res.cookie('loginToken', loginToken, { sameSite: 'None', secure: true })
+        res.cookie('loginToken', loginToken) // , { sameSite: 'None', secure: true } - https only for cookies 
         res.json(user)
     } catch (err) {
         logger.error('Failed to signup ' + err)
