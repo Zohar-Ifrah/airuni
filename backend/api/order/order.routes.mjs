@@ -3,6 +3,8 @@ import { requireAuth } from '../../middlewares/requireAuth.middleware.mjs'
 import { log } from '../../middlewares/logger.middleware.mjs'
 import { getOrders, getOrderById, addOrder, updateOrder, removeOrder, addOrderMsg, removeOrderMsg } from './order.controller.mjs'
 
+console.log('routes <<routes>> routes')
+
 const router = express.Router()
 
 // We can add a middleware for the entire router:
@@ -11,7 +13,7 @@ const router = express.Router()
 router.get('/', log, getOrders)
 router.get('/:id', getOrderById)
 router.post('/', requireAuth, addOrder)
-router.put('/:id', requireAuth, updateOrder)
+router.put('/', requireAuth, updateOrder)
 router.delete('/:id', requireAuth, removeOrder)
 // router.delete('/:id', requireAuth, requireAdmin, removeOrder)
 

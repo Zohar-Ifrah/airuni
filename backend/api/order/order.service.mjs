@@ -75,6 +75,7 @@ async function add(order) {
 }
 
 async function update(order) {
+    console.log('order: ', order)
     try {
         const id = order._id
         delete order._id

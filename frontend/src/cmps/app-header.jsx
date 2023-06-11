@@ -20,8 +20,15 @@ export function AppHeader() {
     // const isDetailsShown = useShouldShow('/details/')
     const isHomeShown = useShouldShow('/')
     const unsubscribe = eventBus.on('details-load', setObserver)
+    const users = useSelector(storeState => storeState.userModule.users)
+    const isHostRef = useRef()
 
     useEffect(() => {
+        if (user) {
+            isHostRef.current = users.find(currUser =>
+                currUser._id === user._id)
+            console.log('isHostRef:', isHostRef.current)
+        }
         const handleOutsideClick = (event) => {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
                 setIsModalOpen(false)
@@ -39,7 +46,7 @@ export function AppHeader() {
 
 
         // eslint-disable-next-line 
-    }, [])
+    }, [user, isHostRef.current])
 
     function updateHeader(entries) {
         entries.forEach(entry => {
@@ -154,7 +161,9 @@ export function AppHeader() {
                                             <NavLink to='/trip'> Trips </NavLink>
                                             <NavLink to='/wishlist'> Whishlist </NavLink>
                                             <hr />
-                                            <NavLink to='#'> Dashboard </NavLink>
+                                            {/* {console.log('isHostRef!!!!', isHostRef.current.isSuperhost)}
+                                            {console.log('user!!!!!', user)} */}
+                                            {<NavLink to='/dashboard'> Dashboard </NavLink>}
                                             <button onClick={onLogout}>Log out</button>
                                         </div>
                                     </span>

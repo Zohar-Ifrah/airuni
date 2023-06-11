@@ -8,6 +8,7 @@ import { StayDetails } from './pages/stay-details.jsx'
 import { ConfirmOrder } from './pages/confirm-order.jsx'
 import { Wishlist } from './pages/Wishlist.jsx'
 import { Trip } from './pages/Trip.jsx'
+import { Dashboard } from './cmps/Dashboard.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
@@ -60,6 +61,11 @@ const routes = [
         path: 'trip',
         component: <Trip />,
         label: 'Trips'
+    },
+    {
+        path: 'dashboard',
+        component: <Dashboard />,
+        label: 'Dashboard'
     }
 ]
 

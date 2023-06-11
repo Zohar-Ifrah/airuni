@@ -20,7 +20,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     const isFromOrderForm = useRef(true)
     const maxCapacity = useRef(stay.capacity).current
 
-    
+
     useEffect(() => {
         setChecksDates(checkInAndOutDate)
     }, [checkInAndOutDate])
@@ -46,7 +46,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
             checkin: checksDates.checkIn,
             checkout: checksDates.checkOut,
             guests: guestsAmount,
-            price: stay.price
+            price: (stay.price * calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut)) + 20
         }
         formDetails.stayId = stay._id
         formDetails.hostId = stay.host._id
@@ -96,7 +96,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
 
     return (
         <section className="order-form-container">
-                {console.log(guestsAmount)}
+            {console.log(guestsAmount)}
             <div className="price-rating-container flex space-between">
 
                 <div className="price-container flex align-center">
