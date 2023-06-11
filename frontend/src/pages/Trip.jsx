@@ -1,18 +1,129 @@
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { orederService } from "../services/order.service"
+import { useEffect, useRef, useState } from "react"
+import { userService } from "../services/user.service"
+
 
 export function Trip() {
     const navigate = useNavigate()
-    const isUserLogged = useSelector(storeState => storeState.userModule.user)
+    const stays = useSelector(storeState => storeState.stayModule.stays)
+    const userLogged = useSelector(storeState => storeState.userModule.user)
+    const [users, setUsers] = useState([])
+    const [orders, setOrders] = useState([])
+    const hostRef = useRef()
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const users = await userService.getUsers()
+                setUsers(users)
+            } catch (error) {
+                console.log("Error fetching users:", error)
+            }
+        }
+        fetchUsers()
+
+    }, [])
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const userOrders = await orederService.getOrderByBuyer(userLogged._id)
+                setOrders(userOrders)
+                // setHost(getHost(userOrders[0].hostId))
+            } catch (error) {
+                console.log("Error fetching orders:", error)
+            }
+        }
+
+        if (userLogged) {
+            fetchOrders()
+        }
+    }, [userLogged])
+
+    // Function to format the check-in and check-out dates
+    const formatDateRange = (checkin, checkout) => {
+        const checkinDate = new Date(checkin);
+        const checkoutDate = new Date(checkout);
+
+        const formattedCheckin = `${checkinDate.toLocaleString('en-US', { month: 'short' })} ${checkinDate.getDate()}`;
+        const formattedCheckout = `${checkoutDate.toLocaleString('en-US', { month: 'short' })} ${checkoutDate.getDate()}`;
+
+        return `${formattedCheckin} - ${formattedCheckout}`;
+    }
+
+    // Function to get the approval status
+    const getApprovalStatus = (isApproved) => {
+        return isApproved ? 'Approved' : 'Pending'
+    }
+
+    function getHostsInfo(hostId) {
+        if (users.length){
+            const host = users.find(user => user._id === hostId)
+            return { img: host.imgUrl, name: host.fullname }
+        }
+    }
+
+    function cancelOrder(orderId) {
+        console.log(orderId)
+    }
 
     return (
         <>
-            { isUserLogged ?
+            {userLogged ?
                 <div>
-                    {/* <h1>Welcome back, USERNAME</h1> */}
-
+                    <h1>Welcome back, {userLogged.fullname}</h1>
                     <h1>Trips</h1>
-                    {true &&
+
+                    {orders.length && orders.length ?
+                        <table className="trip-table">
+
+                            <thead>
+                                <tr>
+                                    <td>
+                                        stay
+                                    </td>
+                                    <td>
+                                        host
+                                    </td>
+                                    <td>
+                                        dates
+                                    </td>
+                                    <td>
+                                        total
+                                    </td>
+                                    <td>
+                                        status
+                                    </td>
+                                    <td>
+                                        action
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {orders.map((order) => {
+                                    const hostInfo = getHostsInfo(order.hostId)
+                                    return (
+                                        <tr key={order._id}>
+                                            <td><img src={stays.find(stay => stay.host === order.hostId)?.imgUrls[0]} alt="stay" /> </td>
+                                            {hostInfo &&
+                                            <td>
+                                                <img src={hostInfo.img} alt="host" />
+                                                <p>{hostInfo.name}</p>
+                                            </td>
+                                            }
+                                            <td>{formatDateRange(order.info.checkin, order.info.checkout)}</td>
+                                            <td>${order.info.price}</td>
+                                            <td>{getApprovalStatus(order.isApproved)}</td>
+                                            <td>
+                                                <button onClick={() => cancelOrder(order._id)}>Cancel</button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                        :
                         <div>
                             <h3>No trips booked...yet!</h3>
                             <p>Time to dust off your bags and start planning your next adventure</p>

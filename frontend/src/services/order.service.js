@@ -1,7 +1,7 @@
-import { storageService } from './async-storage.service.js'
+// import { storageService } from './async-storage.service.js'
 import { httpService } from './http.service.js'
 
-const STORAGE_KEY = 'order_db'
+// const STORAGE_KEY = 'order_db'
 const API = 'order'
 
 export const orederService = {
@@ -16,7 +16,7 @@ export const orederService = {
 
 async function query(filterBy) {
     // return storageService.query(STORAGE_KEY)
-    return httpService.query(API, filterBy)
+    return httpService.get(API, filterBy)
 }
 
 async function getById(orderId) {
@@ -37,7 +37,9 @@ async function getOrderByHost(hostId) {
 
 async function getOrderByBuyer(buyerId) {
     try {
-        const orders = await query()
+        const filterBy = { buyer: buyerId }
+        const orders = await query(filterBy)
+        console.log('orders: ', orders)
         return orders.filter(order => order.buyerId === buyerId)
     }
     catch (err) {
@@ -55,6 +57,7 @@ async function add(orderToAdd) {
 
 async function update(orderToUpdate) {
     // return storageService.put(STORAGE_KEY, orderToUpdate)
+    console.log('REQUEST GOING OUT')
     return httpService.put(API, orderToUpdate)
 }
 

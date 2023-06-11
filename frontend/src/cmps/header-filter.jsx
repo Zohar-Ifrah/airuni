@@ -11,8 +11,20 @@ export function HeaderFilter({ onSetFilter }) {
 
 
   useEffect(() => {
+    const handleScroll = () => {
+      console.log('Scrolling...')
+      setIsSearchBarOpen(false);
+      // Do something with the scroll event here
+    }
 
-  }, [barFocused])
+    if (isSearchBarOpen) {
+      window.addEventListener('scroll', handleScroll)
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [isSearchBarOpen])
 
   function isBarFocused(isFocus) {
     // console.log('isFocus: ', isFocus)

@@ -1,7 +1,8 @@
 import { orderService } from './order.service.mjs'
 import { logger } from '../../services/logger.service.mjs'
-
+console.log('updateOrder <<updateOrder>> updateOrder')
 export async function getOrders(req, res) {
+    console.log('getOrders = = = req ')
     try {
         logger.debug('Getting Orders:', req.query)
         const filterBy = {
@@ -17,6 +18,7 @@ export async function getOrders(req, res) {
 }
 
 export async function getOrderById(req, res) {
+    console.log('getOrderById = = = req ')
     try {
         const orderId = req.params.id
         const order = await orderService.getById(orderId)
@@ -28,6 +30,7 @@ export async function getOrderById(req, res) {
 }
 
 export async function addOrder(req, res) {
+    console.log('addOrder = = = req ')
     const { loggedinUser } = req
 
     try {
@@ -43,6 +46,7 @@ export async function addOrder(req, res) {
 
 
 export async function updateOrder(req, res) {
+    console.log('updateOrder = = = req ')
     try {
         const order = req.body
         const updatedOrder = await orderService.update(order)
@@ -55,6 +59,7 @@ export async function updateOrder(req, res) {
 }
 
 export async function removeOrder(req, res) {
+    console.log('removeOrder = = = req ')
     try {
         const orderId = req.params.id
         const removedId = await orderService.remove(orderId)
@@ -66,6 +71,7 @@ export async function removeOrder(req, res) {
 }
 
 export async function addOrderMsg(req, res) {
+    console.log('addOrderMsg = = = req ')
     const { loggedinUser } = req
     try {
         const orderId = req.params.id
@@ -83,6 +89,7 @@ export async function addOrderMsg(req, res) {
 }
 
 export async function removeOrderMsg(req, res) {
+    console.log('removeOrderMsg = = = req ')
     const { loggedinUser } = req
     try {
         const orderId = req.params.id
@@ -96,5 +103,5 @@ export async function removeOrderMsg(req, res) {
 
     }
 }
-
+console.log('none')
 
