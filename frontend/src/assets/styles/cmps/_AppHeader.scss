@@ -355,6 +355,11 @@
                 button:nth-child(1) {
                     // margin-inline-start: 1.3em;
                 }
+
+                .black-circular-regular {
+                    font-family: 'Circular-Regular';
+                    color: $clr2;
+                }
             }
 
             .search-preview:hover {
