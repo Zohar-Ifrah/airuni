@@ -16,6 +16,29 @@ export function LabelsFilter() {
     const [filterByToEdit, setFilterByToEdit] = useState(useSelector(storeState => storeState.stayModule.filterBy))
     const [activeLabel, setActiveLabel] = useState(null)
     const dispatch = useDispatch()
+    const [isAtTop, setIsAtTop] = useState(true)
+
+    useEffect(() => {
+        function handleScroll() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            setIsAtTop(scrollTop === 0)
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!isAtTop) {
+            const elScrollLabels = document.querySelector('.react-horizontal-scrolling-menu--wrapper')
+            elScrollLabels.style.boxShadow = '0px 0px 8px rgba(0, 0, 0, 0.15)'
+        } else {
+            const elScrollLabels = document.querySelector('.react-horizontal-scrolling-menu--wrapper')
+            elScrollLabels.style.boxShadow = ''
+        }
+    }, [isAtTop])
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
