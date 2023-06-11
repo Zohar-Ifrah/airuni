@@ -19,12 +19,11 @@
                     img {
                         width: 1em;
                         margin-inline-end: 0.3em;
-                        margin-block-end: 0.1em;
+                        margin-block-end: 0.3em;
                     }
 
                     span {
                         margin-inline-end: 0.2em;
-                        margin-block-start: 0.2em;
                     }
                 }
 
@@ -38,20 +37,20 @@
                         font-size: em(15px);
 
                         span {
-                            .super-host {
-                                img {
-                                    width: 2em;
-                                }
-                            }
-
                             &:nth-child(2) {
                                 text-decoration: underline;
                                 font-family: Circular-Regular, sans-serif;
                                 font-size: em(16px);
                             }
+                        }
 
+                        .super-host {
+                            font-family: Circular-Light, sans-serif;
+                            font-size: em(16px);
 
-
+                            img {
+                                width: .8em;
+                            }
                         }
                     }
                 }
@@ -167,11 +166,12 @@
                     border-top: 0.5px solid $clr4;
                     border-bottom: 0.5px solid $clr4;
                     margin-block: 1.5em;
-                    padding-block-start: 2em;
-                    padding-block-end: 1.2em;
+                    padding-block-start: 2.6em;
+                    padding-block-end: 1em;
 
                     .secondary-amenity-container {
-                        margin-block-end: 1em;
+                        margin-block-end: 1.5em;
+                        align-items: flex-start;
 
                         img {
                             width: 1.6em;
@@ -183,6 +183,10 @@
                                 font-family: Circular-Light;
                                 color: $clr7;
                             }
+
+                            h4 {
+                                font-size: em(17px);
+                            }
                         }
                     }
                 }
@@ -190,32 +194,50 @@
                 .summary {
                     border-block-end: 1px solid $clr4;
                     padding-block-start: 1em;
-                    padding-block-end: 2em;
+                    padding-block-end: 3em;
+                    line-height: 1.6;
+
+                    h2 {
+                        margin-block-end: .5em;
+                    }
+
+                    p {
+                        color: $clr2;
+                        font-size: em(17px);
+                    }
                 }
             }
 
             .stay-amenities {
                 border-block-end: 1px solid $clr4;
-                padding-block: 2em;
+                padding-block-start: 2.5em;
+                padding-block-end: 2em;
                 margin-block-end: 3em;
 
                 .amenitis-content {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
+                    row-gap: .5em;
+
+                    .amenty-container {
+                        margin-block-end: 1em;
+
+                        img {
+                            width: 1.5em;
+                            margin-inline-end: 1em;
+                        }
+
+                        p {
+                            color: $clr2;
+                        }
+                    }
                 }
 
                 h2 {
                     margin-block-end: 1em;
                 }
 
-                .amenty-container {
-                    margin-block-end: 1em;
 
-                    img {
-                        width: 1.5em;
-                        margin-inline-end: 1em;
-                    }
-                }
             }
 
             .calendar-picker-header {
@@ -443,7 +465,41 @@
         padding-block-start: 3em;
         padding-block-end: 3em;
 
+        .statistics-reviews-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 10em;
+            row-gap: .8em;
+            margin-block-end: 3em;
+
+            .stat-main {
+
+                p {
+                    color: $clr2;
+                }
+
+                .stat {
+                    width: em(150px);
+                    column-gap: em(10px);
+
+                    .bar {
+                        height: em(4px);
+                        border-radius: 555px;
+                        width: 100%;
+                        background-color: $clr2;
+                    }
+
+                    span {
+                        font-family: Circular-Regular, sans-serif;
+                        font-size: em(14px);
+                    }
+                }
+            }
+        }
+
         .rating-container {
+
+            margin-block-end: 1.7em;
 
             img {
                 width: 1em;
@@ -464,8 +520,14 @@
             .review {
                 margin-block-end: 2.5em;
 
+                p {
+                    color: $clr2;
+                    font-size: em(17px);
+                }
+
                 .user-details {
                     margin-block-end: 1em;
+                    column-gap: .3em;
 
                     img {
                         width: 2.5em;
@@ -473,6 +535,18 @@
                         border-radius: 50%;
                         aspect-ratio: 1/1;
                         object-fit: cover;
+                    }
+
+                    .review-fullname-date-container {
+                        h3 {
+                            margin-block: 0;
+                        }
+
+                        p {
+                            font-size: em(14.5px);
+                            margin-block: 0;
+                            color: $clr7;
+                        }
                     }
                 }
 

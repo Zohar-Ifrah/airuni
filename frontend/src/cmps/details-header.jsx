@@ -13,7 +13,7 @@ export function DetailsHeader({ stay }) {
                         {!!stay.reviews.length && <span> {stay.rating} </span>}
                     </div>}
                     <p>
-                        <span> <span> · </span> <span> {`${stay.reviews.length} reviews`} </span> <span className="super-host"> {stay.host.isSuperhost && <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686493001/super-host-svg_wkoqoy.svg" alt="super-host" />} {stay.host.isSuperhost && 'Superhost'} </span>  <span> · </span> </span>
+                        <span> <span> · </span> <span> {`${stay.reviews.length} reviews`} </span>  <span> · </span> <span className="super-host"> {stay.host.isSuperhost && <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686494614/super-host-new_pfwzko.svg" alt="super-host" />} {stay.host.isSuperhost && 'Superhost'} </span>  <span> · </span> </span>
                         <span className="city-country"> {`${stay.loc.city}, ${stay.loc.country}`}</span>
                     </p>
                 </div>
