@@ -8,7 +8,7 @@ export function HeaderFilter({ onSetFilter, isHeaderClicked }) {
   const [focusBtn, setFocusBtn] = useState(null)
   const [barFocused, setBarFocused] = useState(null)
   const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
-
+  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,10 +24,6 @@ export function HeaderFilter({ onSetFilter, isHeaderClicked }) {
     }
   }, [isSearchBarOpen])
 
-  useEffect(() => {
-    console.log('FROM isHeaderClicked:', isHeaderClicked)
-    setIsSearchBarOpen(false)
-  }, [isHeaderClicked])
 
   function isBarFocused(isFocus) {
     // console.log('isFocus: ', isFocus)
@@ -50,6 +46,16 @@ export function HeaderFilter({ onSetFilter, isHeaderClicked }) {
     // }, 2000)
   }
 
+  function getMonth(timestamp) {
+    const date = new Date(timestamp)
+    const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' })
+    return formattedDate // Output: Jun 7
+  }
+
+  function guestsMsg(guestsAmount) {
+    return guestsAmount > 1 ? guestsAmount + ' guests' : guestsAmount + ' guest'
+  }
+
   return (
     <div>
       <div className={`${isSearchBarOpen ? 'blur' : ''}`}
@@ -60,13 +66,24 @@ export function HeaderFilter({ onSetFilter, isHeaderClicked }) {
       <div className={`search-preview ${isDetailsShown ? 'header-adjust' : ''} ${isSearchBarOpen ? 'search-preview-close' : ''}`}>
         {!isDetailsShown &&
           <div>
-            <button onClick={() => { onChangeBarDisplay('Search', true) }}><span>Anywhere</span></button>
+            <button onClick={() => { onChangeBarDisplay('Search', true) }}>
+              <span>
+                {filterBy.location ? filterBy.location : 'Anywhere'}
+              </span>
+            </button>
 
-            <button onClick={() => { onChangeBarDisplay('Any week', true) }}><span>Any week</span></button>
+            <button onClick={() => { onChangeBarDisplay('Any week', true) }}>
+              <span>
+                {filterBy.checkIn ? getMonth(filterBy.checkIn) + ' - ' + getMonth(filterBy.checkOut) : 'Any week'}
+              </span>
+            </button>
 
             <button onClick={() => { onChangeBarDisplay('Add Guests', true) }}
               className="add-guests-btn-header">
-              <span>Add guests</span>
+              <span className={`${filterBy.adults || filterBy.children ? 'black-circular-regular' : ''}`}>
+                {filterBy.adults || filterBy.children ? guestsMsg(filterBy.adults + filterBy.children) :
+                  'Add guests'}
+              </span>
               <div onClick={onSearchClick} className="first-search-svg-header">
                 <svg viewBox="1 0 32 32" xmlns="https://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'white', strokeWidth: 5.33333, overflow: 'visible' }}><g fill="none"><path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path></g></svg>
               </div>
@@ -100,6 +117,7 @@ export function HeaderFilter({ onSetFilter, isHeaderClicked }) {
           <SearchMenu onChangeBarDisplay={onChangeBarDisplay}
             focusBtn={focusBtn}
             isBarFocused={isBarFocused}
+            isHeaderClicked={isHeaderClicked}
           />
         </div>
 

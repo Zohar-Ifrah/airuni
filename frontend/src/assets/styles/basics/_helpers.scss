@@ -70,10 +70,10 @@
 
 .blur {
     position: fixed;
-    top: 9em;
+    top: 6.3em;
     left: 0;
     width: 100%;
-    height: calc(100vh - 9em);
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.4078431373);
     z-index: 1;
 }

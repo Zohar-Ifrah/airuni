@@ -11,7 +11,7 @@ import { RegionSearch } from "./region-search"
 
 
 
-export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBtn, isBarFocused }) {
+export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBtn, isBarFocused, isHeaderClicked }) {
   onSetFilter = useRef(utilService.debounce(onSetFilter))
   const navigate = useNavigate()
   const guestsAmount = useRef(0)
@@ -49,6 +49,12 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     // eslint-disable-next-line
   }, [isAddGuestsOpen, isCalendarOpen, isSearchOpen, isCheckIn])
 
+  useEffect(() => {
+    console.log('FROM isHeaderClicked:', isHeaderClicked)
+    setIsSearchOpen(false)
+    setIsCalendarOpen(false)
+    setIsAddGuestsOpen(false)
+  }, [isHeaderClicked])
 
   function onSubmit(ev) {
 

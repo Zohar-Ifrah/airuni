@@ -101,7 +101,7 @@ export function AppHeader() {
     function onHeaderClick(event) {
         const targetClassName = event.target.className
         console.log('targetClassName: ', targetClassName)
-        if (/app-header-.+/.test(targetClassName)) {
+        if (/app-header(-.+)?/.test(targetClassName)) {
 
             setIsHeaderClicked(true)
             setTimeout(() => {

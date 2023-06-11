@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { StayFilter } from "./stay-filter"
 import { FILTER_BY } from "../store/stay.reducer"
 
-export function SearchMenu({ onChangeBarDisplay, focusBtn, isBarFocused }) {
+export function SearchMenu({ onChangeBarDisplay, focusBtn, isBarFocused, isHeaderClicked }) {
 
     const dispatch = useDispatch()
 
@@ -17,6 +17,7 @@ export function SearchMenu({ onChangeBarDisplay, focusBtn, isBarFocused }) {
                 onChangeBarDisplay={onChangeBarDisplay}
                 focusBtn={focusBtn}
                 isBarFocused={isBarFocused}
+                isHeaderClicked={isHeaderClicked}
             />
         </div>
     )
