@@ -12,9 +12,7 @@ export function HeaderFilter({ onSetFilter }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log('Scrolling...')
-      setIsSearchBarOpen(false);
-      // Do something with the scroll event here
+      setIsSearchBarOpen(false)
     }
 
     if (isSearchBarOpen) {
