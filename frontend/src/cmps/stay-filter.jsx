@@ -75,15 +75,18 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }
 
   function ontoggleCalendar(from) {
-
     if ((from === 'checkIn' && !isCheckIn) ||
       (from === 'checkOut' && isCheckIn)) {
 
       setIsAddGuestsOpen(false)
       setIsSearchOpen(false)
       setIsCalendarOpen(!isCalendarOpen)
-      from === 'checkOut' && setIsCheckIn(false)
-    } else from === 'checkIn' ? setIsCheckIn(false) : setIsCheckIn(true)
+    } else {
+      if (from === 'checkOut') setIsCheckIn(true)
+
+      setIsCalendarOpen(true)
+      from === 'checkIn' && setIsCheckIn(false)
+    }
   }
 
   function onOpenGuestsModal() {
@@ -166,9 +169,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }
 
   function onCheckInClick(isClicked) {
-
     setIsCheckIn(isClicked)
-    // isCheckInRef.current = isClicked
   }
 
   return (

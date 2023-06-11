@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { SearchMenu } from "./search-menu"
 import { useSelector } from "react-redux"
 
-export function HeaderFilter({ onSetFilter }) {
+export function HeaderFilter({ onSetFilter, isHeaderClicked }) {
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [focusBtn, setFocusBtn] = useState(null)
@@ -23,6 +23,11 @@ export function HeaderFilter({ onSetFilter }) {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [isSearchBarOpen])
+
+  useEffect(() => {
+    console.log('FROM isHeaderClicked:', isHeaderClicked)
+    setIsSearchBarOpen(false)
+  }, [isHeaderClicked])
 
   function isBarFocused(isFocus) {
     // console.log('isFocus: ', isFocus)
@@ -85,11 +90,11 @@ export function HeaderFilter({ onSetFilter }) {
 
       <div className={`search-bar ${isSearchBarOpen ? 'search-bar-open' : ''}`}>
 
-        <div className="search-form-nav-container">
+        {/* <div className="search-form-nav-container">
           <button onClick={() => { onChangeBarDisplay() }}>Stays</button>
           <button onClick={() => { onChangeBarDisplay() }}>Experiences</button>
           <button onClick={() => { onChangeBarDisplay() }}>Online Experiences</button>
-        </div>
+        </div> */}
 
         <div className={`search-form-menu-container ${barFocused && 'bar-focused'}`}>
           <SearchMenu onChangeBarDisplay={onChangeBarDisplay}

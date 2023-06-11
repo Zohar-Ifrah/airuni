@@ -22,6 +22,7 @@ export function AppHeader() {
     const unsubscribe = eventBus.on('details-load', setObserver)
     const users = useSelector(storeState => storeState.userModule.users)
     const isHostRef = useRef()
+    const [isHeaderClicked, setIsHeaderClicked] = useState(false)
 
     useEffect(() => {
         if (user) {
@@ -97,12 +98,25 @@ export function AppHeader() {
         console.log('hi from onSetFilter ')
     }
 
+    function onHeaderClick(event) {
+        const targetClassName = event.target.className
+        console.log('targetClassName: ', targetClassName)
+        if (/app-header-.+/.test(targetClassName)) {
+
+            setIsHeaderClicked(true)
+            setTimeout(() => {
+                setIsHeaderClicked(false)
+            }, 300)
+        }
+    }
+
     return (
         <>
             {isAnchor && isDetailsShown &&
                 <DetailsAnchorHeader />
             }
-            <header className={`app-header full ${isDetailsShown ? 'details-main-layout relative' : 'main-layout'}`}>
+            <header className={`app-header full ${isDetailsShown ? 'details-main-layout relative' : 'main-layout'}`}
+                onClick={onHeaderClick}>
                 <div className="app-header-inner-container flex space-between align-center">
                     <div className="main-logo">
                         <NavLink to="/" >
@@ -119,11 +133,15 @@ export function AppHeader() {
 
                     {isDetailsShown ?
                         <section className="header-search-bar-container">
-                            <HeaderFilter onSetFilter={onSetFilter} isDetailsShown={isDetailsShown} />
+                            <HeaderFilter onSetFilter={onSetFilter}
+                                isDetailsShown={isDetailsShown}
+                                isHeaderClicked={isHeaderClicked} />
                         </section>
                         : isHomeShown &&
                         <section className="header-search-bar-container">
-                            <HeaderFilter onSetFilter={onSetFilter} isDetailsShown={isDetailsShown} />
+                            <HeaderFilter onSetFilter={onSetFilter}
+                                isDetailsShown={isDetailsShown}
+                                isHeaderClicked={isHeaderClicked} />
                         </section>
                     }
 
@@ -162,7 +180,7 @@ export function AppHeader() {
                                             <NavLink to='/wishlist'> Whishlist </NavLink>
                                             <hr />
                                             {/* {console.log('isHostRef!!!!', isHostRef.current.isSuperhost)}
-                                            {console.log('user!!!!!', user)} */}
+                                            {isHostRef.current && isHostRef.current.isSuperhost &&  */}
                                             {<NavLink to='/dashboard'> Dashboard </NavLink>}
                                             <button onClick={onLogout}>Log out</button>
                                         </div>

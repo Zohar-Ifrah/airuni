@@ -19,15 +19,15 @@ export function CalendarPicker({ onSetDates, onCheckInClick, calAmount = 2 }) {
 
 
     } else if (selectedDates.length === 1 && date > selectedDates[0]) {
-      setIsCheckInClicked(false)
+      // setIsCheckInClicked(false)
       setSelectedDates([...selectedDates, date])
       const startDate = selectedDates[0].getTime() // Convert to timestamp
       const endDate = date.getTime() // Convert to timestamp
       onSetDates(startDate, endDate)
     } else {
-      setIsCheckInClicked(false)
+      // setIsCheckInClicked(false)
 
-      setSelectedDates([])
+      setSelectedDates([date])
     }
   }
 
