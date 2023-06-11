@@ -150,14 +150,10 @@ export function AppHeader() {
                                 {user &&
                                     <span className="user-info">
                                         <div className='user-info-content-container'>
-                                            <NavLink to={`user/${user._id}`} className='user-container'>
-                                                {user.imgUrl && <img src={user.imgUrl} alt='user' onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />}
-                                                {user.fullname}
-                                            </NavLink>
-                                            {/* <span className="score">{user.score?.toLocaleString()}</span> */}
                                             <NavLink to='#'> Messeges </NavLink>
                                             <NavLink to='/trip'> Trips </NavLink>
                                             <NavLink to='/wishlist'> Whishlist </NavLink>
+                                            <hr />
                                             <NavLink to='#'> Dashboard </NavLink>
                                             <button onClick={onLogout}>Log out</button>
                                         </div>
