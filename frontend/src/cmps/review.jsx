@@ -2,9 +2,10 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { StatisticsReviews } from "./statistics-reviews"
 import { AllReviews } from "./all-reviews"
+import { ShowAllReviews } from "./show-all-reviews"
 
 
-export function Review({ stay }) {
+export function Review({ stay, isOpenReviews }) {
 
     const [slicedReviews, setSlicedReviews] = useState([])
     const [isModalShowMoreOpen, setIsModalShowMoreOpen] = useState(false)
@@ -15,6 +16,9 @@ export function Review({ stay }) {
         }
         // eslint-disable-next-line
     }, [])
+    useEffect(() => {
+        isOpenReviews && setIsModalShowMoreOpen(true)
+    }, [isOpenReviews])
 
     function getDate(timestamp) {
         const date = new Date(timestamp)
@@ -23,10 +27,9 @@ export function Review({ stay }) {
         return formattedDate
     }
 
-    function onOpenModalShowMore() {
-        setIsModalShowMoreOpen(true)
+    function onOpenModalShowMore(isOpen = true) {
+        setIsModalShowMoreOpen(isOpen)
     }
-
 
     return (
         <section id="reviews" className="review-container">
@@ -85,12 +88,25 @@ export function Review({ stay }) {
                 )}
 
                 {!!slicedReviews.length &&
-                    <button className="btn-show-all-reviews"> {`Show all ${stay.reviews.length} reviews`} </button>
+                    <button onClick={onOpenModalShowMore} className="btn-show-all-reviews"> {`Show all ${stay.reviews.length} reviews`} </button>
                 }
 
             </div>
+            {isModalShowMoreOpen &&
+                <div>
 
-            {isModalShowMoreOpen && <AllReviews stay={stay} />}
+                    <div className="show-all-reviews-container">
+
+                        <ShowAllReviews
+                            stay={stay}
+                            onOpenModalShowMore={onOpenModalShowMore} />
+
+                    </div>
+                    <div onClick={() => onOpenModalShowMore(false)} className="blur all"></div>
+                </div>
+            }
+
+            {/* {isModalShowMoreOpen && <AllReviews stay={stay} />} */}
 
         </section>
     )

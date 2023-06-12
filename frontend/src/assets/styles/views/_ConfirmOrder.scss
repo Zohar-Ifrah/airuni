@@ -44,6 +44,26 @@
             margin-block-end: .5em;
         }
 
+        .nav-and-h1-container {
+            position: relative;
+
+            nav {
+                position: absolute;
+                left: -1.7em;
+                border-radius: 50%;
+                width: 1.6em;
+                height: 1.6em;
+                text-align: center;
+                top: 0em;
+                cursor: pointer;
+                font-size: 1.5em;
+            }
+
+            nav:hover {
+                background-color: grey;
+            }
+        }
+
         .dates-container {
             h4 {
                 margin-block-end: .2em;

@@ -39,7 +39,7 @@ async function getOrderByBuyer(buyerId) {
     try {
         const filterBy = { buyer: buyerId }
         const orders = await query(filterBy)
-        console.log('orders: ', orders)
+
         return orders.filter(order => order.buyerId === buyerId)
     }
     catch (err) {
@@ -57,7 +57,7 @@ async function add(orderToAdd) {
 
 async function update(orderToUpdate) {
     // return storageService.put(STORAGE_KEY, orderToUpdate)
-    console.log('REQUEST GOING OUT')
+
     return httpService.put(API, orderToUpdate)
 }
 

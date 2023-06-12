@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
-export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModal, isFromOrderForm = false }) {
-    const [capacity, setCapacity] = useState({ adults: 0, children: 0, infants: 0, pets: 0 })
+export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModal, isFromOrderForm = false, capacity }) {
+    // const [capacity, setCapacity] = useState({ adults: 0, children: 0, infants: 0, pets: 0 })
     const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
     // const [disableBtn, setDisableBtn] = useState(false)
 
-    useEffect(() => {
-        console.log('capacity: ', capacity)
-        onUpdateCapacity({ capacity })
-        // eslint-disable-next-line
-    }, [capacity])
 
     function onChange(symbol, type) {
         let newValue = capacity[type]
@@ -38,10 +33,7 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
             newValue = 0
         }
 
-        setCapacity(prevCapacity => ({
-            ...prevCapacity,
-            [type]: newValue
-        }))
+        onUpdateCapacity({ ...capacity, [type]: newValue })
     }
 
 

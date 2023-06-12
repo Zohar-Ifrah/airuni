@@ -11,7 +11,7 @@ export function Wishlist() {
             {isUserLogged ?
                 <div>
 
-                    {console.log(user)}
+
                     <h1>Wishlist</h1>
                     {true &&
                         <div>

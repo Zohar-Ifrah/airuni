@@ -8,7 +8,8 @@ export const utilService = {
     loadFromStorage,
     getLorem,
     getRandomNames,
-    getIcon
+    getIcon,
+    getMonth
 }
 
 function makeId(length = 6) {
@@ -67,6 +68,12 @@ function loadFromStorage(key) {
 
 function getLorem() {
     return 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt eum quaerat eligendi amet asperiores repudiandae itaque excepturi nam cupiditate omnis, eos saepe veritatis dicta necessitatibus delectus ratione consectetur accusamus? Laboriosam.'
+}
+
+function getMonth(timestamp) {
+    const date = new Date(timestamp)
+    const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' })
+    return formattedDate // Output: Jun 7
 }
 
 function getRandomNames() {

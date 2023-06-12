@@ -32,18 +32,14 @@ export function HeaderFilter({ onSetFilter, isHeaderClicked }) {
 
   function onSearchClick(ev) {
     ev.stopPropagation()
-    console.log('clicked')
+
     onChangeBarDisplay('Search', true)
   }
 
   function onChangeBarDisplay(focusBtn, isOpen) {
-    // console.log('HEADER focusBtn: ', focusBtn)
+
     setFocusBtn(focusBtn)
     setIsSearchBarOpen(isOpen)
-    // dispatch({ type: FILTER_STATUS, isFilterOpen: !isFilterOpen })
-    // setTimeout(() => {
-    //   setIsSearchBarOpen(false)
-    // }, 2000)
   }
 
   function getMonth(timestamp) {

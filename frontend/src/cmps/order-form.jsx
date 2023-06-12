@@ -19,6 +19,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     const [guestsAmount, setGuestsAmount] = useState(0)
     const isFromOrderForm = useRef(true)
     const maxCapacity = useRef(stay.capacity).current
+    const [capacityToEdit, setCapacityToEdit] = useState({ adults: 1, children: 0, infants: 0, pets: 0 })
 
 
     useEffect(() => {
@@ -58,7 +59,6 @@ export function OrderForm({ stay, checkInAndOutDate }) {
     }
 
     function onOpenGuestsModal() {
-        // console.log('onOpenGuestsModal: isAddGuestsOpen? ', isAddGuestsOpen)
         // if (isCalendarOpen) setIsCalendarOpen(false)
         setIsAddGuestsOpen(prevIsAddGuestsOpen => !prevIsAddGuestsOpen)
     }
@@ -67,9 +67,17 @@ export function OrderForm({ stay, checkInAndOutDate }) {
         return guestsAmount > 1 ? guestsAmount + ' guests' : guestsAmount + ' guest'
     }
 
-    function onUpdateCapacity({ capacity }) {
+    function onUpdateCapacity( capacity ) {
         console.log('capacity: ', capacity)
         setGuestsAmount(capacity.adults + capacity.children)
+        setCapacityToEdit(capacity)
+        // setCapacityToEdit({
+        //     ...capacityToEdit,
+        //     adults: capacity.adults,
+        //     children: capacity.children,
+        //     infants: capacity.infants,
+        //     pets: capacity.pets,
+        //   })
     }
 
     function ontoggleCalendar() {
@@ -96,7 +104,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
 
     return (
         <section className="order-form-container">
-            {console.log(guestsAmount)}
+
             <div className="price-rating-container flex space-between">
 
                 <div className="price-container flex align-center">
@@ -149,7 +157,8 @@ export function OrderForm({ stay, checkInAndOutDate }) {
                             onUpdateCapacity={onUpdateCapacity}
                             maxCapacity={maxCapacity}
                             onOpenGuestsModal={onOpenGuestsModal}
-                            isFromOrderForm={isFromOrderForm} />}
+                            isFromOrderForm={isFromOrderForm} 
+                            capacity={capacityToEdit}/>}
                     </div>
                 </div>
                 <button>Reserve</button>

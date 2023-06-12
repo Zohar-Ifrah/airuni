@@ -20,8 +20,6 @@ export function StayIndex() {
     const [searchParams] = useSearchParams()
     const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
-
-
     // First load
     useEffect(() => {
         const paramsMap = searchParams.entries()
@@ -32,16 +30,17 @@ export function StayIndex() {
         }
         // console.log(filterBy)
         onSetFilter(filterBy)
+        loadStays(filterBy)
         // eslint-disable-next-line
     }, [searchParams])
 
     useEffect(() => {
         dispatch({ type: SET_DETAILS_UNSHOWN })
-        loadStays(filterBy)
+        // loadStays(filterBy)
         loadUsers()
         loadReviews()
         // eslint-disable-next-line
-    }, [filterBy])
+    }, [])
 
     async function onRemoveStay(stayId) {
         try {

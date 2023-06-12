@@ -25,6 +25,7 @@ export function Dashboard() {
         fetchUsers()
 
     }, [])
+
     useEffect(() => {
         const fetchOrders = async () => {
             try {
@@ -43,13 +44,13 @@ export function Dashboard() {
 
     // Function to format the check-in and check-out dates
     const formatDateRange = (checkin, checkout) => {
-        const checkinDate = new Date(checkin);
-        const checkoutDate = new Date(checkout);
+        const checkinDate = new Date(checkin)
+        const checkoutDate = new Date(checkout)
 
-        const formattedCheckin = `${checkinDate.toLocaleString('en-US', { month: 'short' })} ${checkinDate.getDate()}`;
-        const formattedCheckout = `${checkoutDate.toLocaleString('en-US', { month: 'short' })} ${checkoutDate.getDate()}`;
+        const formattedCheckin = `${checkinDate.toLocaleString('en-US', { month: 'short' })} ${checkinDate.getDate()}`
+        const formattedCheckout = `${checkoutDate.toLocaleString('en-US', { month: 'short' })} ${checkoutDate.getDate()}`
 
-        return `${formattedCheckin} - ${formattedCheckout}`;
+        return `${formattedCheckin} - ${formattedCheckout}`
     }
 
     // Function to get the approval status
@@ -65,7 +66,7 @@ export function Dashboard() {
     }
 
     function handelOrder(order, isApproved) {
-        const orderToUpdate = { ...order, isApproved: isApproved };
+        const orderToUpdate = { ...order, isApproved: isApproved }
         try {
             orederService.update(orderToUpdate)
             setOrders(prevOrders => {

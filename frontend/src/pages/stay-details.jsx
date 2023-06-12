@@ -22,6 +22,7 @@ export function StayDetails() {
     const { stayId } = useParams()
     const dispatch = useDispatch()
     const [checkInAndOutDate, setCheckInAndOutDate] = useState(null)
+    const [isOpenReviews, setIsOpenReviews] = useState(false)
 
     const navigate = useNavigate()
     // const stays = useSelector((storeState) => storeState.stays)
@@ -57,7 +58,9 @@ export function StayDetails() {
     if (!stay) return <h1>Loading ...</h1>
 
     return <div className='stay-details'>
-        <DetailsHeader stay={stay} />
+        <DetailsHeader
+            stay={stay}
+            setIsOpenReviews={setIsOpenReviews} />
         <DetailsGallery stay={stay} />
 
         <section className="stay-details-content">
@@ -75,8 +78,11 @@ export function StayDetails() {
                     checkInAndOutDate={checkInAndOutDate} />
             </div>
         </section>
-        <Review stay={stay} />
-        <DetailsMap />
+        <Review
+            stay={stay}
+            isOpenReviews={isOpenReviews} />
+        <DetailsMap
+            loc={stay.loc} />
         <button>Contact Host</button>
     </div>
 }

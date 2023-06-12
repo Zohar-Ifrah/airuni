@@ -1,0 +1,21 @@
+.show-all-reviews-container {
+    position: fixed;
+    background-color: $clr8;
+    top: 6%;
+    left: 7%;
+    height: 88vh;
+    width: 86vw;
+    z-index: 51;
+    border-radius: 10px;
+}
+
+.show-all-reviews {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+
+    // TEMP IMG CSS
+    img {
+        width: 1em;
+    }
+}

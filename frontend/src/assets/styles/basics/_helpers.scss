@@ -76,6 +76,11 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.4078431373);
     z-index: 1;
+
+    &.all {
+        top: 0;
+        z-index: 50;
+    }
 }
 
 .focused {

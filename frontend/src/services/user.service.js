@@ -32,7 +32,7 @@ function getUsers() {
 async function getById(userId) {
     // const user = await storageService.get(USER_KEY, userId)
     const user = await httpService.get(`${API}/${userId}`)
-    console.log('user from userService', user);
+
     return user
 }
 
@@ -52,7 +52,7 @@ async function update(user) {
 async function login(userCred) {
     // const users = await storageService.query(USER_KEY)
     // const user = users.find(user => user.username === userCred.username)
-    console.log('userCred', userCred);
+
     const user = await httpService.post('auth/login', userCred)
     if (user) {
         return saveLocalUser(user)

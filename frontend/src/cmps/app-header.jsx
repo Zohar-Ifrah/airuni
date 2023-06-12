@@ -23,15 +23,16 @@ export function AppHeader() {
     const users = useSelector(storeState => storeState.userModule.users)
     const isHostRef = useRef()
     const [isHeaderClicked, setIsHeaderClicked] = useState(false)
+    const asd = useRef()
 
     useEffect(() => {
         if (user) {
             isHostRef.current = users.find(currUser =>
                 currUser._id === user._id)
-            console.log('isHostRef:', isHostRef.current)
+
         }
         const handleOutsideClick = (event) => {
-            if (modalRef.current && !modalRef.current.contains(event.target)) {
+            if (modalRef.current && !modalRef.current.contains(event.target) && !asd.current.contains(event.target)) {
                 setIsModalOpen(false)
             }
         }
@@ -100,7 +101,7 @@ export function AppHeader() {
 
     function onHeaderClick(event) {
         const targetClassName = event.target.className
-        console.log('targetClassName: ', targetClassName)
+
         if (/app-header(-.+)?/.test(targetClassName)) {
 
             setIsHeaderClicked(true)
@@ -126,10 +127,6 @@ export function AppHeader() {
                             </div>
                         </NavLink>
                     </div>
-
-
-                    {/* {console.log('isDetailsShown: ', isDetailsShown)} */}
-                    {/* {console.log('isHomeShown: ', isHomeShown)} */}
 
                     {isDetailsShown ?
                         <section className="header-search-bar-container">
@@ -158,7 +155,7 @@ export function AppHeader() {
 
                     <div className='login-signup-btn-container'>
 
-                        <div className='inner-login-signup-btn-container' onClick={() => { onToggleUserModal() }}>
+                        <div className='inner-login-signup-btn-container' ref={asd} onClick={() => { onToggleUserModal() }}>
 
                             <img className='menu-svg' src={menu} alt="menu" />
 
@@ -179,8 +176,7 @@ export function AppHeader() {
                                             <NavLink to='/trip'> Trips </NavLink>
                                             <NavLink to='/wishlist'> Whishlist </NavLink>
                                             <hr />
-                                            {/* {console.log('isHostRef!!!!', isHostRef.current.isSuperhost)}
-                                            {isHostRef.current && isHostRef.current.isSuperhost &&  */}
+
                                             {<NavLink to='/dashboard'> Dashboard </NavLink>}
                                             <button onClick={onLogout}>Log out</button>
                                         </div>

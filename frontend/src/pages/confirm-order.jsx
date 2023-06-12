@@ -4,6 +4,7 @@ import { PriceDetails } from "../cmps/price-details";
 import { orederService } from "../services/order.service";
 import { useSelector } from "react-redux";
 import { LoginSignup } from "../cmps/login-signup";
+import { utilService } from "../services/util.service";
 
 
 
@@ -44,10 +45,10 @@ export function ConfirmOrder() {
     }
 
     function confirmOrder() {
-        console.log(isUserLogged)
+
         formDetails.buyerId = isUserLogged._id
         orederService.add(formDetails)
-        console.log(formDetails)
+
         navigate('/')
     }
 
@@ -56,8 +57,12 @@ export function ConfirmOrder() {
     return (
         <section className="confirm-order-container">
             <div className="column1-content">
-                <h1> Confirm your trip </h1>
-                <h2> Your trip </h2>
+                <div className="nav-and-h1-container">
+                    <nav onClick={() => navigate(`/details/${formDetails.stayId}`)}>{'<'}</nav>
+                    <h1>Confirm your trip</h1>
+                </div>
+
+                <h2 > Your trip </h2>
 
                 <div className="dates-container">
                     <h4> Dates </h4>
@@ -72,6 +77,27 @@ export function ConfirmOrder() {
                 </div>
             </div>
 
+            <div>
+                <h1>Cancellation policy</h1>
+                <p><span>Free cancellation before {utilService.getMonth(formDetails.info.checkin)}.</span>
+                    Cancel before check-in on {utilService.getMonth(formDetails.info.checkout)} for a partial refund.
+                </p>
+            </div>
+
+            <div>
+                <h1>Ground rules</h1>
+
+                We ask every guest to remember a few simple things about what makes a great guest.
+                <ul>
+                    <li>
+                        Follow the house rules
+                    </li>
+                    <li>
+                        Treat your Host's home like your own
+                    </li>
+                </ul>
+            </div>
+
             <div className="column2-content">
                 <PriceDetails price={formDetails.info.price} checksDates={{ checkIn: formDetails.info.checkin, checkOut: formDetails.info.checkout }} calculateNumberOfNights={calculateNumberOfNights} />
             </div>
@@ -81,8 +107,8 @@ export function ConfirmOrder() {
                 <div>
                     <h3>Please login to book</h3>
                     <h1>Login in or sign up</h1>
-                    {/* <LoginSignup /> */} 
-                </div>   
+                    {/* <LoginSignup /> */}
+                </div>
             }
         </section>
     )

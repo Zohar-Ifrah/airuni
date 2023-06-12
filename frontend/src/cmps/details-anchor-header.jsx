@@ -5,6 +5,7 @@ export function DetailsAnchorHeader() {
   function handleClick(event, id) {
     event.preventDefault()
     const element = document.getElementById(id)
+
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
@@ -22,7 +23,7 @@ export function DetailsAnchorHeader() {
         <a className="anchor-link" href="#reviews" onClick={(event) => handleClick(event, 'reviews')}>
           Reviews
         </a>
-        <a className="anchor-link" href="#location" onClick={(event) => handleClick(event, 'location')}>
+        <a className="anchor-link" href="#locations" onClick={(event) => handleClick(event, 'locations')}>
           Location
         </a>
       </div>

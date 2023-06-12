@@ -11,7 +11,6 @@ export function Trip() {
     const userLogged = useSelector(storeState => storeState.userModule.user)
     const [users, setUsers] = useState([])
     const [orders, setOrders] = useState([])
-    const hostRef = useRef()
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -25,12 +24,12 @@ export function Trip() {
         fetchUsers()
 
     }, [])
+
     useEffect(() => {
         const fetchOrders = async () => {
             try {
                 const userOrders = await orederService.getOrderByBuyer(userLogged._id)
                 setOrders(userOrders)
-                // setHost(getHost(userOrders[0].hostId))
             } catch (error) {
                 console.log("Error fetching orders:", error)
             }
@@ -43,13 +42,13 @@ export function Trip() {
 
     // Function to format the check-in and check-out dates
     const formatDateRange = (checkin, checkout) => {
-        const checkinDate = new Date(checkin);
-        const checkoutDate = new Date(checkout);
+        const checkinDate = new Date(checkin)
+        const checkoutDate = new Date(checkout)
 
-        const formattedCheckin = `${checkinDate.toLocaleString('en-US', { month: 'short' })} ${checkinDate.getDate()}`;
-        const formattedCheckout = `${checkoutDate.toLocaleString('en-US', { month: 'short' })} ${checkoutDate.getDate()}`;
+        const formattedCheckin = `${checkinDate.toLocaleString('en-US', { month: 'short' })} ${checkinDate.getDate()}`
+        const formattedCheckout = `${checkoutDate.toLocaleString('en-US', { month: 'short' })} ${checkoutDate.getDate()}`
 
-        return `${formattedCheckin} - ${formattedCheckout}`;
+        return `${formattedCheckin} - ${formattedCheckout}`
     }
 
     // Function to get the approval status
@@ -58,7 +57,7 @@ export function Trip() {
     }
 
     function getHostsInfo(hostId) {
-        if (users.length){
+        if (users.length) {
             const host = users.find(user => user._id === hostId)
             return { img: host.imgUrl, name: host.fullname }
         }
@@ -80,24 +79,14 @@ export function Trip() {
 
                             <thead>
                                 <tr>
-                                    <td>
-                                        stay
-                                    </td>
-                                    <td>
-                                        host
-                                    </td>
-                                    <td>
-                                        dates
-                                    </td>
-                                    <td>
-                                        total
-                                    </td>
-                                    <td>
-                                        status
-                                    </td>
-                                    <td>
-                                        action
-                                    </td>
+                                    <td>Host</td>
+                                    <td>Stay</td>
+                                    <td>Dates</td>
+                                    <td>Nights</td>
+                                    <td>Guests</td>
+                                    <td>Total Price</td>
+                                    <td>Status</td>
+                                    <td>Action</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,14 +94,13 @@ export function Trip() {
                                     const hostInfo = getHostsInfo(order.hostId)
                                     return (
                                         <tr key={order._id}>
-                                            <td><img src={stays.find(stay => stay.host === order.hostId)?.imgUrls[0]} alt="stay" /> </td>
-                                            {hostInfo &&
-                                            <td>
-                                                <img src={hostInfo.img} alt="host" />
-                                                <p>{hostInfo.name}</p>
-                                            </td>
-                                            }
+                                            {hostInfo && <td>
+                                                {hostInfo.name}
+                                            </td>}
+                                            <td>{stays && stays.find(stay => stay._id === order.stayId).name} </td>
                                             <td>{formatDateRange(order.info.checkin, order.info.checkout)}</td>
+                                            <td>Nigh</td>
+                                            <td>Guests</td>
                                             <td>${order.info.price}</td>
                                             <td>{getApprovalStatus(order.isApproved)}</td>
                                             <td>

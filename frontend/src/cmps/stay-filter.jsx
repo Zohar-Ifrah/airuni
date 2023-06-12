@@ -50,7 +50,7 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }, [isAddGuestsOpen, isCalendarOpen, isSearchOpen, isCheckIn])
 
   useEffect(() => {
-    console.log('FROM isHeaderClicked:', isHeaderClicked)
+
     setIsSearchOpen(false)
     setIsCalendarOpen(false)
     setIsAddGuestsOpen(false)
@@ -84,8 +84,6 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     if ((from === 'checkIn' && !isCheckIn) ||
       (from === 'checkOut' && isCheckIn)) {
 
-      setIsAddGuestsOpen(false)
-      setIsSearchOpen(false)
       setIsCalendarOpen(!isCalendarOpen)
     } else {
       if (from === 'checkOut') setIsCheckIn(true)
@@ -93,6 +91,8 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
       setIsCalendarOpen(true)
       from === 'checkIn' && setIsCheckIn(false)
     }
+    setIsAddGuestsOpen(false)
+    setIsSearchOpen(false)
   }
 
   function onOpenGuestsModal() {
@@ -102,9 +102,13 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }
 
   function onOpenSearchModal() {
+
     if (isCalendarOpen) setIsCalendarOpen(false)
     if (isAddGuestsOpen) setIsAddGuestsOpen(false)
-    setIsSearchOpen(!isSearchOpen)
+    setIsSearchOpen(prevIsSearchOpen => {
+      !prevIsSearchOpen && elInputRef.current.focus()
+      return !isSearchOpen
+    })
   }
 
   function onSetDates(startDate, endDate) {
@@ -117,9 +121,10 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
     })
   }
 
-  function onUpdateCapacity({ capacity }) {
+  function onUpdateCapacity(capacity) {
 
     guestsAmount.current = capacity.adults + capacity.children
+
     setFilterByToEdit({
       ...filterByToEdit,
       adults: capacity.adults,
@@ -183,13 +188,15 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
       <div className={`search-label-header flex justify-center ${isSearchOpen && 'focused'}`}
         onClick={() => { onOpenSearchModal() }}>
-        <label htmlFor="location">Where</label>
-        <input type="text"
-          id="location"
+        <span>Where</span>
+        <input
+          ref={elInputRef}
+          type="text"
           name="location"
           placeholder="Search destinations"
           value={filterByToEdit.location && filterByToEdit.location}
           onChange={handleChange}
+
         />
       </div>
 
@@ -244,7 +251,8 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
       </div>
       <div className="show-contents">
         {isAddGuestsOpen && <AddGuests
-          onUpdateCapacity={onUpdateCapacity} />}
+          onUpdateCapacity={onUpdateCapacity}
+          capacity={filterByToEdit} />}
       </div>
 
     </section>
