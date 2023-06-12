@@ -1,21 +1,48 @@
 .show-all-reviews-container {
     position: fixed;
     background-color: $clr8;
-    top: 6%;
-    left: 7%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 88vh;
-    width: 86vw;
+    width: 80%;
     z-index: 51;
     border-radius: 10px;
-}
-
-.show-all-reviews {
-    display: flex;
-    flex-direction: column;
     padding: 1.5em;
 
-    // TEMP IMG CSS
-    img {
-        width: 1em;
+    .show-all-reviews {
+
+
+        // TEMP IMG CSS
+        img {
+            width: 1em;
+        }
+
+        .all-reviews-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            column-gap: 5em;
+            margin-block-start: 1.5em;
+
+            .statistics-reviews-main-container {
+                display: flex;
+                flex-direction: column;
+
+                .rating-container {
+                    img {
+                        width: 1.5em;
+                    }
+
+                    h2 {
+                        font-family: Circular-Regular, sans-serif;
+                        font-size: em(32px);
+                    }
+                }
+
+                .statistics-reviews-container {
+                    display: block;
+                }
+            }
+        }
     }
 }

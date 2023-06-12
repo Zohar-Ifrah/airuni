@@ -5,7 +5,7 @@ export function StatisticsReviews({ stay }) {
 
 
     return (
-        <>
+        <section className="statistics-reviews-main-container">
             {!!stay.reviews.length && <div className="rating-container flex align-center">
                 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />
                 <h2> {`${stay.rating} · ${stay.reviews.length} reviews`} </h2>
@@ -68,6 +68,6 @@ export function StatisticsReviews({ stay }) {
                 </div>
 
             </section>
-        </>
+        </section>
     )
 }
