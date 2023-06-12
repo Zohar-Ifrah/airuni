@@ -9,7 +9,6 @@ export function AllReviews({ stay }) {
         const month = date.toLocaleString('default', { month: 'long' })
         const year = date.getFullYear()
         return `${month} ${year}`
-
     }
 
 
