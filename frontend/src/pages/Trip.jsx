@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { orederService } from "../services/order.service"
 import { useEffect, useRef, useState } from "react"
 import { userService } from "../services/user.service"
+import { loadStays } from "../store/stay.actions"
 
 
 export function Trip() {
@@ -11,6 +12,7 @@ export function Trip() {
     const userLogged = useSelector(storeState => storeState.userModule.user)
     const [users, setUsers] = useState([])
     const [orders, setOrders] = useState([])
+
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -23,6 +25,7 @@ export function Trip() {
         }
         fetchUsers()
 
+        loadStays()
     }, [])
 
     useEffect(() => {
@@ -67,6 +70,8 @@ export function Trip() {
         console.log(orderId)
     }
 
+    if (!stays.length) return <h2> Loading ... </h2>
+
     return (
         <>
             {userLogged ?
@@ -97,7 +102,7 @@ export function Trip() {
                                             {hostInfo && <td>
                                                 {hostInfo.name}
                                             </td>}
-                                            <td>{stays && stays.find(stay => stay._id === order.stayId).name} </td>
+                                            <td>{!!stays.length && stays.find(stay => stay._id === order.stayId).name} </td>
                                             <td>{formatDateRange(order.info.checkin, order.info.checkout)}</td>
                                             <td>Nigh</td>
                                             <td>Guests</td>

@@ -33,16 +33,15 @@ export function StayDetails() {
         // eslint-disable-next-line
     }, [])
 
-    function loadStay() {
-        stayService.getById(stayId)
-            .then((stay) => {
-                setStay(stay)
-            })
-            .catch((err) => {
-                console.log('Had issues in stay details', err)
-                showErrorMsg('Cannot load stay')
-                navigate('/stay')
-            })
+    async function loadStay() {
+        try {
+            const stay = await stayService.getById(stayId)
+            setStay(stay)
+        } catch (err) {
+            console.log('Had issues in stay details', err)
+            showErrorMsg('Cannot load stay')
+            navigate('/stay')
+        }
     }
 
     function onSetDates(startDate, endDate) {
@@ -78,11 +77,15 @@ export function StayDetails() {
                     checkInAndOutDate={checkInAndOutDate} />
             </div>
         </section>
+
         <Review
             stay={stay}
             isOpenReviews={isOpenReviews} />
+
         <DetailsMap
             loc={stay.loc} />
-        <button>Contact Host</button>
+
+        {/* <button>Contact Host</button> */}
+
     </div>
 }

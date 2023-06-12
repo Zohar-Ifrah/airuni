@@ -94,14 +94,15 @@ export function Review({ stay, isOpenReviews }) {
             </div>
             {isModalShowMoreOpen &&
                 <div>
+                    <section className="show-all-reviews-main-container">
+                        <div className="show-all-reviews-container">
 
-                    <div className="show-all-reviews-container">
+                            <ShowAllReviews
+                                stay={stay}
+                                onOpenModalShowMore={onOpenModalShowMore} />
 
-                        <ShowAllReviews
-                            stay={stay}
-                            onOpenModalShowMore={onOpenModalShowMore} />
-
-                    </div>
+                        </div>
+                    </section>
                     <div onClick={() => onOpenModalShowMore(false)} className="blur all"></div>
                 </div>
             }

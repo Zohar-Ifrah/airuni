@@ -1,13 +1,12 @@
-import { AllReviews } from "./all-reviews";
-import { StatisticsReviews } from "./statistics-reviews";
-import exit from "../assets/img/exit.svg"
+import { AllReviews } from "./all-reviews"
+
+
 export function ShowAllReviews({ stay, onOpenModalShowMore }) {
 
     return (
         <div className="show-all-reviews">
-            <img onClick={() => onOpenModalShowMore(false)} src={exit} alt="exit" />
             {/* <StatisticsReviews stay={stay} /> */}
-            <AllReviews stay={stay} />
+            <AllReviews stay={stay} onOpenModalShowMore={onOpenModalShowMore} />
         </div>
     )
 }

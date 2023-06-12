@@ -40,7 +40,11 @@
                             &:nth-child(2) {
                                 text-decoration: underline;
                                 font-family: Circular-Regular, sans-serif;
-                                font-size: em(16px);
+                                font-size: em(16.5px);
+
+                                &:hover {
+                                    cursor: pointer;
+                                }
                             }
                         }
 
@@ -461,7 +465,7 @@
         border-block-start: 1px solid $clr4;
         border-block-end: 1px solid $clr4;
         margin-block-start: 3em;
-        margin-block-end: 3.5em;
+        margin-block-end: 3em;
         padding-block-start: 3em;
         padding-block-end: 3em;
 
@@ -580,7 +584,25 @@
                 font-family: Circular-Medium, sans-serif;
                 border: 1px solid $clr2;
                 padding-inline: 1.4em;
+
+                &:hover {
+                    background-color: $clr5;
+                }
             }
+        }
+    }
+
+    .details-map {
+        border-block-end: 1px solid $clr4;
+
+        h2 {
+            margin-block-end: .8em;
+        }
+
+        h3 {
+            margin-block-start: 1.2em;
+            margin-block-end: 2.4em;
+            font-size: em(16.5px);
         }
     }
 }

@@ -123,7 +123,7 @@ export function AppHeader() {
                         <NavLink to="/" >
                             <div className='main-logo-container flex align-center'>
                                 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685912254/logo-img_tdtnc7.svg" alt="" />
-                                <h2> airbbb </h2>
+                                <h2> airuni </h2>
                             </div>
                         </NavLink>
                     </div>

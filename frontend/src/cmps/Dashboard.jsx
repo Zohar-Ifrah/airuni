@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { orederService } from "../services/order.service"
 import { useEffect, useState } from "react"
 import { userService } from "../services/user.service"
+import { loadStays } from "../store/stay.actions"
 
 
 
@@ -23,6 +24,8 @@ export function Dashboard() {
             }
         }
         fetchUsers()
+
+        loadStays()
 
     }, [])
 
@@ -82,6 +85,8 @@ export function Dashboard() {
             console.log("Error updating order:", error)
         }
     }
+
+    if (!stays.length) return <h2> Loading... </h2>
 
     return (
         <>
