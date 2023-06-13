@@ -8,7 +8,7 @@ export function AppFooter() {
     return (
         <footer className="app-footer full">
             <p>
-                CoffeeRights 2023 | By Zohar Ifrah, Gil Shaashua and Yuval Turjeman
+                CoffeeRights 2023 | By Zohar Ifrah and Gil Shaashua
             </p>
         </footer>
     )
