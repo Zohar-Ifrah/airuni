@@ -11,16 +11,25 @@ import { SET_DETAILS_UNSHOWN } from '../store/system.reducer'
 import { ShowAllReviews } from './show-all-reviews'
 
 
-export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews }) {
+export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
-    const [checksDates, setChecksDates] = useState(checkInAndOutDate)
-    const [guestsAmount, setGuestsAmount] = useState(0)
+    const [checksDates, setChecksDates] = useState(
+        checkInAndOutDate ? checkInAndOutDate :
+            {
+                checkIn: filterBy.checkIn, checkOut: filterBy.checkOut
+            })
+    const [guestsAmount, setGuestsAmount] = useState(filterBy.adults + filterBy.children)
     const isFromOrderForm = useRef(true)
     const maxCapacity = useRef(stay.capacity).current
-    const [capacityToEdit, setCapacityToEdit] = useState({ adults: 1, children: 0, infants: 0, pets: 0 })
+    const [capacityToEdit, setCapacityToEdit] = useState({
+        adults: filterBy.adults,
+        children: filterBy.children,
+        infants: filterBy.infants,
+        pets: filterBy.pets
+    })
 
 
     useEffect(() => {
@@ -113,7 +122,7 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews }) {
 
     return (
         <section className="order-form-container">
-
+            {console.log(checksDates)}
             <div className="price-rating-container flex space-between">
 
                 <div className="price-container flex">

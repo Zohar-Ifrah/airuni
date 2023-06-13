@@ -9,7 +9,7 @@ import { StayExrtaDetails } from "../cmps/stay-extra-details"
 import { StayAmenities } from "../cmps/stay-amenities"
 import { Review } from "../cmps/review"
 import { OrderForm } from "../cmps/order-form"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { SET_DETAILS_SHOWN } from "../store/system.reducer"
 import { CalendarPicker } from "../cmps/calendar-picker"
 import { DetailsMap } from "../cmps/details-map"
@@ -24,7 +24,7 @@ export function StayDetails() {
     const dispatch = useDispatch()
     const [checkInAndOutDate, setCheckInAndOutDate] = useState(null)
     const [isOpenReviews, setIsOpenReviews] = useState(false)
-
+    const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
     const navigate = useNavigate()
     // const stays = useSelector((storeState) => storeState.stays)
 
@@ -76,7 +76,8 @@ export function StayDetails() {
             <div className="stay-details-content-column2">
                 <OrderForm stay={stay}
                     checkInAndOutDate={checkInAndOutDate}
-                    setIsOpenReviews={setIsOpenReviews} />
+                    setIsOpenReviews={setIsOpenReviews}
+                    filterBy={filterBy} />
             </div>
         </section>
 

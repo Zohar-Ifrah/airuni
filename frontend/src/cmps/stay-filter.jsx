@@ -112,7 +112,8 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
   }
 
   function onSetDates(startDate, endDate) {
-
+    setIsCalendarOpen(false)
+    setIsAddGuestsOpen(true)
     checkInAndOutDate.current = { checkIn: getMonth(startDate), checkOut: getMonth(endDate) }
     setFilterByToEdit({
       ...filterByToEdit,
@@ -219,7 +220,9 @@ export function StayFilter({ onSetFilter, onSetSort, onChangeBarDisplay, focusBt
 
         {isCalendarOpen && <CalendarPicker
           onSetDates={onSetDates}
-          onCheckInClick={onCheckInClick} />}
+          onCheckInClick={onCheckInClick}
+          checkIn={filterByToEdit.checkIn}
+          checkOut={filterByToEdit.checkOut} />}
       </div>
 
 
