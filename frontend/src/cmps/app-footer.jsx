@@ -1,5 +1,3 @@
-import { UserMsg } from './user-msg.jsx'
-
 export function AppFooter() {
 
     // const count = useSelector(storeState => storeState.userModule.count)
@@ -12,7 +10,6 @@ export function AppFooter() {
             <p>
                 CoffeeRights 2023 | By Zohar Ifrah, Gil Shaashua and Yuval Turjeman
             </p>
-            <UserMsg />
         </footer>
     )
 }

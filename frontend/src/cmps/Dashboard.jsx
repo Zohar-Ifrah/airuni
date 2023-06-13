@@ -4,6 +4,7 @@ import { orederService } from "../services/order.service"
 import { useEffect, useState } from "react"
 import { userService } from "../services/user.service"
 import { loadStays } from "../store/stay.actions"
+import { socketService } from "../services/socket.service"
 
 
 
@@ -23,6 +24,14 @@ export function Dashboard() {
                 console.log("Error fetching users:", error)
             }
         }
+
+        // Real time update orders
+        socketService.on('get-new-order', (order) => {
+            setOrders((prevOrders) => {
+                return [order, ...prevOrders]
+            })
+        })
+
         fetchUsers()
 
         loadStays()

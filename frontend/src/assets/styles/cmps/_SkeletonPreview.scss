@@ -1,0 +1,33 @@
+.stay-preview.skeleton-preview {
+
+    p,
+    h4,
+    span {
+        width: max-content;
+        border-radius: 0.2rem;
+        margin-bottom: 2px;
+        color: transparent;
+    }
+
+    .carousel-wrapper {
+
+        .img-preview {
+
+            border-radius: 0.8rem;
+        }
+    }
+}
+
+.skeleton {
+    animation: skeleton-loading 1.5s linear infinite alternate;
+
+    @keyframes skeleton-loading {
+        0% {
+            background-color: $skeleton-clr1;
+        }
+
+        100% {
+            background-color: $skeleton-clr2;
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { orederService } from "../services/order.service"
 import { useEffect, useRef, useState } from "react"
 import { userService } from "../services/user.service"
 import { loadStays } from "../store/stay.actions"
+import { socketService } from "../services/socket.service"
 
 
 export function Trip() {
@@ -23,6 +24,16 @@ export function Trip() {
                 console.log("Error fetching users:", error)
             }
         }
+
+        // Real time update order
+        socketService.on('order-status-change', (newOrder) => {
+            setOrders((prevOrders) => {
+                const orderIdx = prevOrders.findIndex(o => o._id === newOrder._id)
+                prevOrders.splice(orderIdx, 1, newOrder)
+                return [...prevOrders]
+            })
+        })
+
         fetchUsers()
 
         loadStays()

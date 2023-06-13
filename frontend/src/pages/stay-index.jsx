@@ -13,6 +13,7 @@ import { SET_DETAILS_UNSHOWN } from '../store/system.reducer.js'
 import { stayService } from '../services/stay.service.local.js'
 import { loadUsers } from '../store/user.actions.js'
 import { loadReviews } from '../store/review.actions.js'
+import { SkeletonList } from '../cmps/skeleton-list.jsx'
 
 export function StayIndex() {
     const dispatch = useDispatch()
@@ -87,9 +88,16 @@ export function StayIndex() {
     //     // dispatch({ type: SORT_BY, sortToEdit })
     // }
 
+    if (!stays.length) {
+        return (
+            <div className="stay-index-container">
+                <SkeletonList />
+            </div>
+        )
+    }
+
     return (
         <div className="stay-index-container">
-            {/* <div className='blur'></div> */}
 
             {/* <button onClick={onAddStay}>Add Stay</button> */}
 

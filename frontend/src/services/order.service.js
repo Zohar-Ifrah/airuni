@@ -1,5 +1,6 @@
 // import { storageService } from './async-storage.service.js'
 import { httpService } from './http.service.js'
+import { socketService } from './socket.service.js'
 
 // const STORAGE_KEY = 'order_db'
 const API = 'order'
@@ -52,12 +53,13 @@ async function add(orderToAdd) {
     // orderToAdd.createdAt = Date.now()
     // const newOrder = storageService.post(STORAGE_KEY, orderToAdd)
     // return newOrder
+    socketService.emit('new-order', orderToAdd)
     return httpService.post(API, orderToAdd)
 }
 
 async function update(orderToUpdate) {
     // return storageService.put(STORAGE_KEY, orderToUpdate)
-
+    socketService.emit('status-change', orderToUpdate)
     return httpService.put(API, orderToUpdate)
 }
 
