@@ -252,6 +252,12 @@
                     .rdp-months {
                         display: flex;
                         justify-content: space-between;
+
+                        .rdp-caption {
+                            .rdp-caption_label {
+                                z-index: 0;
+                            }
+                        }
                     }
                 }
             }
@@ -273,7 +279,7 @@
                 box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
                 display: flex;
                 flex-direction: column;
-                padding: 2em;
+                padding: 1.5em;
                 align-items: center;
 
                 >* {
@@ -284,19 +290,44 @@
                     margin-block-end: 0.8em;
 
                     .price-container {
+                        align-items: flex-end;
+
                         h2 {
-                            margin-inline-end: 0.3em;
+                            margin-inline-end: 0.2em;
+                        }
+
+                        p {
+                            margin-block-end: .2em;
+                            font-size: em(17px);
                         }
                     }
 
                     .rating-review-container {
+
                         .rating-container {
                             margin-inline-end: 0.2em;
 
                             img {
-                                width: 1em;
+                                width: .8em;
                                 margin-inline-end: 0.3em;
-                                margin-block-end: .2em;
+                                margin-block-end: .1em;
+                            }
+
+                            p {
+                                font-size: em(14.5px);
+                                font-family: Circular-Regular, sans-serif;
+                                color: $clr2;
+                                margin-inline-end: .2em;
+                            }
+                        }
+
+                        .reviews-amount {
+                            font-family: Circular-Regular, sans-serif;
+                            text-decoration: underline;
+                            font-size: em(14.7px);
+
+                            &:hover {
+                                cursor: pointer;
                             }
                         }
                     }
@@ -309,6 +340,7 @@
 
                     .dates-guests-container {
                         width: 100%;
+                        margin-block-end: .3em;
 
 
                         .dates-container {
@@ -330,7 +362,7 @@
                                 span {
                                     text-transform: uppercase;
                                     font-size: em(9px);
-                                    font-family: Circular-Medium, sans-serif;
+                                    font-family: Circular-Bold, sans-serif;
                                 }
 
                                 .date-check-in {
@@ -353,7 +385,7 @@
                                 span {
                                     text-transform: uppercase;
                                     font-size: em(9px);
-                                    font-family: Circular-Medium, sans-serif;
+                                    font-family: Circular-Bold, sans-serif;
                                 }
 
                                 .date-check-out {
@@ -380,7 +412,7 @@
                             span {
                                 text-transform: uppercase;
                                 font-size: em(9px);
-                                font-family: Circular-Medium, sans-serif;
+                                font-family: Circular-Bold, sans-serif;
                                 margin-block-end: .3em;
                             }
 
@@ -440,17 +472,38 @@
                     }
                 }
 
+                .price-details {
+                    margin-block-start: 1.5em;
+
+                    .price-details-inner-container {
+                        margin-block-end: 1em;
+
+                        .nights-price-container {
+                            margin-block-end: .4em;
+                            color: $clr2;
+
+                            p {
+                                &:first-child {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 .txt-charged {
                     text-align: center;
-                    margin-block: 1.5em;
+                    margin-block-start: .3em;
+                    color: $clr2;
                 }
 
                 .nights-sum {
-                    // margin-block: 2em;
+                    align-items: center;
                     padding-block-start: 1em;
-                    border-block-start: 1px solid rgba(0, 0, 0, 0.356);
+                    border-block-start: 1px solid $clr4;
 
                     .total-price-container {
+
                         h3 {
                             text-transform: capitalize;
                             margin-inline-end: .5em;

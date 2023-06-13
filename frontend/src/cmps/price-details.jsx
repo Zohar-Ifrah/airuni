@@ -9,7 +9,7 @@ export function PriceDetails({ price, checksDates, calculateNumberOfNights, isFr
         checksDates && <>
             <div className='price-details'>
 
-                <div>
+                <div className="price-details-inner-container">
                     {isFromConfirmOrderUpdated && <h2> Price Details </h2>}
                     <div className='nights-price-container flex space-between'>
                         <p>{`$${price} x ${calculateNumberOfNights(checksDates.checkIn, checksDates.checkOut)} nights`}</p>

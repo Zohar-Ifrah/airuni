@@ -67,7 +67,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
         return guestsAmount > 1 ? guestsAmount + ' guests' : guestsAmount + ' guest'
     }
 
-    function onUpdateCapacity( capacity ) {
+    function onUpdateCapacity(capacity) {
         console.log('capacity: ', capacity)
         setGuestsAmount(capacity.adults + capacity.children)
         setCapacityToEdit(capacity)
@@ -107,7 +107,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
 
             <div className="price-rating-container flex space-between">
 
-                <div className="price-container flex align-center">
+                <div className="price-container flex">
                     <h2>${stay.price}</h2>
                     <p>night</p>
                 </div>
@@ -120,9 +120,10 @@ export function OrderForm({ stay, checkInAndOutDate }) {
                                 alt="Star"
                             />
                             <p> {stay.rating} </p>
+                            <span> · </span>
                         </div>
                     )}
-                    <p>{` · ${stay.reviews.length} reviews`}</p>
+                    <p className='reviews-amount'>{`${stay.reviews.length} reviews`}</p>
                 </div>
             </div>
 
@@ -157,8 +158,8 @@ export function OrderForm({ stay, checkInAndOutDate }) {
                             onUpdateCapacity={onUpdateCapacity}
                             maxCapacity={maxCapacity}
                             onOpenGuestsModal={onOpenGuestsModal}
-                            isFromOrderForm={isFromOrderForm} 
-                            capacity={capacityToEdit}/>}
+                            isFromOrderForm={isFromOrderForm}
+                            capacity={capacityToEdit} />}
                     </div>
                 </div>
                 <button>Reserve</button>
