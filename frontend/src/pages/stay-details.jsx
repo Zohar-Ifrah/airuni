@@ -74,7 +74,8 @@ export function StayDetails() {
             </div>
             <div className="stay-details-content-column2">
                 <OrderForm stay={stay}
-                    checkInAndOutDate={checkInAndOutDate} />
+                    checkInAndOutDate={checkInAndOutDate}
+                    setIsOpenReviews={setIsOpenReviews} />
             </div>
         </section>
 

@@ -2,6 +2,7 @@ import { userService } from "../services/user.service";
 import { ShareSave } from "./share-save";
 
 export function DetailsHeader({ stay, setIsOpenReviews }) {
+
     function onOpenReviews() {
         setIsOpenReviews(true)
 
@@ -9,6 +10,7 @@ export function DetailsHeader({ stay, setIsOpenReviews }) {
             setIsOpenReviews(false)
         }, 300);
     }
+
     return (
         <div id="photos" className="details-header flex space-between">
             <div className="content">

@@ -16,6 +16,7 @@ export function Review({ stay, isOpenReviews }) {
         }
         // eslint-disable-next-line
     }, [])
+
     useEffect(() => {
         isOpenReviews && setIsModalShowMoreOpen(true)
     }, [isOpenReviews])
