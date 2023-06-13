@@ -15,6 +15,24 @@
             border: 1px solid $clr5;
             padding: 1.5em;
 
+            .price-details-inner-container {
+                .nights-price-container {
+                    p {
+                        color: $clr2;
+                        font-size: em(17px);
+                        margin-block-end: .5em;
+
+                        &:first-child {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    &:last-child {
+                        margin-block-end: 1em;
+                    }
+                }
+            }
+
             div {
                 h2 {
                     margin-block-end: 1em;
@@ -26,10 +44,69 @@
             }
 
             .total-price-container {
+                border-block-start: 1px solid $clr4;
+                padding-block-start: 1.2em;
+
                 p {
                     font-family: Circular-Medium, sans-serif;
                     font-size: em(18px);
                     color: $clr2;
+
+                }
+            }
+        }
+
+        .price-details {
+            .stay-order-details {
+                margin-block-end: 1.2em;
+                padding-block-end: 1.8em;
+                border-block-end: 1px solid $clr4;
+                column-gap: .9em;
+
+                img {
+                    width: 8em;
+                    height: 8em;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                    border-radius: .6em;
+                }
+
+                .stay-order-details-content {
+                    display: grid;
+                    margin: 0;
+
+                    p:nth-child(1) {
+                        font-size: em(12px);
+                        align-self: start;
+                    }
+
+                    p:nth-child(2) {
+                        color: $clr2;
+                        font-size: em(15.5px);
+                        margin-block-start: -30px;
+                        align-self: start;
+                    }
+
+                    .stay-order-details-content-inner-container {
+                        align-self: self-end;
+                        margin: 0;
+                        column-gap: .2em;
+
+                        img {
+                            width: .7em;
+                            height: .7em;
+                        }
+
+                        span {
+                            font-size: em(13.5px);
+                            color: $clr2;
+
+                            span {
+                                font-size: em(15.5px);
+                                color: gray;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -53,16 +130,24 @@
 
             position: relative;
 
-            nav {
+            a {
                 position: absolute;
                 left: -1.7em;
                 border-radius: 50%;
                 width: 1.6em;
                 height: 1.6em;
                 text-align: center;
-                top: 0em;
+                top: 0.1em;
                 cursor: pointer;
                 font-size: 1.5em;
+
+                &:hover {
+                    background-color: $clr5;
+                }
+
+                img {
+                    width: .6em;
+                }
             }
 
             nav:hover {
@@ -136,5 +221,45 @@
         border-radius: em(5px);
         font-size: em(24px);
         font-family: Circular-Medium, sans-serif;
+    }
+
+    .completed-order {
+        margin-block-start: 1em;
+        margin-block-end: 3em;
+        background-color: $clr5;
+        padding: 1em 1.5em;
+        border-radius: 1em;
+        // column-gap: 1.5em;
+
+        h2 {
+            color: $clr2;
+
+            span {
+                color: green;
+            }
+        }
+
+        p {
+            color: $clr2;
+            font-size: em(17px);
+
+
+        }
+
+        button {
+            padding-inline: 1em;
+            margin: 0;
+            width: max-content;
+
+            a {
+                color: $clr8;
+                font-family: Circular-Medium, sans-serif;
+                font-size: em(14px);
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
     }
 }
