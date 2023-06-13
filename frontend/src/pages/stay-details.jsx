@@ -46,6 +46,9 @@ export function StayDetails() {
     }
 
     function onSetDates(startDate, endDate) {
+        // setCheckInAndOutDate({
+        //     checkIn: filterBy.checkIn, checkOut: filterBy.checkOut
+        // })
         setCheckInAndOutDate({
             checkIn: startDate, checkOut: endDate
         })

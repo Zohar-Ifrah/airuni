@@ -33,7 +33,8 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
 
 
     useEffect(() => {
-        setChecksDates(checkInAndOutDate)
+        setChecksDates({checkIn: filterBy.checkIn, checkOut: filterBy.checkOut})
+        // setChecksDates(checkInAndOutDate)
     }, [checkInAndOutDate])
 
     function calculateNumberOfNights(start, end) {
@@ -57,7 +58,7 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
             checkin: checksDates.checkIn,
             checkout: checksDates.checkOut,
             guests: guestsAmount,
-            price: (stay.price * calculateNumberOfNights(checksDates?.checkIn, checksDates?.checkOut)) + 20
+            price: (stay.price * calculateNumberOfNights(checksDates.checkIn, checksDates.checkOut)) + 20
         }
         formDetails.stayId = stay._id
         formDetails.hostId = stay.host._id
@@ -98,7 +99,7 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
         // console.log(isClicked)
     }
     function onSetDates(startDate, endDate) {
-
+        console.log('onSetDates')
         setIsCalendarOpen(!isCalendarOpen)
         setChecksDates({ checkIn: startDate, checkOut: endDate })
 
@@ -152,6 +153,8 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
                     <div onClick={() => { ontoggleCalendar() }} className="dates-container flex align-center">
                         <div className="check-in-container">
                             <span> check-in </span>
+                            {console.log(checkInAndOutDate)}
+                            {console.log(checksDates)}
                             <div className='date-check-in'>{checksDates ? formatDate(checksDates.checkIn) : 'Add date'} </div>
                         </div>
 
