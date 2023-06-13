@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { PriceDetails } from "../cmps/price-details";
 import { orederService } from "../services/order.service";
 import { useSelector } from "react-redux";
 import { LoginSignup } from "../cmps/login-signup";
 import { utilService } from "../services/util.service";
+import { stayService } from "../services/stay.service";
 
 
 
@@ -12,10 +13,12 @@ import { utilService } from "../services/util.service";
 export function ConfirmOrder() {
     const [searchParams] = useSearchParams()
     const [formDetails, setFormDetails] = useState(null)
-    const navigate = useNavigate()
     const isUserLogged = useSelector(storeState => storeState.userModule.user)
     const [isOrderConfirmed, setIsOrderConfirmed] = useState(false)
+    const [stay, setStay] = useState(null)
 
+    console.log('stay', stay);
+    console.log('formDetails', formDetails);
 
     // First load
     useEffect(() => {
@@ -24,6 +27,22 @@ export function ConfirmOrder() {
         if (params) setFormDetails(JSON.parse(params))
         // eslint-disable-next-line
     }, [])
+
+    useEffect(() => {
+        if (!formDetails) return
+
+        loadStay()
+
+        async function loadStay() {
+            try {
+                const stay = await stayService.getById(formDetails.stayId)
+                setStay(stay)
+            } catch (err) {
+                console.log('canot load stay', err)
+            }
+        }
+
+    }, [formDetails])
 
     function calculateNumberOfNights(start, end) {
         const startDate = new Date(start)
@@ -53,13 +72,15 @@ export function ConfirmOrder() {
         setIsOrderConfirmed(true)
     }
 
-    if (!formDetails) return
+    if (!formDetails) return <h2>Loading ...</h2>
+    if (!stay) return <h2>Loading ...</h2>
+
 
     return (
         <section className="confirm-order-container">
             <div className="column1-content">
                 <div className="nav-and-h1-container">
-                    <nav onClick={() => navigate(`/details/${formDetails.stayId}`)}>{'<'}</nav>
+                    <Link to={`/details/${formDetails.stayId}`}><img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685990897/arrow-left-bold_veibjr.svg" alt="back" /></Link>
                     <h1>Confirm your trip</h1>
                 </div>
 
@@ -100,15 +121,17 @@ export function ConfirmOrder() {
             </div>
 
             <div className="column2-content">
-                <PriceDetails price={formDetails.info.price} checksDates={{ checkIn: formDetails.info.checkin, checkOut: formDetails.info.checkout }} calculateNumberOfNights={calculateNumberOfNights} />
+                <PriceDetails price={formDetails.info.price} checksDates={{ checkIn: formDetails.info.checkin, checkOut: formDetails.info.checkout }} calculateNumberOfNights={calculateNumberOfNights} stay={stay} />
             </div>
             {isUserLogged ?
                 !isOrderConfirmed ?
                     <button onClick={confirmOrder}> Confirm </button>
                     :
-                    <div className="completed-order">
-                        <h2> Your order has been completed </h2>
-                        <p> Now you can go to <Link to={'/trip'}> Trips </Link> to see your new order </p>
+                    <div className="completed-order flex align-center space-between">
+                        <div>
+                            <h2> Your order has been <span> completed </span> </h2>
+                        </div>
+                        <button> <Link to={'/trip'}> My orders </Link> </button>
                     </div>
                 :
                 <div>

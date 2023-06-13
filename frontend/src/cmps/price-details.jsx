@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-export function PriceDetails({ price, checksDates, calculateNumberOfNights, isFromConfirmOrder = true }) {
+export function PriceDetails({ price, checksDates, calculateNumberOfNights, isFromConfirmOrder = true, stay }) {
 
     const [isFromConfirmOrderUpdated] = useState(isFromConfirmOrder)
 
@@ -8,6 +8,19 @@ export function PriceDetails({ price, checksDates, calculateNumberOfNights, isFr
     return (
         checksDates && <>
             <div className='price-details'>
+                {isFromConfirmOrder && <div className="stay-order-details flex">
+                    <img src={stay.imgUrls[0]} alt="" />
+                    <div className="stay-order-details-content">
+                        <p> {stay.roomType} </p>
+                        <p> {stay.type} </p>
+
+                        <div className="stay-order-details-content-inner-container flex align-center">
+                            <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="star" />
+                            <span> {stay.rating} <span> {`(${stay.reviews.length} reviews)`} </span> </span>
+                        </div>
+                    </div>
+                </div>
+                }
 
                 <div className="price-details-inner-container">
                     {isFromConfirmOrderUpdated && <h2> Price Details </h2>}
