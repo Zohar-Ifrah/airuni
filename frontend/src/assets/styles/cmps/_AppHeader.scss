@@ -674,7 +674,7 @@
                 background-color: #ffffff;
                 position: absolute;
                 border-radius: em(30px);
-                padding: 2.5em;
+                padding: 2.1em;
                 right: 0;
                 top: 5em;
                 z-index: 1;
@@ -727,7 +727,7 @@
                         display: flex;
                         color: $clr7;
                         font-family: Circular-Light, sans-serif;
-                        font-size: em(15px);
+                        font-size: em(14px);
                     }
 
                     button {
@@ -738,6 +738,12 @@
                         width: 2em;
                         height: 2em;
                     }
+                }
+
+                hr {
+                    border: none;
+                    height: 1px;
+                    background-color: $clr4;
                 }
             }
         }

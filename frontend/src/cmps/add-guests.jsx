@@ -1,3 +1,4 @@
+import { hr } from "date-fns/locale"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
@@ -49,6 +50,7 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
                     <button onClick={(ev) => { ev.preventDefault(); onChange('+', 'adults') }} >+</button>
                 </div>
             </div>
+            {!isFromOrderForm && <hr />}
             <div className="guest-select-row">
                 <p>Children <span>Ages 2-12</span></p>
                 <div className="guest-count-container">
@@ -57,6 +59,7 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
                     <button onClick={(ev) => { ev.preventDefault(); onChange('+', 'children') }} >+</button>
                 </div>
             </div>
+            {!isFromOrderForm && <hr />}
             <div className="guest-select-row">
                 <p>Infants <span>Under 2</span></p>
                 <div className="guest-count-container">
@@ -65,6 +68,7 @@ export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModa
                     <button onClick={(ev) => { ev.preventDefault(); onChange('+', 'infants') }} disabled={capacity.infants >= 5}>+</button>
                 </div>
             </div>
+            {!isFromOrderForm && <hr />}
             <div className="guest-select-row">
                 <p>Pets <span>Bringing a service animal?</span></p>
                 <div className="guest-count-container">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { PriceDetails } from "../cmps/price-details";
 import { orederService } from "../services/order.service";
 import { useSelector } from "react-redux";
@@ -14,6 +14,7 @@ export function ConfirmOrder() {
     const [formDetails, setFormDetails] = useState(null)
     const navigate = useNavigate()
     const isUserLogged = useSelector(storeState => storeState.userModule.user)
+    const [isOrderConfirmed, setIsOrderConfirmed] = useState(false)
 
 
     // First load
@@ -49,7 +50,7 @@ export function ConfirmOrder() {
         formDetails.buyerId = isUserLogged._id
         orederService.add(formDetails)
 
-        navigate('/')
+        setIsOrderConfirmed(true)
     }
 
     if (!formDetails) return
@@ -102,7 +103,13 @@ export function ConfirmOrder() {
                 <PriceDetails price={formDetails.info.price} checksDates={{ checkIn: formDetails.info.checkin, checkOut: formDetails.info.checkout }} calculateNumberOfNights={calculateNumberOfNights} />
             </div>
             {isUserLogged ?
-                <button onClick={confirmOrder}> Confirm </button>
+                !isOrderConfirmed ?
+                    <button onClick={confirmOrder}> Confirm </button>
+                    :
+                    <div className="completed-order">
+                        <h2> Your order has been completed </h2>
+                        <p> Now you can go to <Link to={'/trip'}> Trips </Link> to see your new order </p>
+                    </div>
                 :
                 <div>
                     <h3>Please login to book</h3>
