@@ -24,10 +24,12 @@
     @keyframes skeleton-loading {
         0% {
             background-color: $skeleton-clr1;
+            color: transparent;
         }
 
         100% {
             background-color: $skeleton-clr2;
+            color: transparent;
         }
     }
 }
