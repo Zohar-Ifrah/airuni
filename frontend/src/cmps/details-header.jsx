@@ -19,7 +19,7 @@ export function DetailsHeader({ stay, setIsOpenReviews }) {
                         {!!stay.reviews.length && <span> {stay.rating} </span>}
                     </div>}
                     <p>
-                        <span> <span> · </span> <span onClick={() => onOpenReviews()}> {`${stay.reviews.length} reviews`} </span>  <span> · </span> <span className="super-host"> {stay.host.isSuperhost && <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686494614/super-host-new_pfwzko.svg" alt="super-host" />} {stay.host.isSuperhost && 'Superhost'} </span>  <span> · </span> </span>
+                        <span> <span> · </span> <span onClick={() => onOpenReviews()}> {`${stay.reviews.length} reviews`} </span>  <span> · </span> <span className="super-host"> {stay.host.isSuperhost && <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686494614/super-host-new_pfwzko.svg" alt="super-host" />} {stay.host.isSuperhost && 'Superhost'} </span> {stay.host.isSuperhost && <span> · </span>}  </span>
                         <span className="city-country"> {`${stay.loc.city}, ${stay.loc.country}`}</span>
                     </p>
                 </div>
