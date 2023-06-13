@@ -476,13 +476,14 @@
                     margin-block-start: 1.5em;
 
                     .price-details-inner-container {
-                        margin-block-end: 1em;
+                        margin-block-end: 1.2em;
 
                         .nights-price-container {
-                            margin-block-end: .4em;
-                            color: $clr2;
+                            margin-block-end: .8em;
 
                             p {
+                                color: $clr2;
+
                                 &:first-child {
                                     text-decoration: underline;
                                 }
@@ -495,6 +496,7 @@
                     text-align: center;
                     margin-block-start: .3em;
                     color: $clr2;
+                    font-size: em(15px);
                 }
 
                 .nights-sum {
@@ -502,12 +504,19 @@
                     padding-block-start: 1em;
                     border-block-start: 1px solid $clr4;
 
-                    .total-price-container {
 
-                        h3 {
-                            text-transform: capitalize;
-                            margin-inline-end: .5em;
-                        }
+                    h3 {
+                        text-transform: capitalize;
+                        margin-inline-end: .5em;
+                        font-size: em(17px);
+                        color: $clr2;
+                        font-family: Circular-Refular, sans-serif;
+                    }
+
+                    p {
+                        color: $clr2;
+                        font-family: Circular-Medium, sans-serif;
+                        font-size: em(17px);
                     }
                 }
             }

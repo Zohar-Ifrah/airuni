@@ -75,27 +75,27 @@ export function ConfirmOrder() {
                         <p> {convertDates(formDetails.info.checkout)} </p>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <h1>Cancellation policy</h1>
-                <p><span>Free cancellation before {utilService.getMonth(formDetails.info.checkin)}.</span>
-                    Cancel before check-in on {utilService.getMonth(formDetails.info.checkout)} for a partial refund.
-                </p>
-            </div>
+                <div className="cancellation-policy">
+                    <h1>Cancellation policy</h1>
+                    <p><span>Free cancellation before {utilService.getMonth(formDetails.info.checkin)}. </span>
+                        Cancel before check-in on {utilService.getMonth(formDetails.info.checkout)} for a partial refund.
+                    </p>
+                </div>
 
-            <div>
-                <h1>Ground rules</h1>
+                <div className="ground-rules">
+                    <h1>Ground rules</h1>
 
-                We ask every guest to remember a few simple things about what makes a great guest.
-                <ul>
-                    <li>
-                        Follow the house rules
-                    </li>
-                    <li>
-                        Treat your Host's home like your own
-                    </li>
-                </ul>
+                    <p>We ask every guest to remember a few simple things about what makes a great guest.</p>
+                    <ul>
+                        <li>
+                            Follow the house rules
+                        </li>
+                        <li>
+                            Treat your Host's home like your own
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div className="column2-content">

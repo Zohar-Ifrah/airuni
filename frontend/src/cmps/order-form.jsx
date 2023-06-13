@@ -8,9 +8,10 @@ import { PriceDetails } from './price-details'
 import { orederService } from '../services/order.service'
 import { useDispatch } from 'react-redux'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer'
+import { ShowAllReviews } from './show-all-reviews'
 
 
-export function OrderForm({ stay, checkInAndOutDate }) {
+export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
@@ -102,6 +103,14 @@ export function OrderForm({ stay, checkInAndOutDate }) {
         return `${month}/${day}/${year} `
     }
 
+    function onOpenReviews() {
+        setIsOpenReviews(true)
+
+        setTimeout(() => {
+            setIsOpenReviews(false)
+        }, 300);
+    }
+
     return (
         <section className="order-form-container">
 
@@ -123,7 +132,8 @@ export function OrderForm({ stay, checkInAndOutDate }) {
                             <span> · </span>
                         </div>
                     )}
-                    <p className='reviews-amount'>{`${stay.reviews.length} reviews`}</p>
+                    <p className='reviews-amount' onClick={onOpenReviews}>{`${stay.reviews.length} reviews`}</p>
+
                 </div>
             </div>
 
@@ -170,6 +180,7 @@ export function OrderForm({ stay, checkInAndOutDate }) {
             {checksDates && !!guestsAmount &&
                 <PriceDetails price={stay.price} checksDates={checksDates} calculateNumberOfNights={calculateNumberOfNights} isFromConfirmOrder={false} />
             }
+
         </section>
     )
 }
