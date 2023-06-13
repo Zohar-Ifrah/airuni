@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux"
 import { SET_DETAILS_SHOWN } from "../store/system.reducer"
 import { CalendarPicker } from "../cmps/calendar-picker"
 import { DetailsMap } from "../cmps/details-map"
+import { SkeletonStayDetails } from "../cmps/skeleton-stay-details"
 
 
 
@@ -54,7 +55,7 @@ export function StayDetails() {
         // console.log(isCheckInClicked)
     }
 
-    if (!stay) return <h1>Loading ...</h1>
+    if (!stay) return <SkeletonStayDetails />
 
     return <div className='stay-details'>
         <DetailsHeader
