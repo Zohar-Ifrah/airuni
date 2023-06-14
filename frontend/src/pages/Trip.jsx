@@ -96,7 +96,7 @@ export function Trip() {
 
     function getStayNights(stayId, totalPrice) {
         const stay = stays.find(stay => stay._id === stayId)
-        return parseInt(totalPrice / stay.price)
+        return parseInt(totalPrice / stay?.price)
     }
 
     const columns = [

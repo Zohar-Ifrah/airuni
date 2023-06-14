@@ -20,7 +20,7 @@ export function StatisticsReviews({ stay }) {
 
                         <div className="stat cleanliness-rating-container flex align-center">
                             <div className="bar cleanliness"></div>
-                            <span className="rating cleanliness"> 4.6 </span>
+                            <span className="rating cleanliness"> 4.9 </span>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@ export function StatisticsReviews({ stay }) {
 
                         <div className="stat communication-rating-container flex align-center">
                             <div className="bar communication"></div>
-                            <span className="rating communication"> 4.4 </span>
+                            <span className="rating communication"> 4.8 </span>
                         </div>
                     </div>
 
