@@ -11,6 +11,7 @@ export function DetailsMap({ loc }) {
 
     return (
         <div id='locations' className="details-map">
+             {/* <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg" alt="home" /> */}
 
             <h2>Where you'll be</h2>
 
