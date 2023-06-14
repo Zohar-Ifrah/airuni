@@ -10,10 +10,11 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { FILTER_BY } from '../store/stay.reducer.js'
 import { StayList } from '../cmps/stay-list.jsx'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer.js'
-import { stayService } from '../services/stay.service.local.js'
+import { stayService } from '../services/stay.service.js'
 import { loadUsers } from '../store/user.actions.js'
 import { loadReviews } from '../store/review.actions.js'
 import { SkeletonList } from '../cmps/skeleton-list.jsx'
+
 
 export function StayIndex() {
     const dispatch = useDispatch()

@@ -9,7 +9,8 @@ export const utilService = {
     getLorem,
     getRandomNames,
     getIcon,
-    getMonth
+    getMonth,
+    timeAgo
 }
 
 function makeId(length = 6) {
@@ -110,4 +111,22 @@ function getIcon(name) {
         'Cooking basics': 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881161/cooking_vwvec9.svg'
     }
     return iconMap[name]
+}
+
+function timeAgo(timestamp) {
+    const currentTime = Date.now()
+    const diff = currentTime - timestamp
+
+    if (diff < 0) {
+        return 'In the future'
+    } else if (diff < 60 * 60 * 1000) {
+        const minutes = Math.floor(diff / (60 * 1000))
+        return `${minutes}m ago`
+    } else if (diff < 24 * 60 * 60 * 1000) {
+        const hours = Math.floor(diff / (60 * 60 * 1000))
+        return `${hours}h ago`
+    } else {
+        const days = Math.floor(diff / (24 * 60 * 60 * 1000))
+        return `${days}d ago`
+    }
 }

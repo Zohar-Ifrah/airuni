@@ -1,0 +1,24 @@
+.small-info-msg-container{
+    // TODO: use var colors, cahnge min-width,
+    min-width: 26em;
+    background-color: #ffffff;
+    position: absolute;
+    bottom: 100%;
+    right: 102%;
+    display: flex;
+    gap: 0.8em;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    button{
+        background-color: inherit;
+        color: black;
+        width: 1.6em;
+        height: 1.6em;
+        border-radius: 50%;
+        text-align: center;
+        &:hover{
+            background-color: grey;
+        }
+    }
+}

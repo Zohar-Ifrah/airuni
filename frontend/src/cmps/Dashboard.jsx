@@ -1,12 +1,12 @@
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { orederService } from "../services/order.service"
-import { useEffect, useState } from "react"
-import { userService } from "../services/user.service"
-import { loadStays } from "../store/stay.actions"
-import { socketService } from "../services/socket.service"
-
-
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { orederService } from '../services/order.service'
+import { useEffect, useState } from 'react'
+import { userService } from '../services/user.service'
+import { loadStays } from '../store/stay.actions'
+import { socketService } from '../services/socket.service'
+import { utilService } from '../services/util.service'
+import { Circles } from 'react-loader-spinner'
 
 export function Dashboard() {
     const navigate = useNavigate()
@@ -21,52 +21,53 @@ export function Dashboard() {
                 const users = await userService.getUsers()
                 setUsers(users)
             } catch (error) {
-                console.log("Error fetching users:", error)
+                console.log('Error fetching users:', error)
             }
         }
 
         // Real time update orders
-        socketService.on('get-new-order', (order) => {
-            setOrders((prevOrders) => {
-                return [order, ...prevOrders]
-            })
+        socketService.on('get-new-order', async order => {
+            await fetchOrders()
         })
 
         fetchUsers()
 
         loadStays()
-
     }, [])
 
     useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const userOrders = await orederService.getOrderByHost(userLogged._id)
-                setOrders(userOrders)
-                // setHost(getHost(userOrders[0].hostId))
-            } catch (error) {
-                console.log("Error fetching orders:", error)
-            }
-        }
-
         if (userLogged) {
             fetchOrders()
         }
     }, [userLogged])
-
+    async function fetchOrders() {
+        try {
+            const userOrders = await orederService.getOrderByHost(
+                userLogged._id
+            )
+            setOrders(userOrders.reverse())
+            // setHost(getHost(userOrders[0].hostId))
+        } catch (error) {
+            console.log('Error fetching orders:', error)
+        }
+    }
     // Function to format the check-in and check-out dates
     const formatDateRange = (checkin, checkout) => {
         const checkinDate = new Date(checkin)
         const checkoutDate = new Date(checkout)
 
-        const formattedCheckin = `${checkinDate.toLocaleString('en-US', { month: 'short' })} ${checkinDate.getDate()}`
-        const formattedCheckout = `${checkoutDate.toLocaleString('en-US', { month: 'short' })} ${checkoutDate.getDate()}`
+        const formattedCheckin = `${checkinDate.toLocaleString('en-US', {
+            month: 'short',
+        })} ${checkinDate.getDate()}`
+        const formattedCheckout = `${checkoutDate.toLocaleString('en-US', {
+            month: 'short',
+        })} ${checkoutDate.getDate()}`
 
         return `${formattedCheckin} - ${formattedCheckout}`
     }
 
     // Function to get the approval status
-    const getApprovalStatus = (isApproved) => {
+    const getApprovalStatus = isApproved => {
         return isApproved ? 'Approved' : 'Pending'
     }
 
@@ -77,98 +78,176 @@ export function Dashboard() {
         }
     }
 
-    function handelOrder(order, isApproved) {
-        const orderToUpdate = { ...order, isApproved: isApproved }
+    async function handelOrder(order) {
+        const orderToUpdate = { ...order, isApproved: true }
         try {
-            orederService.update(orderToUpdate)
-            setOrders(prevOrders => {
-                const updatedOrders = prevOrders.map(prevOrder => {
-                    if (prevOrder._id === orderToUpdate._id) {
-                        return orderToUpdate
-                    }
-                    return prevOrder
-                })
-                return updatedOrders
-            })
+            await orederService.update(orderToUpdate)
+            await fetchOrders()
         } catch (error) {
-            console.log("Error updating order:", error)
+            console.log('Error updating order:', error)
         }
     }
 
-    if (!stays.length) return <h2> Loading... </h2>
+    if (
+        !stays ||
+        !stays.length ||
+        !users ||
+        !users.length ||
+        !orders ||
+        !orders.length
+    )
+        return (
+            <div className='flex items-center justify-center'>
+                <Circles
+                    height='80'
+                    width='80'
+                    color='#4fa94d'
+                    ariaLabel='circles-loading'
+                    wrapperStyle={{}}
+                    wrapperClass=''
+                    visible={true}
+                />
+            </div>
+        )
 
     return (
         <>
-            {userLogged ?
-                <div>
+            {userLogged ? (
+                <div className='dashboard'>
                     <h1>Welcome back, {userLogged.fullname}</h1>
-                    <h1>Orders</h1>
+                    <h3>Your orders</h3>
 
-                    {orders.length && orders.length ?
-                        <table className="dashboard-table">
-                            <thead>
-                                <tr>
-                                    <td>
-                                        guests
-                                    </td>
-                                    <td>
-                                        stay
-                                    </td>
-                                    <td>
-                                        dates
-                                    </td>
-                                    <td>
-                                        payment
-                                    </td>
-                                    <td>
-                                        status
-                                    </td>
-                                    <td>
-                                        action
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {orders.map((order) => {
+                    <ul className='order-list'>
+                        {orders.length &&
+                            orders.map(order => {
+                                const currStay = stays.find(
+                                    stay => stay._id === order.stayId
+                                )
+                                const buyer = getGuestInfo(order.buyerId)
+                                return (
+                                    <li key={order._id}>
+                                        <article className='order-preview'>
+                                            <section className='header'>
+                                                <img
+                                                    src={buyer.img}
+                                                    alt=''
+                                                />
+                                                <p>{buyer.name}</p>
+                                            </section>
+                                            <section className='body'>
+                                                <p>{currStay.name}</p>
+                                                <p>
+                                                    {utilService.timeAgo(
+                                                        order.createdAt
+                                                    )}
+                                                </p>
+                                            </section>
+                                            <section className='footer'>
+                                                <p className='price'>
+                                                    {order.info.price}$
+                                                </p>
+                                                <button
+                                                    disabled={order.isApproved}
+                                                    onClick={() =>
+                                                        handelOrder(order)
+                                                    }
+                                                    className={
+                                                        order.isApproved
+                                                            ? 'approved'
+                                                            : ''
+                                                    }
+                                                >
+                                                    {order.isApproved
+                                                        ? 'Approved'
+                                                        : 'Pending'}
+                                                </button>
+                                            </section>
+                                        </article>
+                                    </li>
+                                )
+                            })}
+                    </ul>
+
+                    {/* {orders.length && orders.length ? 
+                       
+                                {orders.map(order => {
                                     const guestInfo = getGuestInfo(order.buyerId)
-                                    // const img = stays.find(stay => {<img src={img && img.imgUrls[0]}
-                                    //     if (stay._id === order._id) {
-                                    //         console.log(stay._id)
-                                    //         console.log(order._id)
-                                    //     }
-                                    //     return stay._id === order._id
-                                    // })
                                     return (
                                         <tr key={order._id}>
-                                            {guestInfo &&
+                                            {guestInfo && (
                                                 <td>
-                                                    <img src={guestInfo.img} alt="guest" />
+                                                    <img
+                                                        src={guestInfo.img}
+                                                        alt='guest'
+                                                    />
                                                     <p>{guestInfo.name}</p>
                                                 </td>
-                                            }
-                                            <td><img src={stays.find(stay => stay.host === order.hostId)?.imgUrls[0]} alt="stay" /> </td>
-                                            <td>{formatDateRange(order.info.checkin, order.info.checkout)}</td>
-                                            <td>${order.info.price}</td>
-                                            <td>{getApprovalStatus(order.isApproved)}</td>
+                                            )}
                                             <td>
-                                                <button className="accept-btn" onClick={() => handelOrder(order, true)}>Accept</button>
-                                                <button className="reject-btn" onClick={() => handelOrder(order, false)}>Reject</button>
+                                                <img
+                                                    src={
+                                                        stays.find(
+                                                            stay =>
+                                                                stay.host ===
+                                                                order.hostId
+                                                        )?.imgUrls[0]
+                                                    }
+                                                    alt='stay'
+                                                />{' '}
+                                            </td>
+                                            <td>
+                                                {formatDateRange(
+                                                    order.info.checkin,
+                                                    order.info.checkout
+                                                )}
+                                            </td>
+                                            <td>${order.info.price}</td>
+                                            <td>
+                                                {getApprovalStatus(
+                                                    order.isApproved
+                                                )}
+                                            </td>
+                                            <td>
+                                                <button
+                                                    className='accept-btn'
+                                                    onClick={() =>
+                                                        handelOrder(order, true)
+                                                    }
+                                                >
+                                                    Accept
+                                                </button>
+                                                <button
+                                                    className='reject-btn'
+                                                    onClick={() =>
+                                                        handelOrder(
+                                                            order,
+                                                            false
+                                                        )
+                                                    }
+                                                >
+                                                    Reject
+                                                </button>
                                             </td>
                                         </tr>
                                     )
                                 })}
-                            </tbody>
-                        </table>
-                        :
+                         
+                     : (
                         <div>
                             <h3>No trips booked...yet!</h3>
-                            <p>Time to dust off your bags and start planning your next adventure</p>
-                            <button onClick={() => navigate('/')}>Start searching</button>
+                            <p>
+                                Time to dust off your bags and start planning
+                                your next adventure
+                            </p>
+                            <button onClick={() => navigate('/')}>
+                                Start searching
+                            </button>
                         </div>
-                    }
+                    )} */}
                 </div>
-                : navigate('/')
-            }
+            ) : (
+                navigate('/')
+            )}
         </>
     )
 }

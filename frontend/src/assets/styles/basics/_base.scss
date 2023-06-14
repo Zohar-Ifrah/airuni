@@ -25,6 +25,10 @@ h6 {
     color: $clr2;
 }
 
+ul {
+    list-style: none;
+}
+
 button {
     @include btn();
 }

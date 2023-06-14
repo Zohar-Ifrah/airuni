@@ -126,7 +126,7 @@
     .stay-details-content {
 
         display: grid;
-        grid-template-columns: 1.8fr 1fr;
+        grid-template-columns: 1.9fr 1fr;
         column-gap: 5em;
 
         .stay-details-content-column1 {
@@ -404,9 +404,9 @@
                             border-bottom-left-radius: 0.5em;
                             border-bottom-right-radius: 0.5em;
                             width: 100%;
-                            padding-inline: .8em;
-                            padding-block-start: .8em;
-                            padding-block-end: .5em;
+                            padding-inline: 0.8em;
+                            padding-block-start: 0.4em;
+                            padding-block-end: 0.5em;
                             text-align: left;
 
                             span {

@@ -46,8 +46,8 @@ async function save(stay) {
 function getDefaultFilter() {
     return {
         location: '',
-        checkIn: '',
-        checkOut: '',
+        checkIn: 0,
+        checkOut: 0,
         adults: 0,
         children: 0,
         infants: 0,

@@ -1,32 +1,26 @@
+.trip-container {
+    margin-block-start: 1em;
+
+    h2 {
+        margin-block-end: 0.5em;
+    }
+}
+
 .trip-table {
     width: 100%;
 
-    thead {
-        tr {
-            >* {
-                width: 10%;
-            }
-        }
-    }
 
     tbody {
-        tr {
-            >* {
-                width: 10%;
 
-                &:first-child img {
-                    border-radius: 5px;
-                    height: 4em;
-                    width: 4em;
-                }
+        td {
 
-                &:nth-child(2) img {
-                    width: 3.2em;
-                    border-radius: 50%;
-                }
+            &.approved {
+                color: green;
+                font-weight: 700;
             }
 
 
         }
+
     }
 }

@@ -87,7 +87,7 @@ export function ConfirmOrder() {
                 <h2 > Your trip </h2>
 
                 <div className="dates-container">
-                    <h4> Dates </h4>
+                    {/* <h4> Dates </h4>
                     <div className="check-in-date flex align-center">
                         <span> Check in </span>
                         <p> {convertDates(formDetails.info.checkin)} </p>
@@ -95,6 +95,14 @@ export function ConfirmOrder() {
                     <div className="check-out-date flex align-center">
                         <span> Check out </span>
                         <p> {convertDates(formDetails.info.checkout)} </p>
+                    </div> */}
+                    <h4> Dates </h4>
+                    <div className="check-in-date flex align-center">
+                        <p> {convertDates(formDetails.info.checkin)} - {convertDates(formDetails.info.checkout)}</p>
+                    </div>
+                    <div>
+                        <span> Guests </span>
+                        <p> {formDetails.info.guests} {formDetails.info.guests > 1 ? 'guests' : ' guest'} </p>
                     </div>
                 </div>
 

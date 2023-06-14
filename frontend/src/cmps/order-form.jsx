@@ -9,6 +9,8 @@ import { orederService } from '../services/order.service'
 import { useDispatch } from 'react-redux'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer'
 import { ShowAllReviews } from './show-all-reviews'
+import arrUp from "../assets/img/arr-up.svg"
+import arrDown from "../assets/img/arr-down.svg"
 
 
 export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy }) {
@@ -17,10 +19,9 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
     const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
     const [checksDates, setChecksDates] = useState(
-        checkInAndOutDate ? checkInAndOutDate :
-            {
-                checkIn: filterBy.checkIn, checkOut: filterBy.checkOut
-            })
+        checkInAndOutDate ? checkInAndOutDate : // if getting dates from details calendar
+            !!filterBy.checkIn && // if filterBy.checkIn !== 0
+            { checkIn: filterBy.checkIn, checkOut: filterBy.checkOut })
     const [guestsAmount, setGuestsAmount] = useState(filterBy.adults + filterBy.children)
     const isFromOrderForm = useRef(true)
     const maxCapacity = useRef(stay.capacity).current
@@ -33,8 +34,9 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
 
 
     useEffect(() => {
-        setChecksDates({checkIn: filterBy.checkIn, checkOut: filterBy.checkOut})
-        // setChecksDates(checkInAndOutDate)
+        setChecksDates(checkInAndOutDate ? checkInAndOutDate : // if getting dates from details calendar
+            !!filterBy.checkIn && // if filterBy.checkIn !== 0
+            { checkIn: filterBy.checkIn, checkOut: filterBy.checkOut })
     }, [checkInAndOutDate])
 
     function calculateNumberOfNights(start, end) {
@@ -62,6 +64,7 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
         }
         formDetails.stayId = stay._id
         formDetails.hostId = stay.host._id
+        formDetails.createdAt = Date.now()
 
         // SET params:
         const params = new URLSearchParams({ order: JSON.stringify(formDetails) })
@@ -127,7 +130,7 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
             <div className="price-rating-container flex space-between">
 
                 <div className="price-container flex">
-                    <h2>${stay.price}</h2>
+                    <h2>${stay.price.toLocaleString()}</h2>
                     <p>night</p>
                 </div>
 
@@ -155,12 +158,12 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
                             <span> check-in </span>
                             {console.log(checkInAndOutDate)}
                             {console.log(checksDates)}
-                            <div className='date-check-in'>{checksDates ? formatDate(checksDates.checkIn) : 'Add date'} </div>
+                            <div className='date-check-in'>{checksDates.checkIn ? formatDate(checksDates.checkIn) : 'Add date'} </div>
                         </div>
 
                         <div className="check-out-container">
                             <span> checkout </span>
-                            <div className='date-check-out'>{checksDates ? formatDate(checksDates.checkOut) : 'Add date'} </div>
+                            <div className='date-check-out'>{checksDates.checkOut ? formatDate(checksDates.checkOut) : 'Add date'} </div>
                         </div>
                     </div>
 
@@ -170,9 +173,12 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
                             onCheckInClick={onCheckInClick} />}
                     </div>
 
-                    <div onClick={() => { onOpenGuestsModal() }} className="guests flex column justify-center">
-                        <span> guests </span>
-                        <div className='guests-count'> {guestsAmount ? guestsMsg() : 'Add guests'} </div>
+                    <div onClick={() => { onOpenGuestsModal() }} className="guests flex space-between">
+                        <div>
+                            <span> guests </span>
+                            <div className='guests-count'> {guestsAmount ? guestsMsg() : 'Add guests'} </div>
+                        </div>
+                        <img src={isAddGuestsOpen ? arrUp : arrDown} alt="dir" />
                     </div>
 
                     <div className="show-contents">
