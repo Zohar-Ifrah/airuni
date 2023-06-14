@@ -1,10 +1,16 @@
 .app-footer {
-    background-color: #111;
-    padding-block: 2em;
+    background-color: $clr4;
+    padding-block: 1em;
     text-align: center;
+    border-block-start: 1px solid $clr4;
 
-    p {
-        color: $clr8;
+    .footer-inner-container {
+        position: relative;
 
+        p {
+            color: $clr2;
+            font-size: em(14px);
+        }
     }
+
 }

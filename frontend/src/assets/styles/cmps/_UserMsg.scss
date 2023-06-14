@@ -3,9 +3,10 @@
     padding: 10px;
     font-size: 1.4em;
     position: fixed;
-    top: 10px;
-    right: 10px;
-    background-color: $clr5;
+    top: .7em;
+    right: 2em;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     z-index: 999;
     min-width: 200px;
     max-width: 400px;
@@ -13,13 +14,14 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: $clr6;
+    color: $clr2;
     font-size: 1rem;
+    padding: 1em;
 
     button {
         position: absolute;
-        top: 5px;
-        right: 5px;
+        top: 8px;
+        right: 8px;
         border: 0;
         border-radius: 50%;
         background-color: transparent;

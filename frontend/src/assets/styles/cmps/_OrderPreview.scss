@@ -1,70 +1,110 @@
-.order-preview {
-    font-size: 1rem;
-    display: flex;
-    // align-items: start;
-    gap: 10px;
-    border-bottom: 1px solid $clr9;
-    padding-block: rem(10px);
+.dashboard {
+    margin-block-end: 2em;
 
-    .header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: em(5px);
-
-        img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        p {
-            line-height: em(18px);
-            font-size: 0.8em;
-        }
-
+    h1 {
+        font-size: em(26px);
+        margin-block-start: .6em;
     }
 
-    .body {
+    h3 {
+        font-size: em(20px);
+        margin-block-start: .6em;
+        font-family: Circular-Light;
+    }
 
-        p {
-            color: $clr6;
-            line-height: em(16px);
-            margin-bottom: em(5px);
-
-            &:nth-of-type(2) {
-                color: $clr7;
-                font-size: rem(12px);
+    ul {
+        li {
+            &:first-child {
+                border-top: 1px solid $clr4;
+                padding-block-start: em(12px);
             }
-        }
-    }
 
-    .footer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        gap: em(5px);
-        padding-left: em(5px);
-        height: 100%;
+            .order-preview {
+                font-size: 1rem;
+                display: flex;
+                gap: 10px;
+                border-bottom: 1px solid $clr4;
+                padding-block-start: em(12px);
+                padding-block-end: em(25px);
 
-        .price {
-            color: green;
-            font-weight: 700;
+                .header {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-inline-end: .4em;
+                    row-gap: .4em;
+                    max-width: 4em;
 
-        }
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
 
-        button {
-            background-color: transparent;
-            color: $clr2;
-            padding: em(5px);
-            border: 1px solid $clr9;
-            min-width: em(100px);
+                    p {
+                        line-height: em(18px);
+                        font-size: em(14px);
+                        text-align: center;
+                    }
 
-            &.approved {
-                background-color: rgba(71, 189, 71, 0.664);
-                color: $clr7;
+                }
+
+                .body {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: space-between;
+
+                    p {
+                        color: $clr2;
+                        line-height: em(20px);
+                        font-family: Circular-Regular;
+
+                        &:nth-of-type(2) {
+                            color: $clr7;
+                            font-size: em(13px);
+                        }
+                    }
+                }
+
+                .footer {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                    justify-content: space-between;
+                    align-content: space-between;
+                    // gap: em(55px);
+
+                    .price {
+                        color: $clr2;
+                        font-family: Circular-Regular;
+                        font-size: em(18px);
+                    }
+
+                    button {
+                        background-color: transparent;
+                        color: $clr2;
+                        padding: em(10px);
+                        border: 1px solid $clr9;
+                        min-width: em(100px);
+
+                        &.approved {
+                            background-color: rgb(19, 153, 19);
+                            color: $clr8;
+                            border: none;
+                            font-family: Circular-Light;
+                        }
+
+                        &.pending {
+                            background-color: rgb(233, 155, 10);
+                            color: $clr8;
+                            border: none;
+                            font-family: Circular-Light;
+                        }
+                    }
+                }
             }
         }
     }

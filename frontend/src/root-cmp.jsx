@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router'
 import { useSelector } from 'react-redux'
 
-import {UserMsg} from './cmps/user-msg'
+import { UserMsg } from './cmps/user-msg'
 import routes from './routes'
 import { AppHeader } from './cmps/app-header'
 import { AppFooter } from './cmps/app-footer'

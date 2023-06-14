@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { orederService } from '../services/order.service'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { userService } from '../services/user.service'
 import { loadStays } from '../store/stay.actions'
 import { socketService } from '../services/socket.service'
@@ -13,7 +13,6 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
-import { Circles } from 'react-loader-spinner'
 
 export function Trip() {
     const navigate = useNavigate()
@@ -42,12 +41,14 @@ export function Trip() {
         fetchUsers()
 
         loadStays()
+        // eslint-disable-next-line 
     }, [])
 
     useEffect(() => {
         if (userLogged) {
             fetchOrders()
         }
+        // eslint-disable-next-line 
     }, [userLogged])
     async function fetchOrders() {
         try {
@@ -100,12 +101,12 @@ export function Trip() {
     }
 
     const columns = [
-        { id: 'host', label: 'Host', minWidth: 170 },
-        { id: 'stay', label: 'Stay', minWidth: 300 },
-        { id: 'date', label: 'Dates', minWidth: 150 },
-        { id: 'night', label: 'Nights', minWidth: 100 },
-        { id: 'guest', label: 'Guests', minWidth: 100 },
-        { id: 'price', label: 'Total Price', minWidth: 100 },
+        { id: 'host', label: 'Host', minWidth: 100 },
+        { id: 'stay', label: 'Stay', minWidth: 100 },
+        { id: 'date', label: 'Dates', minWidth: 100 },
+        { id: 'night', label: 'Nights', minWidth: 40 },
+        { id: 'guest', label: 'Guests', minWidth: 40 },
+        { id: 'price', label: 'Total Price', minWidth: 40 },
         { id: 'status', label: 'Status', minWidth: 100 },
     ]
 
@@ -113,21 +114,12 @@ export function Trip() {
         !stays ||
         !stays.length ||
         !users ||
-        !users.length ||
-        !orders ||
-        !orders.length
+        !users.length
+
     )
         return (
-            <div className='flex items-center justify-center'>
-                <Circles
-                    height='80'
-                    width='80'
-                    color='#4fa94d'
-                    ariaLabel='circles-loading'
-                    wrapperStyle={{}}
-                    wrapperClass=''
-                    visible={true}
-                />
+            <div className='loader flex align-center justify-center'>
+                <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg" alt="loader" />
             </div>
         )
 
@@ -137,9 +129,9 @@ export function Trip() {
                 <div className='trip-container'>
                     <h1>Welcome back, {userLogged.fullname}</h1>
                     <h2>Trips</h2>
-                    {orders.length && orders.length ? (
+                    {orders && orders.length ? (
                         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                            <TableContainer sx={{ maxHeight: 440 }}>
+                            <TableContainer>
                                 <Table
                                     stickyHeader
                                     aria-label='sticky table'
@@ -225,7 +217,7 @@ export function Trip() {
                                                                 className={
                                                                     order.isApproved
                                                                         ? 'approved'
-                                                                        : ''
+                                                                        : 'pending'
                                                                 }
                                                             >
                                                                 {getApprovalStatus(

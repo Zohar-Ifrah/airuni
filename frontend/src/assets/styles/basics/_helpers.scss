@@ -106,3 +106,24 @@
     right: 0.9em;
     width: 19em;
 }
+
+.loader {
+    animation: spin .8s linear infinite;
+    position: fixed;
+    inset: 0;
+    transform: translate(-50%, -50%);
+
+    img {
+        width: 5em;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

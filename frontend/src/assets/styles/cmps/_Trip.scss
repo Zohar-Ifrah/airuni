@@ -1,8 +1,50 @@
 .trip-container {
-    margin-block-start: 1em;
+    width: 100%;
+    padding-block-start: 1em;
+
+    h1 {
+        margin-block-end: .5em;
+        font-size: em(24px);
+    }
 
     h2 {
-        margin-block-end: 0.5em;
+        margin-block-end: 1em;
+        font-size: em(20px);
+    }
+
+    .MuiPaper-root {
+        width: 100%;
+        box-shadow: none;
+        border: 1px solid $clr4;
+        border-radius: .7em;
+        // padding-inline: 2em;
+
+        table {
+            thead {
+
+                tr {
+                    th {
+                        color: $clr2;
+                        font-family: Circular-Medium;
+                        font-size: em(15px);
+
+                        &:last-child {
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        &:last-child {
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -15,8 +57,12 @@
         td {
 
             &.approved {
-                color: green;
-                font-weight: 700;
+                color: rgb(19, 153, 19);
+                font-family: Circular-Medium;
+            }
+
+            &.pending {
+                color: rgb(233, 155, 10);
             }
 
 

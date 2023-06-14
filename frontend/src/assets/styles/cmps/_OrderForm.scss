@@ -6,7 +6,7 @@
         padding: 1.5em;
         top: 13em;
         z-index: 1;
-        width: 20em;
+        width: 19.2em;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -107,14 +107,16 @@
         cursor: default;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
     }
+
     img {
         width: 1.2em;
     }
+
     // .guests-form-container {
     //     display: flex;
     //     flex-direction: row;
     //     justify-content: space-between;
 
-       
+
     // }
 }

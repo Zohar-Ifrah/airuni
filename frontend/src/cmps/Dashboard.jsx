@@ -6,7 +6,6 @@ import { userService } from '../services/user.service'
 import { loadStays } from '../store/stay.actions'
 import { socketService } from '../services/socket.service'
 import { utilService } from '../services/util.service'
-import { Circles } from 'react-loader-spinner'
 
 export function Dashboard() {
     const navigate = useNavigate()
@@ -33,13 +32,16 @@ export function Dashboard() {
         fetchUsers()
 
         loadStays()
+        // eslint-disable-next-line 
     }, [])
 
     useEffect(() => {
         if (userLogged) {
             fetchOrders()
         }
+        // eslint-disable-next-line 
     }, [userLogged])
+
     async function fetchOrders() {
         try {
             const userOrders = await orederService.getOrderByHost(
@@ -52,6 +54,7 @@ export function Dashboard() {
         }
     }
     // Function to format the check-in and check-out dates
+    // eslint-disable-next-line 
     const formatDateRange = (checkin, checkout) => {
         const checkinDate = new Date(checkin)
         const checkoutDate = new Date(checkout)
@@ -67,6 +70,7 @@ export function Dashboard() {
     }
 
     // Function to get the approval status
+    // eslint-disable-next-line 
     const getApprovalStatus = isApproved => {
         return isApproved ? 'Approved' : 'Pending'
     }
@@ -95,16 +99,8 @@ export function Dashboard() {
         !users.length
     )
         return (
-            <div className='flex items-center justify-center'>
-                <Circles
-                    height='80'
-                    width='80'
-                    color='#4fa94d'
-                    ariaLabel='circles-loading'
-                    wrapperStyle={{}}
-                    wrapperClass=''
-                    visible={true}
-                />
+            <div className='loader flex align-center justify-center'>
+                <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg" alt="loader" />
             </div>
         )
 
@@ -154,7 +150,7 @@ export function Dashboard() {
                                                     className={
                                                         order.isApproved
                                                             ? 'approved'
-                                                            : ''
+                                                            : 'pending'
                                                     }
                                                 >
                                                     {order.isApproved

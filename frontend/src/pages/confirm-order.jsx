@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { PriceDetails } from "../cmps/price-details";
 import { orederService } from "../services/order.service";
 import { useSelector } from "react-redux";
-import { LoginSignup } from "../cmps/login-signup";
+// import { LoginSignup } from "../cmps/login-signup";
 import { utilService } from "../services/util.service";
 import { stayService } from "../services/stay.service";
 
@@ -17,8 +17,6 @@ export function ConfirmOrder() {
     const [isOrderConfirmed, setIsOrderConfirmed] = useState(false)
     const [stay, setStay] = useState(null)
 
-    console.log('stay', stay);
-    console.log('formDetails', formDetails);
 
     // First load
     useEffect(() => {
@@ -72,8 +70,12 @@ export function ConfirmOrder() {
         setIsOrderConfirmed(true)
     }
 
-    if (!formDetails) return <h2>Loading ...</h2>
-    if (!stay) return <h2>Loading ...</h2>
+    if (!formDetails) return <div className='loader flex align-center justify-center'>
+        <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg" alt="loader" />
+    </div>
+    if (!stay) return <div className='loader flex align-center justify-center'>
+        <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg" alt="loader" />
+    </div>
 
 
     return (

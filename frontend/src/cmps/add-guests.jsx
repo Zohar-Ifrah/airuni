@@ -1,5 +1,3 @@
-import { hr } from "date-fns/locale"
-import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 export function AddGuests({ onUpdateCapacity, maxCapacity = 16, onOpenGuestsModal, isFromOrderForm = false, capacity }) {
