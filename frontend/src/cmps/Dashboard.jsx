@@ -92,9 +92,7 @@ export function Dashboard() {
         !stays ||
         !stays.length ||
         !users ||
-        !users.length ||
-        !orders ||
-        !orders.length
+        !users.length
     )
         return (
             <div className='flex items-center justify-center'>
@@ -109,6 +107,8 @@ export function Dashboard() {
                 />
             </div>
         )
+
+    if (!orders || !orders.length) return 'You have no orders!'
 
     return (
         <>

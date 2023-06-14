@@ -126,7 +126,7 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
 
     return (
         <section className="order-form-container">
-            {console.log(checksDates)}
+            {/* {console.log(checksDates)} */}
             <div className="price-rating-container flex space-between">
 
                 <div className="price-container flex">
@@ -156,8 +156,8 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
                     <div onClick={() => { ontoggleCalendar() }} className="dates-container flex align-center">
                         <div className="check-in-container">
                             <span> check-in </span>
-                            {console.log(checkInAndOutDate)}
-                            {console.log(checksDates)}
+                            {/* {console.log(checkInAndOutDate)} */}
+                            {/* {console.log(checksDates)} */}
                             <div className='date-check-in'>{checksDates.checkIn ? formatDate(checksDates.checkIn) : 'Add date'} </div>
                         </div>
 

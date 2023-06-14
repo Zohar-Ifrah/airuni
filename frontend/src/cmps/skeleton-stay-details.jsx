@@ -34,7 +34,7 @@ export function SkeletonStayDetails() {
             <div className="details-gallery">
                 {Array.from({ length: 5 }).map((_, i) => {
                     return (
-                        <div className="skeleton">image</div>
+                        <div key={i} className="skeleton">image</div>
                     )
                 })}
             </div>
