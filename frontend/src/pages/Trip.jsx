@@ -167,7 +167,7 @@ export function Trip() {
                                                 .slice(
                                                     page * rowsPerPage,
                                                     page * rowsPerPage +
-                                                        rowsPerPage
+                                                    rowsPerPage
                                                 )
                                                 .map(order => {
                                                     const hostInfo =
@@ -182,7 +182,7 @@ export function Trip() {
                                                             key={order._id}
                                                         >
                                                             <TableCell>
-                                                                {hostInfo.name}
+                                                                {hostInfo && hostInfo.name}
                                                             </TableCell>
 
                                                             <TableCell>
@@ -191,7 +191,7 @@ export function Trip() {
                                                                         stay =>
                                                                             stay._id ===
                                                                             order.stayId
-                                                                    ).name}{' '}
+                                                                    )?.name}{' '}
                                                             </TableCell>
                                                             <TableCell>
                                                                 {formatDateRange(
