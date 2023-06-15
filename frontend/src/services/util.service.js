@@ -121,6 +121,7 @@ function timeAgo(timestamp) {
         return 'In the future'
     } else if (diff < 60 * 60 * 1000) {
         const minutes = Math.floor(diff / (60 * 1000))
+        if (minutes === 0) return 'Right now'
         return `${minutes}m ago`
     } else if (diff < 24 * 60 * 60 * 1000) {
         const hours = Math.floor(diff / (60 * 60 * 1000))
