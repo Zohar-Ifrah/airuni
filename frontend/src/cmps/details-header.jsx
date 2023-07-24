@@ -1,5 +1,5 @@
-import { userService } from "../services/user.service";
-import { ShareSave } from "./share-save";
+// import { userService } from "../services/user.service"
+import { ShareSave } from "./share-save"
 
 export function DetailsHeader({ stay, setIsOpenReviews }) {
 
@@ -26,7 +26,7 @@ export function DetailsHeader({ stay, setIsOpenReviews }) {
                     </p>
                 </div>
             </div>
-            <ShareSave />
+            <ShareSave stay = {stay} />
         </div>
     )
 }
