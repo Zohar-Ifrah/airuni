@@ -6,7 +6,6 @@ const { ObjectId } = mongodb
 
 const PAGE_SIZE = 3
 
-
 async function query(filterBy) {
     try {
         //todo : build criteria
@@ -33,14 +32,18 @@ function _buildCriteria(filterBy) {
         const regex = new RegExp(filterBy.location, 'i')
         criteria.$or = [
             { 'loc.country': { $regex: regex } },
-            { 'loc.city': { $regex: regex } }
-        ];
+            { 'loc.city': { $regex: regex } },
+        ]
     }
 
     if (filterBy.adults || filterBy.children) {
         const capacity = {
-            adults: isNaN(parseInt(filterBy.adults)) ? 0 : parseInt(filterBy.adults),
-            children: isNaN(parseInt(filterBy.children)) ? 0 : parseInt(filterBy.children),
+            adults: isNaN(parseInt(filterBy.adults))
+                ? 0
+                : parseInt(filterBy.adults),
+            children: isNaN(parseInt(filterBy.children))
+                ? 0
+                : parseInt(filterBy.children),
         }
         criteria.capacity = { $gte: capacity.adults + capacity.children }
     }
@@ -76,13 +79,13 @@ function _aggregationPipeLine(stayId) {
         },
         {
             $addFields: {
-                host: { $arrayElemAt: ['$host', 0] }
-            }
+                host: { $arrayElemAt: ['$host', 0] },
+            },
         },
         {
             $project: {
-                'host.password': 0
-            }
+                'host.password': 0,
+            },
         },
         {
             $lookup: {
@@ -120,8 +123,7 @@ async function add(stay) {
 async function update(stay) {
     try {
         const stayToSave = {
-            vendor: stay.vendor,
-            price: stay.price
+            ...stay,
         }
         const collection = await dbService.getCollection('stay')
         await collection.updateOne({ _id: stay._id }, { $set: stayToSave })

@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { showErrorMsg } from "../services/event-bus.service"
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { showErrorMsg } from '../services/event-bus.service'
 // import { stayService } from "../services/stay.service"
-import { stayService } from "../services/stay.service.js"
-import { DetailsGallery } from "../cmps/details-gallery"
-import { DetailsHeader } from "../cmps/details-header"
-import { StayExrtaDetails } from "../cmps/stay-extra-details"
-import { StayAmenities } from "../cmps/stay-amenities"
-import { Review } from "../cmps/review"
-import { OrderForm } from "../cmps/order-form"
-import { useDispatch, useSelector } from "react-redux"
-import { SET_DETAILS_SHOWN } from "../store/system.reducer"
-import { CalendarPicker } from "../cmps/calendar-picker"
-import { DetailsMap } from "../cmps/details-map"
-import { SkeletonStayDetails } from "../cmps/skeleton-stay-details"
-
-
+import { stayService } from '../services/stay.service.js'
+import { DetailsGallery } from '../cmps/details-gallery'
+import { DetailsHeader } from '../cmps/details-header'
+import { StayExrtaDetails } from '../cmps/stay-extra-details'
+import { StayAmenities } from '../cmps/stay-amenities'
+import { Review } from '../cmps/review'
+import { OrderForm } from '../cmps/order-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { SET_DETAILS_SHOWN } from '../store/system.reducer'
+import { CalendarPicker } from '../cmps/calendar-picker'
+import { DetailsMap } from '../cmps/details-map'
+import { SkeletonStayDetails } from '../cmps/skeleton-stay-details'
 
 export function StayDetails() {
     const calAmount = 2
@@ -50,48 +48,49 @@ export function StayDetails() {
         //     checkIn: filterBy.checkIn, checkOut: filterBy.checkOut
         // })
         setCheckInAndOutDate({
-            checkIn: startDate, checkOut: endDate
+            checkIn: startDate,
+            checkOut: endDate,
         })
     }
 
-    function onCheckInClick(isCheckInClicked) { // To check if needs?
+    function onCheckInClick(isCheckInClicked) {
+        // To check if needs?
         // console.log(isCheckInClicked)
     }
 
     if (!stay) return <SkeletonStayDetails />
 
-    return <div className='stay-details'>
-        <DetailsHeader
-            stay={stay}
-            setIsOpenReviews={setIsOpenReviews} />
-        <DetailsGallery stay={stay} />
+    return (
+        <div className="stay-details">
+            <DetailsHeader stay={stay} setIsOpenReviews={setIsOpenReviews} />
+            <DetailsGallery stay={stay} />
 
-        <section className="stay-details-content">
-            <div className="stay-details-content-column1">
-                <StayExrtaDetails stay={stay} />
-                <StayAmenities stay={stay} />
+            <section className="stay-details-content">
+                <div className="stay-details-content-column1">
+                    <StayExrtaDetails stay={stay} />
+                    <StayAmenities stay={stay} />
 
-                <CalendarPicker
-                    onSetDates={onSetDates}
-                    onCheckInClick={onCheckInClick}
-                    calAmount={calAmount} />
-            </div>
-            <div className="stay-details-content-column2">
-                <OrderForm stay={stay}
-                    checkInAndOutDate={checkInAndOutDate}
-                    setIsOpenReviews={setIsOpenReviews}
-                    filterBy={filterBy} />
-            </div>
-        </section>
+                    <CalendarPicker
+                        onSetDates={onSetDates}
+                        onCheckInClick={onCheckInClick}
+                        calAmount={calAmount}
+                    />
+                </div>
+                <div className="stay-details-content-column2">
+                    <OrderForm
+                        stay={stay}
+                        checkInAndOutDate={checkInAndOutDate}
+                        setIsOpenReviews={setIsOpenReviews}
+                        filterBy={filterBy}
+                    />
+                </div>
+            </section>
 
-        <Review
-            stay={stay}
-            isOpenReviews={isOpenReviews} />
+            <Review stay={stay} isOpenReviews={isOpenReviews} />
 
-        <DetailsMap
-            loc={stay.loc} />
+            <DetailsMap loc={stay.loc} />
 
-        {/* <button>Contact Host</button> */}
-
-    </div>
+            {/* <button>Contact Host</button> */}
+        </div>
+    )
 }

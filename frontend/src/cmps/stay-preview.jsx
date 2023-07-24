@@ -1,13 +1,14 @@
-import { useNavigate } from "react-router-dom"
-import { CarouselComponent } from "./img-preview-carousel"
-import { utilService } from "../services/util.service"
+import { useNavigate } from 'react-router-dom'
+import { CarouselComponent } from './img-preview-carousel'
+import { utilService } from '../services/util.service'
 
 export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
-
     const navigate = useNavigate()
 
     function getDistance() {
-        const distance = utilService.getRandomIntInclusive(50, 3000).toLocaleString() + ' kilometers away'
+        const distance =
+            utilService.getRandomIntInclusive(50, 3000).toLocaleString() +
+            ' kilometers away'
         return distance
     }
 
@@ -28,10 +29,10 @@ export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
 
         const startFormatted = start.toLocaleDateString('en-US', {
             month: 'short',
-            day: 'numeric'
+            day: 'numeric',
         })
         const endFormatted = end.toLocaleDateString('en-US', {
-            day: 'numeric'
+            day: 'numeric',
         })
 
         const dates = `${startFormatted} - ${endFormatted}`
@@ -39,19 +40,33 @@ export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
     }
 
     return (
-
-        <li className="stay-preview" key={stay._id} onClick={() => navigate(`/details/${stay._id}`)}>
-            <CarouselComponent images={stay.imgUrls} />
+        <li
+            className="stay-preview"
+            key={stay._id}
+            onClick={() => navigate(`/details/${stay._id}`)}
+        >
+            <CarouselComponent images={stay.imgUrls} stay={stay} />
             <div className="location-rating-container flex space-between">
                 <h4> {`${stay.loc.city}, ${stay.loc.country}`} </h4>
-                {!!stay.reviews.length && <div className="rating-container flex align-center">
-                    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />
-                    <span> {`${stay.rating} (${stay.reviews.length})`} </span>
-                </div>}
+                {!!stay.reviews.length && (
+                    <div className="rating-container flex align-center">
+                        <img
+                            src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg"
+                            alt="Star"
+                        />
+                        <span>
+                            {' '}
+                            {`${stay.rating} (${stay.reviews.length})`}{' '}
+                        </span>
+                    </div>
+                )}
             </div>
             <p>{getDistance()}</p>
             <p>{getDates()}</p>
-            <p> <span> ${stay.price.toLocaleString('en-US')} </span> night </p>
+            <p>
+                {' '}
+                <span> ${stay.price.toLocaleString('en-US')} </span> night{' '}
+            </p>
 
             {/* <div>
                 <button onClick={() => { onRemoveStay(stay._id) }}>x</button>

@@ -1,6 +1,4 @@
-
 import { httpService } from './http.service.js'
-
 
 const API = 'stay'
 
@@ -11,10 +9,9 @@ export const stayService = {
     remove,
     // getEmptyStay,
     // addStayMsg,
-    getDefaultFilter
+    getDefaultFilter,
 }
 window.cs = stayService
-
 
 async function query(filterBy) {
     return httpService.get(API, filterBy)
@@ -28,13 +25,14 @@ async function remove(stayId) {
     return httpService.delete(`${API}/${stayId}`)
 }
 async function save(stay) {
-    var savedStay
+    let savedStay
+
     if (stay._id) {
         savedStay = await httpService.put(`${API}/${stay._id}`, stay)
-
     } else {
         savedStay = await httpService.post(API, stay)
     }
+
     return savedStay
 }
 
@@ -52,7 +50,7 @@ function getDefaultFilter() {
         children: 0,
         infants: 0,
         pets: 0,
-        label: ''
+        label: '',
     }
 }
 

@@ -1,5 +1,10 @@
 // eslint-disable-next-line
-import { loadStays, addStay, updateStay, removeStay } from '../store/stay.actions.js'
+import {
+    loadStays,
+    addStay,
+    updateStay,
+    removeStay,
+} from '../store/stay.actions.js'
 // import { stayService } from '../services/stay.service.local.js'
 
 import { useEffect } from 'react'
@@ -15,10 +20,9 @@ import { loadUsers } from '../store/user.actions.js'
 import { loadReviews } from '../store/review.actions.js'
 import { SkeletonList } from '../cmps/skeleton-list.jsx'
 
-
 export function StayIndex() {
     const dispatch = useDispatch()
-    const stays = useSelector(storeState => storeState.stayModule.stays)
+    const stays = useSelector((storeState) => storeState.stayModule.stays)
     const [searchParams] = useSearchParams()
     const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
@@ -28,7 +32,7 @@ export function StayIndex() {
         const filterBy = stayService.getDefaultFilter()
 
         for (const [key, value] of paramsMap) {
-            filterBy[key] = (isNaN(parseFloat(value))) ? value : parseFloat(value)
+            filterBy[key] = isNaN(parseFloat(value)) ? value : parseFloat(value)
         }
         // console.log(filterBy)
         onSetFilter(filterBy)
@@ -99,13 +103,13 @@ export function StayIndex() {
 
     return (
         <div className="stay-index-container">
-
             {/* <button onClick={onAddStay}>Add Stay</button> */}
 
             <StayList
                 stays={stays}
                 onRemoveStay={onRemoveStay}
-                onUpdateStay={onUpdateStay} />
+                onUpdateStay={onUpdateStay}
+            />
         </div>
     )
 }
