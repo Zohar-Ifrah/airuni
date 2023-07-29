@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { stayService } from '../services/stay.service'
 import { UPDATE_STAY } from '../store/stay.reducer'
 import { loadStays } from '../store/stay.actions'
+import { showErrorMsg } from '../services/event-bus.service'
 
 export function CarouselComponent({ images, stay }) {
     const [activeIndex, setActiveIndex] = useState(0)
@@ -44,7 +45,9 @@ export function CarouselComponent({ images, stay }) {
 
     async function onSelectLike(ev) {
         ev.stopPropagation()
-        if (!loggedInUser) return
+        if (!loggedInUser) {
+            return showErrorMsg('Login first please!')
+        }
 
         if (isLiked) {
             const likeIdx = stay.likedByUsers.findIndex(

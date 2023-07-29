@@ -25,6 +25,16 @@ export function Wishlist() {
         setIsWishlist((prevIsWishlist) => wishlist)
     }, [stays])
 
+    if (!stays.length || !stays)
+        return (
+            <div className="loader flex align-center justify-center">
+                <img
+                    src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg"
+                    alt="loader"
+                />
+            </div>
+        )
+
     return (
         <section className="wishlist-container">
             {isUserLogged ? (
