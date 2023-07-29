@@ -6,71 +6,70 @@ import gReviews from '../data/review.json'
 
 const REVIEW_KEY = 'review_db'
 
-
 export const reviewService = {
-  add,
-  query,
-  remove,
-  getRandomReviews,
+    add,
+    query,
+    remove,
+    getRandomReviews,
 }
 
 function query(filterBy) {
-  // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
-  // return httpService.get(`review${queryStr}`)
-  return storageService.query(REVIEW_KEY)
+    // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
+    // return httpService.get(`review${queryStr}`)
+    return storageService.query(REVIEW_KEY)
 }
 
 async function remove(reviewId) {
-  // await httpService.delete(`review/${reviewId}`)
-  await storageService.remove(REVIEW_KEY, reviewId)
+    // await httpService.delete(`review/${reviewId}`)
+    await storageService.remove(REVIEW_KEY, reviewId)
 }
 
 async function add({ txt, aboutUserId }) {
-  // const addedReview = await httpService.post(`review`, {txt, aboutUserId})
+    // const addedReview = await httpService.post(`review`, {txt, aboutUserId})
 
-  const aboutUser = await userService.getById(aboutUserId)
+    const aboutUser = await userService.getById(aboutUserId)
 
-  const reviewToAdd = {
-    txt,
-    byUser: userService.getLoggedinUser(),
-    aboutUser: {
-      _id: aboutUser._id,
-      fullname: aboutUser.fullname,
-      imgUrl: aboutUser.imgUrl
+    const reviewToAdd = {
+        txt,
+        byUser: userService.getLoggedinUser(),
+        aboutUser: {
+            _id: aboutUser._id,
+            fullname: aboutUser.fullname,
+            imgUrl: aboutUser.imgUrl,
+        },
     }
-  }
 
-  reviewToAdd.byUser.score += 10
-  await userService.update(reviewToAdd.byUser)
-  const addedReview = await storageService.post(REVIEW_KEY, reviewToAdd)
-  return addedReview
+    reviewToAdd.byUser.score += 10
+    await userService.update(reviewToAdd.byUser)
+    const addedReview = await storageService.post(REVIEW_KEY, reviewToAdd)
+    return addedReview
 }
 
 function getRandomReviews() {
-  return _createRandomreviews()
+    return _createRandomreviews()
 }
 
 function _createRandomreviews() {
-  const reviews = []
-  for (let i = 0; i < 5; i++) {
-    reviews.push(_createRandomReview())
-  }
-  return reviews
+    const reviews = []
+    for (let i = 0; i < 5; i++) {
+        reviews.push(_createRandomReview())
+    }
+    return reviews
 }
 
 function _createRandomReview() {
-  return {
-    id: utilService.makeId(),
-    txt: utilService.makeLorem(50),
-    rate: utilService.getRandomIntInclusive(4, 5),
-    by: userService.getRandomUser(),
-  }
+    return {
+        id: utilService.makeId(),
+        txt: utilService.makeLorem(50),
+        rate: utilService.getRandomIntInclusive(4, 5),
+        by: userService.getRandomUser(),
+    }
 }
 
-; (() => {
-  let reviews = utilService.loadFromStorage(REVIEW_KEY) || []
-  if (!reviews.length) {
-    reviews = gReviews
-    utilService.saveToStorage(REVIEW_KEY, reviews)
-  }
-})()
+// ; (() => {
+//   let reviews = utilService.loadFromStorage(REVIEW_KEY) || []
+//   if (!reviews.length) {
+//     reviews = gReviews
+//     utilService.saveToStorage(REVIEW_KEY, reviews)
+//   }
+// })()

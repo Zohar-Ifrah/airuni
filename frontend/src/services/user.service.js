@@ -18,11 +18,10 @@ export const userService = {
     getById,
     remove,
     update,
-    getRandomUser
+    getRandomUser,
 }
 
 window.userService = userService
-
 
 function getUsers() {
     // return storageService.query(USER_KEY)
@@ -61,7 +60,9 @@ async function login(userCred) {
 
 async function signup(userCred) {
     // const user = await _signup(userCred)
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+    if (!userCred.imgUrl)
+        userCred.imgUrl =
+            'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
     const user = await httpService.post('auth/signup', userCred)
     return saveLocalUser(user)
 }
@@ -89,12 +90,17 @@ function getEmptyUser() {
         responseTime: '',
         imgUrl: '',
         isSuperhost: false,
-        createdAt: Date.now()
+        createdAt: Date.now(),
     }
 }
 
 function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score }
+    user = {
+        _id: user._id,
+        fullname: user.fullname,
+        imgUrl: user.imgUrl,
+        score: user.score,
+    }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
@@ -122,10 +128,10 @@ function getRandomUser() {
 //     }
 // }
 
-; (() => {
-    let users = utilService.loadFromStorage(USER_KEY) || []
-    if (!users.length) {
-        users = gUsers
-        utilService.saveToStorage(USER_KEY, users)
-    }
-})()
+// ; (() => {
+//     let users = utilService.loadFromStorage(USER_KEY) || []
+//     if (!users.length) {
+//         users = gUsers
+//         utilService.saveToStorage(USER_KEY, users)
+//     }
+// })()

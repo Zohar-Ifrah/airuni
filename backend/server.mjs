@@ -11,7 +11,7 @@ const server = http.createServer(app)
 app.use(cookieParser())
 app.use(express.json())
 
-console.log("GOT REQUEST")
+console.log('GOT REQUEST')
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve('public')))
 } else {
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
             'http://127.0.0.1:5173',
             'http://localhost:5173',
         ],
-        credentials: true
+        credentials: true,
     }
     app.use(cors(corsOptions))
 }
@@ -51,7 +51,6 @@ setupSocketAPI(server)
 app.get('/**', (req, res) => {
     res.sendFile(path.resolve('public/index.html'))
 })
-
 
 import { logger } from './services/logger.service.mjs'
 const port = process.env.PORT || 3030

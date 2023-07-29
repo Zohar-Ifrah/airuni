@@ -14,7 +14,7 @@ export const stayService = {
     getEmptyStay,
     addStayMsg,
     getDefaultFilter,
-    getLabels
+    getLabels,
 }
 
 window.cs = stayService
@@ -27,11 +27,12 @@ async function _filteredStays(filterBy) {
     var stays = await storageService.query(STORAGE_KEY)
     if (filterBy.location) {
         const regex = new RegExp(filterBy.location, 'i')
-        stays = stays.filter(stay => regex.test(stay.loc.country) || regex.test(stay.loc.city))
+        stays = stays.filter(
+            (stay) => regex.test(stay.loc.country) || regex.test(stay.loc.city)
+        )
     }
 
     if (filterBy.checkIn) {
-
         // stays = stays.filter(stay =>
         //     stay.availableDates.some(date => new Date(date.startDate).getTime() >= filterBy.checkIn) &&
         //     stay.availableDates.some(date => new Date(date.endDate).getTime() <= filterBy.checkOut)
@@ -39,13 +40,14 @@ async function _filteredStays(filterBy) {
     }
 
     if (filterBy.adults || filterBy.children) {
-
         const capacity = filterBy.adults + filterBy.children
-        stays = stays.filter(stay => stay.capacity >= capacity)
+        stays = stays.filter((stay) => stay.capacity >= capacity)
     }
 
     if (filterBy.label) {
-        stays = stays.filter(stay => stay.labels.some(l => l === filterBy.label))
+        stays = stays.filter((stay) =>
+            stay.labels.some((l) => l === filterBy.label)
+        )
     }
 
     return stays
@@ -57,16 +59,17 @@ async function _aggregate(stayId) {
         const hosts = await userService.getUsers()
         const reviews = await reviewService.query()
 
-        const host = hosts.find(host => host._id === stay.host)
-        const stayReviews = stay.reviews.map(r => reviews.find(review => review._id === r))
+        const host = hosts.find((host) => host._id === stay.host)
+        const stayReviews = stay.reviews.map((r) =>
+            reviews.find((review) => review._id === r)
+        )
 
         return {
             ...stay,
             host,
             reviews: stayReviews,
         }
-    }
-    catch (err) {
+    } catch (err) {
         console.log('stayService: Had error aggregating', err.message)
         throw err
     }
@@ -101,7 +104,7 @@ async function addStayMsg(stayId, txt) {
     const msg = {
         id: utilService.makeId(),
         by: userService.getLoggedinUser(),
-        txt
+        txt,
     }
     stay.msgs.push(msg)
     await storageService.put(STORAGE_KEY, stay)
@@ -119,17 +122,38 @@ function getDefaultFilter() {
         children: 0,
         infants: 0,
         pets: 0,
-        label: ''
+        label: '',
     }
 }
 
 function getEmptyStay() {
     return _createRandomStay()
-
 }
 
 function getLabels() {
-    const titels = ['Rooms', 'Castles', 'Farms', 'Design', 'Luxe', 'Boats', 'OMG!', 'Beachfront', 'Amazing views', 'Amazing pools', 'Mansions', 'Lakefront', 'Cabins', 'Tropical', 'New', 'Countryside', 'Trending', 'National parks', 'Camping', 'Treehouses', 'Iconic cities']
+    const titels = [
+        'Rooms',
+        'Castles',
+        'Farms',
+        'Design',
+        'Luxe',
+        'Boats',
+        'OMG!',
+        'Beachfront',
+        'Amazing views',
+        'Amazing pools',
+        'Mansions',
+        'Lakefront',
+        'Cabins',
+        'Tropical',
+        'New',
+        'Countryside',
+        'Trending',
+        'National parks',
+        'Camping',
+        'Treehouses',
+        'Iconic cities',
+    ]
     const urls = [
         'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/rooms_bsse5j.png',
         'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/castle_dxrleo.png',
@@ -157,18 +181,18 @@ function getLabels() {
         return {
             id: utilService.makeId(),
             title,
-            url: urls[i]
+            url: urls[i],
         }
     })
 }
 
-; (() => {
-    var stays = utilService.loadFromStorage(STORAGE_KEY) || []
-    if (!stays.length) {
-        stays = gStays
-        utilService.saveToStorage(STORAGE_KEY, stays)
-    }
-})()
+// ; (() => {
+//     var stays = utilService.loadFromStorage(STORAGE_KEY) || []
+//     if (!stays.length) {
+//         stays = gStays
+//         utilService.saveToStorage(STORAGE_KEY, stays)
+//     }
+// })()
 
 // function _createRandomStays() {
 //     const stays = []
@@ -194,8 +218,11 @@ function _createRandomStay() {
         host: userService.getRandomUser(),
         loc: demoData.getRandomLocation(),
         reviews: reviewService.getRandomReviews(),
-        likedByUsers: [userService.getRandomUser(), userService.getRandomUser()],
-        availableDates: demoData.getRandomAvailableDates()
+        likedByUsers: [
+            userService.getRandomUser(),
+            userService.getRandomUser(),
+        ],
+        availableDates: demoData.getRandomAvailableDates(),
     }
 }
 
@@ -208,7 +235,6 @@ function getDemoData() {
             'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=600',
             'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600',
             'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600',
-
         ],
         names: [
             'Ribeira Charming Duplex',
@@ -222,28 +248,68 @@ function getDemoData() {
             'Escape to the tranquility of the mountains in our cozy cabin...',
             'Experience the vibrant energy of New York City in our modern loft apartment...',
         ],
-        types: [
-            'House',
-            'Villa',
-            'Cabin',
-            'Apartment',
-        ],
+        types: ['House', 'Villa', 'Cabin', 'Apartment'],
         amenities: [
-            { name: 'TV', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685879904/tv_unkhyq.svg' },
-            { name: 'Private pool', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685879992/pool_tgak7m.svg' },
-            { name: 'Garden', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880112/garden_d7ewbt.svg' },
-            { name: 'Air conditioning', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880185/air-conditioner_dxhewv.svg' },
-            { name: 'Breakfast included', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880255/breakfast_kdnda7.svg' },
-            { name: 'Beach access', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/beachfront_fh5txx.png' },
-            { name: 'Fireplace', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880508/fire-place_umdse2.svg' },
-            { name: 'Scenic views', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880593/view_jtcevr.svg' },
-            { name: 'Pet-friendly', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880694/pet_lhxnii.svg' },
-            { name: 'Gym access', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880742/gym_vbbavo.svg' },
-            { name: 'Central location', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880892/location_h091hi.svg' },
-            { name: 'Wifi', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880952/wifi_pao7bq.svg' },
-            { name: 'Kitchen', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881015/kitchen_xn7hvl.svg' },
-            { name: 'Smoking allowed', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881096/smoking_zksaef.svg' },
-            { name: 'Cooking basics', url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881161/cooking_vwvec9.svg' }
+            {
+                name: 'TV',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685879904/tv_unkhyq.svg',
+            },
+            {
+                name: 'Private pool',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685879992/pool_tgak7m.svg',
+            },
+            {
+                name: 'Garden',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880112/garden_d7ewbt.svg',
+            },
+            {
+                name: 'Air conditioning',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880185/air-conditioner_dxhewv.svg',
+            },
+            {
+                name: 'Breakfast included',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880255/breakfast_kdnda7.svg',
+            },
+            {
+                name: 'Beach access',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685796924/labels-airbnb/beachfront_fh5txx.png',
+            },
+            {
+                name: 'Fireplace',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880508/fire-place_umdse2.svg',
+            },
+            {
+                name: 'Scenic views',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880593/view_jtcevr.svg',
+            },
+            {
+                name: 'Pet-friendly',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880694/pet_lhxnii.svg',
+            },
+            {
+                name: 'Gym access',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880742/gym_vbbavo.svg',
+            },
+            {
+                name: 'Central location',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880892/location_h091hi.svg',
+            },
+            {
+                name: 'Wifi',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685880952/wifi_pao7bq.svg',
+            },
+            {
+                name: 'Kitchen',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881015/kitchen_xn7hvl.svg',
+            },
+            {
+                name: 'Smoking allowed',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881096/smoking_zksaef.svg',
+            },
+            {
+                name: 'Cooking basics',
+                url: 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1685881161/cooking_vwvec9.svg',
+            },
         ],
         labels: [
             'Rooms',
@@ -266,7 +332,7 @@ function getDemoData() {
             'National parks',
             'Camping',
             'Treehouses',
-            'Iconic cities'
+            'Iconic cities',
         ],
         locations: [
             {
@@ -275,58 +341,65 @@ function getDemoData() {
                 city: 'Lisbon',
                 address: '17 Kombo st',
                 lat: -8.61308,
-                lng: 41.1413
+                lng: 41.1413,
             },
             {
-                country: "Indonesia",
-                countryCode: "ID",
-                city: "Bali",
-                address: "Jl. Sunset Beach No. 10",
+                country: 'Indonesia',
+                countryCode: 'ID',
+                city: 'Bali',
+                address: 'Jl. Sunset Beach No. 10',
                 lat: -8.12345,
-                lng: 115.6789
+                lng: 115.6789,
             },
             {
-                country: "United States",
-                countryCode: "US",
-                city: "Asheville",
-                address: "123 Mountain Rd",
+                country: 'United States',
+                countryCode: 'US',
+                city: 'Asheville',
+                address: '123 Mountain Rd',
                 lat: 35.6789,
-                lng: -82.12345
+                lng: -82.12345,
             },
             {
-                country: "United States",
-                countryCode: "US",
-                city: "New York City",
-                address: "123 Main St",
+                country: 'United States',
+                countryCode: 'US',
+                city: 'New York City',
+                address: '123 Main St',
                 lat: 40.7128,
-                lng: -74.0060
+                lng: -74.006,
             },
             {
-                country: "Portugal",
-                countryCode: "PT",
-                city: "Lisbon",
-                address: "17 Kombo st",
+                country: 'Portugal',
+                countryCode: 'PT',
+                city: 'Lisbon',
+                address: '17 Kombo st',
                 lat: -8.61308,
-                lng: 41.1413
-            }
+                lng: 41.1413,
+            },
         ],
-
     }
 
     function getRandomName() {
-        return DATA.names[utilService.getRandomIntInclusive(0, DATA.names.length - 1)]
+        return DATA.names[
+            utilService.getRandomIntInclusive(0, DATA.names.length - 1)
+        ]
     }
 
     function getRandomType() {
-        return DATA.types[utilService.getRandomIntInclusive(0, DATA.types.length - 1)]
+        return DATA.types[
+            utilService.getRandomIntInclusive(0, DATA.types.length - 1)
+        ]
     }
 
     function getRandomSummery() {
-        return DATA.summery[utilService.getRandomIntInclusive(0, DATA.summery.length - 1)]
+        return DATA.summery[
+            utilService.getRandomIntInclusive(0, DATA.summery.length - 1)
+        ]
     }
 
     function getRandomLocation() {
-        return DATA.locations[utilService.getRandomIntInclusive(0, DATA.locations.length - 1)]
+        return DATA.locations[
+            utilService.getRandomIntInclusive(0, DATA.locations.length - 1)
+        ]
     }
 
     function getRandomImgUrls() {
@@ -334,7 +407,9 @@ function getDemoData() {
         for (let i = 0; i < 5; i++) {
             urls.push({
                 id: utilService.makeId(),
-                url: DATA.imgs[utilService.getRandomIntInclusive(0, DATA.imgs.length - 1)]
+                url: DATA.imgs[
+                    utilService.getRandomIntInclusive(0, DATA.imgs.length - 1)
+                ],
             })
         }
         return urls
@@ -343,7 +418,14 @@ function getDemoData() {
     function getRandomAmenities() {
         const amenities = []
         for (let i = 0; i < utilService.getRandomIntInclusive(5, 7); i++) {
-            amenities.push(DATA.amenities[utilService.getRandomIntInclusive(0, DATA.amenities.length - 1)])
+            amenities.push(
+                DATA.amenities[
+                    utilService.getRandomIntInclusive(
+                        0,
+                        DATA.amenities.length - 1
+                    )
+                ]
+            )
         }
         return amenities
     }
@@ -351,7 +433,11 @@ function getDemoData() {
     function getRandomLabels() {
         const labels = []
         for (let i = 0; i < utilService.getRandomIntInclusive(5, 9); i++) {
-            labels.push(DATA.labels[utilService.getRandomIntInclusive(0, DATA.labels.length - 1)])
+            labels.push(
+                DATA.labels[
+                    utilService.getRandomIntInclusive(0, DATA.labels.length - 1)
+                ]
+            )
         }
         return labels
     }
@@ -387,7 +473,7 @@ function getDemoData() {
         getRandomAmenities,
         getRandomLabels,
         getRandomImgUrls,
-        getRandomAvailableDates
+        getRandomAvailableDates,
     }
 }
 
