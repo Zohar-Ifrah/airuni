@@ -43,12 +43,28 @@ export const ShareModal = ({ setIsShareModalOpen, stay }) => {
     <div className="share-modal-container">
       <div className="share-modal-content">
         <div className="close-btn" onClick={handleCloseModal}>
-          x
+          <img class="img-close" src="/static/media/exit.1613670bda75ad67062739301b4cf941.svg" alt="exit" />
         </div>
         <p>Share this place</p>
         <div>
-          <img src={stay.imgUrls[0]} alt="stay-img" />
-          {`${stay.type} in ${stay.loc.city}`} TO ADD HERE STAY DETAILS
+          {/* {`${stay.type} in ${stay.loc.city}`} TO ADD HERE STAY DETAILS */}
+          <div className="content">
+            <div className="inner-content flex align-center">
+              {<div className="rating-container flex align-center">
+                <img className="stay-mini-img" src={stay.imgUrls[0]} alt="stay-img" />
+                {stay.type} in {stay.loc.city}
+                <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685704841/star_p6pdqw.svg" alt="Star" />
+                <span>{` · ${stay.bedrooms} ${stay.bedrooms > 1 ? 'bedrooms' : 'bedroom'} 
+                · ${(stay.capacity / 2).toFixed(0)} ${(stay.capacity / 2).toFixed(0) > 1 ? 'beds' : 'bed'} 
+                · ${(stay.bathrooms)} ${stay.bathrooms > 1 ? 'baths' : 'bath'} `}</span>
+              </div>}
+              {/* <p>
+                <span> <span> · </span> <span> {`${stay.reviews.length} reviews`} </span>  <span> · </span> <span className="super-host"> {stay.host.isSuperhost && <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686494614/super-host-new_pfwzko.svg" alt="super-host" />} {stay.host.isSuperhost && 'Superhost'} </span>
+                  {stay.host.isSuperhost && <span> · </span>}  </span>
+                <span className="city-country"> {`${stay.loc.city}, ${stay.loc.country}`}</span>
+              </p> */}
+            </div>
+          </div>
         </div>
         {/* options */}
         <div className='options-container'>
