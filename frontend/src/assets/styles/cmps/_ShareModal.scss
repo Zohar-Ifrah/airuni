@@ -11,6 +11,15 @@
     padding: 1.5em;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
 
+    .stay-details {
+        font-family: 'Circular-Light';
+        font-size: 0.8em;
+
+        .inner-content-details {
+            margin-inline-start: 1em;
+        }
+    }
+
     .img-close {
         width: 1em;
         position: sticky;
@@ -22,26 +31,42 @@
         }
     }
 
+    .stay-mini-img {
+        width: 4em;
+        border-radius: 8px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+
+    .share-modal-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2em;
+    }
+
     .options-container {
         display: flex;
         flex-direction: column;
-        gap: 2em;
+        gap: 0.8em;
+
+        span {
+            font-size: 0.9em;
+            margin-block-start: 0.3em;
+        }
 
         div {
-            border: 1px solid grey;
-            border-radius: 5px;
-            padding: 1.2em;
+            border: 1px solid lightgray;
+            border-radius: 9px;
+            padding: 1em;
             width: 50%;
+            display: flex;
+            gap: 1em;
+            align-items: center;
         }
 
         div:hover {
             cursor: pointer;
-        }
-
-        .stay-mini-img {
-            width: 3.5em;
-            height: 3.5em;
-            border-radius: 10px;
+            background-color: $clr5;
         }
     }
 }
