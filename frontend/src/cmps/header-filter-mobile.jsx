@@ -1,10 +1,30 @@
+import { useState } from "react"
+import { SearchMenu } from "./search-menu"
+
 export function HeaderFilterMobile({
     onSetFilter,
     isDetailsShown,
     isHeaderClicked,
 }) {
+
+    const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
+    const [focusBtn, setFocusBtn] = useState(null)
+    const [barFocused, setBarFocused] = useState(null)
+
+    function onChangeBarDisplay(focusBtn, isOpen) {
+        console.log(focusBtn)
+        // setFocusBtn(focusBtn)
+        setIsSearchBarOpen(isOpen)
+    }
+
+    function isBarFocused(isFocus) {
+        // console.log('isFocus: ', isFocus)
+        setBarFocused(isFocus)
+      }
+
     return (
-        <div className="header-filter-mobile-container flex align-center">
+        <div className="header-filter-mobile-container flex align-center"
+            onClick={() => { onChangeBarDisplay('Search', true) }}>
             <div className="icon-search">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -26,6 +46,18 @@ export function HeaderFilterMobile({
                 <span>Anywhere</span>
                 <span>Any week • Add guests</span>
             </div>
+            {isSearchBarOpen &&
+                <div className={`search-bar-mobile main-layout ${isSearchBarOpen ? 'search-bar-open' : ''}`}>
+                    <div className={`search-form-menu-container-moblie`}>
+                        <div>X</div>
+                        <SearchMenu onChangeBarDisplay={onChangeBarDisplay}
+                            focusBtn={focusBtn}
+                            isBarFocused={isBarFocused}
+                            isHeaderClicked={isHeaderClicked}
+                        />
+                    </div>
+                </div>
+            }
         </div>
     )
 }

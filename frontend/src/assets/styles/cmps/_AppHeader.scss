@@ -23,6 +23,20 @@
             border-radius: 555px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 
+            &:hover {
+                cursor: pointer;
+            }
+
+            .search-bar-mobile {
+                background-color: $clr5;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 1;
+            }
+
             span {
                 &:first-child {
                     font-size: 15px;
@@ -35,6 +49,59 @@
                     color: $clr7;
                 }
             }
+        }
+
+        .filter-header-section {
+
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+
+            .checkin-add-dates-container,
+            .search-label-header,
+            .checkout-add-dates-container,
+            .add-guests-search-main-container {
+                background-color: white;
+                border-radius: 10px;
+                padding-inline: 0.8em;
+                padding-block: 1em;
+
+
+                .checkin-add-dates,
+                .checkout-add-dates,
+                .add-guests-search-container {
+
+                    width: 100%;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    .add-guests {
+                        width: 100%;
+                        flex-direction: row;
+                        justify-content: space-between;
+                    }
+
+                    button {
+                        position: fixed;
+                        bottom: 1em;
+                        right: 1em;
+                    }
+                }
+
+            }
+
+            .search-label-header {
+                justify-content: space-between;
+            }
+
+            .show-contents {
+                .rdp-months {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 1.5em;
+                }
+            }
+
         }
     }
 
@@ -102,7 +169,8 @@
                             font-family: Circular-Regular, sans-serif;
                         }
 
-                        font-family: Circular-Light, sans-serif;
+                        font-family: Circular-Light,
+                        sans-serif;
                         color: $clr2;
                         text-decoration: none;
                         padding-block: 0.8em;
@@ -150,7 +218,7 @@
                                 margin-block: 1.5em;
                             }
 
-                            > input {
+                            >input {
                                 padding-inline: 1em;
                                 padding-block: 0.7em;
                                 border-radius: 0.5em;
@@ -169,7 +237,7 @@
                         }
                     }
 
-                    > * {
+                    >* {
                         padding-inline: 1.5em;
                     }
 
@@ -508,7 +576,7 @@
                             align-items: center;
                             height: 100%;
 
-                            > * {
+                            >* {
                                 padding-inline: 1.5em;
                                 height: 100%;
 
@@ -869,7 +937,8 @@
                                 font-family: Circular-Regular, sans-serif;
                             }
 
-                            font-family: Circular-Light, sans-serif;
+                            font-family: Circular-Light,
+                            sans-serif;
                             color: $clr2;
                             text-decoration: none;
                             padding-block: 0.8em;
@@ -917,7 +986,7 @@
                                     margin-block: 1.5em;
                                 }
 
-                                > input {
+                                >input {
                                     padding-inline: 1em;
                                     padding-block: 0.7em;
                                     border-radius: 0.5em;
@@ -936,7 +1005,7 @@
                             }
                         }
 
-                        > * {
+                        >* {
                             padding-inline: 1.5em;
                         }
 
@@ -1279,7 +1348,7 @@
                                 align-items: center;
                                 height: 100%;
 
-                                > * {
+                                >* {
                                     padding-inline: 1.5em;
                                     height: 100%;
 
@@ -1645,7 +1714,8 @@
                                 font-family: Circular-Regular, sans-serif;
                             }
 
-                            font-family: Circular-Light, sans-serif;
+                            font-family: Circular-Light,
+                            sans-serif;
                             color: $clr2;
                             text-decoration: none;
                             padding-block: 0.8em;
@@ -1693,7 +1763,7 @@
                                     margin-block: 1.5em;
                                 }
 
-                                > input {
+                                >input {
                                     padding-inline: 1em;
                                     padding-block: 0.7em;
                                     border-radius: 0.5em;
@@ -1712,7 +1782,7 @@
                             }
                         }
 
-                        > * {
+                        >* {
                             padding-inline: 1.5em;
                         }
 
@@ -2049,7 +2119,7 @@
                                 align-items: center;
                                 height: 100%;
 
-                                > * {
+                                >* {
                                     padding-inline: 1.5em;
                                     height: 100%;
 
