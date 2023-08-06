@@ -6,33 +6,43 @@ import { HeaderFilter } from './header-filter'
 import { LoginSignup } from './login-signup.jsx'
 import menu from '../assets/img/menu.svg'
 import { login, logout, signup } from '../store/user.actions.js'
-import { eventBus, showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import {
+    eventBus,
+    showErrorMsg,
+    showSuccessMsg,
+} from '../services/event-bus.service'
 import { DetailsAnchorHeader } from './details-anchor-header'
 import { useShouldShow } from '../customHooks/useShouldShow'
+import { HeaderFilterMobile } from './header-filter-mobile'
 
 export function AppHeader() {
-
-    const user = useSelector(storeState => storeState.userModule.user)
+    const user = useSelector((storeState) => storeState.userModule.user)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
+    const isDetailsShown = useSelector(
+        (storeState) => storeState.systemModule.isDetailsShown
+    )
     const [isAnchor, setIsAnchor] = useState(false)
     const modalRef = useRef(null)
     // const isDetailsShown = useShouldShow('/details/')
     const isHomeShown = useShouldShow('/')
     const unsubscribe = eventBus.on('details-load', setObserver)
-    const users = useSelector(storeState => storeState.userModule.users)
+    const users = useSelector((storeState) => storeState.userModule.users)
     const isHostRef = useRef()
     const [isHeaderClicked, setIsHeaderClicked] = useState(false)
     const asd = useRef()
 
     useEffect(() => {
         if (user) {
-            isHostRef.current = users.find(currUser =>
-                currUser._id === user._id)
-
+            isHostRef.current = users.find(
+                (currUser) => currUser._id === user._id
+            )
         }
         const handleOutsideClick = (event) => {
-            if (modalRef.current && !modalRef.current.contains(event.target) && !asd.current.contains(event.target)) {
+            if (
+                modalRef.current &&
+                !modalRef.current.contains(event.target) &&
+                !asd.current.contains(event.target)
+            ) {
                 setIsModalOpen(false)
             }
         }
@@ -46,12 +56,11 @@ export function AppHeader() {
             unsubscribe()
         }
 
-
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
     }, [user, isHostRef.current])
 
     function updateHeader(entries) {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (!entry.isIntersecting) setIsAnchor(true)
             if (entry.isIntersecting) setIsAnchor(false)
         })
@@ -61,7 +70,6 @@ export function AppHeader() {
         const headerObserver = new IntersectionObserver(updateHeader)
 
         headerObserver.observe(elRef.current)
-
     }
 
     async function onLogin(credentials) {
@@ -103,7 +111,6 @@ export function AppHeader() {
         const targetClassName = event.target.className
 
         if (/app-header(-.+)?/.test(targetClassName)) {
-
             setIsHeaderClicked(true)
             setTimeout(() => {
                 setIsHeaderClicked(false)
@@ -113,34 +120,56 @@ export function AppHeader() {
 
     return (
         <>
-            {isAnchor && isDetailsShown &&
-                <DetailsAnchorHeader />
-            }
-            <header className={`app-header full ${isDetailsShown ? 'details-main-layout relative' : 'main-layout'}`}
-                onClick={onHeaderClick}>
+            {isAnchor && isDetailsShown && <DetailsAnchorHeader />}
+            <header
+                className={`app-header full ${
+                    isDetailsShown
+                        ? 'details-main-layout relative'
+                        : 'main-layout'
+                }`}
+                onClick={onHeaderClick}
+            >
                 <div className="app-header-inner-container flex space-between align-center">
                     <div className="main-logo">
-                        <NavLink to="/" >
-                            <div className='main-logo-container flex align-center'>
-                                <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685912254/logo-img_tdtnc7.svg" alt="" />
+                        <NavLink to="/">
+                            <div className="main-logo-container flex align-center">
+                                <img
+                                    src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685912254/logo-img_tdtnc7.svg"
+                                    alt=""
+                                />
                                 <h2> airuni </h2>
                             </div>
                         </NavLink>
                     </div>
 
-                    {isDetailsShown ?
+                    {isDetailsShown ? (
                         <section className="header-search-bar-container">
-                            <HeaderFilter onSetFilter={onSetFilter}
+                            <HeaderFilter
+                                onSetFilter={onSetFilter}
                                 isDetailsShown={isDetailsShown}
-                                isHeaderClicked={isHeaderClicked} />
+                                isHeaderClicked={isHeaderClicked}
+                            />
                         </section>
-                        : isHomeShown &&
-                        <section className="header-search-bar-container">
-                            <HeaderFilter onSetFilter={onSetFilter}
-                                isDetailsShown={isDetailsShown}
-                                isHeaderClicked={isHeaderClicked} />
-                        </section>
-                    }
+                    ) : (
+                        isHomeShown && (
+                            <>
+                                <section className="header-search-bar-container">
+                                    <HeaderFilter
+                                        onSetFilter={onSetFilter}
+                                        isDetailsShown={isDetailsShown}
+                                        isHeaderClicked={isHeaderClicked}
+                                    />
+                                </section>
+                                <section className="header-search-bar-mobile-container">
+                                    <HeaderFilterMobile
+                                        onSetFilter={onSetFilter}
+                                        isDetailsShown={isDetailsShown}
+                                        isHeaderClicked={isHeaderClicked}
+                                    />
+                                </section>
+                            </>
+                        )
+                    )}
 
                     {/* {isModalOpen &&
                     <nav>
@@ -153,42 +182,77 @@ export function AppHeader() {
                     </nav>
                 } */}
 
-                    <div className='login-signup-btn-container'>
+                    <div className="login-signup-btn-container">
+                        <div
+                            className="inner-login-signup-btn-container"
+                            ref={asd}
+                            onClick={() => {
+                                onToggleUserModal()
+                            }}
+                        >
+                            <img className="menu-svg" src={menu} alt="menu" />
 
-                        <div className='inner-login-signup-btn-container' ref={asd} onClick={() => { onToggleUserModal() }}>
-
-                            <img className='menu-svg' src={menu} alt="menu" />
-
-                            <img className='acc-svg'
-                                src={user ? user.imgUrl : 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'}
+                            <img
+                                className="acc-svg"
+                                src={
+                                    user
+                                        ? user.imgUrl
+                                        : 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'
+                                }
                                 alt="user"
-                                onError={ev =>
-                                    ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
-
+                                onError={(ev) =>
+                                    (ev.target.src =
+                                        'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png')
+                                }
+                            />
                         </div>
 
-                        {isModalOpen && <nav>
-                            <div className="login-signup-container" ref={modalRef}>
-                                {user &&
-                                    <span className="user-info">
-                                        <div className='user-info-content-container'>
-                                            <NavLink to='#'> Messeges </NavLink>
-                                            <NavLink to='/trip'> Trips </NavLink>
-                                            <NavLink to='/wishlist'> Whishlist </NavLink>
-                                            <hr />
+                        {isModalOpen && (
+                            <nav>
+                                <div
+                                    className="login-signup-container"
+                                    ref={modalRef}
+                                >
+                                    {user && (
+                                        <span className="user-info">
+                                            <div className="user-info-content-container">
+                                                <NavLink to="#">
+                                                    {' '}
+                                                    Messeges{' '}
+                                                </NavLink>
+                                                <NavLink to="/trip">
+                                                    {' '}
+                                                    Trips{' '}
+                                                </NavLink>
+                                                <NavLink to="/wishlist">
+                                                    {' '}
+                                                    Whishlist{' '}
+                                                </NavLink>
+                                                <hr />
 
-                                            {<NavLink to='/dashboard'> Dashboard </NavLink>}
-                                            <button onClick={onLogout}>Log out</button>
-                                        </div>
-                                    </span>
-                                }
-                                {!user &&
-                                    <section className="user-info">
-                                        <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                                    </section>
-                                }
-                            </div>
-                        </nav>}
+                                                {
+                                                    <NavLink to="/dashboard">
+                                                        {' '}
+                                                        Dashboard{' '}
+                                                    </NavLink>
+                                                }
+                                                <button onClick={onLogout}>
+                                                    Log out
+                                                </button>
+                                            </div>
+                                        </span>
+                                    )}
+                                    {!user && (
+                                        <section className="user-info">
+                                            <LoginSignup
+                                                onLogin={onLogin}
+                                                onSignup={onSignup}
+                                            />
+                                        </section>
+                                    )}
+                                </div>
+                            </nav>
+                        )}
                     </div>
 
                     {/* <button onClick={() => { onToggleUserModal() }}>Sign</button> */}

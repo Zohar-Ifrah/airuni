@@ -6,11 +6,11 @@
     display: grid;
     grid-template-columns: 80px calc(100vw - 180px) 80px;
     position: sticky;
-    top: em(79px);
+    top: 6em;
     background-color: white;
     z-index: 11;
 
-    >* {
+    > * {
         grid-column: 2;
 
         &.full {
@@ -41,7 +41,7 @@
             height: em(28px);
             transition: all 0.1s ease-in-out;
             position: absolute;
-            top: calc(50% - (em(28px)/1.6));
+            top: calc(50% - (em(28px) / 1.6));
 
             &:hover {
                 width: em(29px);
@@ -81,7 +81,7 @@
             transition: all 0.1s ease-in-out;
             position: absolute;
             right: 0;
-            top: calc(50% - (em(28px)/1.6));
+            top: calc(50% - (em(28px) / 1.6));
 
             &:hover {
                 width: em(29px);
@@ -174,7 +174,374 @@
                             text-align: center;
                         }
                     }
+                }
+            }
+        }
+    }
+}
 
+@include for-narrow-layout {
+    .react-horizontal-scrolling-menu--wrapper {
+        width: 100%;
+        height: 7em;
+        position: relative;
+        grid-column: 1/-1;
+        display: grid;
+        grid-template-columns: 80px calc(100vw - 180px) 80px;
+        position: sticky;
+        top: 10em;
+        background-color: white;
+        z-index: 11;
+
+        > * {
+            grid-column: 2;
+
+            &.full {
+                grid-column: 1 /-1;
+            }
+        }
+
+        .react-horizontal-scrolling-menu--header {
+            display: none;
+        }
+
+        .react-horizontal-scrolling-menu--footer {
+            display: none;
+        }
+
+        .react-horizontal-scrolling-menu--inner-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding-block: 2em;
+            position: relative;
+
+            .react-horizontal-scrolling-menu--arrow-left {
+                z-index: 1;
+                border-radius: 50%;
+                line-height: 0;
+                width: em(28px);
+                height: em(28px);
+                transition: all 0.1s ease-in-out;
+                position: absolute;
+                top: calc(50% - (em(28px) / 1.6));
+
+                &:hover {
+                    width: em(29px);
+                    height: em(29px);
+                }
+
+                button {
+                    padding: 0;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    color: $clr2;
+                    border: 1px solid rgba(0, 0, 0, 0.39);
+                    width: 100%;
+                    height: 100%;
+                    transition: all 0.1s ease-in-out;
+
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 6px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                        scale: 50%;
+                    }
+                }
+            }
+
+            .react-horizontal-scrolling-menu--arrow-right {
+                z-index: 1;
+                border-radius: 50%;
+                line-height: 0;
+                width: em(28px);
+                height: em(28px);
+                transition: all 0.1s ease-in-out;
+                position: absolute;
+                right: 0;
+                top: calc(50% - (em(28px) / 1.6));
+
+                &:hover {
+                    width: em(29px);
+                    height: em(29px);
+                }
+
+                button {
+                    padding: 0;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    color: $clr2;
+                    border: 1px solid rgba(0, 0, 0, 0.39);
+                    width: 100%;
+                    height: 100%;
+                    transition: all 0.1s ease-in-out;
+
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 6px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                        scale: 50%;
+                    }
+                }
+            }
+
+            .react-horizontal-scrolling-menu--scroll-container {
+                overflow-x: hidden;
+                display: flex;
+                justify-content: space-between;
+
+                .react-horizontal-scrolling-menu--item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: max-content;
+                    margin-inline: 1.2em;
+                    opacity: 0.7;
+                    transition: all 0.1s ease-in-out;
+
+                    &:last-child {
+                        margin-inline-end: 0;
+                    }
+
+                    &:first-child {
+                        margin-inline: 0;
+                        margin-inline-end: 1.8em;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 1;
+                    }
+
+                    div {
+                        .card {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: max-content;
+                            height: 100%;
+
+                            &.active {
+                                position: relative;
+
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    bottom: 1px;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 2px;
+                                    background-color: $clr3;
+                                    /* Adjust the color as desired */
+                                }
+                            }
+
+                            img {
+                                width: 1.5em;
+                                margin-block-end: 0.5em;
+                            }
+
+                            div {
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include for-normal-layout {
+    .react-horizontal-scrolling-menu--wrapper {
+        width: 100%;
+        height: 7em;
+        position: relative;
+        grid-column: 1/-1;
+        display: grid;
+        grid-template-columns: 80px calc(100vw - 180px) 80px;
+        position: sticky;
+        top: 6.4em;
+        background-color: white;
+        z-index: 11;
+
+        > * {
+            grid-column: 2;
+
+            &.full {
+                grid-column: 1 /-1;
+            }
+        }
+
+        .react-horizontal-scrolling-menu--header {
+            display: none;
+        }
+
+        .react-horizontal-scrolling-menu--footer {
+            display: none;
+        }
+
+        .react-horizontal-scrolling-menu--inner-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding-block: 2em;
+            position: relative;
+
+            .react-horizontal-scrolling-menu--arrow-left {
+                z-index: 1;
+                border-radius: 50%;
+                line-height: 0;
+                width: em(28px);
+                height: em(28px);
+                transition: all 0.1s ease-in-out;
+                position: absolute;
+                top: calc(50% - (em(28px) / 1.6));
+
+                &:hover {
+                    width: em(29px);
+                    height: em(29px);
+                }
+
+                button {
+                    padding: 0;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    color: $clr2;
+                    border: 1px solid rgba(0, 0, 0, 0.39);
+                    width: 100%;
+                    height: 100%;
+                    transition: all 0.1s ease-in-out;
+
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 6px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                        scale: 50%;
+                    }
+                }
+            }
+
+            .react-horizontal-scrolling-menu--arrow-right {
+                z-index: 1;
+                border-radius: 50%;
+                line-height: 0;
+                width: em(28px);
+                height: em(28px);
+                transition: all 0.1s ease-in-out;
+                position: absolute;
+                right: 0;
+                top: calc(50% - (em(28px) / 1.6));
+
+                &:hover {
+                    width: em(29px);
+                    height: em(29px);
+                }
+
+                button {
+                    padding: 0;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    color: $clr2;
+                    border: 1px solid rgba(0, 0, 0, 0.39);
+                    width: 100%;
+                    height: 100%;
+                    transition: all 0.1s ease-in-out;
+
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 6px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                        scale: 50%;
+                    }
+                }
+            }
+
+            .react-horizontal-scrolling-menu--scroll-container {
+                overflow-x: hidden;
+                display: flex;
+                justify-content: space-between;
+
+                .react-horizontal-scrolling-menu--item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: max-content;
+                    margin-inline: 1.2em;
+                    opacity: 0.7;
+                    transition: all 0.1s ease-in-out;
+
+                    &:last-child {
+                        margin-inline-end: 0;
+                    }
+
+                    &:first-child {
+                        margin-inline: 0;
+                        margin-inline-end: 1.8em;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 1;
+                    }
+
+                    div {
+                        .card {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: max-content;
+                            height: 100%;
+
+                            &.active {
+                                position: relative;
+
+                                &::after {
+                                    content: '';
+                                    position: absolute;
+                                    bottom: 1px;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 2px;
+                                    background-color: $clr3;
+                                    /* Adjust the color as desired */
+                                }
+                            }
+
+                            img {
+                                width: 1.5em;
+                                margin-block-end: 0.5em;
+                            }
+
+                            div {
+                                text-align: center;
+                            }
+                        }
+                    }
                 }
             }
         }
