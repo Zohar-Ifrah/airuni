@@ -35,6 +35,71 @@
                 width: 100%;
                 height: 100vh;
                 z-index: 1;
+                padding-block: 2em;
+                cursor: default;
+                overflow-y: auto;
+
+                .search-form-menu-container-moblie {
+                    .btn-close {
+                        margin: 0;
+                        padding: 0;
+                        padding: 0.7em;
+                        margin-block-end: 1em;
+                        border-radius: 50%;
+                        background-color: transparent;
+                        border: 1px solid $clr7;
+                        color: black;
+                    }
+
+                    .add-guests-cmp-header {
+                        .guest-select-row {
+                            display: flex;
+                            justify-content: space-between;
+
+                            .guest-count-container {
+                                display: flex;
+                                align-items: center;
+                                gap: 0.5em;
+
+                                button {
+                                    margin: 0;
+                                    padding: 0;
+                                    border-radius: 50%;
+                                    height: em(29px);
+                                    width: em(29px);
+                                    padding: 1em;
+                                    background-color: transparent;
+                                    border: 1px solid $clr7;
+                                    color: $clr2;
+
+                                    &.blank {
+                                        cursor: not-allowed;
+                                        opacity: 0.3;
+                                    }
+                                }
+
+                                span {
+                                    width: 1.5em;
+                                    text-align: center;
+                                    color: $clr2;
+                                    font-size: em(15.5px);
+                                }
+                            }
+
+                            p {
+                                display: flex;
+                                flex-direction: column;
+                                color: $clr2;
+                                font-family: Circular-Medium;
+
+                                span {
+                                    color: $clr7;
+                                    font-family: Circular-Light;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             span {
@@ -52,10 +117,25 @@
         }
 
         .filter-header-section {
-
             display: flex;
             flex-direction: column;
             gap: 0.5em;
+            position: relative;
+
+            .search-label-header {
+                align-items: center;
+
+                span {
+                    height: fit-content;
+                }
+                input {
+                    width: 80%;
+                    border-radius: 5px;
+                    padding-inline: 1em;
+                    padding-block: 0.5em;
+                    border: 1px solid $clr9;
+                }
+            }
 
             .checkin-add-dates-container,
             .search-label-header,
@@ -65,29 +145,33 @@
                 border-radius: 10px;
                 padding-inline: 0.8em;
                 padding-block: 1em;
-
+                cursor: pointer;
 
                 .checkin-add-dates,
                 .checkout-add-dates,
                 .add-guests-search-container {
-
                     width: 100%;
                     flex-direction: row;
                     justify-content: space-between;
+                    align-items: center;
 
                     .add-guests {
                         width: 100%;
                         flex-direction: row;
                         justify-content: space-between;
+                        align-items: center;
                     }
 
                     button {
                         position: fixed;
-                        bottom: 1em;
-                        right: 1em;
+                        bottom: 1.5em;
+                        right: 1.5em;
+                    }
+
+                    span {
+                        height: fit-content;
                     }
                 }
-
             }
 
             .search-label-header {
@@ -100,8 +184,45 @@
                     flex-direction: column;
                     row-gap: 1.5em;
                 }
+
+                .rdp-table {
+                    margin: auto;
+                }
             }
 
+            .region-select-container {
+                width: 100%;
+                padding: 2em;
+                border-radius: 1em;
+
+                .region-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                    gap: 1em;
+
+                    img {
+                        aspect-ratio: unset;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            .add-guests-cmp-header {
+                background-color: $clr8;
+                padding: 1em;
+                border-radius: 1em;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+                display: flex;
+                flex-direction: column;
+                row-gap: 1em;
+                margin-block-start: 1em;
+
+                hr {
+                    background-color: $clr4;
+                    height: 1px;
+                    border: none;
+                }
+            }
         }
     }
 
@@ -169,8 +290,7 @@
                             font-family: Circular-Regular, sans-serif;
                         }
 
-                        font-family: Circular-Light,
-                        sans-serif;
+                        font-family: Circular-Light, sans-serif;
                         color: $clr2;
                         text-decoration: none;
                         padding-block: 0.8em;
@@ -218,7 +338,7 @@
                                 margin-block: 1.5em;
                             }
 
-                            >input {
+                            > input {
                                 padding-inline: 1em;
                                 padding-block: 0.7em;
                                 border-radius: 0.5em;
@@ -237,7 +357,7 @@
                         }
                     }
 
-                    >* {
+                    > * {
                         padding-inline: 1.5em;
                     }
 
@@ -576,7 +696,7 @@
                             align-items: center;
                             height: 100%;
 
-                            >* {
+                            > * {
                                 padding-inline: 1.5em;
                                 height: 100%;
 
@@ -937,8 +1057,7 @@
                                 font-family: Circular-Regular, sans-serif;
                             }
 
-                            font-family: Circular-Light,
-                            sans-serif;
+                            font-family: Circular-Light, sans-serif;
                             color: $clr2;
                             text-decoration: none;
                             padding-block: 0.8em;
@@ -986,7 +1105,7 @@
                                     margin-block: 1.5em;
                                 }
 
-                                >input {
+                                > input {
                                     padding-inline: 1em;
                                     padding-block: 0.7em;
                                     border-radius: 0.5em;
@@ -1005,7 +1124,7 @@
                             }
                         }
 
-                        >* {
+                        > * {
                             padding-inline: 1.5em;
                         }
 
@@ -1348,7 +1467,7 @@
                                 align-items: center;
                                 height: 100%;
 
-                                >* {
+                                > * {
                                     padding-inline: 1.5em;
                                     height: 100%;
 
@@ -1714,8 +1833,7 @@
                                 font-family: Circular-Regular, sans-serif;
                             }
 
-                            font-family: Circular-Light,
-                            sans-serif;
+                            font-family: Circular-Light, sans-serif;
                             color: $clr2;
                             text-decoration: none;
                             padding-block: 0.8em;
@@ -1763,7 +1881,7 @@
                                     margin-block: 1.5em;
                                 }
 
-                                >input {
+                                > input {
                                     padding-inline: 1em;
                                     padding-block: 0.7em;
                                     border-radius: 0.5em;
@@ -1782,7 +1900,7 @@
                             }
                         }
 
-                        >* {
+                        > * {
                             padding-inline: 1.5em;
                         }
 
@@ -2119,7 +2237,7 @@
                                 align-items: center;
                                 height: 100%;
 
-                                >* {
+                                > * {
                                     padding-inline: 1.5em;
                                     height: 100%;
 

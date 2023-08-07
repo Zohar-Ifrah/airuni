@@ -4,7 +4,7 @@
     position: relative;
     grid-column: 1/-1;
     display: grid;
-    grid-template-columns: 80px calc(100vw - 180px) 80px;
+    grid-template-columns: 25px 1fr 25px;
     position: sticky;
     top: 6em;
     background-color: white;
@@ -31,6 +31,7 @@
         display: flex;
         align-items: center;
         padding-block: 2em;
+        padding-block-start: 1em;
         position: relative;
 
         .react-horizontal-scrolling-menu--arrow-left {
@@ -187,7 +188,7 @@
         position: relative;
         grid-column: 1/-1;
         display: grid;
-        grid-template-columns: 80px calc(100vw - 180px) 80px;
+        grid-template-columns: 80px 1fr 80px;
         position: sticky;
         top: 10em;
         background-color: white;
@@ -371,7 +372,7 @@
         position: relative;
         grid-column: 1/-1;
         display: grid;
-        grid-template-columns: 80px calc(100vw - 180px) 80px;
+        grid-template-columns: 80px 1fr 80px;
         position: sticky;
         top: 6.4em;
         background-color: white;
