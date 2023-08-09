@@ -11,10 +11,12 @@ import { LabelsFilter } from './cmps/labels-filter'
 import { useShouldShow } from './customHooks/useShouldShow'
 import { socketService } from './services/socket.service'
 import { showSuccessMsg } from './services/event-bus.service'
+import { NavFooterMobile } from './cmps/nav-footer-mobile'
 
 export function RootCmp() {
-
-    const isDetailsShown = useSelector(storeState => storeState.systemModule.isDetailsShown)
+    const isDetailsShown = useSelector(
+        (storeState) => storeState.systemModule.isDetailsShown
+    )
     const isHomeShown = useShouldShow('/')
     useEffect(() => {
         socketService.on('get-new-order', (order) => {
@@ -27,19 +29,29 @@ export function RootCmp() {
     return (
         <>
             <UserMsg />
-            <div className={`main-app ${(isDetailsShown) ? 'details-main-layout' : 'main-layout'}`}>
+            <div
+                className={`main-app ${
+                    isDetailsShown ? 'details-main-layout' : 'main-layout'
+                }`}
+            >
                 <AppHeader />
                 {isHomeShown && <LabelsFilter />}
                 <main>
                     <Routes>
-                        {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
+                        {routes.map((route) => (
+                            <Route
+                                key={route.path}
+                                exact={true}
+                                element={route.component}
+                                path={route.path}
+                            />
+                        ))}
                         <Route path="user/:id" element={<UserDetails />} />
                     </Routes>
                 </main>
+                <NavFooterMobile />
                 <AppFooter />
             </div>
         </>
     )
 }
-
-

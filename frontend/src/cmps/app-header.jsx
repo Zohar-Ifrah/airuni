@@ -216,10 +216,6 @@ export function AppHeader() {
                                     {user && (
                                         <span className="user-info">
                                             <div className="user-info-content-container">
-                                                <NavLink to="#">
-                                                    {' '}
-                                                    Messeges{' '}
-                                                </NavLink>
                                                 <NavLink to="/trip">
                                                     {' '}
                                                     Trips{' '}

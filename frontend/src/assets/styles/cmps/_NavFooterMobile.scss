@@ -1,0 +1,80 @@
+.nav-footer-mobile {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    height: 4em;
+    width: 100%;
+    border-block-start: 1px solid $clr4;
+
+    a {
+        color: $clr9;
+
+        div {
+            row-gap: 0.1em;
+
+            img {
+                width: 1.5em;
+                color: #fff;
+            }
+
+            span {
+                color: $clr2;
+                font-size: em(11px);
+            }
+        }
+    }
+
+    .btn-logout {
+        padding: 0;
+        background-color: unset;
+        border-radius: unset;
+
+        img {
+            width: 1.8em;
+        }
+
+        span {
+            color: $clr2;
+            font-size: em(11px);
+        }
+    }
+
+    .btn-login {
+        padding: 0;
+        background-color: unset;
+        border-radius: unset;
+        color: $clr7;
+        row-gap: 0.2em;
+        // position: relative;
+
+        svg {
+            width: 1.8em;
+        }
+
+        span {
+            color: $clr2;
+            font-size: em(11px);
+        }
+    }
+
+    .login-page {
+        position: absolute;
+        top: -5em;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        padding: 1em;
+        border-radius: 1em;
+        background-color: #fff;
+        text-align: center;
+        color: $clr7;
+    }
+}
+
+@include for-narrow-layout {
+    .nav-footer-mobile {
+        display: none;
+    }
+}
