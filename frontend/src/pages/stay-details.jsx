@@ -62,7 +62,11 @@ export function StayDetails() {
 
     return (
         <div className="stay-details">
-            <DetailsHeader stay={stay} setIsOpenReviews={setIsOpenReviews} />
+            <DetailsHeader
+                stay={stay}
+                setIsOpenReviews={setIsOpenReviews}
+                loadStay={loadStay}
+            />
             <DetailsGallery stay={stay} />
 
             <section className="stay-details-content">

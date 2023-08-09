@@ -12,11 +12,13 @@ export function Wishlist() {
 
     useEffect(() => {
         if (stays.length) return
+        if (!isUserLogged) return
         loadStays()
     }, [])
 
     useEffect(() => {
         if (!stays.length) return
+        if (!isUserLogged) return
         const wishlist = stays.filter((stay) =>
             stay.likedByUsers.find(
                 (likedByUser) => likedByUser === isUserLogged._id

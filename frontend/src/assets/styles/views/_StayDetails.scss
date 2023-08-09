@@ -1,17 +1,14 @@
 .stay-details {
-
     .details-header {
         margin-block: 1.2em;
         align-items: flex-end;
 
         .content {
-
             h2 {
-                margin-block-end: .3em;
+                margin-block-end: 0.3em;
             }
 
             .inner-content {
-
                 .rating-container {
                     font-family: Circular-Regular, sans-serif;
                     font-size: em(15px);
@@ -53,7 +50,7 @@
                             font-size: em(16px);
 
                             img {
-                                width: .8em;
+                                width: 0.8em;
                             }
                         }
                     }
@@ -62,7 +59,6 @@
         }
 
         .share-save-container {
-
             a {
                 color: $clr2;
                 text-decoration: underline;
@@ -73,22 +69,17 @@
 
                     img {
                         width: 1.1em;
-                        margin-inline-end: .3em;
+                        margin-inline-end: 0.3em;
                     }
-
                 }
 
                 .like-container {
-
-
-                    img {
+                    svg {
                         width: 1.1em;
-                        margin-inline-end: .3em;
+                        margin-inline-end: 0.3em;
                     }
                 }
             }
-
-
         }
     }
 
@@ -98,7 +89,6 @@
         grid-template-rows: 25vh 25vh;
         grid-gap: em(8px);
         margin-block-end: 1em;
-
 
         img {
             width: 100%;
@@ -110,21 +100,20 @@
         img:first-child {
             grid-column: 1 / span 2;
             grid-row: 1 / span 2;
-            border-top-left-radius: .8em;
-            border-bottom-left-radius: .8em;
+            border-top-left-radius: 0.8em;
+            border-bottom-left-radius: 0.8em;
         }
 
         img:nth-child(3) {
-            border-top-right-radius: .8em;
+            border-top-right-radius: 0.8em;
         }
 
         img:nth-child(5) {
-            border-bottom-right-radius: .8em;
+            border-bottom-right-radius: 0.8em;
         }
     }
 
     .stay-details-content {
-
         display: grid;
         grid-template-columns: 1.9fr 1fr;
         column-gap: 5em;
@@ -133,7 +122,6 @@
             grid-column: 1;
 
             .stay-extra-details {
-
                 .stay-host-by {
                     margin-block-start: 2em;
                     margin-block-end: 1.2em;
@@ -153,7 +141,7 @@
 
                     .main-amenity {
                         border: 1px solid $clr4;
-                        border-radius: .8em;
+                        border-radius: 0.8em;
                         padding-inline: 1.8em;
                         height: 100%;
                         width: 31.6%;
@@ -166,7 +154,6 @@
                 }
 
                 .secondary-amenities {
-
                     border-top: 0.5px solid $clr4;
                     border-bottom: 0.5px solid $clr4;
                     margin-block: 1.5em;
@@ -202,7 +189,7 @@
                     line-height: 1.6;
 
                     h2 {
-                        margin-block-end: .5em;
+                        margin-block-end: 0.5em;
                     }
 
                     p {
@@ -221,7 +208,7 @@
                 .amenitis-content {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
-                    row-gap: .5em;
+                    row-gap: 0.5em;
 
                     .amenty-container {
                         margin-block-end: 1em;
@@ -240,12 +227,9 @@
                 h2 {
                     margin-block-end: 1em;
                 }
-
-
             }
 
             .calendar-picker-header {
-
                 .rdp {
                     margin: 0;
 
@@ -282,7 +266,7 @@
                 padding: 1.5em;
                 align-items: center;
 
-                >* {
+                > * {
                     width: 100%;
                 }
 
@@ -297,27 +281,26 @@
                         }
 
                         p {
-                            margin-block-end: .2em;
+                            margin-block-end: 0.2em;
                             font-size: em(17px);
                         }
                     }
 
                     .rating-review-container {
-
                         .rating-container {
                             margin-inline-end: 0.2em;
 
                             img {
-                                width: .8em;
+                                width: 0.8em;
                                 margin-inline-end: 0.3em;
-                                margin-block-end: .1em;
+                                margin-block-end: 0.1em;
                             }
 
                             p {
                                 font-size: em(14.5px);
                                 font-family: Circular-Regular, sans-serif;
                                 color: $clr2;
-                                margin-inline-end: .2em;
+                                margin-inline-end: 0.2em;
                             }
                         }
 
@@ -334,14 +317,13 @@
                 }
 
                 form {
-                    >* {
+                    > * {
                         width: 100%;
                     }
 
                     .dates-guests-container {
                         width: 100%;
-                        margin-block-end: .3em;
-
+                        margin-block-end: 0.3em;
 
                         .dates-container {
                             width: 100%;
@@ -352,12 +334,13 @@
                             border-block-end: 0;
 
                             .check-in-container {
-                                border-inline-end: 1px solid rgba(0, 0, 0, 0.356);
+                                border-inline-end: 1px solid
+                                    rgba(0, 0, 0, 0.356);
                                 width: 50%;
                                 height: 100%;
-                                padding-inline: .8em;
-                                padding-block-start: .3em;
-                                padding-block-end: .5em;
+                                padding-inline: 0.8em;
+                                padding-block-start: 0.3em;
+                                padding-block-end: 0.5em;
 
                                 span {
                                     text-transform: uppercase;
@@ -378,9 +361,9 @@
                             .check-out-container {
                                 width: 50%;
                                 height: 100%;
-                                padding-inline: .8em;
-                                padding-block-start: .3em;
-                                padding-block-end: .5em;
+                                padding-inline: 0.8em;
+                                padding-block-start: 0.3em;
+                                padding-block-end: 0.5em;
 
                                 span {
                                     text-transform: uppercase;
@@ -413,7 +396,7 @@
                                 text-transform: uppercase;
                                 font-size: em(9px);
                                 font-family: Circular-Bold, sans-serif;
-                                margin-block-end: .3em;
+                                margin-block-end: 0.3em;
                             }
 
                             .guests-count {
@@ -433,7 +416,7 @@
                         .rdrDateRangePickerWrapper {
                             width: 100%;
 
-                            >* {
+                            > * {
                                 width: 100%;
                             }
 
@@ -448,12 +431,12 @@
                             }
 
                             .rdrCalendarWrapper {
-                                >* {
+                                > * {
                                     width: 100%;
                                 }
 
                                 .rdrDateDisplayWrapper {
-                                    >* {
+                                    > * {
                                         width: 100%;
                                     }
                                 }
@@ -463,7 +446,7 @@
                                 }
 
                                 .rdrMonths {
-                                    >* {
+                                    > * {
                                         width: 100%;
                                     }
                                 }
@@ -479,7 +462,7 @@
                         margin-block-end: 1.2em;
 
                         .nights-price-container {
-                            margin-block-end: .8em;
+                            margin-block-end: 0.8em;
 
                             p {
                                 color: $clr2;
@@ -494,7 +477,7 @@
 
                 .txt-charged {
                     text-align: center;
-                    margin-block-start: .3em;
+                    margin-block-start: 0.3em;
                     color: $clr2;
                     font-size: em(15px);
                 }
@@ -504,10 +487,9 @@
                     padding-block-start: 1em;
                     border-block-start: 1px solid $clr4;
 
-
                     h3 {
                         text-transform: capitalize;
-                        margin-inline-end: .5em;
+                        margin-inline-end: 0.5em;
                         font-size: em(17px);
                         color: $clr2;
                         font-family: Circular-Refular, sans-serif;
@@ -535,11 +517,10 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             column-gap: 10em;
-            row-gap: .8em;
+            row-gap: 0.8em;
             margin-block-end: 3em;
 
             .stat-main {
-
                 p {
                     color: $clr2;
                 }
@@ -564,7 +545,6 @@
         }
 
         .rating-container {
-
             margin-block-end: 1.7em;
 
             img {
@@ -593,7 +573,7 @@
 
                 .user-details {
                     margin-block-end: 1em;
-                    column-gap: .3em;
+                    column-gap: 0.3em;
 
                     img {
                         width: 2.5em;
@@ -617,9 +597,8 @@
                 }
 
                 .substringed-txt-container {
-
                     .showmore-container {
-                        margin-block-start: .8em;
+                        margin-block-start: 0.8em;
 
                         .btn-showmore {
                             padding: 0;
@@ -655,9 +634,8 @@
     }
 
     .details-map {
-
         h2 {
-            margin-block-end: .8em;
+            margin-block-end: 0.8em;
         }
 
         h3 {
