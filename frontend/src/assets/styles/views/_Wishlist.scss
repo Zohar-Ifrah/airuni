@@ -1,5 +1,13 @@
 .wishlist-container {
+    margin-block: 1em;
+
     .wishlist {
         margin-block: 1.5em;
+    }
+
+    h2 {
+        font-size: em(30px);
+        font-family: Circular-Regular;
+        margin-block-start: 1em;
     }
 }

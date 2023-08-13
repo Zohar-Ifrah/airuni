@@ -14,6 +14,9 @@ import { SET_DETAILS_SHOWN } from '../store/system.reducer'
 import { CalendarPicker } from '../cmps/calendar-picker'
 import { DetailsMap } from '../cmps/details-map'
 import { SkeletonStayDetails } from '../cmps/skeleton-stay-details'
+import { DetailsHeaderMobile } from '../cmps/details-header-mobile'
+import { DetailsGalleryMobile } from '../cmps/details-gallery-mobile'
+import { DetailsContentMobile } from '../cmps/details-content-mobile'
 
 export function StayDetails() {
     const calAmount = 2
@@ -61,13 +64,19 @@ export function StayDetails() {
     if (!stay) return <SkeletonStayDetails />
 
     return (
-        <div className="stay-details">
+        <div className="stay-details details-main-layout full">
             <DetailsHeader
                 stay={stay}
                 setIsOpenReviews={setIsOpenReviews}
                 loadStay={loadStay}
             />
+            <DetailsHeaderMobile stay={stay} loadStay={loadStay} />
             <DetailsGallery stay={stay} />
+            <DetailsGalleryMobile stay={stay} />
+            <DetailsContentMobile
+                stay={stay}
+                setIsOpenReviews={setIsOpenReviews}
+            />
 
             <section className="stay-details-content">
                 <div className="stay-details-content-column1">

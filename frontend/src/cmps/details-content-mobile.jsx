@@ -1,7 +1,4 @@
-// import { userService } from "../services/user.service"
-import { ShareSave } from './share-save'
-
-export function DetailsHeader({ stay, setIsOpenReviews, loadStay }) {
+export function DetailsContentMobile({ stay, setIsOpenReviews }) {
     function onOpenReviews() {
         setIsOpenReviews(true)
 
@@ -11,7 +8,7 @@ export function DetailsHeader({ stay, setIsOpenReviews, loadStay }) {
     }
 
     return (
-        <div className="details-header flex space-between">
+        <section className="details-content-mobile">
             <div className="content">
                 <h2> {stay.name} </h2>
                 <div className="inner-content flex align-center">
@@ -30,7 +27,10 @@ export function DetailsHeader({ stay, setIsOpenReviews, loadStay }) {
                         <span>
                             {' '}
                             <span> · </span>{' '}
-                            <span onClick={() => onOpenReviews()}>
+                            <span
+                                onClick={() => onOpenReviews()}
+                                className="reviews-count"
+                            >
                                 {' '}
                                 {`${stay.reviews.length} reviews`}{' '}
                             </span>{' '}
@@ -54,7 +54,6 @@ export function DetailsHeader({ stay, setIsOpenReviews, loadStay }) {
                     </p>
                 </div>
             </div>
-            <ShareSave stay={stay} loadStay={loadStay} />
-        </div>
+        </section>
     )
 }

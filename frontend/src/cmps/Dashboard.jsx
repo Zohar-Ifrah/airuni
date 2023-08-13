@@ -9,8 +9,8 @@ import { utilService } from '../services/util.service'
 
 export function Dashboard() {
     const navigate = useNavigate()
-    const stays = useSelector(storeState => storeState.stayModule.stays)
-    const userLogged = useSelector(storeState => storeState.userModule.user)
+    const stays = useSelector((storeState) => storeState.stayModule.stays)
+    const userLogged = useSelector((storeState) => storeState.userModule.user)
     const [users, setUsers] = useState([])
     const [orders, setOrders] = useState([])
 
@@ -25,21 +25,21 @@ export function Dashboard() {
         }
 
         // Real time update orders
-        socketService.on('get-new-order', async order => {
+        socketService.on('get-new-order', async (order) => {
             await fetchOrders()
         })
 
         fetchUsers()
 
         loadStays()
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
         if (userLogged) {
             fetchOrders()
         }
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
     }, [userLogged])
 
     async function fetchOrders() {
@@ -54,7 +54,7 @@ export function Dashboard() {
         }
     }
     // Function to format the check-in and check-out dates
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
     const formatDateRange = (checkin, checkout) => {
         const checkinDate = new Date(checkin)
         const checkoutDate = new Date(checkout)
@@ -70,14 +70,14 @@ export function Dashboard() {
     }
 
     // Function to get the approval status
-    // eslint-disable-next-line 
-    const getApprovalStatus = isApproved => {
+    // eslint-disable-next-line
+    const getApprovalStatus = (isApproved) => {
         return isApproved ? 'Approved' : 'Pending'
     }
 
     function getGuestInfo(buyerId) {
         if (users.length) {
-            const buyer = users.find(user => user._id === buyerId)
+            const buyer = users.find((user) => user._id === buyerId)
             return { img: buyer.imgUrl, name: buyer.fullname }
         }
     }
@@ -92,45 +92,45 @@ export function Dashboard() {
         }
     }
 
-    if (
-        !stays ||
-        !stays.length ||
-        !users ||
-        !users.length
-    )
+    if (!stays || !stays.length || !users || !users.length)
         return (
-            <div className='loader flex align-center justify-center'>
-                <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg" alt="loader" />
+            <div className="loader flex align-center justify-center">
+                <img
+                    src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg"
+                    alt="loader"
+                />
             </div>
         )
 
-    if (!orders || !orders.length) return 'You have no orders!'
+    if (!orders || !orders.length)
+        return (
+            <section className="dashboard">
+                <h2>You have no orders!</h2>
+            </section>
+        )
 
     return (
         <>
             {userLogged ? (
-                <div className='dashboard'>
+                <section className="dashboard">
                     <h1>Welcome back, {userLogged.fullname}</h1>
                     <h3>Your orders</h3>
 
-                    <ul className='order-list'>
+                    <ul className="order-list">
                         {orders.length &&
-                            orders.map(order => {
+                            orders.map((order) => {
                                 const currStay = stays.find(
-                                    stay => stay._id === order.stayId
+                                    (stay) => stay._id === order.stayId
                                 )
                                 const buyer = getGuestInfo(order.buyerId)
                                 return (
                                     <li key={order._id}>
-                                        <article className='order-preview'>
-                                            <section className='header'>
-                                                <img
-                                                    src={buyer.img}
-                                                    alt=''
-                                                />
+                                        <article className="order-preview">
+                                            <section className="header">
+                                                <img src={buyer.img} alt="" />
                                                 <p>{buyer.name}</p>
                                             </section>
-                                            <section className='body'>
+                                            <section className="body">
                                                 <p>{currStay.name}</p>
                                                 <p>
                                                     {utilService.timeAgo(
@@ -138,8 +138,8 @@ export function Dashboard() {
                                                     )}
                                                 </p>
                                             </section>
-                                            <section className='footer'>
-                                                <p className='price'>
+                                            <section className="footer">
+                                                <p className="price">
                                                     {order.info.price}$
                                                 </p>
                                                 <button
@@ -240,7 +240,7 @@ export function Dashboard() {
                             </button>
                         </div>
                     )} */}
-                </div>
+                </section>
             ) : (
                 navigate('/')
             )}

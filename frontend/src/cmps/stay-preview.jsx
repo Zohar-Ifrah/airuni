@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { CarouselComponent } from './img-preview-carousel'
 import { utilService } from '../services/util.service'
+import { useRef } from 'react'
 
 export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
     const navigate = useNavigate()
+    const distance = useRef(getDistance())
+    const dates = useRef(getDates())
 
     function getDistance() {
         const distance =
@@ -61,8 +64,8 @@ export function StayPreview({ stay, onRemoveStay, onUpdateStay }) {
                     </div>
                 )}
             </div>
-            <p>{getDistance()}</p>
-            <p>{getDates()}</p>
+            <p>{distance.current}</p>
+            <p>{dates.current}</p>
             <p>
                 {' '}
                 <span> ${stay.price.toLocaleString('en-US')} </span> night{' '}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router'
 import { useSelector } from 'react-redux'
 
@@ -18,14 +18,30 @@ export function RootCmp() {
         (storeState) => storeState.systemModule.isDetailsShown
     )
     const isHomeShown = useShouldShow('/')
+    const [isMobile, setIsMobile] = useState(false)
+
     useEffect(() => {
         socketService.on('get-new-order', (order) => {
             showSuccessMsg('You got new order')
         })
+
         socketService.on('order-status-change', (order) => {
             showSuccessMsg('Your order has been Approved!')
         })
+
+        handleResize()
+
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
     }, [])
+
+    const handleResize = () => {
+        setIsMobile(window.innerWidth <= 1100)
+    }
+
     return (
         <>
             <UserMsg />
@@ -34,9 +50,21 @@ export function RootCmp() {
                     isDetailsShown ? 'details-main-layout' : 'main-layout'
                 }`}
             >
-                <AppHeader />
+                {!isMobile ||
+                (window.location.pathname !== '/wishlist' &&
+                    window.location.pathname !== '/trip' &&
+                    window.location.pathname !== '/dashboard' &&
+                    !isDetailsShown) ? (
+                    <AppHeader />
+                ) : (
+                    <header></header>
+                )}
                 {isHomeShown && <LabelsFilter />}
-                <main>
+                <main
+                    className={`full ${
+                        isDetailsShown ? 'details-main-layout' : 'main-layout'
+                    }`}
+                >
                     <Routes>
                         {routes.map((route) => (
                             <Route

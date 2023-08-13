@@ -24,7 +24,7 @@ export function Wishlist() {
                 (likedByUser) => likedByUser === isUserLogged._id
             )
         )
-        setIsWishlist((prevIsWishlist) => wishlist)
+        setIsWishlist(wishlist)
     }, [stays])
 
     if (!stays.length || !stays)
@@ -41,14 +41,17 @@ export function Wishlist() {
         <section className="wishlist-container">
             {isUserLogged ? (
                 wishlist.length ? (
-                    <ul className="wishlist card-grid">
-                        {wishlist.map((currWishlist) => (
-                            <StayPreview
-                                stay={currWishlist}
-                                key={currWishlist._id}
-                            />
-                        ))}
-                    </ul>
+                    <>
+                        <h2>Wishlists</h2>
+                        <ul className="wishlist card-grid">
+                            {wishlist.map((currWishlist) => (
+                                <StayPreview
+                                    stay={currWishlist}
+                                    key={currWishlist._id}
+                                />
+                            ))}
+                        </ul>
+                    </>
                 ) : (
                     <div>
                         <h1>Wishlist</h1>
