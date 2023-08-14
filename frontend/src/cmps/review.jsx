@@ -1,12 +1,10 @@
-import { useState } from "react"
-import { useEffect } from "react"
-import { StatisticsReviews } from "./statistics-reviews"
-import { AllReviews } from "./all-reviews"
-import { ShowAllReviews } from "./show-all-reviews"
-
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { StatisticsReviews } from './statistics-reviews'
+import { AllReviews } from './all-reviews'
+import { ShowAllReviews } from './show-all-reviews'
 
 export function Review({ stay, isOpenReviews }) {
-
     const [slicedReviews, setSlicedReviews] = useState([])
     const [isModalShowMoreOpen, setIsModalShowMoreOpen] = useState(false)
 
@@ -23,7 +21,10 @@ export function Review({ stay, isOpenReviews }) {
 
     function getDate(timestamp) {
         const date = new Date(timestamp)
-        const formattedDate = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+        const formattedDate = date.toLocaleDateString('en-US', {
+            month: 'long',
+            year: 'numeric',
+        })
 
         return formattedDate
     }
@@ -34,82 +35,136 @@ export function Review({ stay, isOpenReviews }) {
 
     return (
         <section id="reviews" className="review-container">
-
             <StatisticsReviews stay={stay} />
-
-            <div className="review-content">
-
-                {!!slicedReviews.length && slicedReviews.map(review =>
-                    <article key={review._id} className="review">
-
-                        <div className="user-details flex align-center">
-                            <img src={review.by.imgUrl} alt="" onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
-                            <div className="review-fullname-date-container">
-                                <h3> {review.by.fullname} </h3>
-                                <p> {getDate(review.at)} </p>
-                            </div>
-                        </div>
-
-                        {review.txt.length > 185 &&
-                            <div className="substringed-txt-container">
-                                <p>{`${review.txt.substring(0, 186)} ...`}</p>
-                                <div className="showmore-container flex align-center">
-                                    <button className="btn-showmore" onClick={onOpenModalShowMore}> Show more </button>
-                                    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685990897/arrow-right-bold_flbszq.svg" alt="show more" />
+            <div className="review-content-container">
+                <div className="review-content">
+                    {!!slicedReviews.length &&
+                        slicedReviews.map((review) => (
+                            <article key={review._id} className="review">
+                                <div className="user-details flex align-center">
+                                    <img
+                                        src={review.by.imgUrl}
+                                        alt=""
+                                        onError={(ev) =>
+                                            (ev.target.src =
+                                                'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png')
+                                        }
+                                    />
+                                    <div className="review-fullname-date-container">
+                                        <h3> {review.by.fullname} </h3>
+                                        <p> {getDate(review.at)} </p>
+                                    </div>
                                 </div>
-                            </div>
-                        }
 
-                        {review.txt.length <= 185 && <p> {review.txt} </p>}
+                                {review.txt.length > 185 && (
+                                    <div className="substringed-txt-container">
+                                        <p>{`${review.txt.substring(
+                                            0,
+                                            186
+                                        )} ...`}</p>
+                                        <div className="showmore-container flex align-center">
+                                            <button
+                                                className="btn-showmore"
+                                                onClick={onOpenModalShowMore}
+                                            >
+                                                {' '}
+                                                Show more{' '}
+                                            </button>
+                                            <img
+                                                src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685990897/arrow-right-bold_flbszq.svg"
+                                                alt="show more"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
 
-                    </article>
-                )}
+                                {review.txt.length <= 185 && (
+                                    <p> {review.txt} </p>
+                                )}
+                            </article>
+                        ))}
 
-                {!slicedReviews.length && stay.reviews.map(review =>
-                    <article key={review._id} className="review">
-
-                        <div className="user-details flex align-center">
-                            <img src={review.by.imgUrl} alt="" onError={ev => ev.target.src = 'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png'} />
-                            <h3> {review.by.fullname} </h3>
-                        </div>
-
-                        {review.txt.length > 185 &&
-                            <div className="substringed-txt-container">
-                                <p>{`${review.txt.substring(0, 186)} ...`}</p>
-                                <div className="showmore-container flex align-center">
-                                    <button className="btn-showmore" onClick={onOpenModalShowMore}> Show more </button>
-                                    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685990897/arrow-right-bold_flbszq.svg" alt="show more" />
+                    {!slicedReviews.length &&
+                        stay.reviews.map((review) => (
+                            <article key={review._id} className="review">
+                                <div className="user-details flex align-center">
+                                    <img
+                                        src={review.by.imgUrl}
+                                        alt=""
+                                        onError={(ev) =>
+                                            (ev.target.src =
+                                                'https://res.cloudinary.com/dpbcaizq9/image/upload/v1686066256/user_jsqpzw.png')
+                                        }
+                                    />
+                                    <h3> {review.by.fullname} </h3>
                                 </div>
-                            </div>
-                        }
 
-                        {review.txt.length <= 185 && <p> {review.txt} </p>}
+                                {review.txt.length > 185 && (
+                                    <div className="substringed-txt-container">
+                                        <p>{`${review.txt.substring(
+                                            0,
+                                            186
+                                        )} ...`}</p>
+                                        <div className="showmore-container flex align-center">
+                                            <button
+                                                className="btn-showmore"
+                                                onClick={onOpenModalShowMore}
+                                            >
+                                                {' '}
+                                                Show more{' '}
+                                            </button>
+                                            <img
+                                                src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1685990897/arrow-right-bold_flbszq.svg"
+                                                alt="show more"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
 
-                    </article>
-                )}
+                                {review.txt.length <= 185 && (
+                                    <p> {review.txt} </p>
+                                )}
+                            </article>
+                        ))}
 
-                {!!slicedReviews.length &&
-                    <button onClick={onOpenModalShowMore} className="btn-show-all-reviews"> {`Show all ${stay.reviews.length} reviews`} </button>
-                }
-
+                    {!!slicedReviews.length && (
+                        <button
+                            onClick={onOpenModalShowMore}
+                            className="btn-show-all-reviews"
+                        >
+                            {' '}
+                            {`Show all ${stay.reviews.length} reviews`}{' '}
+                        </button>
+                    )}
+                </div>
             </div>
-            {isModalShowMoreOpen &&
+
+            <button
+                onClick={onOpenModalShowMore}
+                className="btn-show-all-reviews-mobile"
+            >
+                {' '}
+                {`Show all ${stay.reviews.length} reviews`}{' '}
+            </button>
+
+            {isModalShowMoreOpen && (
                 <div>
                     <section className="show-all-reviews-main-container">
                         <div className="show-all-reviews-container">
-
                             <ShowAllReviews
                                 stay={stay}
-                                onOpenModalShowMore={onOpenModalShowMore} />
-
+                                onOpenModalShowMore={onOpenModalShowMore}
+                            />
                         </div>
                     </section>
-                    <div onClick={() => onOpenModalShowMore(false)} className="blur all"></div>
+                    <div
+                        onClick={() => onOpenModalShowMore(false)}
+                        className="blur all"
+                    ></div>
                 </div>
-            }
+            )}
 
             {/* {isModalShowMoreOpen && <AllReviews stay={stay} />} */}
-
         </section>
     )
 }
@@ -117,7 +172,6 @@ export function Review({ stay, isOpenReviews }) {
 // import { useState } from "react"
 // import { useEffect } from "react"
 // import { StatisticsReviews } from "./statistics-reviews"
-
 
 // export function Review({ stay }) {
 
@@ -141,7 +195,6 @@ export function Review({ stay, isOpenReviews }) {
 //     function onOpenModalShowMore() {
 //         setIsModalShowMoreOpen(true)
 //     }
-
 
 //     return (
 //         <section id="reviews" className="review-container">
