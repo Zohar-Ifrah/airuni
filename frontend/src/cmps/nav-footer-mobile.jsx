@@ -43,7 +43,7 @@ export function NavFooterMobile() {
     }
 
     return (
-        <nav className="nav-footer-mobile full main-layout">
+        <nav className="nav-footer-mobile full details-main-layout">
             <div className="nav-footer-inner-container flex align-center space-between">
                 <NavLink to="/">
                     <div className="flex column align-center">

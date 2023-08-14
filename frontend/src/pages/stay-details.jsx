@@ -17,6 +17,7 @@ import { SkeletonStayDetails } from '../cmps/skeleton-stay-details'
 import { DetailsHeaderMobile } from '../cmps/details-header-mobile'
 import { DetailsGalleryMobile } from '../cmps/details-gallery-mobile'
 import { DetailsContentMobile } from '../cmps/details-content-mobile'
+import { FormOrderMobile } from '../cmps/form-order-mobile'
 
 export function StayDetails() {
     const calAmount = 2
@@ -102,6 +103,12 @@ export function StayDetails() {
             <Review stay={stay} isOpenReviews={isOpenReviews} />
 
             <DetailsMap loc={stay.loc} />
+
+            <FormOrderMobile
+                stay={stay}
+                checkInAndOutDate={checkInAndOutDate}
+                filterBy={filterBy}
+            />
 
             {/* <button>Contact Host</button> */}
         </div>

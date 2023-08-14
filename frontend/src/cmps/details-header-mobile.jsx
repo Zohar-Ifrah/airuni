@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom'
 import { ShareSave } from './share-save'
 
 export function DetailsHeaderMobile({ stay, loadStay }) {
+    const navigate = useNavigate()
+
     return (
         <section className="details-header-mobile flex align-center space-between">
-            <button className="btn-back">
+            <button className="btn-back" onClick={() => navigate('/')}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 32 32"

@@ -110,9 +110,9 @@ export function ShareSave({ stay, loadStay }) {
                             focusable="false"
                             style={{
                                 display: 'block',
-                                fill: 'red',
-                                height: '16px',
-                                width: '16px',
+                                fill: '#ff385c',
+                                height: '18px',
+                                width: '18px',
                                 stroke: 'currentcolor',
                                 strokeWidth: 2,
                                 overflow: 'visible',

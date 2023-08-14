@@ -8,10 +8,10 @@
     grid-template-columns: 25px 1fr 25px;
 
     @include for-narrow-layout {
-        grid-template-columns: em(80px) 1fr em(80px)
+        grid-template-columns: em(80px) 1fr em(80px);
     }
 
-    >* {
+    > * {
         grid-column: 2;
 
         &.full {
@@ -37,13 +37,31 @@
 
 .details-main-layout {
     display: grid;
-    grid-template-columns: minmax(em(40px), 1fr) minmax(auto, 1115px) minmax(em(40px), 1fr);
+    grid-template-columns: minmax(em(20px), 1fr) minmax(auto, 1115px) minmax(
+            em(20px),
+            1fr
+        );
 
-    >* {
+    > * {
         grid-column: 2;
 
         &.full {
             grid-column: 1 /-1;
+        }
+    }
+
+    @include for-narrow-layout-details {
+        grid-template-columns: minmax(em(40px), 1fr) minmax(auto, 1115px) minmax(
+                em(40px),
+                1fr
+            );
+
+        > * {
+            grid-column: 2;
+
+            &.full {
+                grid-column: 1 /-1;
+            }
         }
     }
 
