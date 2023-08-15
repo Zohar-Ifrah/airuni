@@ -1,4 +1,5 @@
 import React from 'react'
+import { showSuccessMsg } from '../services/event-bus.service'
 
 export const ShareModal = ({ setIsShareModalOpen, stay }) => {
     function handleCloseModal() {
@@ -12,6 +13,7 @@ export const ShareModal = ({ setIsShareModalOpen, stay }) => {
         navigator.clipboard
             .writeText(link)
             .then(() => {
+                showSuccessMsg('Link copied succesfully')
                 console.log('Link copied to clipboard!')
             })
             .catch((error) => {
@@ -42,7 +44,7 @@ export const ShareModal = ({ setIsShareModalOpen, stay }) => {
     }
 
     return (
-        <div className="share-modal-container">
+        <div className="share-modal-container details-main-layout">
             <div className="share-modal-content">
                 <div className="close-btn">
                     <img

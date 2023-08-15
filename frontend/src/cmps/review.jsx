@@ -150,7 +150,7 @@ export function Review({ stay, isOpenReviews }) {
             {isModalShowMoreOpen && (
                 <div>
                     <section className="show-all-reviews-main-container">
-                        <div className="show-all-reviews-container">
+                        <div className="show-all-reviews-container details-main-layout">
                             <ShowAllReviews
                                 stay={stay}
                                 onOpenModalShowMore={onOpenModalShowMore}

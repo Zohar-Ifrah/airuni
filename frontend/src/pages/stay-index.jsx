@@ -7,7 +7,7 @@ import {
 } from '../store/stay.actions.js'
 // import { stayService } from '../services/stay.service.local.js'
 
-import { useEffect } from 'react'
+import { useEffect, useTransition } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
@@ -25,6 +25,7 @@ export function StayIndex() {
     const stays = useSelector((storeState) => storeState.stayModule.stays)
     const [searchParams] = useSearchParams()
     const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
+    const [isPending, startTransition] = useTransition()
 
     // First load
     useEffect(() => {
@@ -36,7 +37,10 @@ export function StayIndex() {
         }
         // console.log(filterBy)
         onSetFilter(filterBy)
-        loadStays(filterBy)
+        startTransition(() => {
+            loadStays(filterBy)
+        })
+
         // eslint-disable-next-line
     }, [searchParams])
 

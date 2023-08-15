@@ -1,44 +1,57 @@
 .show-all-reviews-main-container {
     position: fixed;
     background-color: #ffffff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 92vh;
-    width: 64.6875em;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
     z-index: 51;
-    border-radius: em(14px);
-    padding: 1.5em;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
     overflow-y: auto;
 
     .show-all-reviews-container {
         position: fixed;
         background-color: $clr8;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 92vh;
-        width: em(1035px);
+        height: 100%;
+        width: 100%;
         z-index: 51;
-        padding: 1.5em;
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
         overflow-y: auto;
-
+        padding-block: 1em;
 
         .show-all-reviews {
-
             .all-reviews-container {
                 display: grid;
-                grid-template-columns: 1.2fr 2fr;
                 column-gap: 5em;
-                // margin-block-start: 1.5em;
+
+                .statistics-reviews-main-container {
+                    .statistics-reviews-inner-container {
+                        .statistics-reviews-container {
+                            .stat-main {
+                                .stat {
+                                    gap: 1em;
+                                    .bar {
+                                        background-color: $clr2;
+                                        border-radius: 555px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
                 .img-close {
-                    width: 1em;
                     position: sticky;
-                    grid-column: 1;
+                    z-index: 99;
+                    width: 1.5em;
+                    height: 1.5em;
                     top: 0;
+                    left: 0;
+                    border: 0.5px solid $clr2;
+                    border-radius: 50%;
+                    color: $clr2;
+                    background-color: #fff;
+                    padding: 0;
 
                     &:hover {
                         cursor: pointer;
@@ -59,7 +72,7 @@
 
                         img {
                             width: 1.5em;
-                            margin-block-end: .2em;
+                            margin-block-end: 0.2em;
                         }
 
                         h2 {
@@ -71,7 +84,7 @@
                     .statistics-reviews-container {
                         display: flex;
                         flex-direction: column;
-                        row-gap: .6em;
+                        row-gap: 0.6em;
                         width: 100%;
 
                         .stat-main {
@@ -93,7 +106,6 @@
                                 }
                             }
                         }
-
                     }
                 }
 
@@ -104,10 +116,9 @@
                     margin-block-start: 2.5em;
 
                     .review {
-
                         .user-details {
-                            column-gap: .9em;
-                            margin-block-end: .8em;
+                            column-gap: 0.9em;
+                            margin-block-end: 0.8em;
 
                             img {
                                 width: 2.5em;
@@ -128,6 +139,129 @@
                         .txt-container {
                             p {
                                 color: $clr2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include for-narrow-layout {
+    .show-all-reviews-main-container {
+        position: fixed;
+        background-color: #ffffff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 92vh;
+        width: 64.6875em;
+        z-index: 51;
+        border-radius: em(14px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+        overflow-y: auto;
+
+        .show-all-reviews-container {
+            position: fixed;
+            background-color: $clr8;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 92vh;
+            width: em(1035px);
+            z-index: 51;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+            overflow-y: auto;
+
+            .show-all-reviews {
+                .all-reviews-container {
+                    display: grid;
+                    grid-template-columns: 1.2fr 2fr;
+                    column-gap: 5em;
+
+                    .statistics-reviews-main-container {
+                        height: 100%;
+                        grid-column: 1;
+
+                        .statistics-reviews-inner-container {
+                            position: sticky;
+                            top: 50px;
+                        }
+
+                        .rating-container {
+                            margin-block-end: 2em;
+
+                            img {
+                                width: 1.5em;
+                                margin-block-end: 0.2em;
+                            }
+
+                            h2 {
+                                font-family: Circular-Regular, sans-serif;
+                                font-size: em(32px);
+                            }
+                        }
+
+                        .statistics-reviews-container {
+                            display: flex;
+                            flex-direction: column;
+                            row-gap: 0.6em;
+                            width: 100%;
+
+                            .stat-main {
+                                width: 100%;
+
+                                p {
+                                    font-size: em(15px);
+                                }
+
+                                .stat {
+                                    .bar {
+                                        width: 6.5em;
+                                        height: em(4px);
+                                    }
+
+                                    .rating {
+                                        font-family: Circular-Light, sans-serif;
+                                        font-size: em(12.5px);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .all-reviews-inner-container {
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 2.5em;
+                        margin-block-start: 2.5em;
+
+                        .review {
+                            .user-details {
+                                column-gap: 0.9em;
+                                margin-block-end: 0.8em;
+
+                                img {
+                                    width: 2.5em;
+                                    border-radius: 555px;
+                                }
+
+                                .name-date-container {
+                                    h3 {
+                                        font-size: em(16px);
+                                    }
+
+                                    p {
+                                        font-size: em(14.5px);
+                                    }
+                                }
+                            }
+
+                            .txt-container {
+                                p {
+                                    color: $clr2;
+                                }
                             }
                         }
                     }
