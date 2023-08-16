@@ -2,13 +2,17 @@
     width: 100%;
     padding-block-start: 1em;
 
+    .MuiPaper-root {
+        display: none;
+    }
+
     h1 {
-        margin-block-end: .5em;
+        margin-block-end: 0.5em;
         font-size: em(24px);
     }
 
     h2 {
-        margin-block-end: 1em;
+        margin-block-end: 2em;
         font-size: em(20px);
     }
 
@@ -16,12 +20,11 @@
         width: 100%;
         box-shadow: none;
         border: 1px solid $clr4;
-        border-radius: .7em;
+        border-radius: 0.7em;
         // padding-inline: 2em;
 
         table {
             thead {
-
                 tr {
                     th {
                         color: $clr2;
@@ -51,11 +54,8 @@
 .trip-table {
     width: 100%;
 
-
     tbody {
-
         td {
-
             &.approved {
                 color: rgb(19, 153, 19);
                 font-family: Circular-Medium;
@@ -64,9 +64,189 @@
             &.pending {
                 color: rgb(233, 155, 10);
             }
+        }
+    }
+}
 
+.trip-mobile-container {
+    width: 100%;
 
+    .trip-mobile-inner-container {
+        gap: 1em;
+        width: 100%;
+        border-block-start: 1px solid $clr5;
+        padding-block-start: 1em;
+
+        hr {
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+            height: 1px;
+            background-color: $clr5;
+            border: none;
         }
 
+        .order-preview {
+            min-height: 4.5em;
+            width: 100%;
+            justify-content: space-between;
+            gap: 1em;
+
+            .host {
+                min-height: 4.5em;
+                width: 5em;
+
+                img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                span {
+                    font-size: em(14px);
+                    font-family: Circular-Light;
+                    color: $clr7;
+                }
+            }
+
+            .stay-name-dates {
+                // min-height: 4.5em;
+                text-align: left;
+                width: 100%;
+
+                .stay-dates {
+                    font-size: em(14px);
+                    font-family: Circular-Light;
+                    color: $clr7;
+                    text-align: right;
+                }
+            }
+
+            .nights-guests {
+                min-height: 4.5em;
+
+                .nights {
+                    font-size: em(14px);
+                    font-family: Circular-Light;
+                    color: $clr7;
+
+                    span {
+                        font-size: em(18px);
+                        font-family: Circular-Regular;
+                        color: $clr2;
+                    }
+                }
+
+                .guests {
+                    font-size: em(14px);
+                    font-family: Circular-Light;
+                    color: $clr7;
+
+                    span {
+                        font-size: em(18px);
+                        font-family: Circular-Regular;
+                        color: $clr2;
+                    }
+                }
+            }
+
+            .status-total-price {
+                min-height: 4.5em;
+                align-items: flex-end;
+                width: 5em;
+
+                .price {
+                    font-size: em(18px);
+                    font-family: Circular-Medium;
+                }
+
+                .approved {
+                    font-family: Circular-Medium;
+                    color: $clr1;
+                }
+
+                .pending {
+                    font-family: Circular-Medium;
+                    color: $clr7;
+                }
+            }
+        }
+    }
+}
+
+@include for-narrow-layout {
+    .trip-container {
+        width: 100%;
+        padding-block-start: 1em;
+
+        .MuiPaper-root {
+            display: block;
+        }
+
+        h1 {
+            margin-block-end: 0.5em;
+            font-size: em(24px);
+        }
+
+        h2 {
+            margin-block-end: 1em;
+            font-size: em(20px);
+        }
+
+        .MuiPaper-root {
+            width: 100%;
+            box-shadow: none;
+            border: 1px solid $clr4;
+            border-radius: 0.7em;
+            // padding-inline: 2em;
+
+            table {
+                thead {
+                    tr {
+                        th {
+                            color: $clr2;
+                            font-family: Circular-Medium;
+                            font-size: em(15px);
+
+                            &:last-child {
+                                text-align: right;
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            &:last-child {
+                                text-align: right;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .trip-table {
+        width: 100%;
+
+        tbody {
+            td {
+                &.approved {
+                    color: rgb(19, 153, 19);
+                    font-family: Circular-Medium;
+                }
+
+                &.pending {
+                    color: rgb(233, 155, 10);
+                }
+            }
+        }
+    }
+
+    .trip-mobile-container {
+        display: none;
     }
 }

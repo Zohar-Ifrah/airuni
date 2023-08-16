@@ -13,11 +13,12 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
+import { TripMobile } from '../cmps/trip-mobile'
 
 export function Trip() {
     const navigate = useNavigate()
-    const stays = useSelector(storeState => storeState.stayModule.stays)
-    const userLogged = useSelector(storeState => storeState.userModule.user)
+    const stays = useSelector((storeState) => storeState.stayModule.stays)
+    const userLogged = useSelector((storeState) => storeState.userModule.user)
     const [users, setUsers] = useState([])
     const [orders, setOrders] = useState([])
     const [page, setPage] = useState(0)
@@ -34,22 +35,23 @@ export function Trip() {
         }
 
         // Real time update order
-        socketService.on('order-status-change', async newOrder => {
+        socketService.on('order-status-change', async (newOrder) => {
             await fetchOrders()
         })
 
         fetchUsers()
 
         loadStays()
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
         if (userLogged) {
             fetchOrders()
         }
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
     }, [userLogged])
+
     async function fetchOrders() {
         try {
             const userOrders = await orederService.getOrderByBuyer(
@@ -60,6 +62,7 @@ export function Trip() {
             console.log('Error fetching orders:', error)
         }
     }
+
     // Function to format the check-in and check-out dates
     const formatDateRange = (checkin, checkout) => {
         const checkinDate = new Date(checkin)
@@ -79,24 +82,25 @@ export function Trip() {
         setPage(newPage)
     }
 
-    const handleChangeRowsPerPage = event => {
+    const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value)
         setPage(0)
     }
+
     // Function to get the approval status
-    const getApprovalStatus = isApproved => {
+    const getApprovalStatus = (isApproved) => {
         return isApproved ? 'Approved' : 'Pending'
     }
 
     function getHostsInfo(hostId) {
         if (users.length) {
-            const host = users.find(user => user._id === hostId)
+            const host = users.find((user) => user._id === hostId)
             return { img: host.imgUrl, name: host.fullname }
         }
     }
 
     function getStayNights(stayId, totalPrice) {
-        const stay = stays.find(stay => stay._id === stayId)
+        const stay = stays.find((stay) => stay._id === stayId)
         return parseInt(totalPrice / stay?.price)
     }
 
@@ -110,136 +114,156 @@ export function Trip() {
         { id: 'status', label: 'Status', minWidth: 100 },
     ]
 
-    if (
-        !stays ||
-        !stays.length ||
-        !users ||
-        !users.length
-
-    )
+    if (!stays || !stays.length || !users || !users.length)
         return (
-            <div className='loader flex align-center justify-center'>
-                <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg" alt="loader" />
+            <div className="loader flex align-center justify-center">
+                <img
+                    src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1686751739/home-marker_ovo9yb.svg"
+                    alt="loader"
+                />
             </div>
         )
 
     return (
         <>
             {userLogged ? (
-                <div className='trip-container'>
+                <div className="trip-container">
                     <h1>Welcome back, {userLogged.fullname}</h1>
                     <h2>Trips</h2>
                     {orders && orders.length ? (
-                        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                            <TableContainer>
-                                <Table
-                                    stickyHeader
-                                    aria-label='sticky table'
-                                    className='trip-table'
-                                >
-                                    <TableHead>
-                                        <TableRow>
-                                            {columns.map(column => (
-                                                <TableCell
-                                                    key={column.id}
-                                                    align={column.align}
-                                                    style={{
-                                                        minWidth:
-                                                            column.minWidth,
-                                                    }}
-                                                >
-                                                    {column.label}
-                                                </TableCell>
-                                            ))}
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {orders &&
-                                            orders
-                                                .slice(
-                                                    page * rowsPerPage,
-                                                    page * rowsPerPage +
-                                                    rowsPerPage
-                                                )
-                                                .map(order => {
-                                                    const hostInfo =
-                                                        getHostsInfo(
-                                                            order.hostId
-                                                        )
-                                                    return (
-                                                        <TableRow
-                                                            hover
-                                                            role='checkbox'
-                                                            tabIndex={-1}
-                                                            key={order._id}
-                                                        >
-                                                            <TableCell>
-                                                                {hostInfo && hostInfo.name}
-                                                            </TableCell>
-
-                                                            <TableCell>
-                                                                {!!stays.length &&
-                                                                    stays.find(
-                                                                        stay =>
-                                                                            stay._id ===
-                                                                            order.stayId
-                                                                    )?.name}{' '}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {formatDateRange(
-                                                                    order.info
-                                                                        .checkin,
-                                                                    order.info
-                                                                        .checkout
-                                                                )}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {getStayNights(
-                                                                    order.stayId,
-                                                                    order.info
-                                                                        .price
-                                                                )}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {
-                                                                    order.info
-                                                                        .guests
-                                                                }
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                $
-                                                                {
-                                                                    order.info
-                                                                        .price
-                                                                }
-                                                            </TableCell>
-                                                            <TableCell
-                                                                className={
-                                                                    order.isApproved
-                                                                        ? 'approved'
-                                                                        : 'pending'
-                                                                }
-                                                            >
-                                                                {getApprovalStatus(
-                                                                    order.isApproved
-                                                                )}
-                                                            </TableCell>
-                                                        </TableRow>
+                        <>
+                            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                                <TableContainer>
+                                    <Table
+                                        stickyHeader
+                                        aria-label="sticky table"
+                                        className="trip-table"
+                                    >
+                                        <TableHead>
+                                            <TableRow>
+                                                {columns.map((column) => (
+                                                    <TableCell
+                                                        key={column.id}
+                                                        align={column.align}
+                                                        style={{
+                                                            minWidth:
+                                                                column.minWidth,
+                                                        }}
+                                                    >
+                                                        {column.label}
+                                                    </TableCell>
+                                                ))}
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {orders &&
+                                                orders
+                                                    .slice(
+                                                        page * rowsPerPage,
+                                                        page * rowsPerPage +
+                                                            rowsPerPage
                                                     )
-                                                })}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                            <TablePagination
-                                rowsPerPageOptions={[10, 25, 100]}
-                                component='div'
-                                count={orders.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                                    .map((order) => {
+                                                        const hostInfo =
+                                                            getHostsInfo(
+                                                                order.hostId
+                                                            )
+                                                        return (
+                                                            <TableRow
+                                                                hover
+                                                                role="checkbox"
+                                                                tabIndex={-1}
+                                                                key={order._id}
+                                                            >
+                                                                <TableCell>
+                                                                    {hostInfo &&
+                                                                        hostInfo.name}
+                                                                </TableCell>
+
+                                                                <TableCell>
+                                                                    {!!stays.length &&
+                                                                        stays.find(
+                                                                            (
+                                                                                stay
+                                                                            ) =>
+                                                                                stay._id ===
+                                                                                order.stayId
+                                                                        )
+                                                                            ?.name}{' '}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    {formatDateRange(
+                                                                        order
+                                                                            .info
+                                                                            .checkin,
+                                                                        order
+                                                                            .info
+                                                                            .checkout
+                                                                    )}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    {getStayNights(
+                                                                        order.stayId,
+                                                                        order
+                                                                            .info
+                                                                            .price
+                                                                    )}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    {
+                                                                        order
+                                                                            .info
+                                                                            .guests
+                                                                    }
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    $
+                                                                    {
+                                                                        order
+                                                                            .info
+                                                                            .price
+                                                                    }
+                                                                </TableCell>
+                                                                <TableCell
+                                                                    className={
+                                                                        order.isApproved
+                                                                            ? 'approved'
+                                                                            : 'pending'
+                                                                    }
+                                                                >
+                                                                    {getApprovalStatus(
+                                                                        order.isApproved
+                                                                    )}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        )
+                                                    })}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={[10, 25, 100]}
+                                    component="div"
+                                    count={orders.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={
+                                        handleChangeRowsPerPage
+                                    }
+                                />
+                            </Paper>
+                            <TripMobile
+                                stays={stays}
+                                orders={orders}
+                                users={users}
+                                userLogged={userLogged}
+                                getStayNights={getStayNights}
+                                getHostsInfo={getHostsInfo}
+                                getApprovalStatus={getApprovalStatus}
+                                formatDateRange={formatDateRange}
                             />
-                        </Paper>
+                        </>
                     ) : (
                         <div>
                             <h3>No trips booked...yet!</h3>
