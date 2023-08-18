@@ -11,6 +11,7 @@ export const stayService = {
     // addStayMsg,
     getDefaultFilter,
 }
+
 window.cs = stayService
 
 async function query(filterBy) {
@@ -24,6 +25,7 @@ function getById(stayId) {
 async function remove(stayId) {
     return httpService.delete(`${API}/${stayId}`)
 }
+
 async function save(stay) {
     let savedStay
 

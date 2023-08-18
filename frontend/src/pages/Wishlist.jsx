@@ -11,7 +11,6 @@ export function Wishlist() {
     const [wishlist, setIsWishlist] = useState([])
 
     useEffect(() => {
-        if (stays.length) return
         if (!isUserLogged) return
         loadStays()
     }, [])

@@ -118,10 +118,12 @@ export function Dashboard() {
 
                     <ul className="order-list">
                         {orders.length &&
+                            stays.length &&
                             orders.map((order) => {
                                 const currStay = stays.find(
                                     (stay) => stay._id === order.stayId
                                 )
+                                console.log('currStay', currStay)
                                 const buyer = getGuestInfo(order.buyerId)
                                 return (
                                     <li key={order._id}>
@@ -131,7 +133,7 @@ export function Dashboard() {
                                                 <p>{buyer.name}</p>
                                             </section>
                                             <section className="body">
-                                                <p>{currStay.name}</p>
+                                                <p>{currStay?.name}</p>
                                                 <p>
                                                     {utilService.timeAgo(
                                                         order.createdAt

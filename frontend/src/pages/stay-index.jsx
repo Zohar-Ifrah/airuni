@@ -7,7 +7,7 @@ import {
 } from '../store/stay.actions.js'
 // import { stayService } from '../services/stay.service.local.js'
 
-import { useEffect, useTransition } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
@@ -25,7 +25,6 @@ export function StayIndex() {
     const stays = useSelector((storeState) => storeState.stayModule.stays)
     const [searchParams] = useSearchParams()
     const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
-    const [isPending, startTransition] = useTransition()
 
     // First load
     useEffect(() => {
@@ -35,12 +34,8 @@ export function StayIndex() {
         for (const [key, value] of paramsMap) {
             filterBy[key] = isNaN(parseFloat(value)) ? value : parseFloat(value)
         }
-        // console.log(filterBy)
         onSetFilter(filterBy)
-        startTransition(() => {
-            loadStays(filterBy)
-        })
-
+        loadStays(filterBy)
         // eslint-disable-next-line
     }, [searchParams])
 
@@ -97,7 +92,7 @@ export function StayIndex() {
     //     // dispatch({ type: SORT_BY, sortToEdit })
     // }
 
-    if (!stays.length) {
+    if (!stays || !stays.length) {
         return (
             <div className="stay-index-container">
                 <SkeletonList />

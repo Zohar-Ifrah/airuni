@@ -10,8 +10,6 @@ export function TripMobile({
     getApprovalStatus,
     formatDateRange,
 }) {
-    console.log('orders', orders)
-
     return (
         <section className="trip-mobile-container">
             <ul className="trip-mobile-inner-container flex column">
