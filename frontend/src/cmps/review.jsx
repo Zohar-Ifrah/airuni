@@ -33,6 +33,9 @@ export function Review({ stay, isOpenReviews }) {
         setIsModalShowMoreOpen(isOpen)
     }
 
+    if (!slicedReviews.length)
+        return <section id="reviews" className="review-container"></section>
+
     return (
         <section id="reviews" className="review-container">
             <StatisticsReviews stay={stay} />

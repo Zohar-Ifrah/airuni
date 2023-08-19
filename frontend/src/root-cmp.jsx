@@ -54,6 +54,7 @@ export function RootCmp() {
                 (window.location.pathname !== '/wishlist' &&
                     window.location.pathname !== '/trip' &&
                     window.location.pathname !== '/dashboard' &&
+                    !window.location.pathname.includes('/confirm') &&
                     !isDetailsShown) ? (
                     <AppHeader />
                 ) : (

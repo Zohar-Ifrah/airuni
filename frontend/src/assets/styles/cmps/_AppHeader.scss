@@ -1188,6 +1188,7 @@
         img.acc-svg {
             width: 1.9em;
             margin-inline-start: 0.6em;
+            margin-inline-end: 0.15em;
         }
 
         img.menu-svg {
@@ -1287,6 +1288,8 @@
                     color: $clr7;
                     font-family: Circular-Light, sans-serif;
                     font-size: em(15px);
+                    line-height: 0;
+                    margin-block-start: 0.2em;
                 }
             }
 
@@ -1964,6 +1967,7 @@
         img.acc-svg {
             width: 1.9em;
             margin-inline-start: 0.6em;
+            margin-inline-end: 0.15em;
         }
 
         img.menu-svg {

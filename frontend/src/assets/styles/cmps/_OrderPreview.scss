@@ -3,12 +3,12 @@
 
     h1 {
         font-size: em(26px);
-        margin-block-start: .6em;
+        margin-block-start: 0.6em;
     }
 
     h3 {
         font-size: em(20px);
-        margin-block-start: .6em;
+        margin-block-start: 0.6em;
         font-family: Circular-Light;
     }
 
@@ -22,6 +22,7 @@
             .order-preview {
                 font-size: 1rem;
                 display: flex;
+                justify-content: space-between;
                 gap: 10px;
                 border-bottom: 1px solid $clr4;
                 padding-block-start: em(12px);
@@ -32,8 +33,8 @@
                     flex-direction: column;
                     align-items: center;
                     justify-content: space-between;
-                    margin-inline-end: .4em;
-                    row-gap: .4em;
+                    margin-inline-end: 0.4em;
+                    row-gap: 0.4em;
                     max-width: 4em;
 
                     img {
@@ -48,7 +49,6 @@
                         font-size: em(14px);
                         text-align: center;
                     }
-
                 }
 
                 .body {
@@ -91,17 +91,131 @@
                         min-width: em(100px);
 
                         &.approved {
-                            background-color: rgb(19, 153, 19);
+                            background-color: $clr1;
                             color: $clr8;
                             border: none;
                             font-family: Circular-Light;
                         }
 
                         &.pending {
-                            background-color: rgb(233, 155, 10);
+                            background-color: $clr7;
                             color: $clr8;
                             border: none;
                             font-family: Circular-Light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include for-normal-layout-details {
+    .dashboard {
+        margin-block-end: 2em;
+
+        h1 {
+            font-size: em(26px);
+            margin-block-start: 0.6em;
+        }
+
+        h3 {
+            font-size: em(20px);
+            margin-block-start: 0.6em;
+            font-family: Circular-Light;
+        }
+
+        ul {
+            li {
+                &:first-child {
+                    border-top: 1px solid $clr4;
+                    padding-block-start: em(12px);
+                }
+
+                .order-preview {
+                    font-size: 1rem;
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 10px;
+                    border-bottom: 1px solid $clr4;
+                    padding-block-start: em(12px);
+                    padding-block-end: em(25px);
+
+                    .header {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-inline-end: 0.4em;
+                        gap: 1em;
+                        max-width: 4em;
+
+                        img {
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+
+                        p {
+                            line-height: em(18px);
+                            font-size: em(20px);
+                            text-align: center;
+                        }
+                    }
+
+                    .body {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 1em;
+
+                        p {
+                            color: $clr2;
+                            line-height: em(20px);
+                            font-family: Circular-Regular;
+                            font-size: em(24px);
+
+                            &:nth-of-type(2) {
+                                color: $clr7;
+                                font-size: em(18px);
+                            }
+                        }
+                    }
+
+                    .footer {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 1em;
+
+                        .price {
+                            color: $clr2;
+                            font-family: Circular-Regular;
+                            font-size: em(18px);
+                        }
+
+                        button {
+                            background-color: transparent;
+                            color: $clr2;
+                            padding: em(10px);
+                            border: 1px solid $clr9;
+                            min-width: em(100px);
+
+                            &.approved {
+                                background-color: $clr1;
+                                color: $clr8;
+                                border: none;
+                                font-family: Circular-Light;
+                            }
+
+                            &.pending {
+                                background-color: $clr7;
+                                color: $clr8;
+                                border: none;
+                                font-family: Circular-Light;
+                            }
                         }
                     }
                 }

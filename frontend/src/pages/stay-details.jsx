@@ -10,7 +10,7 @@ import { StayAmenities } from '../cmps/stay-amenities'
 import { Review } from '../cmps/review'
 import { OrderForm } from '../cmps/order-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { SET_DETAILS_SHOWN } from '../store/system.reducer'
+import { SET_DETAILS_SHOWN, SET_DETAILS_UNSHOWN } from '../store/system.reducer'
 import { CalendarPicker } from '../cmps/calendar-picker'
 import { DetailsMap } from '../cmps/details-map'
 import { SkeletonStayDetails } from '../cmps/skeleton-stay-details'
@@ -33,6 +33,8 @@ export function StayDetails() {
     useEffect(() => {
         dispatch({ type: SET_DETAILS_SHOWN })
         loadStay()
+
+        return () => dispatch({ type: SET_DETAILS_UNSHOWN })
         // eslint-disable-next-line
     }, [])
 
