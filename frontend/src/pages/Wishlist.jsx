@@ -67,7 +67,12 @@ export function Wishlist() {
                     </div>
                 )
             ) : (
-                navigate('/')
+                <>
+                    <section className="wishlist-container">
+                        <h2>Please login first</h2>
+                        <p>To start your jorney, you have to login first ...</p>
+                    </section>
+                </>
             )}
         </section>
     )

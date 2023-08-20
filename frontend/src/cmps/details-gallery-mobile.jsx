@@ -3,8 +3,6 @@ import { useState } from 'react'
 export function DetailsGalleryMobile({ stay }) {
     const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false)
 
-    console.log('isGalleryModalOpen', isGalleryModalOpen)
-
     return (
         <section className="details-gallery-mobile full">
             <article

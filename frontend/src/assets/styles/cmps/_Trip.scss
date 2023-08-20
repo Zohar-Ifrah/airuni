@@ -24,6 +24,7 @@
             width: 100%;
             border-block-start: 1px solid $clr5;
             padding-block-start: 1em;
+            padding-block-end: 2em;
 
             hr {
                 margin: 0;
@@ -128,6 +129,7 @@
     .trip-container {
         width: 100%;
         padding-block-start: 1em;
+        padding-block-end: 2em;
 
         .MuiPaper-root {
             display: block;
@@ -141,6 +143,15 @@
         h2 {
             margin-block-end: 1em;
             font-size: em(20px);
+        }
+
+        .host {
+            gap: 1em;
+
+            img {
+                width: 4em;
+                border-radius: 50%;
+            }
         }
 
         .MuiPaper-root {

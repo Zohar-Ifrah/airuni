@@ -14,6 +14,7 @@ import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import { TripMobile } from '../cmps/trip-mobile'
+import { Fragment } from 'react'
 
 export function Trip() {
     const navigate = useNavigate()
@@ -176,8 +177,22 @@ export function Trip() {
                                                                 key={order._id}
                                                             >
                                                                 <TableCell>
-                                                                    {hostInfo &&
-                                                                        hostInfo.name}
+                                                                    {hostInfo && (
+                                                                        <div className="host flex align-center">
+                                                                            <img
+                                                                                src={
+                                                                                    hostInfo.img
+                                                                                }
+                                                                                alt="host"
+                                                                            />
+
+                                                                            <span>
+                                                                                {
+                                                                                    hostInfo.name
+                                                                                }
+                                                                            </span>
+                                                                        </div>
+                                                                    )}
                                                                 </TableCell>
 
                                                                 <TableCell>

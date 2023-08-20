@@ -104,9 +104,15 @@ export function Dashboard() {
 
     if (!orders || !orders.length)
         return (
-            <section className="dashboard">
-                <h2>You have no orders!</h2>
-            </section>
+            <>
+                {userLogged ? (
+                    <section className="dashboard">
+                        <h2>You have no orders!</h2>
+                    </section>
+                ) : (
+                    navigate('/')
+                )}
+            </>
         )
 
     return (
