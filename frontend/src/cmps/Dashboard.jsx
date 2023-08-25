@@ -129,6 +129,7 @@ export function Dashboard() {
                                 const currStay = stays.find(
                                     (stay) => stay._id === order.stayId
                                 )
+                                if (!currStay) return
                                 const buyer = getGuestInfo(order.buyerId)
                                 return (
                                     <li key={order._id}>

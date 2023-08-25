@@ -169,6 +169,13 @@ export function Trip() {
                                                             getHostsInfo(
                                                                 order.hostId
                                                             )
+                                                        const currStay =
+                                                            stays.find(
+                                                                (stay) =>
+                                                                    stay._id ===
+                                                                    order.stayId
+                                                            )
+                                                        if (!currStay) return
                                                         return (
                                                             <TableRow
                                                                 hover
@@ -203,8 +210,7 @@ export function Trip() {
                                                                             ) =>
                                                                                 stay._id ===
                                                                                 order.stayId
-                                                                        )
-                                                                            ?.name}{' '}
+                                                                        )?.name}
                                                                 </TableCell>
                                                                 <TableCell>
                                                                     {formatDateRange(
