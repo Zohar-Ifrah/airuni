@@ -42,7 +42,7 @@
             height: em(28px);
             transition: all 0.1s ease-in-out;
             position: absolute;
-            top: calc(50% - (em(28px) / 1.6));
+            // top: calc(50% - (em(28px) / 1.6));
 
             &:hover {
                 width: em(29px);
@@ -82,7 +82,7 @@
             transition: all 0.1s ease-in-out;
             position: absolute;
             right: 0;
-            top: calc(50% - (em(28px) / 1.6));
+            // top: calc(50% - (em(28px) / 1.6));
 
             &:hover {
                 width: em(29px);

@@ -9,34 +9,50 @@ import { orederService } from '../services/order.service'
 import { useDispatch } from 'react-redux'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer'
 import { ShowAllReviews } from './show-all-reviews'
-import arrUp from "../assets/img/arr-up.svg"
-import arrDown from "../assets/img/arr-down.svg"
+import arrUp from '../assets/img/arr-up.svg'
+import arrDown from '../assets/img/arr-down.svg'
 
-
-export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy }) {
+export function OrderForm({
+    stay,
+    checkInAndOutDate,
+    setIsOpenReviews,
+    filterBy,
+}) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [isAddGuestsOpen, setIsAddGuestsOpen] = useState(false)
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
     const [checksDates, setChecksDates] = useState(
-        checkInAndOutDate ? checkInAndOutDate : // if getting dates from details calendar
-            !!filterBy.checkIn && // if filterBy.checkIn !== 0
-            { checkIn: filterBy.checkIn, checkOut: filterBy.checkOut })
-    const [guestsAmount, setGuestsAmount] = useState(filterBy.adults + filterBy.children)
+        checkInAndOutDate
+            ? checkInAndOutDate // if getting dates from details calendar
+            : !!filterBy.checkIn && {
+                  // if filterBy.checkIn !== 0
+                  checkIn: filterBy.checkIn,
+                  checkOut: filterBy.checkOut,
+              }
+    )
+    const [guestsAmount, setGuestsAmount] = useState(
+        filterBy.adults + filterBy.children
+    )
     const isFromOrderForm = useRef(true)
     const maxCapacity = useRef(stay.capacity).current
     const [capacityToEdit, setCapacityToEdit] = useState({
         adults: filterBy.adults,
         children: filterBy.children,
         infants: filterBy.infants,
-        pets: filterBy.pets
+        pets: filterBy.pets,
     })
 
-
     useEffect(() => {
-        setChecksDates(checkInAndOutDate ? checkInAndOutDate : // if getting dates from details calendar
-            !!filterBy.checkIn && // if filterBy.checkIn !== 0
-            { checkIn: filterBy.checkIn, checkOut: filterBy.checkOut })
+        setChecksDates(
+            checkInAndOutDate
+                ? checkInAndOutDate // if getting dates from details calendar
+                : !!filterBy.checkIn && {
+                      // if filterBy.checkIn !== 0
+                      checkIn: filterBy.checkIn,
+                      checkOut: filterBy.checkOut,
+                  }
+        )
     }, [checkInAndOutDate])
 
     function calculateNumberOfNights(start, end) {
@@ -60,25 +76,35 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
             checkin: checksDates.checkIn,
             checkout: checksDates.checkOut,
             guests: guestsAmount,
-            price: (stay.price * calculateNumberOfNights(checksDates.checkIn, checksDates.checkOut)) + 20
+            price:
+                stay.price *
+                    calculateNumberOfNights(
+                        checksDates.checkIn,
+                        checksDates.checkOut
+                    ) +
+                20,
         }
         formDetails.stayId = stay._id
         formDetails.hostId = stay.host._id
         formDetails.createdAt = Date.now()
 
         // SET params:
-        const params = new URLSearchParams({ order: JSON.stringify(formDetails) })
+        const params = new URLSearchParams({
+            order: JSON.stringify(formDetails),
+        })
         dispatch({ type: SET_DETAILS_UNSHOWN })
         navigate(`/confirm/?${params}`)
     }
 
     function onOpenGuestsModal() {
         // if (isCalendarOpen) setIsCalendarOpen(false)
-        setIsAddGuestsOpen(prevIsAddGuestsOpen => !prevIsAddGuestsOpen)
+        setIsAddGuestsOpen((prevIsAddGuestsOpen) => !prevIsAddGuestsOpen)
     }
 
     function guestsMsg() {
-        return guestsAmount > 1 ? guestsAmount + ' guests' : guestsAmount + ' guest'
+        return guestsAmount > 1
+            ? guestsAmount + ' guests'
+            : guestsAmount + ' guest'
     }
 
     function onUpdateCapacity(capacity) {
@@ -95,17 +121,17 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
     }
 
     function ontoggleCalendar() {
-        setIsCalendarOpen(!isCalendarOpen)
+        setIsCalendarOpen((prevIsCalendarOpen) => !prevIsCalendarOpen)
     }
 
     function onCheckInClick(isClicked) {
         // console.log(isClicked)
     }
-    function onSetDates(startDate, endDate) {
-        console.log('onSetDates')
-        setIsCalendarOpen(!isCalendarOpen)
-        setChecksDates({ checkIn: startDate, checkOut: endDate })
 
+    function onSetDates(startDate, endDate) {
+        setIsCalendarOpen((prevIsCalendarOpen) => !prevIsCalendarOpen)
+        setIsAddGuestsOpen((prevIsAddGuestsOpen) => !prevIsAddGuestsOpen)
+        setChecksDates({ checkIn: startDate, checkOut: endDate })
     }
 
     function formatDate(timestamp) {
@@ -121,14 +147,13 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
 
         setTimeout(() => {
             setIsOpenReviews(false)
-        }, 300);
+        }, 300)
     }
 
     return (
         <section className="order-form-container">
             {/* {console.log(checksDates)} */}
             <div className="price-rating-container flex space-between">
-
                 <div className="price-container flex">
                     <h2>${stay.price.toLocaleString()}</h2>
                     <p>night</p>
@@ -145,60 +170,95 @@ export function OrderForm({ stay, checkInAndOutDate, setIsOpenReviews, filterBy 
                             <span> · </span>
                         </div>
                     )}
-                    <p className='reviews-amount' onClick={onOpenReviews}>{`${stay.reviews.length} reviews`}</p>
-
+                    <p
+                        className="reviews-amount"
+                        onClick={onOpenReviews}
+                    >{`${stay.reviews.length} reviews`}</p>
                 </div>
             </div>
 
             <form className="flex column align-center" onSubmit={onSubmitOrder}>
-
                 <div className="dates-guests-container flex column align-center space-between">
-                    <div onClick={() => { ontoggleCalendar() }} className="dates-container flex align-center">
+                    <div
+                        onClick={() => {
+                            ontoggleCalendar()
+                        }}
+                        className="dates-container flex align-center"
+                    >
                         <div className="check-in-container">
                             <span> check-in </span>
                             {/* {console.log(checkInAndOutDate)} */}
                             {/* {console.log(checksDates)} */}
-                            <div className='date-check-in'>{checksDates.checkIn ? formatDate(checksDates.checkIn) : 'Add date'} </div>
+                            <div className="date-check-in">
+                                {checksDates.checkIn
+                                    ? formatDate(checksDates.checkIn)
+                                    : 'Add date'}{' '}
+                            </div>
                         </div>
 
                         <div className="check-out-container">
                             <span> checkout </span>
-                            <div className='date-check-out'>{checksDates.checkOut ? formatDate(checksDates.checkOut) : 'Add date'} </div>
+                            <div className="date-check-out">
+                                {checksDates.checkOut
+                                    ? formatDate(checksDates.checkOut)
+                                    : 'Add date'}{' '}
+                            </div>
                         </div>
                     </div>
 
                     <div className="show-contents">
-                        {isCalendarOpen && <CalendarPicker
-                            onSetDates={onSetDates}
-                            onCheckInClick={onCheckInClick} />}
+                        {isCalendarOpen && (
+                            <CalendarPicker
+                                onSetDates={onSetDates}
+                                onCheckInClick={onCheckInClick}
+                            />
+                        )}
                     </div>
 
-                    <div onClick={() => { onOpenGuestsModal() }} className="guests flex space-between">
+                    <div
+                        onClick={() => {
+                            onOpenGuestsModal()
+                        }}
+                        className="guests flex space-between"
+                    >
                         <div>
                             <span> guests </span>
-                            <div className='guests-count'> {guestsAmount ? guestsMsg() : 'Add guests'} </div>
+                            <div className="guests-count">
+                                {' '}
+                                {guestsAmount ? guestsMsg() : 'Add guests'}{' '}
+                            </div>
                         </div>
-                        <img src={isAddGuestsOpen ? arrUp : arrDown} alt="dir" />
+                        <img
+                            src={isAddGuestsOpen ? arrUp : arrDown}
+                            alt="dir"
+                        />
                     </div>
 
                     <div className="show-contents">
-                        {isAddGuestsOpen && <AddGuests
-                            onUpdateCapacity={onUpdateCapacity}
-                            maxCapacity={maxCapacity}
-                            onOpenGuestsModal={onOpenGuestsModal}
-                            isFromOrderForm={isFromOrderForm}
-                            capacity={capacityToEdit} />}
+                        {isAddGuestsOpen && (
+                            <AddGuests
+                                onUpdateCapacity={onUpdateCapacity}
+                                maxCapacity={maxCapacity}
+                                onOpenGuestsModal={onOpenGuestsModal}
+                                isFromOrderForm={isFromOrderForm}
+                                capacity={capacityToEdit}
+                            />
+                        )}
                     </div>
                 </div>
                 <button>Reserve</button>
             </form>
 
-            <p className='txt-charged'>You won't be charged yet</p>
+            <p className="txt-charged">You won't be charged yet</p>
 
-            {checksDates && !!guestsAmount &&
-                <PriceDetails price={stay.price} checksDates={checksDates} calculateNumberOfNights={calculateNumberOfNights} isFromConfirmOrder={false} />
-            }
-
+            {checksDates && !!guestsAmount && (
+                <PriceDetails
+                    price={stay.price}
+                    checksDates={checksDates}
+                    calculateNumberOfNights={calculateNumberOfNights}
+                    isFromConfirmOrder={false}
+                />
+            )}
         </section>
     )
 }

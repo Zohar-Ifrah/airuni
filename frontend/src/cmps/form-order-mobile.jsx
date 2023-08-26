@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CalendarPicker } from './calendar-picker'
 import { orederService } from '../services/order.service'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { SET_DETAILS_UNSHOWN } from '../store/system.reducer'
+import { useEffectUpdate } from '../customHooks/useEffectUpdate'
+import { AddGuests } from './add-guests'
 
 export function FormOrderMobile({ stay, checkInAndOutDate, filterBy }) {
     const dispatch = useDispatch()
@@ -27,6 +29,19 @@ export function FormOrderMobile({ stay, checkInAndOutDate, filterBy }) {
         pets: filterBy.pets,
     })
     const [isCalendarOpen, setIsCalendarOpen] = useState(false)
+    const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
+
+    useEffectUpdate(() => {
+        setChecksDates(
+            checkInAndOutDate
+                ? checkInAndOutDate // if getting dates from details calendar
+                : !!filterBy.checkIn && {
+                      // if filterBy.checkIn !== 0
+                      checkIn: filterBy.checkIn,
+                      checkOut: filterBy.checkOut,
+                  }
+        )
+    }, [checkInAndOutDate])
 
     function formatDate(timestamp) {
         const date = new Date(timestamp)
@@ -37,8 +52,8 @@ export function FormOrderMobile({ stay, checkInAndOutDate, filterBy }) {
     }
 
     function onSetDates(startDate, endDate) {
-        console.log('onSetDates')
-        setIsCalendarOpen(!isCalendarOpen)
+        setIsCalendarOpen((prevIsCalendarOpen) => !prevIsCalendarOpen)
+        setIsGuestsModalOpen((prevIsGuestsModalOpen) => !prevIsGuestsModalOpen)
         setChecksDates({ checkIn: startDate, checkOut: endDate })
     }
 
@@ -81,6 +96,18 @@ export function FormOrderMobile({ stay, checkInAndOutDate, filterBy }) {
         })
         dispatch({ type: SET_DETAILS_UNSHOWN })
         navigate(`/confirm/?${params}`)
+    }
+
+    function onUpdateCapacity(capacity) {
+        setGuestsAmount(capacity.adults + capacity.children)
+        setCapacityToEdit(capacity)
+        // setCapacityToEdit({
+        //     ...capacityToEdit,
+        //     adults: capacity.adults,
+        //     children: capacity.children,
+        //     infants: capacity.infants,
+        //     pets: capacity.pets,
+        //   })
     }
 
     return (
@@ -137,6 +164,53 @@ export function FormOrderMobile({ stay, checkInAndOutDate, filterBy }) {
                         >
                             <path d="m6 6 20 20M26 6 6 26"></path>
                         </svg>
+                    </button>
+                </div>
+            )}
+            {isGuestsModalOpen && (
+                <div className="blur-screen full">
+                    <AddGuests
+                        onUpdateCapacity={onUpdateCapacity}
+                        capacity={capacityToEdit}
+                    />
+                    <button
+                        className="close-guests"
+                        onClick={() =>
+                            setIsGuestsModalOpen(
+                                (prevIsGuestsModalOpen) =>
+                                    !prevIsGuestsModalOpen
+                            )
+                        }
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 32 32"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                            style={{
+                                display: 'block',
+                                fill: 'none',
+                                height: '12px',
+                                width: '12px',
+                                stroke: 'currentcolor',
+                                strokeWidth: '5.33333',
+                                overflow: 'visible',
+                            }}
+                        >
+                            <path d="m6 6 20 20M26 6 6 26"></path>
+                        </svg>
+                    </button>
+                    <button
+                        className="btn-done"
+                        onClick={() =>
+                            setIsGuestsModalOpen(
+                                (prevIsGuestsModalOpen) =>
+                                    !prevIsGuestsModalOpen
+                            )
+                        }
+                    >
+                        Done
                     </button>
                 </div>
             )}
