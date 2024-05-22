@@ -17,23 +17,23 @@ export function RegionSearch({ onRegionClick }) {
                     <p className="region-name">I'm flexible</p>
                 </div>
                 <div>
-                    <img onClick={() => { onRegionClick('Middle East') }} src={midE} alt="Middle East" />
+                    <img onClick={() => { onRegionClick('flexible') }} src={midE} alt="Middle East" />
                     <p className="region-name">Middle East</p>
                 </div>
                 <div>
-                    <img onClick={() => { onRegionClick('Italy') }} src={itali} alt="Middle East" />
+                    <img onClick={() => { onRegionClick('flexible') }} src={itali} alt="Italy" />
                     <p className="region-name">Italy</p>
                 </div>
                 <div>
-                    <img onClick={() => { onRegionClick('South America') }} src={southA} alt="Middle East" />
+                    <img onClick={() => { onRegionClick('flexible') }} src={southA} alt="South America" />
                     <p className="region-name">South America</p>
                 </div>
                 <div>
-                    <img onClick={() => { onRegionClick('France') }} src={france} alt="Middle East" />
+                    <img onClick={() => { onRegionClick('flexible') }} src={france} alt="France" />
                     <p className="region-name">France</p>
                 </div>
                 <div>
-                    <img onClick={() => { onRegionClick('United States') }} src={uS} alt="Middle East" />
+                    <img onClick={() => { onRegionClick('United States') }} src={uS} alt="United States" />
                     <p className="region-name">United States</p>
                 </div>
             </div>
