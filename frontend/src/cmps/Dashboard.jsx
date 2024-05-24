@@ -107,7 +107,7 @@ export function Dashboard() {
             <>
                 {userLogged ? (
                     <section className="dashboard">
-                        <h2>You have no orders!</h2>
+                        <h2>There are no orders yet</h2>
                     </section>
                 ) : (
                     navigate('/')
