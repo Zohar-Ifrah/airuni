@@ -18,16 +18,22 @@ export function LoginSignup(props) {
 
     async function loadUsers() {
         const users = await userService.getUsers()
+        
         // Custom sort order
         const customSortOrder = [
-            "Jennifer", "Andre", "Rina", "Tarek", "Maria", "Sarah", "Andrew", "Marcos", "Shannon", "Jorge",
-            "Samantha", "Danny", "Samuel", "Laurinda Nunes", "Nicole", "Ana Lúcia", "Branca", "Núria",
+            "Jennifer", "Andre", "LuLu", "Tarek", "Guillermo", "Sarah", "Andrew", "Joseph", "Shannon", "Judy",
+            "Samantha", "Kandide", "Samuel", "Laurinda Nunes", "Nicole", "Ana Lúcia", "Branca", "Núria",
             "Alan & Catherine", "Tomás", "José"
         ]
 
         // Sort users based on the custom order
         const sortedUsers = users.sort((a, b) => {
-            return customSortOrder.indexOf(a.fullname) - customSortOrder.indexOf(b.fullname)
+            const indexA = customSortOrder.indexOf(a.fullname)
+            const indexB = customSortOrder.indexOf(b.fullname)
+            // Users not found in the custom order should come last
+            if (indexA === -1) return 1
+            if (indexB === -1) return -1
+            return indexA - indexB
         })
 
         setUsers(sortedUsers)
