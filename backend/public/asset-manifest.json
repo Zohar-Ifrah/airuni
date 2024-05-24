@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.96341a30.css",
-    "main.js": "/static/js/main.1b1f491e.js",
+    "main.js": "/static/js/main.606b780c.js",
     "static/media/CircularStd-Light.otf": "/static/media/CircularStd-Light.4a1a0bfcc3a53847a945.otf",
     "static/media/CircularStd-Book.otf": "/static/media/CircularStd-Book.c1441dbff704baa78817.otf",
     "static/media/CircularStd-Bold.otf": "/static/media/CircularStd-Bold.c35da9cdcefd0d8b8f1c.otf",
@@ -14,10 +14,10 @@
     "static/media/exit.svg": "/static/media/exit.1613670bda75ad67062739301b4cf941.svg",
     "static/media/menu.svg": "/static/media/menu.62156aa1f3f8ed08b3c42f31823cbef1.svg",
     "main.96341a30.css.map": "/static/css/main.96341a30.css.map",
-    "main.1b1f491e.js.map": "/static/js/main.1b1f491e.js.map"
+    "main.606b780c.js.map": "/static/js/main.606b780c.js.map"
   },
   "entrypoints": [
     "static/css/main.96341a30.css",
-    "static/js/main.1b1f491e.js"
+    "static/js/main.606b780c.js"
   ]
 }
