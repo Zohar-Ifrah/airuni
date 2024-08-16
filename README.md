@@ -61,6 +61,13 @@ You can view details about the property, save to wishlist, see location on the m
   </div>
 </div>
 
+## Screenshots - Mobile
+
+| Home Page | Stay Details | Wishlist | Trips |
+|-----------|--------------|----------|-------|
+| ![Home Page](https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829619/homepage-mobile-airuni_kjoesh.png) | ![Stay Details](https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829651/stay-details-mobile-airuni_kdjqw3.png) | ![Wishlist](https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829694/wish-list-mobile-airuni_oblvaq.png) | ![Trips](https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829711/trips-mobile-airuni_yg5soc.png) |
+
+
 
 <h2>Authors</h2>
 <a href="https://github.com/gilshaashua">Gil Shaashua</a>
