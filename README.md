@@ -38,29 +38,6 @@ You can view details about the property, save to wishlist, see location on the m
 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829249/trips-airuni_vukehe.png"/>
 
 
-<h2>Screenshots - Mobile</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <div style="flex: 1; text-align: center;">
-    <h3>Home Page</h3>
-    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829619/homepage-mobile-airuni_kjoesh.png" alt="Home Page" width="200"/>
-  </div>
-  
-  <div style="flex: 1; text-align: center;">
-    <h3>Stay Details</h3>
-    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829651/stay-details-mobile-airuni_kdjqw3.png" alt="Stay Details" width="200"/>
-  </div>
-  
-  <div style="flex: 1; text-align: center;">
-    <h3>Wishlist</h3>
-    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829694/wish-list-mobile-airuni_oblvaq.png" alt="Wishlist" width="200"/>
-  </div>
-  
-  <div style="flex: 1; text-align: center;">
-    <h3>Trips</h3>
-    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829711/trips-mobile-airuni_yg5soc.png" alt="Trips" width="200"/>
-  </div>
-</div>
-
 ## Screenshots - Mobile
 
 | Home Page | Stay Details | Wishlist | Trips |
@@ -68,7 +45,6 @@ You can view details about the property, save to wishlist, see location on the m
 | ![Home Page](https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829619/homepage-mobile-airuni_kjoesh.png) | ![Stay Details](https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829651/stay-details-mobile-airuni_kdjqw3.png) | ![Wishlist](https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829694/wish-list-mobile-airuni_oblvaq.png) | ![Trips](https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829711/trips-mobile-airuni_yg5soc.png) |
 
 
-
-<h2>Authors</h2>
-<a href="https://github.com/gilshaashua">Gil Shaashua</a>
-<a href="https://github.com/Zohar-Ifrah">Zohar Ifrah</a>
+### Authors
+ - [Gil Shaashua](https://github.com/gilshaashua)
+ - [Zohar Ifrah](https://github.com/Zohar-Ifrah)
