@@ -40,7 +40,8 @@ You can view details about the property, save to wishlist, see location on the m
 
 <h2>Screenshots - Mobile</h2>
 
-<h3>Home Page</h3>
+<p>
+  <h3>Home Page</h3>
 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829619/homepage-mobile-airuni_kjoesh.png"/>
 
 <h3>Stay Details</h3>
@@ -51,6 +52,8 @@ You can view details about the property, save to wishlist, see location on the m
 
 <h3>Trips</h3>
 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829711/trips-mobile-airuni_yg5soc.png"/>
+</p>
+
 
 <h2>Authors</h2>
 <a href="https://github.com/gilshaashua">Gil Shaashua</a>
