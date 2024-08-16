@@ -4,7 +4,7 @@ https://airuni.onrender.com/
 
 <h2>AirUni Description</h2>
 <p>AirUni is an app in which you can rent houses, rooms for a limited period of time anywhere in the world at affordable prices for every pocket.
-You can view details about the property, save to list, see location on the map, browse through photos, receive updates in real time when the order is confirmed.</p>
+You can view details about the property, save to wishlist, see location on the map, browse through photos, receive updates in real time when the order is confirmed.</p>
 
 
 <h2>Technologies</h2>
@@ -20,4 +20,38 @@ You can view details about the property, save to list, see location on the map, 
 </p>
 
 
+<h2>Screenshots - Desktop</h2>
 
+<h3>Home Page</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723827075/homepage-airuni_ilcob1.png"/>
+
+<h3>Stay Details</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723828769/stay-details-airuni_soxs9b.png"/>
+
+<h3>Confirm Order</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723828955/confirm-order-airuni_l7mzs7.png"/>
+
+<h3>Wishlist</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829569/wishlist-airuni_ydyul7.png"/>
+
+<h3>Trips</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829249/trips-airuni_vukehe.png"/>
+
+
+<h2>Screenshots - Mobile</h2>
+
+<h3>Home Page</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829619/homepage-mobile-airuni_kjoesh.png"/>
+
+<h3>Stay Details</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829651/stay-details-mobile-airuni_kdjqw3.png"/>
+
+<h3>Wishlist</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829694/wish-list-mobile-airuni_oblvaq.png"/>
+
+<h3>Trips</h3>
+<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829711/trips-mobile-airuni_yg5soc.png"/>
+
+<h2>Authors</h2>
+<a href="">Gil Shaashua</a>
+<a href="">Zohar Ifrah</a>
