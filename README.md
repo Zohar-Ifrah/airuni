@@ -53,5 +53,5 @@ You can view details about the property, save to wishlist, see location on the m
 <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829711/trips-mobile-airuni_yg5soc.png"/>
 
 <h2>Authors</h2>
-<a href="">Gil Shaashua</a>
-<a href="">Zohar Ifrah</a>
+<a href="https://github.com/gilshaashua">Gil Shaashua</a>
+<a href="https://github.com/Zohar-Ifrah">Zohar Ifrah</a>
