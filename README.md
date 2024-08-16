@@ -39,26 +39,26 @@ You can view details about the property, save to wishlist, see location on the m
 
 
 <h2>Screenshots - Mobile</h2>
-<div style="display:flex;">
-  <div>
-  <h3>Home Page</h3>
-  <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829619/homepage-mobile-airuni_kjoesh.png"/>
-</div>
-
-<div>
-<h3>Stay Details</h3>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829651/stay-details-mobile-airuni_kdjqw3.png"/>
-</div>
-
-<div>
-<h3>Wishlist</h3>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829694/wish-list-mobile-airuni_oblvaq.png"/>
-</div>
-
-<div>
-<h3>Trips</h3>
-<img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829711/trips-mobile-airuni_yg5soc.png"/>
-</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <div style="flex: 1; text-align: center;">
+    <h3>Home Page</h3>
+    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829619/homepage-mobile-airuni_kjoesh.png" alt="Home Page" width="200"/>
+  </div>
+  
+  <div style="flex: 1; text-align: center;">
+    <h3>Stay Details</h3>
+    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829651/stay-details-mobile-airuni_kdjqw3.png" alt="Stay Details" width="200"/>
+  </div>
+  
+  <div style="flex: 1; text-align: center;">
+    <h3>Wishlist</h3>
+    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829694/wish-list-mobile-airuni_oblvaq.png" alt="Wishlist" width="200"/>
+  </div>
+  
+  <div style="flex: 1; text-align: center;">
+    <h3>Trips</h3>
+    <img src="https://res.cloudinary.com/dpbcaizq9/image/upload/v1723829711/trips-mobile-airuni_yg5soc.png" alt="Trips" width="200"/>
+  </div>
 </div>
 
 
