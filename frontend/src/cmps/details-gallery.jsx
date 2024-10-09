@@ -22,7 +22,7 @@ export function DetailsGallery({ stay }) {
     }
 
     return (
-        <div ref={galleryRef} className="details-gallery">
+        <div id='photos' ref={galleryRef} className="details-gallery">
             {stay.imgUrls.map((imgUrl) => {
                 return <img key={imgUrl} src={imgUrl} alt="stay-img" />
             })}
